@@ -6,20 +6,19 @@ import type { Pokemon } from '@/features/pokemons/schemas'
 import { cn } from '@/shared/lib/utils'
 import { usePerPage } from '@/shared/store'
 
-type PokemonListProps = React.ComponentProps<'ul'> & {
+function PokemonList({
+  className,
+  pokemons,
+}: {
+  className?: string
   pokemons: Pokemon[]
-}
-
-function PokemonList({ className, pokemons, ...props }: PokemonListProps) {
+}) {
   if (pokemons.length === 0) {
     return <p className="text-center">No pokemons found.</p>
   }
 
   return (
-    <ul
-      className={cn('flex flex-1 flex-wrap justify-center gap-6', className)}
-      {...props}
-    >
+    <ul className={cn('flex flex-1 flex-wrap justify-center gap-6', className)}>
       {pokemons.map((pokemon) => (
         <li key={pokemon.id}>
           <PokemonCardMemoized pokemon={pokemon} />
@@ -29,14 +28,11 @@ function PokemonList({ className, pokemons, ...props }: PokemonListProps) {
   )
 }
 
-function PokemonListSkeleton({
-  className,
-  ...props
-}: React.ComponentProps<'div'>) {
+function PokemonListSkeleton() {
   const perPage = usePerPage()
 
   return (
-    <div role="status" aria-live="polite" className={className} {...props}>
+    <div role="status" aria-live="polite">
       <ul className="flex flex-wrap justify-center gap-6">
         {Array.from({ length: perPage }).map((_, index) => (
           <li key={index}>

@@ -1,68 +1,54 @@
 import { CogIcon, MoonIcon, SunIcon, type LucideIcon } from 'lucide-react'
 
-import { WithTooltip } from '@/shared/components'
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from '@/shared/components/ui/select'
+import { Select } from '@/shared/components/select'
 import { cn } from '@/shared/lib/utils'
-import { MODES, type Mode } from '@/shared/schemas'
+import { MODE_OPTIONS, type Mode } from '@/shared/schemas'
 import { useMode, useModeActions } from '@/shared/store'
 import { capitalize } from '@/shared/utilities'
 
-const iconsMap: Record<Mode, LucideIcon> = {
-  dark: MoonIcon,
-  light: SunIcon,
-  system: CogIcon,
+const ICONS = new Map<Mode, LucideIcon>([
+  ['dark', MoonIcon],
+  ['light', SunIcon],
+  ['system', CogIcon],
+])
+
+const getIconForMode = (mode: Mode): LucideIcon => {
+  const Icon = ICONS.get(mode)
+  if (!Icon) {
+    throw new Error(
+      `No icon found for mode "${mode}". Please ensure that all modes have a corresponding icon defined in the ICONS map.`,
+    )
+  }
+  return Icon
 }
 
-export function ModeSelect({
-  className,
-  ...props
-}: React.ComponentProps<typeof SelectTrigger>) {
+export function ModeSelect({ className }: { className?: string }) {
   const mode = useMode()
   const { setMode } = useModeActions()
 
-  const Icon = iconsMap[mode]
-  const label = `Select mode (${mode})`
+  const Icon = getIconForMode(mode)
+  const tooltip = `Select mode (${mode})`
 
   return (
     <Select
+      id="mode-select"
+      aria-label={tooltip}
+      className={cn(
+        'w-9 justify-center px-2 md:w-fit md:px-3 [&>svg:last-of-type]:hidden md:[&>svg:last-of-type]:block',
+        className,
+      )}
+      tooltip={tooltip}
+      options={MODE_OPTIONS}
       value={mode}
-      onValueChange={(value) => {
-        setMode(value as Mode)
+      renderValue={(value) => (
+        <>
+          <Icon aria-hidden={true} />
+          <span className="hidden md:block">{capitalize(value)}</span>
+        </>
+      )}
+      onValueChange={(nextValue) => {
+        setMode(nextValue)
       }}
-    >
-      <WithTooltip message={label}>
-        <SelectTrigger
-          {...props}
-          className={cn(
-            'aspect-square h-9! justify-center px-2 md:px-3 [&>svg:last-of-type]:hidden md:[&>svg:last-of-type]:block',
-            className,
-          )}
-          aria-label={label}
-        >
-          <SelectValue>
-            <Icon aria-hidden={true} />
-            <span className="hidden md:block">{capitalize(mode)}</span>
-          </SelectValue>
-        </SelectTrigger>
-      </WithTooltip>
-      <SelectContent position="popper" align="end">
-        <SelectGroup>
-          <SelectLabel>Mode</SelectLabel>
-          {MODES.map((mode) => (
-            <SelectItem key={mode} value={mode}>
-              {capitalize(mode)}
-            </SelectItem>
-          ))}
-        </SelectGroup>
-      </SelectContent>
-    </Select>
+    />
   )
 }

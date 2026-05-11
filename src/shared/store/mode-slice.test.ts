@@ -4,10 +4,14 @@ import { create } from 'zustand'
 import { createModeSlice, type ModeSlice } from '@/shared/store/mode-slice'
 import { getSystemPreference, toggleMode } from '@/shared/utilities'
 
-vi.mock('@/shared/utilities', () => ({
-  getSystemPreference: vi.fn(),
-  toggleMode: vi.fn(),
-}))
+vi.mock('@/shared/utilities', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/shared/utilities')>()
+  return {
+    ...actual,
+    getSystemPreference: vi.fn(),
+    toggleMode: vi.fn(),
+  }
+})
 
 function makeStore() {
   return create<ModeSlice>()((...a) => createModeSlice(...a))

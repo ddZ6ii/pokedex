@@ -48,7 +48,9 @@ describe('FilterSchema', () => {
   })
 
   it.each(PER_PAGE_OPTIONS)('accepts perPage %s', (perPage) => {
-    expect(() => FilterSchema.parse({ perPage: Number(perPage) })).not.toThrow()
+    expect(() =>
+      FilterSchema.parse({ perPage: Number(perPage.value) }),
+    ).not.toThrow()
   })
 
   it('rejects invalid perPage', () => {

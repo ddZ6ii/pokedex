@@ -1,8 +1,12 @@
-type BaseSelectOption<T extends string> = {
+type SelectOption<T extends string> = {
+  group?: string
   label: string
   value: T | (string & {})
 }
 
-export type SelectOption<T extends string> = BaseSelectOption<T> & {
-  group?: string
+type OptionGroup<T extends string> = {
+  label?: string
+  options: SelectOption<T>[]
 }
+
+export type { OptionGroup, SelectOption }

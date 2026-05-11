@@ -51,7 +51,7 @@ window.getComputedStyle = (el, pseudo?) => {
         return (
           (target as CSSStyleDeclaration & Record<string, string>)[
             prop as string
-          ] || 'none'
+          ] ?? 'none'
         )
       }
       const val: unknown = Reflect.get(target, prop, receiver)

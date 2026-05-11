@@ -7,19 +7,19 @@ import { cn } from '@/shared/lib/utils'
 
 type WithTooltipProps = React.ComponentProps<typeof Tooltip> &
   Pick<React.ComponentProps<typeof TooltipContent>, 'side'> & {
-    message: React.ReactNode
+    tooltip: React.ReactNode
     className?: string
   }
 
 export function WithTooltip({
   children,
   className,
-  message,
+  tooltip,
   side = 'top',
   ...props
 }: WithTooltipProps) {
   return (
-    <Tooltip {...props}>
+    <Tooltip disableHoverableContent delayDuration={300} {...props}>
       <TooltipTrigger asChild>
         <span
           role="presentation"
@@ -28,7 +28,7 @@ export function WithTooltip({
           {children}
         </span>
       </TooltipTrigger>
-      <TooltipContent side={side}>{message}</TooltipContent>
+      <TooltipContent side={side}>{tooltip}</TooltipContent>
     </Tooltip>
   )
 }

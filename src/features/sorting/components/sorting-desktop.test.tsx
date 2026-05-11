@@ -73,12 +73,7 @@ describe('SortingDesktop', () => {
     const user = userEvent.setup()
     renderWithProviders(<SortingDesktop />)
 
-    await user.click(
-      screen.getByRole('combobox', { name: SELECT_SORTING_CRITERIA_LABEL }),
-    )
-    await user.click(
-      await screen.findByRole('option', { name: /clear selection/i }),
-    )
+    await user.click(screen.getByRole('button', { name: /clear selection/i }))
 
     expect(setSorting).toHaveBeenCalledWith(null, null)
   })

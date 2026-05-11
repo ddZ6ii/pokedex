@@ -51,7 +51,7 @@ describe('StorageSchema', () => {
     expect(() =>
       StorageSchema.parse({
         ...validInput,
-        state: { ...validInput.state, perPage: Number(perPage) },
+        state: { ...validInput.state, perPage: Number(perPage.value) },
       }),
     ).not.toThrow()
   })

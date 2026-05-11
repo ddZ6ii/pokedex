@@ -13,21 +13,19 @@ import {
 } from '@/shared/components/ui/pagination'
 import { useFilters, useFiltersActions } from '@/shared/store'
 
-type PaginationProps = React.ComponentProps<'div'> & {
-  disabled?: boolean
-  maxDisplayedPages?: number
-  maxPage: number
-  startTransition: React.TransitionStartFunction
-}
-
 export function Pagination({
   className,
   disabled,
   maxDisplayedPages = 7,
   maxPage,
   startTransition,
-  ...props
-}: PaginationProps) {
+}: {
+  className?: string
+  disabled?: boolean
+  maxDisplayedPages?: number
+  maxPage: number
+  startTransition: React.TransitionStartFunction
+}) {
   const queryClient = useQueryClient()
   const { page, ...filters } = useFilters()
   const { setPage } = useFiltersActions()
@@ -49,7 +47,7 @@ export function Pagination({
   const pages = getPages(page, maxDisplayedPages, maxPage)
 
   return (
-    <div className={className} {...props}>
+    <div className={className}>
       <UIPagination>
         <PaginationContent>
           <PaginationItem>

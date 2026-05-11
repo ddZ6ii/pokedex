@@ -14,43 +14,49 @@ import { cn } from '@/shared/lib/utils'
 const BASE_IMAGE_URL =
   'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork'
 
-const TYPE_COLORS: Record<PokemonType, string> = {
-  Bug: 'bg-[#92bd2d]',
-  Dark: 'bg-[#595761]',
-  Dragon: 'bg-[#076ac8]',
-  Electric: 'bg-[#f2d94e]',
-  Fairy: 'bg-[#ee91e5]',
-  Fighting: 'bg-[#d3425f]',
-  Fire: 'bg-[#fba54d]',
-  Flying: 'bg-[#a1bbec]',
-  Ghost: 'bg-[#5f6dbc]',
-  Grass: 'bg-[#5fbe58]',
-  Ground: 'bg-[#da7c4c]',
-  Ice: 'bg-[#76d0c1]',
-  Normal: 'bg-[#a0a29f]',
-  Poison: 'bg-[#b863cf]',
-  Psychic: 'bg-[#fa8582]',
-  Rock: 'bg-[#c9bc8a]',
-  Steel: 'bg-[#5894a3]',
-  Water: 'bg-[#549ce0]',
+const COLORS = new Map<PokemonType, string>([
+  ['Bug', 'bg-[#92bd2d]'],
+  ['Dark', 'bg-[#595761]'],
+  ['Dragon', 'bg-[#076ac8]'],
+  ['Electric', 'bg-[#f2d94e]'],
+  ['Fairy', 'bg-[#ee91e5]'],
+  ['Fighting', 'bg-[#d3425f]'],
+  ['Fire', 'bg-[#fba54d]'],
+  ['Flying', 'bg-[#a1bbec]'],
+  ['Ghost', 'bg-[#5f6dbc]'],
+  ['Grass', 'bg-[#5fbe58]'],
+  ['Ground', 'bg-[#da7c4c]'],
+  ['Ice', 'bg-[#76d0c1]'],
+  ['Normal', 'bg-[#a0a29f]'],
+  ['Poison', 'bg-[#b863cf]'],
+  ['Psychic', 'bg-[#fa8582]'],
+  ['Rock', 'bg-[#c9bc8a]'],
+  ['Steel', 'bg-[#5894a3]'],
+  ['Water', 'bg-[#549ce0]'],
+])
+
+const getColorForType = (type: PokemonType): string => {
+  const color = COLORS.get(type)
+  if (!color) {
+    throw new Error(
+      `No color found for pokemon type "${type}". Please ensure that all types have a corresponding color defined in the COLORS map.`,
+    )
+  }
+  return color
 }
 
-type PokemonCardProps = React.ComponentProps<typeof Card> & {
-  pokemon: Pokemon
-}
-
-function PokemonCard({ pokemon, ...props }: PokemonCardProps) {
+function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
   const [loaded, setLoaded] = useState(false)
 
   return (
-    <Card className="relative max-w-xs cursor-pointer" {...props}>
+    <Card className="relative max-w-xs cursor-pointer">
       <div className="absolute top-2 right-2 flex flex-col gap-2">
-        {pokemon.type.map((type, i) => (
-          <WithTooltip key={type} message={type} side="right">
+        {pokemon.type.map((type) => (
+          <WithTooltip key={type} tooltip={type} side="right">
             <div
               className={cn(
                 'size-6 cursor-pointer rounded-full p-1 transition-transform hover:scale-110',
-                TYPE_COLORS[pokemon.type[i]],
+                getColorForType(type),
               )}
             >
               <img
@@ -88,7 +94,7 @@ function PokemonCard({ pokemon, ...props }: PokemonCardProps) {
           {POKEMON_SKILLS.map((skill) => (
             <WithTooltip
               key={skill}
-              message={`${skill}: ${String(pokemon[skill])}`}
+              tooltip={`${skill}: ${String(pokemon[skill])}`}
               className="after:bg-muted-foreground hover:text-foreground relative flex flex-1 justify-center transition-[colors_transform] after:absolute after:right-0 after:h-4 after:w-px after:content-[''] last:after:hidden hover:scale-110"
             >
               <div className="flex cursor-pointer items-center gap-1">

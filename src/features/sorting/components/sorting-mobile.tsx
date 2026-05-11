@@ -59,7 +59,8 @@ export function SortingMobile({ className }: SortingMobileProps) {
       onApply={handleApplySorting}
       onReset={handleResetSorting}
       className={cn(
-        hasSortingApplied && 'text-foreground! bg-primary!',
+        hasSortingApplied &&
+          'dark:text-foreground! text-background bg-primary! hover:bg-primary/95! hover:text-background',
         className,
       )}
     >

@@ -8,7 +8,7 @@ export function Filters({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       className={cn(
-        'grid w-full max-w-78 grid-cols-[1fr_auto] gap-2 md:max-w-162 lg:max-w-none lg:grid-cols-1 lg:gap-6',
+        'flex w-full max-w-78 gap-2 md:max-w-162 lg:max-w-none lg:flex-col lg:gap-6',
         className,
       )}
       {...props}
@@ -18,9 +18,11 @@ export function Filters({ className, ...props }: React.ComponentProps<'div'>) {
         wrapperClassName="mx-auto w-full lg:max-w-sm"
       />
 
-      <div className="flex items-center gap-2">
+      <Separator orientation="vertical" className="lg:hidden" />
+
+      <div className="flex items-center gap-4">
         <Filtering className="flex-1" />
-        <Separator orientation="vertical" className="h-6" />
+        <Separator orientation="vertical" className="hidden lg:block" />
         <Sorting className="flex-1" />
       </div>
     </div>

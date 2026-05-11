@@ -3,25 +3,20 @@ import { PageSizePicker } from '@/features/pagination/components/page-size-picke
 import { Separator } from '@/shared/components/ui/separator'
 import { cn } from '@/shared/lib/utils'
 
-type PageSizeControlProps = React.ComponentProps<'div'> & {
-  disabled?: boolean
-  startTransition: React.TransitionStartFunction
-  totalItems: number
-}
-
 export function PageSizeControl({
   className,
   disabled,
   startTransition,
   totalItems,
-  ...props
-}: PageSizeControlProps) {
+}: {
+  className?: string
+  disabled?: boolean
+  startTransition: React.TransitionStartFunction
+  totalItems: number
+}) {
   return (
-    <div className={cn('flex items-center gap-3', className)} {...props}>
-      <div className="flex items-center justify-center gap-2">
-        <p className="hidden whitespace-nowrap lg:block">Per page:</p>
-        <PageSizePicker disabled={disabled} startTransition={startTransition} />
-      </div>
+    <div className={cn('flex items-center gap-3', className)}>
+      <PageSizePicker disabled={disabled} startTransition={startTransition} />
 
       <Separator
         orientation="vertical"

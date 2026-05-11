@@ -17,17 +17,15 @@ const variants: Variants = {
   },
 }
 
-type PaginationBarProps = React.ComponentProps<typeof motion.div> & {
-  maxPage: number
-  totalItems: number
-}
-
 export function PaginationBar({
   className,
   maxPage,
   totalItems,
-  ...props
-}: PaginationBarProps) {
+}: {
+  className?: string
+  maxPage: number
+  totalItems: number
+}) {
   // ℹ️ Why useTransition?
   //
   // Problem:
@@ -60,7 +58,6 @@ export function PaginationBar({
         duration: 0.35,
         ease: 'easeInOut',
       }}
-      {...props}
     >
       <div className="flex flex-col items-center gap-3">
         <Pagination

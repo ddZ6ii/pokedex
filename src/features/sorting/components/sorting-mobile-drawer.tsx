@@ -13,21 +13,19 @@ import {
   DrawerTrigger,
 } from '@/shared/components/ui/drawer'
 
-type SortingMobileDrawerProps = {
-  className?: string
-  children?: React.ReactNode
-  onOpen?: () => void
-  onApply?: () => void
-  onReset?: () => void
-}
-
 export function SortingMobileDrawer({
   children,
   className,
   onOpen,
   onApply,
   onReset,
-}: SortingMobileDrawerProps) {
+}: {
+  className?: string
+  children?: React.ReactNode
+  onOpen?: () => void
+  onApply?: () => void
+  onReset?: () => void
+}) {
   return (
     <Drawer
       onOpenChange={(open) => {
@@ -36,7 +34,7 @@ export function SortingMobileDrawer({
         }
       }}
     >
-      <WithTooltip message="Show sorting options">
+      <WithTooltip tooltip="Show sorting options">
         <DrawerTrigger asChild>
           <Button
             aria-label="Show sorting options"

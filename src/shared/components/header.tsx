@@ -15,10 +15,7 @@ const variants: Variants = {
   },
 }
 
-export function Header({
-  className,
-  ...props
-}: React.ComponentProps<typeof motion.header>) {
+export function Header({ className }: { className?: string }) {
   const hidden = useScrollVisibility(0.05, 'down')
   useSystemModeSync()
 
@@ -34,7 +31,6 @@ export function Header({
         duration: 0.35,
         ease: 'easeInOut',
       }}
-      {...props}
     >
       <Logo />
       <ModeSelect />

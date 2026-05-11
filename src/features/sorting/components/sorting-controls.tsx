@@ -1,18 +1,18 @@
-import { FilterSelect } from '@/features/filters/components/filter-select'
 import {
   SORT_BY_OPTIONS,
   SORT_ORDER_OPTIONS,
   type SelectSortByOptions,
   type SelectSortOrderOptions,
 } from '@/features/filters/schemas'
+import { Select } from '@/shared/components/select'
 import {
   Field,
-  FieldDescription,
+  FieldContent,
   FieldGroup,
+  FieldLabel,
   FieldSet,
 } from '@/shared/components/ui/field'
 import { cn } from '@/shared/lib/utils'
-import { capitalize } from '@/shared/utilities'
 
 type SortingControlsProps = React.ComponentProps<'div'> & {
   disabled?: boolean
@@ -38,41 +38,44 @@ export function SortingControls({
     >
       <FieldGroup>
         <Field orientation="responsive">
-          <FilterSelect
-            id="sort-by"
-            label="Sort by:"
-            placeholder="Select sorting criteria"
-            wrapperClassName="flex-2"
-            className={cn(selectedSortBy !== null && 'lg:border-primary')}
-            clearableSelection
-            options={SORT_BY_OPTIONS}
-            selectedOption={selectedSortBy}
-            onOptionSelect={(nextValue) => {
-              onSortBySelect(nextValue as SelectSortByOptions | null)
-            }}
-            renderOption={(label) => capitalize(label)}
-          />
+          <FieldContent className="w-full flex-2">
+            <FieldLabel htmlFor="sort-by" className="whitespace-nowrap">
+              Sort by:
+            </FieldLabel>
+            <Select
+              clearable
+              id="sort-by"
+              aria-label="Select sorting criteria"
+              placeholder="Select sorting criteria..."
+              options={SORT_BY_OPTIONS}
+              value={selectedSortBy}
+              onValueChange={onSortBySelect}
+              className={cn(
+                'w-full flex-1',
+                selectedSortBy !== null && 'lg:border-primary',
+              )}
+            />
+          </FieldContent>
 
           <div className="flex flex-col gap-2">
-            <FilterSelect
-              id="order-by"
-              label="Order by:"
-              disabled={selectedSortBy === null}
-              placeholder="Select sorting order"
-              className={cn(selectedOrderBy !== null && 'lg:border-primary')}
-              wrapperClassName="flex-1"
-              options={SORT_ORDER_OPTIONS}
-              selectedOption={selectedOrderBy}
-              onOptionSelect={(nextValue) => {
-                onSortOrderSelect(nextValue as SelectSortOrderOptions | null)
-              }}
-              renderOption={(label) => capitalize(label)}
-            />
-            {selectedSortBy === null && (
-              <FieldDescription className="text-xs">
-                Select a sorting criterion first
-              </FieldDescription>
-            )}
+            <FieldContent className="w-full flex-1">
+              <FieldLabel htmlFor="order-by" className="whitespace-nowrap">
+                Order by:
+              </FieldLabel>
+              <Select
+                id="order-by"
+                aria-label="Select sorting order..."
+                placeholder="Select sorting order..."
+                disabled={selectedSortBy === null}
+                options={SORT_ORDER_OPTIONS}
+                value={selectedOrderBy}
+                onValueChange={onSortOrderSelect}
+                className={cn(
+                  'w-full min-w-45',
+                  selectedSortBy !== null && 'lg:border-primary',
+                )}
+              />
+            </FieldContent>
           </div>
         </Field>
       </FieldGroup>

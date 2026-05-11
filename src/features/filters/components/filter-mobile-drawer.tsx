@@ -20,11 +20,12 @@ export function FilterMobileDrawer({
 }: React.ComponentProps<typeof Button>) {
   return (
     <Drawer>
-      <WithTooltip message="Show filters">
+      <WithTooltip tooltip="Show filters">
         <DrawerTrigger asChild>
           <Button
             aria-label="Show filters"
             variant="outline"
+            size="icon-md"
             className={cn('', className)}
             {...props}
           >
