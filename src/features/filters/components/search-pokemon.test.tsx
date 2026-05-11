@@ -12,7 +12,7 @@ import {
   vi,
 } from 'vitest'
 
-import { Search } from '@/features/filters/components/search'
+import { SearchPokemon } from '@/features/filters/components/search-pokemon'
 import type { PokemonsPaginatedResponse } from '@/features/pokemons/schemas'
 import { renderWithProviders } from '@/tests/utilities'
 
@@ -46,7 +46,7 @@ const server = setupServer(
 )
 
 function renderSearch() {
-  return renderWithProviders(<Search id="search-test" />)
+  return renderWithProviders(<SearchPokemon id="search-test" />)
 }
 
 async function typeAndWait(value: string) {
