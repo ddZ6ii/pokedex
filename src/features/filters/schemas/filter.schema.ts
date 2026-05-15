@@ -36,36 +36,16 @@ const FilterSchema = z.object({
   sortOrder: z.enum(SORT_ORDER_VALUES).nullable().default(null),
 })
 
-const APIParamsSchema = FilterSchema.optional().transform((input) => {
-  const { page, perPage, search, sortBy, sortOrder } = FilterSchema.parse(
-    input ?? {},
-  )
-  return {
-    _page: page.toString(),
-    _per_page: perPage.toString(),
-    ...(search && { 'name:contains': search }),
-    //By defaultjson-server sorts by id in ascending order (numeric IDs are stringified)
-    ...(sortBy && {
-      _sort: !sortOrder || sortOrder === 'asc' ? sortBy : `-${sortBy}`,
-    }),
-  }
-})
-
-type ApiParams = z.output<typeof APIParamsSchema>
 type Filters = z.infer<typeof FilterSchema>
-type QueryOptions = z.input<typeof APIParamsSchema>
 type SelectSortByOptions = (typeof SORT_BY_VALUES)[number]
 type SelectSortOrderOptions = (typeof SORT_ORDER_VALUES)[number]
 
 export {
-  APIParamsSchema,
   FilterSchema,
   PER_PAGE_OPTIONS,
   SORT_BY_OPTIONS,
   SORT_ORDER_OPTIONS,
-  type ApiParams,
   type Filters,
-  type QueryOptions,
   type SelectSortByOptions,
   type SelectSortOrderOptions,
 }

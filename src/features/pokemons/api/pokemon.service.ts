@@ -1,12 +1,11 @@
 import { ZodError, type ZodType } from 'zod'
 
-import { type ApiParams } from '@/features/filters/schemas'
 import {
   PokemonsPaginatedResponseSchema,
   type PokemonsPaginatedResponse,
 } from '@/features/pokemons/schemas'
 import { HttpError, ServerError, ValidationError } from '@/shared/api'
-import { envSchema } from '@/shared/schemas'
+import { envSchema, type ApiQueryParams } from '@/shared/schemas'
 import { isAbortError } from '@/shared/utilities'
 
 class PokemonService {
@@ -38,7 +37,7 @@ class PokemonService {
   }
 
   async getPokemons(
-    options: ApiParams,
+    options: ApiQueryParams,
     signal?: AbortSignal,
   ): Promise<PokemonsPaginatedResponse> {
     const searchParams = new URLSearchParams(options).toString()

@@ -1,11 +1,11 @@
 import { describe, expect, it, vi } from 'vitest'
 
-import type { ApiParams } from '@/features/filters/schemas'
 import { pokemonService } from '@/features/pokemons/api/pokemon.service'
-import type { PokemonsPaginatedResponse } from '@/features/pokemons/schemas'
+import { type PokemonsPaginatedResponse } from '@/features/pokemons/schemas'
 import { HttpError, ServerError, ValidationError } from '@/shared/api'
+import { type ApiQueryParams } from '@/shared/schemas'
 
-const defaultParams: ApiParams = {
+const defaultParams: ApiQueryParams = {
   _page: '1',
   _per_page: '10',
   _sort: 'id',
