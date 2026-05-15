@@ -2,12 +2,12 @@ import { screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
+import { SortingMobile } from '@/features/sorting/components/sorting-mobile'
 import type {
   SelectSortByOptions,
   SelectSortOrderOptions,
-} from '@/features/filters/schemas'
-import { SortingMobile } from '@/features/sorting/components/sorting-mobile'
-import { useFiltersActions, useSortFilters } from '@/shared/store'
+} from '@/features/sorting/schemas'
+import { useSorting, useSortingActions } from '@/shared/store'
 import { renderWithProviders } from '@/tests/utilities'
 
 const SELECT_SORTING_CRITERIA_LABEL = /select sorting criteria/i
@@ -17,21 +17,18 @@ const setSorting = vi.fn()
 const resetSorting = vi.fn()
 
 vi.mock('@/shared/store', () => ({
-  useSortFilters: vi.fn(),
-  useFiltersActions: vi.fn(),
+  useSorting: vi.fn(),
+  useSortingActions: vi.fn(),
 }))
 
 function mockStore(
   sortBy: SelectSortByOptions | null = null,
   sortOrder: SelectSortOrderOptions | null = null,
 ) {
-  vi.mocked(useSortFilters).mockReturnValue({ sortBy, sortOrder })
-  vi.mocked(useFiltersActions).mockReturnValue({
+  vi.mocked(useSorting).mockReturnValue({ sortBy, sortOrder })
+  vi.mocked(useSortingActions).mockReturnValue({
     setSorting,
     resetSorting,
-    setPage: vi.fn(),
-    setPerPage: vi.fn(),
-    setSearch: vi.fn(),
   })
 }
 

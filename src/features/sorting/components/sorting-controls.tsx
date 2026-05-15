@@ -3,7 +3,7 @@ import {
   SORT_ORDER_OPTIONS,
   type SelectSortByOptions,
   type SelectSortOrderOptions,
-} from '@/features/filters/schemas'
+} from '@/features/sorting/schemas'
 import { Select } from '@/shared/components/select'
 import {
   Field,

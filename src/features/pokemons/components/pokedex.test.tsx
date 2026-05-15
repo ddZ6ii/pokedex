@@ -23,7 +23,7 @@ import {
 import { initialFilterState } from '@/features/filters/store'
 import { Pokedex } from '@/features/pokemons/components/pokedex'
 import type { PokemonsPaginatedResponse } from '@/features/pokemons/schemas'
-import { useFiltersActions } from '@/shared/store'
+import { useSortingActions } from '@/shared/store'
 import { renderWithProviders } from '@/tests/utilities'
 
 const POKEMONS_URL = '*/pokemons'
@@ -156,7 +156,7 @@ describe('Pokedex', () => {
 describe('Sorting integration', () => {
   beforeEach(() => {
     // Reset sort state so each test starts from a clean baseline
-    const { result } = renderHook(() => useFiltersActions())
+    const { result } = renderHook(() => useSortingActions())
     act(() => {
       result.current.resetSorting()
     })

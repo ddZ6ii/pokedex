@@ -11,7 +11,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/shared/components/ui/pagination'
-import { useFilters, useFiltersActions } from '@/shared/store'
+import { useFiltersActions, useQueryParams } from '@/shared/store'
 
 export function Pagination({
   className,
@@ -27,7 +27,7 @@ export function Pagination({
   startTransition: React.TransitionStartFunction
 }) {
   const queryClient = useQueryClient()
-  const { page, ...filters } = useFilters()
+  const { page, ...queryParmas } = useQueryParams()
   const { setPage } = useFiltersActions()
 
   const handlePageChange = (nextPage: number) => {
@@ -40,7 +40,10 @@ export function Pagination({
   }
   const handlePageHover = async (nextPage: number) => {
     await queryClient.prefetchQuery(
-      createPokemonsQueryOptions({ page: nextPage, ...filters }),
+      createPokemonsQueryOptions({
+        page: nextPage,
+        ...queryParmas,
+      }),
     )
   }
 

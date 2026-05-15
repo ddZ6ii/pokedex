@@ -11,41 +11,57 @@ function makeStore() {
   return create<FilterSlice>()((...a) => createFilterSlice(...a))
 }
 
-describe('setSorting', () => {
-  it('sets sortBy and sortOrder', () => {
-    const store = makeStore()
-    store.getState().filterActions.setSorting('name', 'desc')
-    expect(store.getState().sortBy).toBe('name')
-    expect(store.getState().sortOrder).toBe('desc')
-  })
-
-  it('accepts null sortBy', () => {
-    const store = makeStore()
-    store.getState().filterActions.setSorting(null, 'asc')
-    expect(store.getState().sortBy).toBeNull()
-  })
-
-  it('does not reset page', () => {
-    const store = makeStore()
-    store.getState().filterActions.setPage(3)
-    store.getState().filterActions.setSorting('name', 'asc')
-    expect(store.getState().page).toBe(3)
+describe('initialFilterState', () => {
+  it('has page 1, perPage 10, and empty search', () => {
+    expect(initialFilterState).toEqual({ page: 1, perPage: 10, search: '' })
   })
 })
 
-describe('resetSorting', () => {
-  it('restores sortBy to null and sortOrder to asc', () => {
-    const store = makeStore()
-    store.getState().filterActions.setSorting('attack', 'desc')
-    store.getState().filterActions.resetSorting()
-    expect(store.getState().sortBy).toBe(initialFilterState.sortBy)
-    expect(store.getState().sortOrder).toBe(initialFilterState.sortOrder)
+describe('filterActions', () => {
+  describe('setPage', () => {
+    it('updates page', () => {
+      const store = makeStore()
+      store.getState().filterActions.setPage(3)
+      expect(store.getState().page).toBe(3)
+    })
+
+    it('does not reset perPage or search', () => {
+      const store = makeStore()
+      store.getState().filterActions.setPerPage(20)
+      store.getState().filterActions.setSearch('pikachu')
+      store.getState().filterActions.setPage(2)
+      expect(store.getState().perPage).toBe(20)
+      expect(store.getState().search).toBe('pikachu')
+    })
   })
 
-  it('does not reset page', () => {
-    const store = makeStore()
-    store.getState().filterActions.setPage(3)
-    store.getState().filterActions.resetSorting()
-    expect(store.getState().page).toBe(3)
+  describe('setPerPage', () => {
+    it('updates perPage', () => {
+      const store = makeStore()
+      store.getState().filterActions.setPerPage(50)
+      expect(store.getState().perPage).toBe(50)
+    })
+
+    it('resets page to 1', () => {
+      const store = makeStore()
+      store.getState().filterActions.setPage(5)
+      store.getState().filterActions.setPerPage(20)
+      expect(store.getState().page).toBe(1)
+    })
+  })
+
+  describe('setSearch', () => {
+    it('updates search', () => {
+      const store = makeStore()
+      store.getState().filterActions.setSearch('bulbasaur')
+      expect(store.getState().search).toBe('bulbasaur')
+    })
+
+    it('resets page to 1', () => {
+      const store = makeStore()
+      store.getState().filterActions.setPage(4)
+      store.getState().filterActions.setSearch('charmander')
+      expect(store.getState().page).toBe(1)
+    })
   })
 })

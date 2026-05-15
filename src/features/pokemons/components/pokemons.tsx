@@ -12,7 +12,7 @@ import {
 } from '@/features/pokemons/components/pokemon-list'
 import { PaginationBar } from '@/features/pagination/components'
 import { ErrorFallback } from '@/shared/components'
-import { useFilters } from '@/shared/store'
+import { useQueryParams } from '@/shared/store'
 
 function WidgetFallback(props: FallbackProps) {
   return (
@@ -25,7 +25,7 @@ function WidgetFallback(props: FallbackProps) {
 }
 
 function PokemonsFetcher() {
-  const filters = useFilters()
+  const queryParams = useQueryParams()
 
   // ℹ️ How useSuspenseQuery works
   //
@@ -35,11 +35,7 @@ function PokemonsFetcher() {
   // React bubbles the error up to the closest error boundary.
   const {
     data: { data: pokemons, pages: maxPage, items: totalItems },
-  } = useSuspenseQuery(
-    createPokemonsQueryOptions({
-      ...filters,
-    }),
-  )
+  } = useSuspenseQuery(createPokemonsQueryOptions(queryParams))
   return (
     <>
       <PokemonList pokemons={pokemons} />

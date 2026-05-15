@@ -2,13 +2,15 @@ import z from 'zod'
 
 import { FilterSchema } from '@/features/filters/schemas'
 import { ModeSchema } from '@/shared/schemas'
+import { SortingSchema } from '@/features/sorting/schemas'
 
 const StorageSchema = z.object({
   version: z.number(),
   state: z.object({
     mode: ModeSchema,
-    ...FilterSchema.pick({ perPage: true, sortBy: true, sortOrder: true })
-      .shape,
+    perPage: FilterSchema.shape.perPage,
+    sortBy: SortingSchema.shape.sortBy,
+    sortOrder: SortingSchema.shape.sortOrder,
   }),
 })
 

@@ -14,7 +14,7 @@ import {
   SearchResults,
 } from '@/shared/components/search'
 import { cn } from '@/shared/lib/utils'
-import { useFilters, useFiltersActions } from '@/shared/store'
+import { useFiltersActions, useQueryParams } from '@/shared/store'
 import { debounce } from '@/shared/utilities'
 
 const selectItems = (data: PokemonsPaginatedResponse) => data.items
@@ -29,11 +29,11 @@ export function SearchPokemon({
   const inputRef = useRef<HTMLInputElement>(null)
   const [isPending, startTransition] = useTransition()
 
-  const { search, ...filters } = useFilters()
+  const { search, ...queryParams } = useQueryParams()
   const { setSearch } = useFiltersActions()
 
   const { data: results } = useQuery({
-    ...createPokemonsQueryOptions({ search, ...filters }),
+    ...createPokemonsQueryOptions({ search, ...queryParams }),
     select: selectItems,
     enabled: !!search,
   })

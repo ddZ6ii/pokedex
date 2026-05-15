@@ -1,7 +1,7 @@
 import { useTransition } from 'react'
 
 import { SortingControls } from '@/features/sorting/components/sorting-controls'
-import { useFiltersActions, useSortFilters } from '@/shared/store'
+import { useSorting, useSortingActions } from '@/shared/store'
 
 type SortingDesktopProps = {
   className?: string
@@ -9,8 +9,8 @@ type SortingDesktopProps = {
 
 export function SortingDesktop({ className }: SortingDesktopProps) {
   const [isPending, startTransition] = useTransition()
-  const { sortBy, sortOrder } = useSortFilters()
-  const { setSorting } = useFiltersActions()
+  const { sortBy, sortOrder } = useSorting()
+  const { setSorting } = useSortingActions()
 
   return (
     <SortingControls

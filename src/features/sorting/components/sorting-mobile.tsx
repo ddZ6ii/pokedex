@@ -1,21 +1,21 @@
 import { useState } from 'react'
 
-import {
-  type SelectSortByOptions,
-  type SelectSortOrderOptions,
-} from '@/features/filters/schemas'
 import { SortingControls } from '@/features/sorting/components/sorting-controls'
 import { SortingMobileDrawer } from '@/features/sorting/components/sorting-mobile-drawer'
+import type {
+  SelectSortByOptions,
+  SelectSortOrderOptions,
+} from '@/features/sorting/schemas'
 import { cn } from '@/shared/lib/utils'
-import { useFiltersActions, useSortFilters } from '@/shared/store'
+import { useSorting, useSortingActions } from '@/shared/store'
 
 type SortingMobileProps = {
   className?: string
 }
 
 export function SortingMobile({ className }: SortingMobileProps) {
-  const { sortBy, sortOrder } = useSortFilters()
-  const { setSorting, resetSorting } = useFiltersActions()
+  const { sortBy, sortOrder } = useSorting()
+  const { setSorting, resetSorting } = useSortingActions()
 
   const [selectedSortBy, setSelectedSortBy] =
     useState<SelectSortByOptions | null>(sortBy)

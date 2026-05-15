@@ -7,17 +7,23 @@ import {
   initialFilterState,
   type FilterSlice,
 } from '@/features/filters/store'
+import {
+  createSortingSlice,
+  initialSortingState,
+  type SortingSlice,
+} from '@/features/sorting/store'
 import { StorageSchema } from '@/shared/schemas'
 import { createModeSlice, type ModeSlice } from '@/shared/store/mode-slice'
 import { toggleMode } from '@/shared/utilities'
 
-type StoreState = ModeSlice & FilterSlice
+type StoreState = ModeSlice & FilterSlice & SortingSlice
 
 const useStore = create<StoreState>()(
   persist(
     (...a) => ({
       ...createModeSlice(...a),
       ...createFilterSlice(...a),
+      ...createSortingSlice(...a),
     }),
     {
       name: 'pokedex-store',
@@ -27,15 +33,15 @@ const useStore = create<StoreState>()(
           return {
             ...(persistedState as object),
             perPage: initialFilterState.perPage,
-            sortBy: initialFilterState.sortBy,
-            sortOrder: initialFilterState.sortOrder,
+            sortBy: initialSortingState.sortBy,
+            sortOrder: initialSortingState.sortOrder,
           }
         }
         if (version === 1) {
           return {
             ...(persistedState as object),
-            sortBy: initialFilterState.sortBy,
-            sortOrder: initialFilterState.sortOrder,
+            sortBy: initialSortingState.sortBy,
+            sortOrder: initialSortingState.sortOrder,
           }
         }
         return persistedState
@@ -78,27 +84,29 @@ const useStore = create<StoreState>()(
 
 // Mode slice selectors
 const useMode = () => useStore((state) => state.mode)
-const useIsDarkMode = () => useStore((state) => state.isDarkMode)
 const useModeActions = () => useStore((state) => state.modeActions)
 
 // Filter slice selectors
 const usePage = () => useStore((state) => state.page)
 const usePerPage = () => useStore((state) => state.perPage)
-const useSearch = () => useStore((state) => state.search)
-const useSortBy = () => useStore((state) => state.sortBy)
-const useSortOrder = () => useStore((state) => state.sortOrder)
-const useSortFilters = () =>
+const usePaginationFilters = () =>
+  useStore(
+    useShallow((state) => ({ page: state.page, perPage: state.perPage })),
+  )
+const useFiltersActions = () => useStore((state) => state.filterActions)
+
+// Sorting slice selectors
+const useSorting = () =>
   useStore(
     useShallow((state) => ({
       sortBy: state.sortBy,
       sortOrder: state.sortOrder,
     })),
   )
-const usePaginationFilters = () =>
-  useStore(
-    useShallow((state) => ({ page: state.page, perPage: state.perPage })),
-  )
-const useFilters = () =>
+const useSortingActions = () => useStore((state) => state.sortingActions)
+
+// Query params (mixed slices) selectors
+const useQueryParams = () =>
   useStore(
     useShallow((state) => ({
       page: state.page,
@@ -108,19 +116,15 @@ const useFilters = () =>
       sortOrder: state.sortOrder,
     })),
   )
-const useFiltersActions = () => useStore((state) => state.filterActions)
 
 export {
-  useIsDarkMode,
   useMode,
   useModeActions,
-  useFilters,
   useFiltersActions,
   usePage,
   usePaginationFilters,
   usePerPage,
-  useSearch,
-  useSortBy,
-  useSortOrder,
-  useSortFilters,
+  useQueryParams,
+  useSorting,
+  useSortingActions,
 }
