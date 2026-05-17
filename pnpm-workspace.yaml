@@ -1,14 +1,14 @@
 overrides:
   '@hono/node-server@<1.19.13': '>=1.19.13'
-  brace-expansion@<1.1.13: '>=1.1.13'
-  brace-expansion@>=4.0.0 <5.0.5: '>=5.0.5'
-  flatted@<=3.4.1: '>=3.4.2'
-  hono@<4.12.12: '>=4.12.12'
-  hono@<4.12.14: '>=4.12.14'
-  hono@>=4.0.0 <=4.12.11: '>=4.12.12'
-  path-to-regexp@>=8.0.0 <8.4.0: '>=8.4.0'
-  picomatch@<2.3.2: '>=2.3.2'
-  picomatch@>=4.0.0 <4.0.4: '>=4.0.4'
+  'brace-expansion@<1.1.13': '>=1.1.13'
+  'brace-expansion@>=4.0.0 <5.0.5': '>=5.0.5'
+  'fast-uri@<3.1.2': '>=3.1.2'
+  'flatted@<=3.4.1': '>=3.4.2'
+  'hono@<4.12.18': '4.12.18'
+  'ip-address@<=10.1.0': '>=10.1.1'
+  'path-to-regexp@>=8.0.0 <8.4.0': '>=8.4.0'
+  'picomatch@<2.3.2': '>=2.3.2'
+  'picomatch@>=4.0.0 <4.0.4': '>=4.0.4'
   # Mitigate supply chain attacks
   minimumReleaseAge: '4320' # 3 days (in minutes)
   ignore-scripts: 'true'
