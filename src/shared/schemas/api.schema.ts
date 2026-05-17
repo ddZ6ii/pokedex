@@ -2,6 +2,7 @@ import z from 'zod'
 
 import { FilterSchema } from '@/features/filters/schemas'
 import { SortingSchema } from '@/features/sorting/schemas'
+import { computeSortQuery } from '@/features/sorting/utilities'
 
 const _ApiQueryOptionsSchema = z.object({
   ...FilterSchema.shape,
@@ -12,15 +13,16 @@ const ApiQueryParamsSchema = _ApiQueryOptionsSchema
   .optional()
   .transform((query) => {
     const { page, perPage, search } = FilterSchema.parse(query ?? {})
-    const { sortBy, sortOrder } = SortingSchema.parse(query ?? {})
+    const { sort } = SortingSchema.parse(query ?? {})
+    const sortQuery = computeSortQuery(sort)
 
     return {
       _page: String(page),
       _per_page: String(perPage),
       ...(search && { 'name:contains': search }),
-      //By defaultjson-server sorts by id in ascending order (numeric IDs are stringified)
-      ...(sortBy && {
-        _sort: !sortOrder || sortOrder === 'asc' ? sortBy : `-${sortBy}`,
+      // If no sorting criteria is applied, json-server will return by default results sorted by id in ascending order (numeric IDs are stringified)
+      ...(sortQuery && {
+        _sort: sortQuery,
       }),
     }
   })

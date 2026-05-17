@@ -18,6 +18,10 @@ export function WithTooltip({
   side = 'top',
   ...props
 }: WithTooltipProps) {
+  if (!tooltip) {
+    return <>{children} </>
+  }
+
   return (
     <Tooltip disableHoverableContent delayDuration={300} {...props}>
       <TooltipTrigger asChild>

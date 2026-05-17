@@ -1,21 +1,20 @@
 import type { StateCreator } from 'zustand'
 
-import type { Sorting } from '@/features/sorting/schemas'
+import type {
+  Sorting,
+  SortingCriterion,
+} from '@/features/sorting/schemas/sorting.schema'
 
 type SortingActions = {
   sortingActions: {
-    setSorting: (
-      nextSortBy: Sorting['sortBy'],
-      nextSortOrder: Sorting['sortOrder'],
-    ) => void
+    setSorting: (criteria: SortingCriterion[]) => void
     resetSorting: () => void
   }
 }
 type SortingSlice = Sorting & SortingActions
 
 const initialSortingState: Sorting = {
-  sortOrder: null,
-  sortBy: null,
+  sort: [[null, null]], // no current sorting applied
 }
 
 const createSortingSlice: StateCreator<SortingSlice, [], [], SortingSlice> = (
@@ -24,13 +23,12 @@ const createSortingSlice: StateCreator<SortingSlice, [], [], SortingSlice> = (
   // Initial default values (overriden by persisted values if any)
   ...initialSortingState,
   sortingActions: {
-    setSorting: (nextSortBy, nextSortOrder) => {
-      set({ sortBy: nextSortBy, sortOrder: nextSortOrder })
+    setSorting: (criteria) => {
+      set({ sort: criteria })
     },
     resetSorting: () => {
       set({
-        sortBy: initialSortingState.sortBy,
-        sortOrder: initialSortingState.sortOrder,
+        sort: initialSortingState.sort,
       })
     },
   },

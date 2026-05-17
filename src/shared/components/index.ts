@@ -1,3 +1,4 @@
+export { CountBadge } from './count-badge'
 export { ErrorAlert } from './error-alert'
 export { ErrorFallback } from './error-fallback'
 export { Header } from './header'

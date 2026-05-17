@@ -126,7 +126,7 @@ export function Select<T extends string>({
           <WithTooltip tooltip="Clear selection">
             <Button
               aria-label="Clear selection"
-              variant="secondary"
+              variant="destructive"
               size="icon-md"
               onClick={() => {
                 ;(onValueChange as (value: T | null) => void)(null)

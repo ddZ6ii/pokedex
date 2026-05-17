@@ -27,21 +27,19 @@ const useStore = create<StoreState>()(
     }),
     {
       name: 'pokedex-store',
-      version: 2,
+      version: 3,
       migrate: (persistedState, version) => {
         if (version === 0) {
           return {
             ...(persistedState as object),
             perPage: initialFilterState.perPage,
-            sortBy: initialSortingState.sortBy,
-            sortOrder: initialSortingState.sortOrder,
+            sort: initialSortingState.sort,
           }
         }
-        if (version === 1) {
+        if (version === 1 || version === 2) {
           return {
             ...(persistedState as object),
-            sortBy: initialSortingState.sortBy,
-            sortOrder: initialSortingState.sortOrder,
+            sort: initialSortingState.sort,
           }
         }
         return persistedState
@@ -65,8 +63,7 @@ const useStore = create<StoreState>()(
       partialize: (state) => ({
         mode: state.mode,
         perPage: state.perPage,
-        sortBy: state.sortBy,
-        sortOrder: state.sortOrder,
+        sort: state.sort,
       }),
       // Recompute `isDarkMode` on rehydration (sync, before first paint) to avoid a flash of the wrong theme on load.
       onRehydrateStorage: () => (state) => {
@@ -96,13 +93,7 @@ const usePaginationFilters = () =>
 const useFiltersActions = () => useStore((state) => state.filterActions)
 
 // Sorting slice selectors
-const useSorting = () =>
-  useStore(
-    useShallow((state) => ({
-      sortBy: state.sortBy,
-      sortOrder: state.sortOrder,
-    })),
-  )
+const useSorting = () => useStore((state) => state.sort)
 const useSortingActions = () => useStore((state) => state.sortingActions)
 
 // Query params (mixed slices) selectors
@@ -112,8 +103,7 @@ const useQueryParams = () =>
       page: state.page,
       perPage: state.perPage,
       search: state.search,
-      sortBy: state.sortBy,
-      sortOrder: state.sortOrder,
+      sort: state.sort,
     })),
   )
 

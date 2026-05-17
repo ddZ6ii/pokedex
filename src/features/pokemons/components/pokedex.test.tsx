@@ -176,9 +176,13 @@ describe('Sorting integration', () => {
     await screen.findByText('Bulbasaur')
 
     await user.click(
-      screen.getByRole('combobox', { name: /select sorting criteria/i }),
+      screen.getByRole('button', { name: /edit sorting options/i }),
+    )
+    await user.click(
+      await screen.findByRole('combobox', { name: /select sorting criteria/i }),
     )
     await user.click(await screen.findByRole('option', { name: /^name$/i }))
+    await user.click(screen.getByRole('button', { name: /^apply$/i }))
 
     await waitFor(() => {
       expect(
@@ -201,7 +205,10 @@ describe('Sorting integration', () => {
     await screen.findByText('Bulbasaur')
 
     await user.click(
-      screen.getByRole('combobox', { name: /select sorting criteria/i }),
+      screen.getByRole('button', { name: /edit sorting options/i }),
+    )
+    await user.click(
+      await screen.findByRole('combobox', { name: /select sorting criteria/i }),
     )
     await user.click(await screen.findByRole('option', { name: /^name$/i }))
 
@@ -209,6 +216,7 @@ describe('Sorting integration', () => {
       screen.getByRole('combobox', { name: /select sorting order/i }),
     )
     await user.click(await screen.findByRole('option', { name: /descending/i }))
+    await user.click(screen.getByRole('button', { name: /^apply$/i }))
 
     await waitFor(() => {
       expect(

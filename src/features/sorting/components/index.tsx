@@ -1,16 +1,35 @@
-import { SortingDesktop } from '@/features/sorting/components/sorting-desktop'
-import { SortingMobile } from '@/features/sorting/components/sorting-mobile'
+import { SortingDrawer } from '@/features/sorting/components/sorting-drawer'
+import { SortingPanelContent } from '@/features/sorting/components/sorting-panel-content'
+import { SortingPopover } from '@/features/sorting/components/sorting-popover'
+import { useSortingPanel } from '@/features/sorting/hooks/useSortingPanel'
 import { useIsMobile } from '@/shared/hooks'
 
-type SortingProps = {
-  className?: string
-}
-
-export function Sorting({ className }: SortingProps) {
+export function Sorting({ className }: { className?: string }) {
   const isMobile = useIsMobile()
 
-  if (isMobile) {
-    return <SortingMobile className={className} />
-  }
-  return <SortingDesktop className={className} />
+  const {
+    selectedCriteria,
+    selectedCriteriaCount,
+    setSelectedCriteria,
+    applySorting,
+    resetSorting,
+    syncSorting,
+  } = useSortingPanel()
+
+  const SortingPanel = isMobile ? SortingDrawer : SortingPopover
+
+  return (
+    <SortingPanel
+      selectedCount={selectedCriteriaCount}
+      onApply={applySorting}
+      onOpen={syncSorting}
+      onReset={resetSorting}
+      className={className}
+    >
+      <SortingPanelContent
+        selectedCriteria={selectedCriteria}
+        setSelectedCriteria={setSelectedCriteria}
+      />
+    </SortingPanel>
+  )
 }

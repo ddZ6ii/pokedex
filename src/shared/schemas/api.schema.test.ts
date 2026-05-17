@@ -34,39 +34,35 @@ describe('ApiQueryParamsSchema', () => {
     expect(result).not.toHaveProperty('name:contains')
   })
 
-  it('omits _sort when sortBy is null', () => {
-    const result = ApiQueryParamsSchema.parse({ sortBy: null })
+  it('omits _sort when sort is empty', () => {
+    const result = ApiQueryParamsSchema.parse({ sort: [] })
     expect(result).not.toHaveProperty('_sort')
   })
 
   it('sets _sort to field name when sortOrder is "asc"', () => {
     const result = ApiQueryParamsSchema.parse({
-      sortBy: 'name',
-      sortOrder: 'asc',
+      sort: [['name', 'asc']],
     })
     expect(result._sort).toBe('name')
   })
 
   it('sets _sort to "-field" when sortOrder is "desc"', () => {
     const result = ApiQueryParamsSchema.parse({
-      sortBy: 'name',
-      sortOrder: 'desc',
+      sort: [['name', 'desc']],
     })
     expect(result._sort).toBe('-name')
   })
 
   it.each(POKEMON_SKILLS)('sorts by skill "%s" ascending', (skill) => {
     const result = ApiQueryParamsSchema.parse({
-      sortBy: skill,
-      sortOrder: 'asc',
+      sort: [[skill, 'asc']],
     })
     expect(result._sort).toBe(skill)
   })
 
   it.each(POKEMON_SKILLS)('sorts by skill "%s" descending', (skill) => {
     const result = ApiQueryParamsSchema.parse({
-      sortBy: skill,
-      sortOrder: 'desc',
+      sort: [[skill, 'desc']],
     })
     expect(result._sort).toBe(`-${skill}`)
   })
