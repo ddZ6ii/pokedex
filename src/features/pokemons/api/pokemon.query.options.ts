@@ -1,6 +1,6 @@
 import { queryOptions } from '@tanstack/react-query'
 
-import { pokemonService } from '@/features/pokemons/api'
+import { pokemonService } from '@/features/pokemons/api/pokemon.service'
 import { type PokemonsPaginatedResponse } from '@/features/pokemons/schemas'
 import { HttpError, ValidationError } from '@/shared/api'
 import { ApiQueryParamsSchema, type QueryOptions } from '@/shared/schemas'

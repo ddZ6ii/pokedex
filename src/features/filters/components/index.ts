@@ -1,1 +1,2 @@
-export { Filters } from './filters'
+export { Filtering } from './filtering'
+export { SearchPokemon } from './search-pokemon'

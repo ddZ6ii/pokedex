@@ -3,7 +3,7 @@ import { ZodError, type ZodType } from 'zod'
 import {
   PokemonsPaginatedResponseSchema,
   type PokemonsPaginatedResponse,
-} from '@/features/pokemons/schemas'
+} from '@/features/pokemons/schemas/pokemon.schema'
 import { HttpError, ServerError, ValidationError } from '@/shared/api'
 import { envSchema, type ApiQueryParams } from '@/shared/schemas'
 import { isAbortError } from '@/shared/utilities'

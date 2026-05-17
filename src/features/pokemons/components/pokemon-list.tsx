@@ -2,7 +2,7 @@ import {
   PokemonCardMemoized,
   PokemonCardSkeleton,
 } from '@/features/pokemons/components/pokemon-card'
-import type { Pokemon } from '@/features/pokemons/schemas'
+import type { Pokemon } from '@/features/pokemons/schemas/pokemon.schema'
 import { cn } from '@/shared/lib/utils'
 import { usePerPage } from '@/shared/store'
 

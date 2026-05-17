@@ -8,7 +8,7 @@ import {
   POKEMON_SKILLS,
   type Pokemon,
   type PokemonType,
-} from '@/features/pokemons/schemas'
+} from '@/features/pokemons/schemas/pokemon.schema'
 import { cn } from '@/shared/lib/utils'
 
 const BASE_IMAGE_URL =

@@ -1,6 +1,6 @@
 import { useQueryClient } from '@tanstack/react-query'
 
-import { getPages } from '@/features/pagination/utilities'
+import { getPages } from '@/features/pagination/utilities/get-pages'
 import { createPokemonsQueryOptions } from '@/features/pokemons/api'
 import {
   Pagination as UIPagination,
