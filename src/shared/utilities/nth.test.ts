@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { nth } from '@/features/sorting/utilities/nth'
+import { nth } from '@/shared/utilities/nth'
 
 describe('nth', () => {
   it('returns first element by default', () => {

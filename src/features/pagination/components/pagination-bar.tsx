@@ -34,7 +34,7 @@ export function PaginationBar({
   // -> poor UX on each page transition
   //
   // Solution:
-  // Show state data while fetching new data in the background:
+  // Show stale data while fetching new data in the background:
   // -> prevents the UI from being replaced by a fallback during an update
   // But since `placeholderData` does not exist with useSuspenseQuery:
   // -> wrap the updates that change the QueryKey with React startTransition

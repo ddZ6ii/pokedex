@@ -15,7 +15,7 @@ import {
   SORT_ORDER_OPTIONS,
   type SortingOrder,
 } from '@/features/sorting/schemas/sorting.schema'
-import { nth } from '@/features/sorting/utilities/nth'
+import { nth } from '@/shared/utilities/nth'
 import { WithTooltip } from '@/shared/components'
 import { Button } from '@/shared/components/ui/button'
 import {

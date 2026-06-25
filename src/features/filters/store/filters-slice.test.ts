@@ -64,4 +64,49 @@ describe('filterActions', () => {
       expect(store.getState().page).toBe(1)
     })
   })
+
+  describe('setStats', () => {
+    it('updates stats', () => {
+      const store = makeStore()
+      store.getState().filterActions.setStats({ hp: [10, 90] })
+      expect(store.getState().stats).toEqual({ hp: [10, 90] })
+    })
+
+    it('resets page to 1', () => {
+      const store = makeStore()
+      store.getState().filterActions.setPage(3)
+      store.getState().filterActions.setStats({ hp: [10, 90] })
+      expect(store.getState().page).toBe(1)
+    })
+
+    it('does nothing when called with undefined', () => {
+      const store = makeStore()
+      store.getState().filterActions.setStats({ hp: [10, 90] })
+      store.getState().filterActions.setStats(undefined)
+      expect(store.getState().stats).toEqual({ hp: [10, 90] })
+    })
+
+    it('does nothing when called with an empty object', () => {
+      const store = makeStore()
+      store.getState().filterActions.setStats({ hp: [10, 90] })
+      store.getState().filterActions.setStats({})
+      expect(store.getState().stats).toEqual({ hp: [10, 90] })
+    })
+  })
+
+  describe('resetStats', () => {
+    it('clears stats', () => {
+      const store = makeStore()
+      store.getState().filterActions.setStats({ hp: [10, 90] })
+      store.getState().filterActions.resetStats()
+      expect(store.getState().stats).toBeUndefined()
+    })
+
+    it('resets page to 1', () => {
+      const store = makeStore()
+      store.getState().filterActions.setPage(3)
+      store.getState().filterActions.resetStats()
+      expect(store.getState().page).toBe(1)
+    })
+  })
 })

@@ -3,6 +3,7 @@ import z from 'zod'
 import { FilterSchema } from '@/features/filters/schemas'
 import { SortingSchema } from '@/features/sorting/schemas'
 import { computeSortQuery } from '@/features/sorting/utilities'
+import { computeStatsQuery } from '@/features/filters/utilities'
 
 const _ApiQueryOptionsSchema = z.object({
   ...FilterSchema.shape,
@@ -12,9 +13,10 @@ const _ApiQueryOptionsSchema = z.object({
 const ApiQueryParamsSchema = _ApiQueryOptionsSchema
   .optional()
   .transform((query) => {
-    const { page, perPage, search } = FilterSchema.parse(query ?? {})
+    const { page, perPage, search, stats } = FilterSchema.parse(query ?? {})
     const { sort } = SortingSchema.parse(query ?? {})
     const sortQuery = computeSortQuery(sort)
+    const statsQuery = computeStatsQuery(stats)
 
     return {
       _page: String(page),
@@ -24,6 +26,7 @@ const ApiQueryParamsSchema = _ApiQueryOptionsSchema
       ...(sortQuery && {
         _sort: sortQuery,
       }),
+      ...(stats && statsQuery),
     }
   })
 

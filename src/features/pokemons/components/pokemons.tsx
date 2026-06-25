@@ -36,6 +36,7 @@ function PokemonsFetcher() {
   const {
     data: { data: pokemons, pages: maxPage, items: totalItems },
   } = useSuspenseQuery(createPokemonsQueryOptions(queryParams))
+
   return (
     <>
       <PokemonList pokemons={pokemons} />

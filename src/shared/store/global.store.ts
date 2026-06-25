@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { createJSONStorage, persist } from 'zustand/middleware'
+import { persist, type StorageValue } from 'zustand/middleware'
 import { useShallow } from 'zustand/shallow'
 
 import {
@@ -12,7 +12,7 @@ import {
   initialSortingState,
   type SortingSlice,
 } from '@/features/sorting/store'
-import { StorageSchema } from '@/shared/schemas'
+import { StorageSchema, type PersistedStoreState } from '@/shared/schemas'
 import { createModeSlice, type ModeSlice } from '@/shared/store/mode-slice'
 import { toggleMode } from '@/shared/utilities'
 
@@ -45,20 +45,27 @@ const useStore = create<StoreState>()(
         return persistedState
       },
       // Custom storage adapter to extend base implementation with runtime validation (null → falls back to initialState)
-      storage: createJSONStorage(() => ({
-        // Default local storage meethods (keeps the `this` context)
-        setItem: localStorage.setItem.bind(localStorage),
-        removeItem: localStorage.removeItem.bind(localStorage),
-        // Override `getItem` to add runtime validation
-        getItem: (name) => {
+      storage: {
+        getItem: (name): StorageValue<PersistedStoreState['state']> | null => {
           const stored = localStorage.getItem(name)
           if (!stored) return null
-          const result = StorageSchema.safeParse(JSON.parse(stored))
-          return result.success ? stored : null
+          try {
+            const parsed: unknown = JSON.parse(stored)
+            const result = StorageSchema.safeParse(parsed)
+            return result.success ? result.data : null
+          } catch {
+            return null
+          }
         },
-      })),
+        setItem: (name, value) => {
+          localStorage.setItem(name, JSON.stringify(value))
+        },
+        removeItem: (name) => {
+          localStorage.removeItem(name)
+        },
+      },
       // Only persist a subset of the store state:
-      // - `page` and `search` are transient (-> not persisted)
+      // - `page`, `search` and `stats` are transient (-> not persisted)
       // - `isDarkMode` is derived from mode + current system preference (-> not persisted)
       partialize: (state) => ({
         mode: state.mode,
@@ -90,6 +97,8 @@ const usePaginationFilters = () =>
   useStore(
     useShallow((state) => ({ page: state.page, perPage: state.perPage })),
   )
+const useStatsFilters = () =>
+  useStore(useShallow((state) => ({ stats: state.stats })))
 const useFiltersActions = () => useStore((state) => state.filterActions)
 
 // Sorting slice selectors
@@ -104,17 +113,19 @@ const useQueryParams = () =>
       perPage: state.perPage,
       search: state.search,
       sort: state.sort,
+      stats: state.stats,
     })),
   )
 
 export {
+  useFiltersActions,
   useMode,
   useModeActions,
-  useFiltersActions,
   usePage,
   usePaginationFilters,
   usePerPage,
   useQueryParams,
   useSorting,
   useSortingActions,
+  useStatsFilters,
 }

@@ -2,8 +2,8 @@ import { useCallback, useState } from 'react'
 
 import { type SortingCriterion } from '@/features/sorting/schemas/sorting.schema'
 import { initialSortingState } from '@/features/sorting/store'
-import { nth } from '@/features/sorting/utilities/nth'
 import { useSorting, useSortingActions } from '@/shared/store'
+import { nth } from '@/shared/utilities/nth'
 
 export function useSortingPanel() {
   const sorting = useSorting()
@@ -16,11 +16,9 @@ export function useSortingPanel() {
     const activeSelectedCriteria: SortingCriterion[] = []
     activeSelectedCriteria.push(nth(selectedCriteria, 0))
     for (const [sortBy, orderBy] of selectedCriteria.slice(1)) {
-      if (sortBy === null || orderBy === null) {
-        continue
-      } else {
-        activeSelectedCriteria.push([sortBy, orderBy])
-      }
+      if (sortBy === null || orderBy === null) continue
+
+      activeSelectedCriteria.push([sortBy, orderBy])
     }
     setSorting(activeSelectedCriteria)
   }, [selectedCriteria, setSorting])

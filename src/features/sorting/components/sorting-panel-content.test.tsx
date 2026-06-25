@@ -9,7 +9,7 @@ import {
   type SortingCriterion,
 } from '@/features/sorting/schemas/sorting.schema'
 import { renderWithProviders } from '@/tests/utilities'
-import { nth } from '@/features/sorting/utilities/nth'
+import { nth } from '@/shared/utilities/nth'
 
 const SELECT_SORTING_CRITERIA_LABEL = /select sorting criteria/i
 const SELECT_SORTING_ORDER_LABEL = /select sorting order/i

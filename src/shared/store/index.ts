@@ -1,11 +1,12 @@
 export {
+  useFiltersActions,
   useMode,
   useModeActions,
-  useFiltersActions,
   usePage,
   usePaginationFilters,
   usePerPage,
   useQueryParams,
   useSorting,
   useSortingActions,
+  useStatsFilters,
 } from './global.store'

@@ -41,6 +41,7 @@ class PokemonService {
     signal?: AbortSignal,
   ): Promise<PokemonsPaginatedResponse> {
     const searchParams = new URLSearchParams(options).toString()
+
     return this.#fetch(
       `${this.#baseUrl}/pokemons?${searchParams}`,
       PokemonsPaginatedResponseSchema,

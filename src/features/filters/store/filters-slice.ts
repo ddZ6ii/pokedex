@@ -7,6 +7,8 @@ type FilterActions = {
     setPage: (nextPage: Filters['page']) => void
     setPerPage: (nextPerPage: Filters['perPage']) => void
     setSearch: (nextSearch: Filters['search']) => void
+    setStats: (nextStats: Filters['stats']) => void
+    resetStats: () => void
   }
 }
 type FilterSlice = Filters & FilterActions
@@ -31,6 +33,13 @@ const createFilterSlice: StateCreator<FilterSlice, [], [], FilterSlice> = (
     },
     setSearch: (nextSearch) => {
       set({ search: nextSearch, page: initialFilterState.page })
+    },
+    setStats: (nextStats) => {
+      if (!nextStats || Object.keys(nextStats).length === 0) return
+      set({ stats: nextStats, page: initialFilterState.page })
+    },
+    resetStats: () => {
+      set({ stats: undefined, page: initialFilterState.page })
     },
   },
 })

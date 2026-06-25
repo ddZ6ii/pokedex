@@ -2,6 +2,8 @@ import { describe, expect, it } from 'vitest'
 
 import {
   FilterSchema,
+  MAX_STAT_VALUE,
+  MIN_STAT_VALUE,
   PER_PAGE_OPTIONS,
   type Filters,
 } from '@/features/filters/schemas/filter.schema'
@@ -56,6 +58,51 @@ describe('FilterSchema', () => {
   describe('search', () => {
     it('omits search when not provided', () => {
       expect(FilterSchema.parse({}).search).toBeUndefined()
+    })
+  })
+
+  describe('stats', () => {
+    it('omits stats when not provided', () => {
+      expect(FilterSchema.parse({}).stats).toBeUndefined()
+    })
+
+    it('accepts a partial stats object', () => {
+      expect(() => FilterSchema.parse({ stats: { hp: [0, 50] } })).not.toThrow()
+    })
+
+    it('accepts a full stats object', () => {
+      expect(() =>
+        FilterSchema.parse({
+          stats: {
+            hp: [0, 100],
+            attack: [10, 90],
+            defense: [20, 80],
+            speed: [30, 70],
+          },
+        }),
+      ).not.toThrow()
+    })
+
+    it('defaults stat range min to MIN_STAT_VALUE', () => {
+      const result = FilterSchema.parse({
+        stats: { hp: [undefined, 50] as unknown as [number, number] },
+      })
+      expect(result.stats?.hp?.[0]).toBe(MIN_STAT_VALUE)
+    })
+
+    it('defaults stat range max to MAX_STAT_VALUE', () => {
+      const result = FilterSchema.parse({
+        stats: { hp: [0, undefined] as unknown as [number, number] },
+      })
+      expect(result.stats?.hp?.[1]).toBe(MAX_STAT_VALUE)
+    })
+
+    it('rejects stat value below MIN_STAT_VALUE', () => {
+      expect(() => FilterSchema.parse({ stats: { hp: [-1, 100] } })).toThrow()
+    })
+
+    it('rejects stat value above MAX_STAT_VALUE', () => {
+      expect(() => FilterSchema.parse({ stats: { hp: [0, 101] } })).toThrow()
     })
   })
 })
