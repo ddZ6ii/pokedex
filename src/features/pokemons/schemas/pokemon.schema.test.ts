@@ -10,7 +10,8 @@ import {
 const validPokemon: Pokemon = {
   id: 1,
   name: 'Bulbasaur',
-  type: ['Grass', 'Poison'],
+  primary_type: 'Grass',
+  secondary_type: 'Poison',
   hp: 45,
   attack: 49,
   defense: 49,
@@ -44,14 +45,23 @@ describe('PokemonSchema', () => {
     expect(() => PokemonSchema.parse({ ...validPokemon, name: '' })).toThrow()
   })
 
-  it('rejects empty type array', () => {
-    expect(() => PokemonSchema.parse({ ...validPokemon, type: [] })).toThrow()
+  it('rejects invalid primary_type', () => {
+    expect(() =>
+      PokemonSchema.parse({ ...validPokemon, primary_type: 'InvalidType' }),
+    ).toThrow()
   })
 
-  it('accepts single-element type array', () => {
+  it('accepts null secondary_type', () => {
+    expect(
+      PokemonSchema.parse({ ...validPokemon, secondary_type: null })
+        .secondary_type,
+    ).toBeNull()
+  })
+
+  it('rejects invalid secondary_type', () => {
     expect(() =>
-      PokemonSchema.parse({ ...validPokemon, type: ['Fire'] }),
-    ).not.toThrow()
+      PokemonSchema.parse({ ...validPokemon, secondary_type: 'InvalidType' }),
+    ).toThrow()
   })
 
   it('rejects hp of 0', () => {

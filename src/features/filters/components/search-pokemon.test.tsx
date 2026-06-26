@@ -30,7 +30,8 @@ const successResponse: PokemonsPaginatedResponse = {
     {
       id: 1,
       name: 'Bulbasaur',
-      type: ['Grass', 'Poison'],
+      primary_type: 'Grass',
+      secondary_type: 'Poison',
       hp: 45,
       attack: 49,
       defense: 49,

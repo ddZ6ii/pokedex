@@ -48,10 +48,13 @@ const getColorForType = (type: PokemonType): string => {
 function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
   const [loaded, setLoaded] = useState(false)
 
+  const types: PokemonType[] = [pokemon.primary_type]
+  if (pokemon.secondary_type) types.push(pokemon.secondary_type)
+
   return (
     <Card className="relative max-w-xs cursor-pointer">
       <div className="absolute top-2 right-2 flex flex-col gap-2">
-        {pokemon.type.map((type) => (
+        {types.map((type) => (
           <WithTooltip key={type} tooltip={type} side="right">
             <div
               className={cn(

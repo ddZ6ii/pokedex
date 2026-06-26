@@ -28,7 +28,8 @@ const _PokemonTypeSchema = z.enum(POKEMON_TYPES)
 const PokemonSchema = z.object({
   id: z.coerce.number().int().positive(),
   name: z.string().min(1),
-  type: z.array(_PokemonTypeSchema).min(1),
+  primary_type: _PokemonTypeSchema,
+  secondary_type: _PokemonTypeSchema.nullable(),
   hp: z.number().int().positive(),
   attack: z.number().int().positive(),
   defense: z.number().int().positive(),
