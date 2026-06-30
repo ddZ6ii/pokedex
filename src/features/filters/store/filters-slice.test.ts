@@ -12,8 +12,14 @@ function makeStore() {
 }
 
 describe('initialFilterState', () => {
-  it('has page 1, perPage 10, and empty search', () => {
-    expect(initialFilterState).toEqual({ page: 1, perPage: 10, search: '' })
+  it('has page 1, perPage 10, empty search, and null stats/types', () => {
+    expect(initialFilterState).toEqual({
+      page: 1,
+      perPage: 10,
+      search: '',
+      stats: null,
+      types: null,
+    })
   })
 })
 
@@ -78,34 +84,51 @@ describe('filterActions', () => {
       store.getState().filterActions.setStats({ hp: [10, 90] })
       expect(store.getState().page).toBe(1)
     })
-
-    it('does nothing when called with undefined', () => {
-      const store = makeStore()
-      store.getState().filterActions.setStats({ hp: [10, 90] })
-      store.getState().filterActions.setStats(undefined)
-      expect(store.getState().stats).toEqual({ hp: [10, 90] })
-    })
-
-    it('does nothing when called with an empty object', () => {
-      const store = makeStore()
-      store.getState().filterActions.setStats({ hp: [10, 90] })
-      store.getState().filterActions.setStats({})
-      expect(store.getState().stats).toEqual({ hp: [10, 90] })
-    })
   })
 
   describe('resetStats', () => {
-    it('clears stats', () => {
+    it('clears stats to null', () => {
       const store = makeStore()
       store.getState().filterActions.setStats({ hp: [10, 90] })
       store.getState().filterActions.resetStats()
-      expect(store.getState().stats).toBeUndefined()
+      expect(store.getState().stats).toBeNull()
     })
 
     it('resets page to 1', () => {
       const store = makeStore()
       store.getState().filterActions.setPage(3)
       store.getState().filterActions.resetStats()
+      expect(store.getState().page).toBe(1)
+    })
+  })
+
+  describe('setTypes', () => {
+    it('updates types', () => {
+      const store = makeStore()
+      store.getState().filterActions.setTypes(new Set(['Fire', 'Water']))
+      expect(store.getState().types).toEqual(new Set(['Fire', 'Water']))
+    })
+
+    it('resets page to 1', () => {
+      const store = makeStore()
+      store.getState().filterActions.setPage(3)
+      store.getState().filterActions.setTypes(new Set(['Grass']))
+      expect(store.getState().page).toBe(1)
+    })
+  })
+
+  describe('resetTypes', () => {
+    it('clears types to null', () => {
+      const store = makeStore()
+      store.getState().filterActions.setTypes(new Set(['Fire']))
+      store.getState().filterActions.resetTypes()
+      expect(store.getState().types).toBeNull()
+    })
+
+    it('resets page to 1', () => {
+      const store = makeStore()
+      store.getState().filterActions.setPage(3)
+      store.getState().filterActions.resetTypes()
       expect(store.getState().page).toBe(1)
     })
   })

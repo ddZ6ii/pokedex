@@ -9,8 +9,8 @@
       "special_attack": 65,
       "special_defense": 65,
       "speed": 45,
-      "primary_type": "Grass",
-      "secondary_type": "Poison"
+      "primary_type": "grass",
+      "secondary_type": "poison"
     },
     {
       "id": 2,
@@ -21,8 +21,8 @@
       "special_attack": 80,
       "special_defense": 80,
       "speed": 60,
-      "primary_type": "Grass",
-      "secondary_type": "Poison"
+      "primary_type": "grass",
+      "secondary_type": "poison"
     },
     {
       "id": 3,
@@ -33,8 +33,8 @@
       "special_attack": 100,
       "special_defense": 100,
       "speed": 80,
-      "primary_type": "Grass",
-      "secondary_type": "Poison"
+      "primary_type": "grass",
+      "secondary_type": "poison"
     },
     {
       "id": 4,
@@ -45,7 +45,7 @@
       "special_attack": 60,
       "special_defense": 50,
       "speed": 65,
-      "primary_type": "Fire",
+      "primary_type": "fire",
       "secondary_type": null
     },
     {
@@ -57,7 +57,7 @@
       "special_attack": 80,
       "special_defense": 65,
       "speed": 80,
-      "primary_type": "Fire",
+      "primary_type": "fire",
       "secondary_type": null
     },
     {
@@ -69,8 +69,8 @@
       "special_attack": 109,
       "special_defense": 85,
       "speed": 100,
-      "primary_type": "Fire",
-      "secondary_type": "Flying"
+      "primary_type": "fire",
+      "secondary_type": "flying"
     },
     {
       "id": 7,
@@ -81,7 +81,7 @@
       "special_attack": 50,
       "special_defense": 64,
       "speed": 43,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -93,7 +93,7 @@
       "special_attack": 65,
       "special_defense": 80,
       "speed": 58,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -105,7 +105,7 @@
       "special_attack": 85,
       "special_defense": 105,
       "speed": 78,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -117,7 +117,7 @@
       "special_attack": 20,
       "special_defense": 20,
       "speed": 45,
-      "primary_type": "Bug",
+      "primary_type": "bug",
       "secondary_type": null
     },
     {
@@ -129,7 +129,7 @@
       "special_attack": 25,
       "special_defense": 25,
       "speed": 30,
-      "primary_type": "Bug",
+      "primary_type": "bug",
       "secondary_type": null
     },
     {
@@ -141,8 +141,8 @@
       "special_attack": 90,
       "special_defense": 80,
       "speed": 70,
-      "primary_type": "Bug",
-      "secondary_type": "Flying"
+      "primary_type": "bug",
+      "secondary_type": "flying"
     },
     {
       "id": 13,
@@ -153,8 +153,8 @@
       "special_attack": 20,
       "special_defense": 20,
       "speed": 50,
-      "primary_type": "Bug",
-      "secondary_type": "Poison"
+      "primary_type": "bug",
+      "secondary_type": "poison"
     },
     {
       "id": 14,
@@ -165,8 +165,8 @@
       "special_attack": 25,
       "special_defense": 25,
       "speed": 35,
-      "primary_type": "Bug",
-      "secondary_type": "Poison"
+      "primary_type": "bug",
+      "secondary_type": "poison"
     },
     {
       "id": 15,
@@ -177,8 +177,8 @@
       "special_attack": 45,
       "special_defense": 80,
       "speed": 75,
-      "primary_type": "Bug",
-      "secondary_type": "Poison"
+      "primary_type": "bug",
+      "secondary_type": "poison"
     },
     {
       "id": 16,
@@ -189,8 +189,8 @@
       "special_attack": 35,
       "special_defense": 35,
       "speed": 56,
-      "primary_type": "Normal",
-      "secondary_type": "Flying"
+      "primary_type": "normal",
+      "secondary_type": "flying"
     },
     {
       "id": 17,
@@ -201,8 +201,8 @@
       "special_attack": 50,
       "special_defense": 50,
       "speed": 71,
-      "primary_type": "Normal",
-      "secondary_type": "Flying"
+      "primary_type": "normal",
+      "secondary_type": "flying"
     },
     {
       "id": 18,
@@ -213,8 +213,8 @@
       "special_attack": 70,
       "special_defense": 70,
       "speed": 101,
-      "primary_type": "Normal",
-      "secondary_type": "Flying"
+      "primary_type": "normal",
+      "secondary_type": "flying"
     },
     {
       "id": 19,
@@ -225,7 +225,7 @@
       "special_attack": 25,
       "special_defense": 35,
       "speed": 72,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -237,7 +237,7 @@
       "special_attack": 50,
       "special_defense": 70,
       "speed": 97,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -249,8 +249,8 @@
       "special_attack": 31,
       "special_defense": 31,
       "speed": 70,
-      "primary_type": "Normal",
-      "secondary_type": "Flying"
+      "primary_type": "normal",
+      "secondary_type": "flying"
     },
     {
       "id": 22,
@@ -261,8 +261,8 @@
       "special_attack": 61,
       "special_defense": 61,
       "speed": 100,
-      "primary_type": "Normal",
-      "secondary_type": "Flying"
+      "primary_type": "normal",
+      "secondary_type": "flying"
     },
     {
       "id": 23,
@@ -273,7 +273,7 @@
       "special_attack": 40,
       "special_defense": 54,
       "speed": 55,
-      "primary_type": "Poison",
+      "primary_type": "poison",
       "secondary_type": null
     },
     {
@@ -285,7 +285,7 @@
       "special_attack": 65,
       "special_defense": 79,
       "speed": 80,
-      "primary_type": "Poison",
+      "primary_type": "poison",
       "secondary_type": null
     },
     {
@@ -297,7 +297,7 @@
       "special_attack": 50,
       "special_defense": 50,
       "speed": 90,
-      "primary_type": "Electric",
+      "primary_type": "electric",
       "secondary_type": null
     },
     {
@@ -309,7 +309,7 @@
       "special_attack": 90,
       "special_defense": 80,
       "speed": 110,
-      "primary_type": "Electric",
+      "primary_type": "electric",
       "secondary_type": null
     },
     {
@@ -321,7 +321,7 @@
       "special_attack": 20,
       "special_defense": 30,
       "speed": 40,
-      "primary_type": "Ground",
+      "primary_type": "ground",
       "secondary_type": null
     },
     {
@@ -333,19 +333,19 @@
       "special_attack": 45,
       "special_defense": 55,
       "speed": 65,
-      "primary_type": "Ground",
+      "primary_type": "ground",
       "secondary_type": null
     },
     {
       "id": 29,
-      "name": "Nidoran♀",
+      "name": "Nidoran\u2640",
       "hp": 55,
       "attack": 47,
       "defense": 52,
       "special_attack": 40,
       "special_defense": 40,
       "speed": 41,
-      "primary_type": "Poison",
+      "primary_type": "poison",
       "secondary_type": null
     },
     {
@@ -357,7 +357,7 @@
       "special_attack": 55,
       "special_defense": 55,
       "speed": 56,
-      "primary_type": "Poison",
+      "primary_type": "poison",
       "secondary_type": null
     },
     {
@@ -369,19 +369,19 @@
       "special_attack": 75,
       "special_defense": 85,
       "speed": 76,
-      "primary_type": "Poison",
-      "secondary_type": "Ground"
+      "primary_type": "poison",
+      "secondary_type": "ground"
     },
     {
       "id": 32,
-      "name": "Nidoran♂",
+      "name": "Nidoran\u2642",
       "hp": 46,
       "attack": 57,
       "defense": 40,
       "special_attack": 40,
       "special_defense": 40,
       "speed": 50,
-      "primary_type": "Poison",
+      "primary_type": "poison",
       "secondary_type": null
     },
     {
@@ -393,7 +393,7 @@
       "special_attack": 55,
       "special_defense": 55,
       "speed": 65,
-      "primary_type": "Poison",
+      "primary_type": "poison",
       "secondary_type": null
     },
     {
@@ -405,8 +405,8 @@
       "special_attack": 85,
       "special_defense": 75,
       "speed": 85,
-      "primary_type": "Poison",
-      "secondary_type": "Ground"
+      "primary_type": "poison",
+      "secondary_type": "ground"
     },
     {
       "id": 35,
@@ -417,7 +417,7 @@
       "special_attack": 60,
       "special_defense": 65,
       "speed": 35,
-      "primary_type": "Fairy",
+      "primary_type": "fairy",
       "secondary_type": null
     },
     {
@@ -429,7 +429,7 @@
       "special_attack": 95,
       "special_defense": 90,
       "speed": 60,
-      "primary_type": "Fairy",
+      "primary_type": "fairy",
       "secondary_type": null
     },
     {
@@ -441,7 +441,7 @@
       "special_attack": 50,
       "special_defense": 65,
       "speed": 65,
-      "primary_type": "Fire",
+      "primary_type": "fire",
       "secondary_type": null
     },
     {
@@ -453,7 +453,7 @@
       "special_attack": 81,
       "special_defense": 100,
       "speed": 100,
-      "primary_type": "Fire",
+      "primary_type": "fire",
       "secondary_type": null
     },
     {
@@ -465,8 +465,8 @@
       "special_attack": 45,
       "special_defense": 25,
       "speed": 20,
-      "primary_type": "Normal",
-      "secondary_type": "Fairy"
+      "primary_type": "normal",
+      "secondary_type": "fairy"
     },
     {
       "id": 40,
@@ -477,8 +477,8 @@
       "special_attack": 85,
       "special_defense": 50,
       "speed": 45,
-      "primary_type": "Normal",
-      "secondary_type": "Fairy"
+      "primary_type": "normal",
+      "secondary_type": "fairy"
     },
     {
       "id": 41,
@@ -489,8 +489,8 @@
       "special_attack": 30,
       "special_defense": 40,
       "speed": 55,
-      "primary_type": "Poison",
-      "secondary_type": "Flying"
+      "primary_type": "poison",
+      "secondary_type": "flying"
     },
     {
       "id": 42,
@@ -501,8 +501,8 @@
       "special_attack": 65,
       "special_defense": 75,
       "speed": 90,
-      "primary_type": "Poison",
-      "secondary_type": "Flying"
+      "primary_type": "poison",
+      "secondary_type": "flying"
     },
     {
       "id": 43,
@@ -513,8 +513,8 @@
       "special_attack": 75,
       "special_defense": 65,
       "speed": 30,
-      "primary_type": "Grass",
-      "secondary_type": "Poison"
+      "primary_type": "grass",
+      "secondary_type": "poison"
     },
     {
       "id": 44,
@@ -525,8 +525,8 @@
       "special_attack": 85,
       "special_defense": 75,
       "speed": 40,
-      "primary_type": "Grass",
-      "secondary_type": "Poison"
+      "primary_type": "grass",
+      "secondary_type": "poison"
     },
     {
       "id": 45,
@@ -537,8 +537,8 @@
       "special_attack": 110,
       "special_defense": 90,
       "speed": 50,
-      "primary_type": "Grass",
-      "secondary_type": "Poison"
+      "primary_type": "grass",
+      "secondary_type": "poison"
     },
     {
       "id": 46,
@@ -549,8 +549,8 @@
       "special_attack": 45,
       "special_defense": 55,
       "speed": 25,
-      "primary_type": "Bug",
-      "secondary_type": "Grass"
+      "primary_type": "bug",
+      "secondary_type": "grass"
     },
     {
       "id": 47,
@@ -561,8 +561,8 @@
       "special_attack": 60,
       "special_defense": 80,
       "speed": 30,
-      "primary_type": "Bug",
-      "secondary_type": "Grass"
+      "primary_type": "bug",
+      "secondary_type": "grass"
     },
     {
       "id": 48,
@@ -573,8 +573,8 @@
       "special_attack": 40,
       "special_defense": 55,
       "speed": 45,
-      "primary_type": "Bug",
-      "secondary_type": "Poison"
+      "primary_type": "bug",
+      "secondary_type": "poison"
     },
     {
       "id": 49,
@@ -585,8 +585,8 @@
       "special_attack": 90,
       "special_defense": 75,
       "speed": 90,
-      "primary_type": "Bug",
-      "secondary_type": "Poison"
+      "primary_type": "bug",
+      "secondary_type": "poison"
     },
     {
       "id": 50,
@@ -597,7 +597,7 @@
       "special_attack": 35,
       "special_defense": 45,
       "speed": 95,
-      "primary_type": "Ground",
+      "primary_type": "ground",
       "secondary_type": null
     },
     {
@@ -609,7 +609,7 @@
       "special_attack": 50,
       "special_defense": 70,
       "speed": 120,
-      "primary_type": "Ground",
+      "primary_type": "ground",
       "secondary_type": null
     },
     {
@@ -621,7 +621,7 @@
       "special_attack": 40,
       "special_defense": 40,
       "speed": 90,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -633,7 +633,7 @@
       "special_attack": 65,
       "special_defense": 65,
       "speed": 115,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -645,7 +645,7 @@
       "special_attack": 65,
       "special_defense": 50,
       "speed": 55,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -657,7 +657,7 @@
       "special_attack": 95,
       "special_defense": 80,
       "speed": 85,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -669,7 +669,7 @@
       "special_attack": 35,
       "special_defense": 45,
       "speed": 70,
-      "primary_type": "Fighting",
+      "primary_type": "fighting",
       "secondary_type": null
     },
     {
@@ -681,7 +681,7 @@
       "special_attack": 60,
       "special_defense": 70,
       "speed": 95,
-      "primary_type": "Fighting",
+      "primary_type": "fighting",
       "secondary_type": null
     },
     {
@@ -693,7 +693,7 @@
       "special_attack": 70,
       "special_defense": 50,
       "speed": 60,
-      "primary_type": "Fire",
+      "primary_type": "fire",
       "secondary_type": null
     },
     {
@@ -705,7 +705,7 @@
       "special_attack": 100,
       "special_defense": 80,
       "speed": 95,
-      "primary_type": "Fire",
+      "primary_type": "fire",
       "secondary_type": null
     },
     {
@@ -717,7 +717,7 @@
       "special_attack": 40,
       "special_defense": 40,
       "speed": 90,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -729,7 +729,7 @@
       "special_attack": 50,
       "special_defense": 50,
       "speed": 90,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -741,8 +741,8 @@
       "special_attack": 70,
       "special_defense": 90,
       "speed": 70,
-      "primary_type": "Water",
-      "secondary_type": "Fighting"
+      "primary_type": "water",
+      "secondary_type": "fighting"
     },
     {
       "id": 63,
@@ -753,7 +753,7 @@
       "special_attack": 105,
       "special_defense": 55,
       "speed": 90,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -765,7 +765,7 @@
       "special_attack": 120,
       "special_defense": 70,
       "speed": 105,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -777,7 +777,7 @@
       "special_attack": 135,
       "special_defense": 95,
       "speed": 120,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -789,7 +789,7 @@
       "special_attack": 35,
       "special_defense": 35,
       "speed": 35,
-      "primary_type": "Fighting",
+      "primary_type": "fighting",
       "secondary_type": null
     },
     {
@@ -801,7 +801,7 @@
       "special_attack": 50,
       "special_defense": 60,
       "speed": 45,
-      "primary_type": "Fighting",
+      "primary_type": "fighting",
       "secondary_type": null
     },
     {
@@ -813,7 +813,7 @@
       "special_attack": 65,
       "special_defense": 85,
       "speed": 55,
-      "primary_type": "Fighting",
+      "primary_type": "fighting",
       "secondary_type": null
     },
     {
@@ -825,8 +825,8 @@
       "special_attack": 70,
       "special_defense": 30,
       "speed": 40,
-      "primary_type": "Grass",
-      "secondary_type": "Poison"
+      "primary_type": "grass",
+      "secondary_type": "poison"
     },
     {
       "id": 70,
@@ -837,8 +837,8 @@
       "special_attack": 85,
       "special_defense": 45,
       "speed": 55,
-      "primary_type": "Grass",
-      "secondary_type": "Poison"
+      "primary_type": "grass",
+      "secondary_type": "poison"
     },
     {
       "id": 71,
@@ -849,8 +849,8 @@
       "special_attack": 100,
       "special_defense": 70,
       "speed": 70,
-      "primary_type": "Grass",
-      "secondary_type": "Poison"
+      "primary_type": "grass",
+      "secondary_type": "poison"
     },
     {
       "id": 72,
@@ -861,8 +861,8 @@
       "special_attack": 50,
       "special_defense": 100,
       "speed": 70,
-      "primary_type": "Water",
-      "secondary_type": "Poison"
+      "primary_type": "water",
+      "secondary_type": "poison"
     },
     {
       "id": 73,
@@ -873,8 +873,8 @@
       "special_attack": 80,
       "special_defense": 120,
       "speed": 100,
-      "primary_type": "Water",
-      "secondary_type": "Poison"
+      "primary_type": "water",
+      "secondary_type": "poison"
     },
     {
       "id": 74,
@@ -885,8 +885,8 @@
       "special_attack": 30,
       "special_defense": 30,
       "speed": 20,
-      "primary_type": "Rock",
-      "secondary_type": "Ground"
+      "primary_type": "rock",
+      "secondary_type": "ground"
     },
     {
       "id": 75,
@@ -897,8 +897,8 @@
       "special_attack": 45,
       "special_defense": 45,
       "speed": 35,
-      "primary_type": "Rock",
-      "secondary_type": "Ground"
+      "primary_type": "rock",
+      "secondary_type": "ground"
     },
     {
       "id": 76,
@@ -909,8 +909,8 @@
       "special_attack": 55,
       "special_defense": 65,
       "speed": 45,
-      "primary_type": "Rock",
-      "secondary_type": "Ground"
+      "primary_type": "rock",
+      "secondary_type": "ground"
     },
     {
       "id": 77,
@@ -921,7 +921,7 @@
       "special_attack": 65,
       "special_defense": 65,
       "speed": 90,
-      "primary_type": "Fire",
+      "primary_type": "fire",
       "secondary_type": null
     },
     {
@@ -933,7 +933,7 @@
       "special_attack": 80,
       "special_defense": 80,
       "speed": 105,
-      "primary_type": "Fire",
+      "primary_type": "fire",
       "secondary_type": null
     },
     {
@@ -945,8 +945,8 @@
       "special_attack": 40,
       "special_defense": 40,
       "speed": 15,
-      "primary_type": "Water",
-      "secondary_type": "Psychic"
+      "primary_type": "water",
+      "secondary_type": "psychic"
     },
     {
       "id": 80,
@@ -957,8 +957,8 @@
       "special_attack": 100,
       "special_defense": 80,
       "speed": 30,
-      "primary_type": "Water",
-      "secondary_type": "Psychic"
+      "primary_type": "water",
+      "secondary_type": "psychic"
     },
     {
       "id": 81,
@@ -969,8 +969,8 @@
       "special_attack": 95,
       "special_defense": 55,
       "speed": 45,
-      "primary_type": "Electric",
-      "secondary_type": "Steel"
+      "primary_type": "electric",
+      "secondary_type": "steel"
     },
     {
       "id": 82,
@@ -981,8 +981,8 @@
       "special_attack": 120,
       "special_defense": 70,
       "speed": 70,
-      "primary_type": "Electric",
-      "secondary_type": "Steel"
+      "primary_type": "electric",
+      "secondary_type": "steel"
     },
     {
       "id": 83,
@@ -993,8 +993,8 @@
       "special_attack": 58,
       "special_defense": 62,
       "speed": 60,
-      "primary_type": "Normal",
-      "secondary_type": "Flying"
+      "primary_type": "normal",
+      "secondary_type": "flying"
     },
     {
       "id": 84,
@@ -1005,8 +1005,8 @@
       "special_attack": 35,
       "special_defense": 35,
       "speed": 75,
-      "primary_type": "Normal",
-      "secondary_type": "Flying"
+      "primary_type": "normal",
+      "secondary_type": "flying"
     },
     {
       "id": 85,
@@ -1017,8 +1017,8 @@
       "special_attack": 60,
       "special_defense": 60,
       "speed": 110,
-      "primary_type": "Normal",
-      "secondary_type": "Flying"
+      "primary_type": "normal",
+      "secondary_type": "flying"
     },
     {
       "id": 86,
@@ -1029,7 +1029,7 @@
       "special_attack": 45,
       "special_defense": 70,
       "speed": 45,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -1041,8 +1041,8 @@
       "special_attack": 70,
       "special_defense": 95,
       "speed": 70,
-      "primary_type": "Water",
-      "secondary_type": "Ice"
+      "primary_type": "water",
+      "secondary_type": "ice"
     },
     {
       "id": 88,
@@ -1053,7 +1053,7 @@
       "special_attack": 40,
       "special_defense": 50,
       "speed": 25,
-      "primary_type": "Poison",
+      "primary_type": "poison",
       "secondary_type": null
     },
     {
@@ -1065,7 +1065,7 @@
       "special_attack": 65,
       "special_defense": 100,
       "speed": 50,
-      "primary_type": "Poison",
+      "primary_type": "poison",
       "secondary_type": null
     },
     {
@@ -1077,7 +1077,7 @@
       "special_attack": 45,
       "special_defense": 25,
       "speed": 40,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -1089,8 +1089,8 @@
       "special_attack": 85,
       "special_defense": 45,
       "speed": 70,
-      "primary_type": "Water",
-      "secondary_type": "Ice"
+      "primary_type": "water",
+      "secondary_type": "ice"
     },
     {
       "id": 92,
@@ -1101,8 +1101,8 @@
       "special_attack": 100,
       "special_defense": 35,
       "speed": 80,
-      "primary_type": "Ghost",
-      "secondary_type": "Poison"
+      "primary_type": "ghost",
+      "secondary_type": "poison"
     },
     {
       "id": 93,
@@ -1113,8 +1113,8 @@
       "special_attack": 115,
       "special_defense": 55,
       "speed": 95,
-      "primary_type": "Ghost",
-      "secondary_type": "Poison"
+      "primary_type": "ghost",
+      "secondary_type": "poison"
     },
     {
       "id": 94,
@@ -1125,8 +1125,8 @@
       "special_attack": 130,
       "special_defense": 75,
       "speed": 110,
-      "primary_type": "Ghost",
-      "secondary_type": "Poison"
+      "primary_type": "ghost",
+      "secondary_type": "poison"
     },
     {
       "id": 95,
@@ -1137,8 +1137,8 @@
       "special_attack": 30,
       "special_defense": 45,
       "speed": 70,
-      "primary_type": "Rock",
-      "secondary_type": "Ground"
+      "primary_type": "rock",
+      "secondary_type": "ground"
     },
     {
       "id": 96,
@@ -1149,7 +1149,7 @@
       "special_attack": 43,
       "special_defense": 90,
       "speed": 42,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -1161,7 +1161,7 @@
       "special_attack": 73,
       "special_defense": 115,
       "speed": 67,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -1173,7 +1173,7 @@
       "special_attack": 25,
       "special_defense": 25,
       "speed": 50,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -1185,7 +1185,7 @@
       "special_attack": 50,
       "special_defense": 50,
       "speed": 75,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -1197,7 +1197,7 @@
       "special_attack": 55,
       "special_defense": 55,
       "speed": 100,
-      "primary_type": "Electric",
+      "primary_type": "electric",
       "secondary_type": null
     },
     {
@@ -1209,7 +1209,7 @@
       "special_attack": 80,
       "special_defense": 80,
       "speed": 150,
-      "primary_type": "Electric",
+      "primary_type": "electric",
       "secondary_type": null
     },
     {
@@ -1221,8 +1221,8 @@
       "special_attack": 60,
       "special_defense": 45,
       "speed": 40,
-      "primary_type": "Grass",
-      "secondary_type": "Psychic"
+      "primary_type": "grass",
+      "secondary_type": "psychic"
     },
     {
       "id": 103,
@@ -1233,8 +1233,8 @@
       "special_attack": 125,
       "special_defense": 75,
       "speed": 55,
-      "primary_type": "Grass",
-      "secondary_type": "Psychic"
+      "primary_type": "grass",
+      "secondary_type": "psychic"
     },
     {
       "id": 104,
@@ -1245,7 +1245,7 @@
       "special_attack": 40,
       "special_defense": 50,
       "speed": 35,
-      "primary_type": "Ground",
+      "primary_type": "ground",
       "secondary_type": null
     },
     {
@@ -1257,7 +1257,7 @@
       "special_attack": 50,
       "special_defense": 80,
       "speed": 45,
-      "primary_type": "Ground",
+      "primary_type": "ground",
       "secondary_type": null
     },
     {
@@ -1269,7 +1269,7 @@
       "special_attack": 35,
       "special_defense": 110,
       "speed": 87,
-      "primary_type": "Fighting",
+      "primary_type": "fighting",
       "secondary_type": null
     },
     {
@@ -1281,7 +1281,7 @@
       "special_attack": 35,
       "special_defense": 110,
       "speed": 76,
-      "primary_type": "Fighting",
+      "primary_type": "fighting",
       "secondary_type": null
     },
     {
@@ -1293,7 +1293,7 @@
       "special_attack": 60,
       "special_defense": 75,
       "speed": 30,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -1305,7 +1305,7 @@
       "special_attack": 60,
       "special_defense": 45,
       "speed": 35,
-      "primary_type": "Poison",
+      "primary_type": "poison",
       "secondary_type": null
     },
     {
@@ -1317,7 +1317,7 @@
       "special_attack": 85,
       "special_defense": 70,
       "speed": 60,
-      "primary_type": "Poison",
+      "primary_type": "poison",
       "secondary_type": null
     },
     {
@@ -1329,8 +1329,8 @@
       "special_attack": 30,
       "special_defense": 30,
       "speed": 25,
-      "primary_type": "Ground",
-      "secondary_type": "Rock"
+      "primary_type": "ground",
+      "secondary_type": "rock"
     },
     {
       "id": 112,
@@ -1341,8 +1341,8 @@
       "special_attack": 45,
       "special_defense": 45,
       "speed": 40,
-      "primary_type": "Ground",
-      "secondary_type": "Rock"
+      "primary_type": "ground",
+      "secondary_type": "rock"
     },
     {
       "id": 113,
@@ -1353,7 +1353,7 @@
       "special_attack": 35,
       "special_defense": 105,
       "speed": 50,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -1365,7 +1365,7 @@
       "special_attack": 100,
       "special_defense": 40,
       "speed": 60,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -1377,7 +1377,7 @@
       "special_attack": 40,
       "special_defense": 80,
       "speed": 90,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -1389,7 +1389,7 @@
       "special_attack": 70,
       "special_defense": 25,
       "speed": 60,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -1401,7 +1401,7 @@
       "special_attack": 95,
       "special_defense": 45,
       "speed": 85,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -1413,7 +1413,7 @@
       "special_attack": 35,
       "special_defense": 50,
       "speed": 63,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -1425,7 +1425,7 @@
       "special_attack": 65,
       "special_defense": 80,
       "speed": 68,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -1437,7 +1437,7 @@
       "special_attack": 70,
       "special_defense": 55,
       "speed": 85,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -1449,8 +1449,8 @@
       "special_attack": 100,
       "special_defense": 85,
       "speed": 115,
-      "primary_type": "Water",
-      "secondary_type": "Psychic"
+      "primary_type": "water",
+      "secondary_type": "psychic"
     },
     {
       "id": 122,
@@ -1461,8 +1461,8 @@
       "special_attack": 100,
       "special_defense": 120,
       "speed": 90,
-      "primary_type": "Psychic",
-      "secondary_type": "Fairy"
+      "primary_type": "psychic",
+      "secondary_type": "fairy"
     },
     {
       "id": 123,
@@ -1473,8 +1473,8 @@
       "special_attack": 55,
       "special_defense": 80,
       "speed": 105,
-      "primary_type": "Bug",
-      "secondary_type": "Flying"
+      "primary_type": "bug",
+      "secondary_type": "flying"
     },
     {
       "id": 124,
@@ -1485,8 +1485,8 @@
       "special_attack": 115,
       "special_defense": 95,
       "speed": 95,
-      "primary_type": "Ice",
-      "secondary_type": "Psychic"
+      "primary_type": "ice",
+      "secondary_type": "psychic"
     },
     {
       "id": 125,
@@ -1497,7 +1497,7 @@
       "special_attack": 95,
       "special_defense": 85,
       "speed": 105,
-      "primary_type": "Electric",
+      "primary_type": "electric",
       "secondary_type": null
     },
     {
@@ -1509,7 +1509,7 @@
       "special_attack": 100,
       "special_defense": 85,
       "speed": 93,
-      "primary_type": "Fire",
+      "primary_type": "fire",
       "secondary_type": null
     },
     {
@@ -1521,7 +1521,7 @@
       "special_attack": 55,
       "special_defense": 70,
       "speed": 85,
-      "primary_type": "Bug",
+      "primary_type": "bug",
       "secondary_type": null
     },
     {
@@ -1533,7 +1533,7 @@
       "special_attack": 40,
       "special_defense": 70,
       "speed": 110,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -1545,7 +1545,7 @@
       "special_attack": 15,
       "special_defense": 20,
       "speed": 80,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -1557,8 +1557,8 @@
       "special_attack": 60,
       "special_defense": 100,
       "speed": 81,
-      "primary_type": "Water",
-      "secondary_type": "Flying"
+      "primary_type": "water",
+      "secondary_type": "flying"
     },
     {
       "id": 131,
@@ -1569,8 +1569,8 @@
       "special_attack": 85,
       "special_defense": 95,
       "speed": 60,
-      "primary_type": "Water",
-      "secondary_type": "Ice"
+      "primary_type": "water",
+      "secondary_type": "ice"
     },
     {
       "id": 132,
@@ -1581,7 +1581,7 @@
       "special_attack": 48,
       "special_defense": 48,
       "speed": 48,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -1593,7 +1593,7 @@
       "special_attack": 45,
       "special_defense": 65,
       "speed": 55,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -1605,7 +1605,7 @@
       "special_attack": 110,
       "special_defense": 95,
       "speed": 65,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -1617,7 +1617,7 @@
       "special_attack": 110,
       "special_defense": 95,
       "speed": 130,
-      "primary_type": "Electric",
+      "primary_type": "electric",
       "secondary_type": null
     },
     {
@@ -1629,7 +1629,7 @@
       "special_attack": 95,
       "special_defense": 110,
       "speed": 65,
-      "primary_type": "Fire",
+      "primary_type": "fire",
       "secondary_type": null
     },
     {
@@ -1641,7 +1641,7 @@
       "special_attack": 85,
       "special_defense": 75,
       "speed": 40,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -1653,8 +1653,8 @@
       "special_attack": 90,
       "special_defense": 55,
       "speed": 35,
-      "primary_type": "Rock",
-      "secondary_type": "Water"
+      "primary_type": "rock",
+      "secondary_type": "water"
     },
     {
       "id": 139,
@@ -1665,8 +1665,8 @@
       "special_attack": 115,
       "special_defense": 70,
       "speed": 55,
-      "primary_type": "Rock",
-      "secondary_type": "Water"
+      "primary_type": "rock",
+      "secondary_type": "water"
     },
     {
       "id": 140,
@@ -1677,8 +1677,8 @@
       "special_attack": 55,
       "special_defense": 45,
       "speed": 55,
-      "primary_type": "Rock",
-      "secondary_type": "Water"
+      "primary_type": "rock",
+      "secondary_type": "water"
     },
     {
       "id": 141,
@@ -1689,8 +1689,8 @@
       "special_attack": 65,
       "special_defense": 70,
       "speed": 80,
-      "primary_type": "Rock",
-      "secondary_type": "Water"
+      "primary_type": "rock",
+      "secondary_type": "water"
     },
     {
       "id": 142,
@@ -1701,8 +1701,8 @@
       "special_attack": 60,
       "special_defense": 75,
       "speed": 130,
-      "primary_type": "Rock",
-      "secondary_type": "Flying"
+      "primary_type": "rock",
+      "secondary_type": "flying"
     },
     {
       "id": 143,
@@ -1713,7 +1713,7 @@
       "special_attack": 65,
       "special_defense": 110,
       "speed": 30,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -1725,8 +1725,8 @@
       "special_attack": 95,
       "special_defense": 125,
       "speed": 85,
-      "primary_type": "Ice",
-      "secondary_type": "Flying"
+      "primary_type": "ice",
+      "secondary_type": "flying"
     },
     {
       "id": 145,
@@ -1737,8 +1737,8 @@
       "special_attack": 125,
       "special_defense": 90,
       "speed": 100,
-      "primary_type": "Electric",
-      "secondary_type": "Flying"
+      "primary_type": "electric",
+      "secondary_type": "flying"
     },
     {
       "id": 146,
@@ -1749,8 +1749,8 @@
       "special_attack": 125,
       "special_defense": 85,
       "speed": 90,
-      "primary_type": "Fire",
-      "secondary_type": "Flying"
+      "primary_type": "fire",
+      "secondary_type": "flying"
     },
     {
       "id": 147,
@@ -1761,7 +1761,7 @@
       "special_attack": 50,
       "special_defense": 50,
       "speed": 50,
-      "primary_type": "Dragon",
+      "primary_type": "dragon",
       "secondary_type": null
     },
     {
@@ -1773,7 +1773,7 @@
       "special_attack": 70,
       "special_defense": 70,
       "speed": 70,
-      "primary_type": "Dragon",
+      "primary_type": "dragon",
       "secondary_type": null
     },
     {
@@ -1785,8 +1785,8 @@
       "special_attack": 100,
       "special_defense": 100,
       "speed": 80,
-      "primary_type": "Dragon",
-      "secondary_type": "Flying"
+      "primary_type": "dragon",
+      "secondary_type": "flying"
     },
     {
       "id": 150,
@@ -1797,7 +1797,7 @@
       "special_attack": 154,
       "special_defense": 90,
       "speed": 130,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -1809,7 +1809,7 @@
       "special_attack": 100,
       "special_defense": 100,
       "speed": 100,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -1821,7 +1821,7 @@
       "special_attack": 49,
       "special_defense": 65,
       "speed": 45,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -1833,7 +1833,7 @@
       "special_attack": 63,
       "special_defense": 80,
       "speed": 60,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -1845,7 +1845,7 @@
       "special_attack": 83,
       "special_defense": 100,
       "speed": 80,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -1857,7 +1857,7 @@
       "special_attack": 60,
       "special_defense": 50,
       "speed": 65,
-      "primary_type": "Fire",
+      "primary_type": "fire",
       "secondary_type": null
     },
     {
@@ -1869,7 +1869,7 @@
       "special_attack": 80,
       "special_defense": 65,
       "speed": 80,
-      "primary_type": "Fire",
+      "primary_type": "fire",
       "secondary_type": null
     },
     {
@@ -1881,7 +1881,7 @@
       "special_attack": 109,
       "special_defense": 85,
       "speed": 100,
-      "primary_type": "Fire",
+      "primary_type": "fire",
       "secondary_type": null
     },
     {
@@ -1893,7 +1893,7 @@
       "special_attack": 44,
       "special_defense": 48,
       "speed": 43,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -1905,7 +1905,7 @@
       "special_attack": 59,
       "special_defense": 63,
       "speed": 58,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -1917,7 +1917,7 @@
       "special_attack": 79,
       "special_defense": 83,
       "speed": 78,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -1929,7 +1929,7 @@
       "special_attack": 35,
       "special_defense": 45,
       "speed": 20,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -1941,7 +1941,7 @@
       "special_attack": 45,
       "special_defense": 55,
       "speed": 90,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -1953,8 +1953,8 @@
       "special_attack": 36,
       "special_defense": 56,
       "speed": 50,
-      "primary_type": "Normal",
-      "secondary_type": "Flying"
+      "primary_type": "normal",
+      "secondary_type": "flying"
     },
     {
       "id": 164,
@@ -1965,8 +1965,8 @@
       "special_attack": 86,
       "special_defense": 96,
       "speed": 70,
-      "primary_type": "Normal",
-      "secondary_type": "Flying"
+      "primary_type": "normal",
+      "secondary_type": "flying"
     },
     {
       "id": 165,
@@ -1977,8 +1977,8 @@
       "special_attack": 40,
       "special_defense": 80,
       "speed": 55,
-      "primary_type": "Bug",
-      "secondary_type": "Flying"
+      "primary_type": "bug",
+      "secondary_type": "flying"
     },
     {
       "id": 166,
@@ -1989,8 +1989,8 @@
       "special_attack": 55,
       "special_defense": 110,
       "speed": 85,
-      "primary_type": "Bug",
-      "secondary_type": "Flying"
+      "primary_type": "bug",
+      "secondary_type": "flying"
     },
     {
       "id": 167,
@@ -2001,8 +2001,8 @@
       "special_attack": 40,
       "special_defense": 40,
       "speed": 30,
-      "primary_type": "Bug",
-      "secondary_type": "Poison"
+      "primary_type": "bug",
+      "secondary_type": "poison"
     },
     {
       "id": 168,
@@ -2013,8 +2013,8 @@
       "special_attack": 60,
       "special_defense": 70,
       "speed": 40,
-      "primary_type": "Bug",
-      "secondary_type": "Poison"
+      "primary_type": "bug",
+      "secondary_type": "poison"
     },
     {
       "id": 169,
@@ -2025,8 +2025,8 @@
       "special_attack": 70,
       "special_defense": 80,
       "speed": 130,
-      "primary_type": "Poison",
-      "secondary_type": "Flying"
+      "primary_type": "poison",
+      "secondary_type": "flying"
     },
     {
       "id": 170,
@@ -2037,8 +2037,8 @@
       "special_attack": 56,
       "special_defense": 56,
       "speed": 67,
-      "primary_type": "Water",
-      "secondary_type": "Electric"
+      "primary_type": "water",
+      "secondary_type": "electric"
     },
     {
       "id": 171,
@@ -2049,8 +2049,8 @@
       "special_attack": 76,
       "special_defense": 76,
       "speed": 67,
-      "primary_type": "Water",
-      "secondary_type": "Electric"
+      "primary_type": "water",
+      "secondary_type": "electric"
     },
     {
       "id": 172,
@@ -2061,7 +2061,7 @@
       "special_attack": 35,
       "special_defense": 35,
       "speed": 60,
-      "primary_type": "Electric",
+      "primary_type": "electric",
       "secondary_type": null
     },
     {
@@ -2073,7 +2073,7 @@
       "special_attack": 45,
       "special_defense": 55,
       "speed": 15,
-      "primary_type": "Fairy",
+      "primary_type": "fairy",
       "secondary_type": null
     },
     {
@@ -2085,8 +2085,8 @@
       "special_attack": 40,
       "special_defense": 20,
       "speed": 15,
-      "primary_type": "Normal",
-      "secondary_type": "Fairy"
+      "primary_type": "normal",
+      "secondary_type": "fairy"
     },
     {
       "id": 175,
@@ -2097,7 +2097,7 @@
       "special_attack": 40,
       "special_defense": 65,
       "speed": 20,
-      "primary_type": "Fairy",
+      "primary_type": "fairy",
       "secondary_type": null
     },
     {
@@ -2109,8 +2109,8 @@
       "special_attack": 80,
       "special_defense": 105,
       "speed": 40,
-      "primary_type": "Fairy",
-      "secondary_type": "Flying"
+      "primary_type": "fairy",
+      "secondary_type": "flying"
     },
     {
       "id": 177,
@@ -2121,8 +2121,8 @@
       "special_attack": 70,
       "special_defense": 45,
       "speed": 70,
-      "primary_type": "Psychic",
-      "secondary_type": "Flying"
+      "primary_type": "psychic",
+      "secondary_type": "flying"
     },
     {
       "id": 178,
@@ -2133,8 +2133,8 @@
       "special_attack": 95,
       "special_defense": 70,
       "speed": 95,
-      "primary_type": "Psychic",
-      "secondary_type": "Flying"
+      "primary_type": "psychic",
+      "secondary_type": "flying"
     },
     {
       "id": 179,
@@ -2145,7 +2145,7 @@
       "special_attack": 65,
       "special_defense": 45,
       "speed": 35,
-      "primary_type": "Electric",
+      "primary_type": "electric",
       "secondary_type": null
     },
     {
@@ -2157,7 +2157,7 @@
       "special_attack": 80,
       "special_defense": 60,
       "speed": 45,
-      "primary_type": "Electric",
+      "primary_type": "electric",
       "secondary_type": null
     },
     {
@@ -2169,7 +2169,7 @@
       "special_attack": 115,
       "special_defense": 90,
       "speed": 55,
-      "primary_type": "Electric",
+      "primary_type": "electric",
       "secondary_type": null
     },
     {
@@ -2181,7 +2181,7 @@
       "special_attack": 90,
       "special_defense": 100,
       "speed": 50,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -2193,8 +2193,8 @@
       "special_attack": 20,
       "special_defense": 50,
       "speed": 40,
-      "primary_type": "Water",
-      "secondary_type": "Fairy"
+      "primary_type": "water",
+      "secondary_type": "fairy"
     },
     {
       "id": 184,
@@ -2205,8 +2205,8 @@
       "special_attack": 60,
       "special_defense": 80,
       "speed": 50,
-      "primary_type": "Water",
-      "secondary_type": "Fairy"
+      "primary_type": "water",
+      "secondary_type": "fairy"
     },
     {
       "id": 185,
@@ -2217,7 +2217,7 @@
       "special_attack": 30,
       "special_defense": 65,
       "speed": 30,
-      "primary_type": "Rock",
+      "primary_type": "rock",
       "secondary_type": null
     },
     {
@@ -2229,7 +2229,7 @@
       "special_attack": 90,
       "special_defense": 100,
       "speed": 70,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -2241,8 +2241,8 @@
       "special_attack": 35,
       "special_defense": 55,
       "speed": 50,
-      "primary_type": "Grass",
-      "secondary_type": "Flying"
+      "primary_type": "grass",
+      "secondary_type": "flying"
     },
     {
       "id": 188,
@@ -2253,8 +2253,8 @@
       "special_attack": 45,
       "special_defense": 65,
       "speed": 80,
-      "primary_type": "Grass",
-      "secondary_type": "Flying"
+      "primary_type": "grass",
+      "secondary_type": "flying"
     },
     {
       "id": 189,
@@ -2265,8 +2265,8 @@
       "special_attack": 55,
       "special_defense": 95,
       "speed": 110,
-      "primary_type": "Grass",
-      "secondary_type": "Flying"
+      "primary_type": "grass",
+      "secondary_type": "flying"
     },
     {
       "id": 190,
@@ -2277,7 +2277,7 @@
       "special_attack": 40,
       "special_defense": 55,
       "speed": 85,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -2289,7 +2289,7 @@
       "special_attack": 30,
       "special_defense": 30,
       "speed": 30,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -2301,7 +2301,7 @@
       "special_attack": 105,
       "special_defense": 85,
       "speed": 30,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -2313,8 +2313,8 @@
       "special_attack": 75,
       "special_defense": 45,
       "speed": 95,
-      "primary_type": "Bug",
-      "secondary_type": "Flying"
+      "primary_type": "bug",
+      "secondary_type": "flying"
     },
     {
       "id": 194,
@@ -2325,8 +2325,8 @@
       "special_attack": 25,
       "special_defense": 25,
       "speed": 15,
-      "primary_type": "Water",
-      "secondary_type": "Ground"
+      "primary_type": "water",
+      "secondary_type": "ground"
     },
     {
       "id": 195,
@@ -2337,8 +2337,8 @@
       "special_attack": 65,
       "special_defense": 65,
       "speed": 35,
-      "primary_type": "Water",
-      "secondary_type": "Ground"
+      "primary_type": "water",
+      "secondary_type": "ground"
     },
     {
       "id": 196,
@@ -2349,7 +2349,7 @@
       "special_attack": 130,
       "special_defense": 95,
       "speed": 110,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -2361,7 +2361,7 @@
       "special_attack": 60,
       "special_defense": 130,
       "speed": 65,
-      "primary_type": "Dark",
+      "primary_type": "dark",
       "secondary_type": null
     },
     {
@@ -2373,8 +2373,8 @@
       "special_attack": 85,
       "special_defense": 42,
       "speed": 91,
-      "primary_type": "Dark",
-      "secondary_type": "Flying"
+      "primary_type": "dark",
+      "secondary_type": "flying"
     },
     {
       "id": 199,
@@ -2385,8 +2385,8 @@
       "special_attack": 100,
       "special_defense": 110,
       "speed": 30,
-      "primary_type": "Water",
-      "secondary_type": "Psychic"
+      "primary_type": "water",
+      "secondary_type": "psychic"
     },
     {
       "id": 200,
@@ -2397,7 +2397,7 @@
       "special_attack": 85,
       "special_defense": 85,
       "speed": 85,
-      "primary_type": "Ghost",
+      "primary_type": "ghost",
       "secondary_type": null
     },
     {
@@ -2409,7 +2409,7 @@
       "special_attack": 72,
       "special_defense": 48,
       "speed": 48,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -2421,7 +2421,7 @@
       "special_attack": 33,
       "special_defense": 58,
       "speed": 33,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -2433,8 +2433,8 @@
       "special_attack": 90,
       "special_defense": 65,
       "speed": 85,
-      "primary_type": "Normal",
-      "secondary_type": "Psychic"
+      "primary_type": "normal",
+      "secondary_type": "psychic"
     },
     {
       "id": 204,
@@ -2445,7 +2445,7 @@
       "special_attack": 35,
       "special_defense": 35,
       "speed": 15,
-      "primary_type": "Bug",
+      "primary_type": "bug",
       "secondary_type": null
     },
     {
@@ -2457,8 +2457,8 @@
       "special_attack": 60,
       "special_defense": 60,
       "speed": 40,
-      "primary_type": "Bug",
-      "secondary_type": "Steel"
+      "primary_type": "bug",
+      "secondary_type": "steel"
     },
     {
       "id": 206,
@@ -2469,7 +2469,7 @@
       "special_attack": 65,
       "special_defense": 65,
       "speed": 45,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -2481,8 +2481,8 @@
       "special_attack": 35,
       "special_defense": 65,
       "speed": 85,
-      "primary_type": "Ground",
-      "secondary_type": "Flying"
+      "primary_type": "ground",
+      "secondary_type": "flying"
     },
     {
       "id": 208,
@@ -2493,8 +2493,8 @@
       "special_attack": 55,
       "special_defense": 65,
       "speed": 30,
-      "primary_type": "Steel",
-      "secondary_type": "Ground"
+      "primary_type": "steel",
+      "secondary_type": "ground"
     },
     {
       "id": 209,
@@ -2505,7 +2505,7 @@
       "special_attack": 40,
       "special_defense": 40,
       "speed": 30,
-      "primary_type": "Fairy",
+      "primary_type": "fairy",
       "secondary_type": null
     },
     {
@@ -2517,7 +2517,7 @@
       "special_attack": 60,
       "special_defense": 60,
       "speed": 45,
-      "primary_type": "Fairy",
+      "primary_type": "fairy",
       "secondary_type": null
     },
     {
@@ -2529,8 +2529,8 @@
       "special_attack": 55,
       "special_defense": 55,
       "speed": 85,
-      "primary_type": "Water",
-      "secondary_type": "Poison"
+      "primary_type": "water",
+      "secondary_type": "poison"
     },
     {
       "id": 212,
@@ -2541,8 +2541,8 @@
       "special_attack": 55,
       "special_defense": 80,
       "speed": 65,
-      "primary_type": "Bug",
-      "secondary_type": "Steel"
+      "primary_type": "bug",
+      "secondary_type": "steel"
     },
     {
       "id": 213,
@@ -2553,8 +2553,8 @@
       "special_attack": 10,
       "special_defense": 230,
       "speed": 5,
-      "primary_type": "Bug",
-      "secondary_type": "Rock"
+      "primary_type": "bug",
+      "secondary_type": "rock"
     },
     {
       "id": 214,
@@ -2565,8 +2565,8 @@
       "special_attack": 40,
       "special_defense": 95,
       "speed": 85,
-      "primary_type": "Bug",
-      "secondary_type": "Fighting"
+      "primary_type": "bug",
+      "secondary_type": "fighting"
     },
     {
       "id": 215,
@@ -2577,8 +2577,8 @@
       "special_attack": 35,
       "special_defense": 75,
       "speed": 115,
-      "primary_type": "Dark",
-      "secondary_type": "Ice"
+      "primary_type": "dark",
+      "secondary_type": "ice"
     },
     {
       "id": 216,
@@ -2589,7 +2589,7 @@
       "special_attack": 50,
       "special_defense": 50,
       "speed": 40,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -2601,7 +2601,7 @@
       "special_attack": 75,
       "special_defense": 75,
       "speed": 55,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -2613,7 +2613,7 @@
       "special_attack": 70,
       "special_defense": 40,
       "speed": 20,
-      "primary_type": "Fire",
+      "primary_type": "fire",
       "secondary_type": null
     },
     {
@@ -2625,8 +2625,8 @@
       "special_attack": 90,
       "special_defense": 80,
       "speed": 30,
-      "primary_type": "Fire",
-      "secondary_type": "Rock"
+      "primary_type": "fire",
+      "secondary_type": "rock"
     },
     {
       "id": 220,
@@ -2637,8 +2637,8 @@
       "special_attack": 30,
       "special_defense": 30,
       "speed": 50,
-      "primary_type": "Ice",
-      "secondary_type": "Ground"
+      "primary_type": "ice",
+      "secondary_type": "ground"
     },
     {
       "id": 221,
@@ -2649,8 +2649,8 @@
       "special_attack": 60,
       "special_defense": 60,
       "speed": 50,
-      "primary_type": "Ice",
-      "secondary_type": "Ground"
+      "primary_type": "ice",
+      "secondary_type": "ground"
     },
     {
       "id": 222,
@@ -2661,8 +2661,8 @@
       "special_attack": 65,
       "special_defense": 95,
       "speed": 35,
-      "primary_type": "Water",
-      "secondary_type": "Rock"
+      "primary_type": "water",
+      "secondary_type": "rock"
     },
     {
       "id": 223,
@@ -2673,7 +2673,7 @@
       "special_attack": 65,
       "special_defense": 35,
       "speed": 65,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -2685,7 +2685,7 @@
       "special_attack": 105,
       "special_defense": 75,
       "speed": 45,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -2697,8 +2697,8 @@
       "special_attack": 65,
       "special_defense": 45,
       "speed": 75,
-      "primary_type": "Ice",
-      "secondary_type": "Flying"
+      "primary_type": "ice",
+      "secondary_type": "flying"
     },
     {
       "id": 226,
@@ -2709,8 +2709,8 @@
       "special_attack": 80,
       "special_defense": 140,
       "speed": 70,
-      "primary_type": "Water",
-      "secondary_type": "Flying"
+      "primary_type": "water",
+      "secondary_type": "flying"
     },
     {
       "id": 227,
@@ -2721,8 +2721,8 @@
       "special_attack": 40,
       "special_defense": 70,
       "speed": 70,
-      "primary_type": "Steel",
-      "secondary_type": "Flying"
+      "primary_type": "steel",
+      "secondary_type": "flying"
     },
     {
       "id": 228,
@@ -2733,8 +2733,8 @@
       "special_attack": 80,
       "special_defense": 50,
       "speed": 65,
-      "primary_type": "Dark",
-      "secondary_type": "Fire"
+      "primary_type": "dark",
+      "secondary_type": "fire"
     },
     {
       "id": 229,
@@ -2745,8 +2745,8 @@
       "special_attack": 110,
       "special_defense": 80,
       "speed": 95,
-      "primary_type": "Dark",
-      "secondary_type": "Fire"
+      "primary_type": "dark",
+      "secondary_type": "fire"
     },
     {
       "id": 230,
@@ -2757,8 +2757,8 @@
       "special_attack": 95,
       "special_defense": 95,
       "speed": 85,
-      "primary_type": "Water",
-      "secondary_type": "Dragon"
+      "primary_type": "water",
+      "secondary_type": "dragon"
     },
     {
       "id": 231,
@@ -2769,7 +2769,7 @@
       "special_attack": 40,
       "special_defense": 40,
       "speed": 40,
-      "primary_type": "Ground",
+      "primary_type": "ground",
       "secondary_type": null
     },
     {
@@ -2781,7 +2781,7 @@
       "special_attack": 60,
       "special_defense": 60,
       "speed": 50,
-      "primary_type": "Ground",
+      "primary_type": "ground",
       "secondary_type": null
     },
     {
@@ -2793,7 +2793,7 @@
       "special_attack": 105,
       "special_defense": 95,
       "speed": 60,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -2805,7 +2805,7 @@
       "special_attack": 85,
       "special_defense": 65,
       "speed": 85,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -2817,7 +2817,7 @@
       "special_attack": 20,
       "special_defense": 45,
       "speed": 75,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -2829,7 +2829,7 @@
       "special_attack": 35,
       "special_defense": 35,
       "speed": 35,
-      "primary_type": "Fighting",
+      "primary_type": "fighting",
       "secondary_type": null
     },
     {
@@ -2841,7 +2841,7 @@
       "special_attack": 35,
       "special_defense": 110,
       "speed": 70,
-      "primary_type": "Fighting",
+      "primary_type": "fighting",
       "secondary_type": null
     },
     {
@@ -2853,8 +2853,8 @@
       "special_attack": 85,
       "special_defense": 65,
       "speed": 65,
-      "primary_type": "Ice",
-      "secondary_type": "Psychic"
+      "primary_type": "ice",
+      "secondary_type": "psychic"
     },
     {
       "id": 239,
@@ -2865,7 +2865,7 @@
       "special_attack": 65,
       "special_defense": 55,
       "speed": 95,
-      "primary_type": "Electric",
+      "primary_type": "electric",
       "secondary_type": null
     },
     {
@@ -2877,7 +2877,7 @@
       "special_attack": 70,
       "special_defense": 55,
       "speed": 83,
-      "primary_type": "Fire",
+      "primary_type": "fire",
       "secondary_type": null
     },
     {
@@ -2889,7 +2889,7 @@
       "special_attack": 40,
       "special_defense": 70,
       "speed": 100,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -2901,7 +2901,7 @@
       "special_attack": 75,
       "special_defense": 135,
       "speed": 55,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -2913,7 +2913,7 @@
       "special_attack": 115,
       "special_defense": 100,
       "speed": 115,
-      "primary_type": "Electric",
+      "primary_type": "electric",
       "secondary_type": null
     },
     {
@@ -2925,7 +2925,7 @@
       "special_attack": 90,
       "special_defense": 75,
       "speed": 100,
-      "primary_type": "Fire",
+      "primary_type": "fire",
       "secondary_type": null
     },
     {
@@ -2937,7 +2937,7 @@
       "special_attack": 90,
       "special_defense": 115,
       "speed": 85,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -2949,8 +2949,8 @@
       "special_attack": 45,
       "special_defense": 50,
       "speed": 41,
-      "primary_type": "Rock",
-      "secondary_type": "Ground"
+      "primary_type": "rock",
+      "secondary_type": "ground"
     },
     {
       "id": 247,
@@ -2961,8 +2961,8 @@
       "special_attack": 65,
       "special_defense": 70,
       "speed": 51,
-      "primary_type": "Rock",
-      "secondary_type": "Ground"
+      "primary_type": "rock",
+      "secondary_type": "ground"
     },
     {
       "id": 248,
@@ -2973,8 +2973,8 @@
       "special_attack": 95,
       "special_defense": 100,
       "speed": 61,
-      "primary_type": "Rock",
-      "secondary_type": "Dark"
+      "primary_type": "rock",
+      "secondary_type": "dark"
     },
     {
       "id": 249,
@@ -2985,8 +2985,8 @@
       "special_attack": 90,
       "special_defense": 154,
       "speed": 110,
-      "primary_type": "Psychic",
-      "secondary_type": "Flying"
+      "primary_type": "psychic",
+      "secondary_type": "flying"
     },
     {
       "id": 250,
@@ -2997,8 +2997,8 @@
       "special_attack": 110,
       "special_defense": 154,
       "speed": 90,
-      "primary_type": "Fire",
-      "secondary_type": "Flying"
+      "primary_type": "fire",
+      "secondary_type": "flying"
     },
     {
       "id": 251,
@@ -3009,8 +3009,8 @@
       "special_attack": 100,
       "special_defense": 100,
       "speed": 100,
-      "primary_type": "Psychic",
-      "secondary_type": "Grass"
+      "primary_type": "psychic",
+      "secondary_type": "grass"
     },
     {
       "id": 252,
@@ -3021,7 +3021,7 @@
       "special_attack": 65,
       "special_defense": 55,
       "speed": 70,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -3033,7 +3033,7 @@
       "special_attack": 85,
       "special_defense": 65,
       "speed": 95,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -3045,7 +3045,7 @@
       "special_attack": 105,
       "special_defense": 85,
       "speed": 120,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -3057,7 +3057,7 @@
       "special_attack": 70,
       "special_defense": 50,
       "speed": 45,
-      "primary_type": "Fire",
+      "primary_type": "fire",
       "secondary_type": null
     },
     {
@@ -3069,8 +3069,8 @@
       "special_attack": 85,
       "special_defense": 60,
       "speed": 55,
-      "primary_type": "Fire",
-      "secondary_type": "Fighting"
+      "primary_type": "fire",
+      "secondary_type": "fighting"
     },
     {
       "id": 257,
@@ -3081,8 +3081,8 @@
       "special_attack": 110,
       "special_defense": 70,
       "speed": 80,
-      "primary_type": "Fire",
-      "secondary_type": "Fighting"
+      "primary_type": "fire",
+      "secondary_type": "fighting"
     },
     {
       "id": 258,
@@ -3093,7 +3093,7 @@
       "special_attack": 50,
       "special_defense": 50,
       "speed": 40,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -3105,8 +3105,8 @@
       "special_attack": 60,
       "special_defense": 70,
       "speed": 50,
-      "primary_type": "Water",
-      "secondary_type": "Ground"
+      "primary_type": "water",
+      "secondary_type": "ground"
     },
     {
       "id": 260,
@@ -3117,8 +3117,8 @@
       "special_attack": 85,
       "special_defense": 90,
       "speed": 60,
-      "primary_type": "Water",
-      "secondary_type": "Ground"
+      "primary_type": "water",
+      "secondary_type": "ground"
     },
     {
       "id": 261,
@@ -3129,7 +3129,7 @@
       "special_attack": 30,
       "special_defense": 30,
       "speed": 35,
-      "primary_type": "Dark",
+      "primary_type": "dark",
       "secondary_type": null
     },
     {
@@ -3141,7 +3141,7 @@
       "special_attack": 60,
       "special_defense": 60,
       "speed": 70,
-      "primary_type": "Dark",
+      "primary_type": "dark",
       "secondary_type": null
     },
     {
@@ -3153,7 +3153,7 @@
       "special_attack": 30,
       "special_defense": 41,
       "speed": 60,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -3165,7 +3165,7 @@
       "special_attack": 50,
       "special_defense": 61,
       "speed": 100,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -3177,7 +3177,7 @@
       "special_attack": 20,
       "special_defense": 30,
       "speed": 20,
-      "primary_type": "Bug",
+      "primary_type": "bug",
       "secondary_type": null
     },
     {
@@ -3189,7 +3189,7 @@
       "special_attack": 25,
       "special_defense": 25,
       "speed": 15,
-      "primary_type": "Bug",
+      "primary_type": "bug",
       "secondary_type": null
     },
     {
@@ -3201,8 +3201,8 @@
       "special_attack": 100,
       "special_defense": 50,
       "speed": 65,
-      "primary_type": "Bug",
-      "secondary_type": "Flying"
+      "primary_type": "bug",
+      "secondary_type": "flying"
     },
     {
       "id": 268,
@@ -3213,7 +3213,7 @@
       "special_attack": 25,
       "special_defense": 25,
       "speed": 15,
-      "primary_type": "Bug",
+      "primary_type": "bug",
       "secondary_type": null
     },
     {
@@ -3225,8 +3225,8 @@
       "special_attack": 50,
       "special_defense": 90,
       "speed": 65,
-      "primary_type": "Bug",
-      "secondary_type": "Poison"
+      "primary_type": "bug",
+      "secondary_type": "poison"
     },
     {
       "id": 270,
@@ -3237,8 +3237,8 @@
       "special_attack": 40,
       "special_defense": 50,
       "speed": 30,
-      "primary_type": "Water",
-      "secondary_type": "Grass"
+      "primary_type": "water",
+      "secondary_type": "grass"
     },
     {
       "id": 271,
@@ -3249,8 +3249,8 @@
       "special_attack": 60,
       "special_defense": 70,
       "speed": 50,
-      "primary_type": "Water",
-      "secondary_type": "Grass"
+      "primary_type": "water",
+      "secondary_type": "grass"
     },
     {
       "id": 272,
@@ -3261,8 +3261,8 @@
       "special_attack": 90,
       "special_defense": 100,
       "speed": 70,
-      "primary_type": "Water",
-      "secondary_type": "Grass"
+      "primary_type": "water",
+      "secondary_type": "grass"
     },
     {
       "id": 273,
@@ -3273,7 +3273,7 @@
       "special_attack": 30,
       "special_defense": 30,
       "speed": 30,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -3285,8 +3285,8 @@
       "special_attack": 60,
       "special_defense": 40,
       "speed": 60,
-      "primary_type": "Grass",
-      "secondary_type": "Dark"
+      "primary_type": "grass",
+      "secondary_type": "dark"
     },
     {
       "id": 275,
@@ -3297,8 +3297,8 @@
       "special_attack": 90,
       "special_defense": 60,
       "speed": 80,
-      "primary_type": "Grass",
-      "secondary_type": "Dark"
+      "primary_type": "grass",
+      "secondary_type": "dark"
     },
     {
       "id": 276,
@@ -3309,8 +3309,8 @@
       "special_attack": 30,
       "special_defense": 30,
       "speed": 85,
-      "primary_type": "Normal",
-      "secondary_type": "Flying"
+      "primary_type": "normal",
+      "secondary_type": "flying"
     },
     {
       "id": 277,
@@ -3321,8 +3321,8 @@
       "special_attack": 75,
       "special_defense": 50,
       "speed": 125,
-      "primary_type": "Normal",
-      "secondary_type": "Flying"
+      "primary_type": "normal",
+      "secondary_type": "flying"
     },
     {
       "id": 278,
@@ -3333,8 +3333,8 @@
       "special_attack": 55,
       "special_defense": 30,
       "speed": 85,
-      "primary_type": "Water",
-      "secondary_type": "Flying"
+      "primary_type": "water",
+      "secondary_type": "flying"
     },
     {
       "id": 279,
@@ -3345,8 +3345,8 @@
       "special_attack": 95,
       "special_defense": 70,
       "speed": 65,
-      "primary_type": "Water",
-      "secondary_type": "Flying"
+      "primary_type": "water",
+      "secondary_type": "flying"
     },
     {
       "id": 280,
@@ -3357,8 +3357,8 @@
       "special_attack": 45,
       "special_defense": 35,
       "speed": 40,
-      "primary_type": "Psychic",
-      "secondary_type": "Fairy"
+      "primary_type": "psychic",
+      "secondary_type": "fairy"
     },
     {
       "id": 281,
@@ -3369,8 +3369,8 @@
       "special_attack": 65,
       "special_defense": 55,
       "speed": 50,
-      "primary_type": "Psychic",
-      "secondary_type": "Fairy"
+      "primary_type": "psychic",
+      "secondary_type": "fairy"
     },
     {
       "id": 282,
@@ -3381,8 +3381,8 @@
       "special_attack": 125,
       "special_defense": 115,
       "speed": 80,
-      "primary_type": "Psychic",
-      "secondary_type": "Fairy"
+      "primary_type": "psychic",
+      "secondary_type": "fairy"
     },
     {
       "id": 283,
@@ -3393,8 +3393,8 @@
       "special_attack": 50,
       "special_defense": 52,
       "speed": 65,
-      "primary_type": "Bug",
-      "secondary_type": "Water"
+      "primary_type": "bug",
+      "secondary_type": "water"
     },
     {
       "id": 284,
@@ -3405,8 +3405,8 @@
       "special_attack": 100,
       "special_defense": 82,
       "speed": 80,
-      "primary_type": "Bug",
-      "secondary_type": "Flying"
+      "primary_type": "bug",
+      "secondary_type": "flying"
     },
     {
       "id": 285,
@@ -3417,7 +3417,7 @@
       "special_attack": 40,
       "special_defense": 60,
       "speed": 35,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -3429,8 +3429,8 @@
       "special_attack": 60,
       "special_defense": 60,
       "speed": 70,
-      "primary_type": "Grass",
-      "secondary_type": "Fighting"
+      "primary_type": "grass",
+      "secondary_type": "fighting"
     },
     {
       "id": 287,
@@ -3441,7 +3441,7 @@
       "special_attack": 35,
       "special_defense": 35,
       "speed": 30,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -3453,7 +3453,7 @@
       "special_attack": 55,
       "special_defense": 55,
       "speed": 90,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -3465,7 +3465,7 @@
       "special_attack": 95,
       "special_defense": 65,
       "speed": 100,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -3477,8 +3477,8 @@
       "special_attack": 30,
       "special_defense": 30,
       "speed": 40,
-      "primary_type": "Bug",
-      "secondary_type": "Ground"
+      "primary_type": "bug",
+      "secondary_type": "ground"
     },
     {
       "id": 291,
@@ -3489,8 +3489,8 @@
       "special_attack": 50,
       "special_defense": 50,
       "speed": 160,
-      "primary_type": "Bug",
-      "secondary_type": "Flying"
+      "primary_type": "bug",
+      "secondary_type": "flying"
     },
     {
       "id": 292,
@@ -3501,8 +3501,8 @@
       "special_attack": 30,
       "special_defense": 30,
       "speed": 40,
-      "primary_type": "Bug",
-      "secondary_type": "Ghost"
+      "primary_type": "bug",
+      "secondary_type": "ghost"
     },
     {
       "id": 293,
@@ -3513,7 +3513,7 @@
       "special_attack": 51,
       "special_defense": 23,
       "speed": 28,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -3525,7 +3525,7 @@
       "special_attack": 71,
       "special_defense": 43,
       "speed": 48,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -3537,7 +3537,7 @@
       "special_attack": 91,
       "special_defense": 73,
       "speed": 68,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -3549,7 +3549,7 @@
       "special_attack": 20,
       "special_defense": 30,
       "speed": 25,
-      "primary_type": "Fighting",
+      "primary_type": "fighting",
       "secondary_type": null
     },
     {
@@ -3561,7 +3561,7 @@
       "special_attack": 40,
       "special_defense": 60,
       "speed": 50,
-      "primary_type": "Fighting",
+      "primary_type": "fighting",
       "secondary_type": null
     },
     {
@@ -3573,8 +3573,8 @@
       "special_attack": 20,
       "special_defense": 40,
       "speed": 20,
-      "primary_type": "Normal",
-      "secondary_type": "Fairy"
+      "primary_type": "normal",
+      "secondary_type": "fairy"
     },
     {
       "id": 299,
@@ -3585,7 +3585,7 @@
       "special_attack": 45,
       "special_defense": 90,
       "speed": 30,
-      "primary_type": "Rock",
+      "primary_type": "rock",
       "secondary_type": null
     },
     {
@@ -3597,7 +3597,7 @@
       "special_attack": 35,
       "special_defense": 35,
       "speed": 50,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -3609,7 +3609,7 @@
       "special_attack": 55,
       "special_defense": 55,
       "speed": 90,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -3621,8 +3621,8 @@
       "special_attack": 65,
       "special_defense": 65,
       "speed": 50,
-      "primary_type": "Dark",
-      "secondary_type": "Ghost"
+      "primary_type": "dark",
+      "secondary_type": "ghost"
     },
     {
       "id": 303,
@@ -3633,8 +3633,8 @@
       "special_attack": 55,
       "special_defense": 55,
       "speed": 50,
-      "primary_type": "Steel",
-      "secondary_type": "Fairy"
+      "primary_type": "steel",
+      "secondary_type": "fairy"
     },
     {
       "id": 304,
@@ -3645,8 +3645,8 @@
       "special_attack": 40,
       "special_defense": 40,
       "speed": 30,
-      "primary_type": "Steel",
-      "secondary_type": "Rock"
+      "primary_type": "steel",
+      "secondary_type": "rock"
     },
     {
       "id": 305,
@@ -3657,8 +3657,8 @@
       "special_attack": 50,
       "special_defense": 50,
       "speed": 40,
-      "primary_type": "Steel",
-      "secondary_type": "Rock"
+      "primary_type": "steel",
+      "secondary_type": "rock"
     },
     {
       "id": 306,
@@ -3669,8 +3669,8 @@
       "special_attack": 60,
       "special_defense": 60,
       "speed": 50,
-      "primary_type": "Steel",
-      "secondary_type": "Rock"
+      "primary_type": "steel",
+      "secondary_type": "rock"
     },
     {
       "id": 307,
@@ -3681,8 +3681,8 @@
       "special_attack": 40,
       "special_defense": 55,
       "speed": 60,
-      "primary_type": "Fighting",
-      "secondary_type": "Psychic"
+      "primary_type": "fighting",
+      "secondary_type": "psychic"
     },
     {
       "id": 308,
@@ -3693,8 +3693,8 @@
       "special_attack": 60,
       "special_defense": 75,
       "speed": 80,
-      "primary_type": "Fighting",
-      "secondary_type": "Psychic"
+      "primary_type": "fighting",
+      "secondary_type": "psychic"
     },
     {
       "id": 309,
@@ -3705,7 +3705,7 @@
       "special_attack": 65,
       "special_defense": 40,
       "speed": 65,
-      "primary_type": "Electric",
+      "primary_type": "electric",
       "secondary_type": null
     },
     {
@@ -3717,7 +3717,7 @@
       "special_attack": 105,
       "special_defense": 60,
       "speed": 105,
-      "primary_type": "Electric",
+      "primary_type": "electric",
       "secondary_type": null
     },
     {
@@ -3729,7 +3729,7 @@
       "special_attack": 85,
       "special_defense": 75,
       "speed": 95,
-      "primary_type": "Electric",
+      "primary_type": "electric",
       "secondary_type": null
     },
     {
@@ -3741,7 +3741,7 @@
       "special_attack": 75,
       "special_defense": 85,
       "speed": 95,
-      "primary_type": "Electric",
+      "primary_type": "electric",
       "secondary_type": null
     },
     {
@@ -3753,7 +3753,7 @@
       "special_attack": 47,
       "special_defense": 85,
       "speed": 85,
-      "primary_type": "Bug",
+      "primary_type": "bug",
       "secondary_type": null
     },
     {
@@ -3765,7 +3765,7 @@
       "special_attack": 73,
       "special_defense": 85,
       "speed": 85,
-      "primary_type": "Bug",
+      "primary_type": "bug",
       "secondary_type": null
     },
     {
@@ -3777,8 +3777,8 @@
       "special_attack": 100,
       "special_defense": 80,
       "speed": 65,
-      "primary_type": "Grass",
-      "secondary_type": "Poison"
+      "primary_type": "grass",
+      "secondary_type": "poison"
     },
     {
       "id": 316,
@@ -3789,7 +3789,7 @@
       "special_attack": 43,
       "special_defense": 53,
       "speed": 40,
-      "primary_type": "Poison",
+      "primary_type": "poison",
       "secondary_type": null
     },
     {
@@ -3801,7 +3801,7 @@
       "special_attack": 73,
       "special_defense": 83,
       "speed": 55,
-      "primary_type": "Poison",
+      "primary_type": "poison",
       "secondary_type": null
     },
     {
@@ -3813,8 +3813,8 @@
       "special_attack": 65,
       "special_defense": 20,
       "speed": 65,
-      "primary_type": "Water",
-      "secondary_type": "Dark"
+      "primary_type": "water",
+      "secondary_type": "dark"
     },
     {
       "id": 319,
@@ -3825,8 +3825,8 @@
       "special_attack": 95,
       "special_defense": 40,
       "speed": 95,
-      "primary_type": "Water",
-      "secondary_type": "Dark"
+      "primary_type": "water",
+      "secondary_type": "dark"
     },
     {
       "id": 320,
@@ -3837,7 +3837,7 @@
       "special_attack": 70,
       "special_defense": 35,
       "speed": 60,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -3849,7 +3849,7 @@
       "special_attack": 90,
       "special_defense": 45,
       "speed": 60,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -3861,8 +3861,8 @@
       "special_attack": 65,
       "special_defense": 45,
       "speed": 35,
-      "primary_type": "Fire",
-      "secondary_type": "Ground"
+      "primary_type": "fire",
+      "secondary_type": "ground"
     },
     {
       "id": 323,
@@ -3873,8 +3873,8 @@
       "special_attack": 105,
       "special_defense": 75,
       "speed": 40,
-      "primary_type": "Fire",
-      "secondary_type": "Ground"
+      "primary_type": "fire",
+      "secondary_type": "ground"
     },
     {
       "id": 324,
@@ -3885,7 +3885,7 @@
       "special_attack": 85,
       "special_defense": 70,
       "speed": 20,
-      "primary_type": "Fire",
+      "primary_type": "fire",
       "secondary_type": null
     },
     {
@@ -3897,7 +3897,7 @@
       "special_attack": 70,
       "special_defense": 80,
       "speed": 60,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -3909,7 +3909,7 @@
       "special_attack": 90,
       "special_defense": 110,
       "speed": 80,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -3921,7 +3921,7 @@
       "special_attack": 60,
       "special_defense": 60,
       "speed": 60,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -3933,7 +3933,7 @@
       "special_attack": 45,
       "special_defense": 45,
       "speed": 10,
-      "primary_type": "Ground",
+      "primary_type": "ground",
       "secondary_type": null
     },
     {
@@ -3945,8 +3945,8 @@
       "special_attack": 50,
       "special_defense": 50,
       "speed": 70,
-      "primary_type": "Ground",
-      "secondary_type": "Dragon"
+      "primary_type": "ground",
+      "secondary_type": "dragon"
     },
     {
       "id": 330,
@@ -3957,8 +3957,8 @@
       "special_attack": 80,
       "special_defense": 80,
       "speed": 100,
-      "primary_type": "Ground",
-      "secondary_type": "Dragon"
+      "primary_type": "ground",
+      "secondary_type": "dragon"
     },
     {
       "id": 331,
@@ -3969,7 +3969,7 @@
       "special_attack": 85,
       "special_defense": 40,
       "speed": 35,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -3981,8 +3981,8 @@
       "special_attack": 115,
       "special_defense": 60,
       "speed": 55,
-      "primary_type": "Grass",
-      "secondary_type": "Dark"
+      "primary_type": "grass",
+      "secondary_type": "dark"
     },
     {
       "id": 333,
@@ -3993,8 +3993,8 @@
       "special_attack": 40,
       "special_defense": 75,
       "speed": 50,
-      "primary_type": "Normal",
-      "secondary_type": "Flying"
+      "primary_type": "normal",
+      "secondary_type": "flying"
     },
     {
       "id": 334,
@@ -4005,8 +4005,8 @@
       "special_attack": 70,
       "special_defense": 105,
       "speed": 80,
-      "primary_type": "Dragon",
-      "secondary_type": "Flying"
+      "primary_type": "dragon",
+      "secondary_type": "flying"
     },
     {
       "id": 335,
@@ -4017,7 +4017,7 @@
       "special_attack": 60,
       "special_defense": 60,
       "speed": 90,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -4029,7 +4029,7 @@
       "special_attack": 100,
       "special_defense": 60,
       "speed": 65,
-      "primary_type": "Poison",
+      "primary_type": "poison",
       "secondary_type": null
     },
     {
@@ -4041,8 +4041,8 @@
       "special_attack": 95,
       "special_defense": 85,
       "speed": 70,
-      "primary_type": "Rock",
-      "secondary_type": "Psychic"
+      "primary_type": "rock",
+      "secondary_type": "psychic"
     },
     {
       "id": 338,
@@ -4053,8 +4053,8 @@
       "special_attack": 55,
       "special_defense": 65,
       "speed": 70,
-      "primary_type": "Rock",
-      "secondary_type": "Psychic"
+      "primary_type": "rock",
+      "secondary_type": "psychic"
     },
     {
       "id": 339,
@@ -4065,8 +4065,8 @@
       "special_attack": 46,
       "special_defense": 41,
       "speed": 60,
-      "primary_type": "Water",
-      "secondary_type": "Ground"
+      "primary_type": "water",
+      "secondary_type": "ground"
     },
     {
       "id": 340,
@@ -4077,8 +4077,8 @@
       "special_attack": 76,
       "special_defense": 71,
       "speed": 60,
-      "primary_type": "Water",
-      "secondary_type": "Ground"
+      "primary_type": "water",
+      "secondary_type": "ground"
     },
     {
       "id": 341,
@@ -4089,7 +4089,7 @@
       "special_attack": 50,
       "special_defense": 35,
       "speed": 35,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -4101,8 +4101,8 @@
       "special_attack": 90,
       "special_defense": 55,
       "speed": 55,
-      "primary_type": "Water",
-      "secondary_type": "Dark"
+      "primary_type": "water",
+      "secondary_type": "dark"
     },
     {
       "id": 343,
@@ -4113,8 +4113,8 @@
       "special_attack": 40,
       "special_defense": 70,
       "speed": 55,
-      "primary_type": "Ground",
-      "secondary_type": "Psychic"
+      "primary_type": "ground",
+      "secondary_type": "psychic"
     },
     {
       "id": 344,
@@ -4125,8 +4125,8 @@
       "special_attack": 70,
       "special_defense": 120,
       "speed": 75,
-      "primary_type": "Ground",
-      "secondary_type": "Psychic"
+      "primary_type": "ground",
+      "secondary_type": "psychic"
     },
     {
       "id": 345,
@@ -4137,8 +4137,8 @@
       "special_attack": 61,
       "special_defense": 87,
       "speed": 23,
-      "primary_type": "Rock",
-      "secondary_type": "Grass"
+      "primary_type": "rock",
+      "secondary_type": "grass"
     },
     {
       "id": 346,
@@ -4149,8 +4149,8 @@
       "special_attack": 81,
       "special_defense": 107,
       "speed": 43,
-      "primary_type": "Rock",
-      "secondary_type": "Grass"
+      "primary_type": "rock",
+      "secondary_type": "grass"
     },
     {
       "id": 347,
@@ -4161,8 +4161,8 @@
       "special_attack": 40,
       "special_defense": 50,
       "speed": 75,
-      "primary_type": "Rock",
-      "secondary_type": "Bug"
+      "primary_type": "rock",
+      "secondary_type": "bug"
     },
     {
       "id": 348,
@@ -4173,8 +4173,8 @@
       "special_attack": 70,
       "special_defense": 80,
       "speed": 45,
-      "primary_type": "Rock",
-      "secondary_type": "Bug"
+      "primary_type": "rock",
+      "secondary_type": "bug"
     },
     {
       "id": 349,
@@ -4185,7 +4185,7 @@
       "special_attack": 10,
       "special_defense": 55,
       "speed": 80,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -4197,7 +4197,7 @@
       "special_attack": 100,
       "special_defense": 125,
       "speed": 81,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -4209,7 +4209,7 @@
       "special_attack": 70,
       "special_defense": 70,
       "speed": 70,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -4221,7 +4221,7 @@
       "special_attack": 60,
       "special_defense": 120,
       "speed": 40,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -4233,7 +4233,7 @@
       "special_attack": 63,
       "special_defense": 33,
       "speed": 45,
-      "primary_type": "Ghost",
+      "primary_type": "ghost",
       "secondary_type": null
     },
     {
@@ -4245,7 +4245,7 @@
       "special_attack": 83,
       "special_defense": 63,
       "speed": 65,
-      "primary_type": "Ghost",
+      "primary_type": "ghost",
       "secondary_type": null
     },
     {
@@ -4257,7 +4257,7 @@
       "special_attack": 30,
       "special_defense": 90,
       "speed": 25,
-      "primary_type": "Ghost",
+      "primary_type": "ghost",
       "secondary_type": null
     },
     {
@@ -4269,7 +4269,7 @@
       "special_attack": 60,
       "special_defense": 130,
       "speed": 25,
-      "primary_type": "Ghost",
+      "primary_type": "ghost",
       "secondary_type": null
     },
     {
@@ -4281,8 +4281,8 @@
       "special_attack": 72,
       "special_defense": 87,
       "speed": 51,
-      "primary_type": "Grass",
-      "secondary_type": "Flying"
+      "primary_type": "grass",
+      "secondary_type": "flying"
     },
     {
       "id": 358,
@@ -4293,7 +4293,7 @@
       "special_attack": 95,
       "special_defense": 90,
       "speed": 65,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -4305,7 +4305,7 @@
       "special_attack": 75,
       "special_defense": 60,
       "speed": 75,
-      "primary_type": "Dark",
+      "primary_type": "dark",
       "secondary_type": null
     },
     {
@@ -4317,7 +4317,7 @@
       "special_attack": 23,
       "special_defense": 48,
       "speed": 23,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -4329,7 +4329,7 @@
       "special_attack": 50,
       "special_defense": 50,
       "speed": 50,
-      "primary_type": "Ice",
+      "primary_type": "ice",
       "secondary_type": null
     },
     {
@@ -4341,7 +4341,7 @@
       "special_attack": 80,
       "special_defense": 80,
       "speed": 80,
-      "primary_type": "Ice",
+      "primary_type": "ice",
       "secondary_type": null
     },
     {
@@ -4353,8 +4353,8 @@
       "special_attack": 55,
       "special_defense": 50,
       "speed": 25,
-      "primary_type": "Ice",
-      "secondary_type": "Water"
+      "primary_type": "ice",
+      "secondary_type": "water"
     },
     {
       "id": 364,
@@ -4365,8 +4365,8 @@
       "special_attack": 75,
       "special_defense": 70,
       "speed": 45,
-      "primary_type": "Ice",
-      "secondary_type": "Water"
+      "primary_type": "ice",
+      "secondary_type": "water"
     },
     {
       "id": 365,
@@ -4377,8 +4377,8 @@
       "special_attack": 95,
       "special_defense": 90,
       "speed": 65,
-      "primary_type": "Ice",
-      "secondary_type": "Water"
+      "primary_type": "ice",
+      "secondary_type": "water"
     },
     {
       "id": 366,
@@ -4389,7 +4389,7 @@
       "special_attack": 74,
       "special_defense": 55,
       "speed": 32,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -4401,7 +4401,7 @@
       "special_attack": 94,
       "special_defense": 75,
       "speed": 52,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -4413,7 +4413,7 @@
       "special_attack": 114,
       "special_defense": 75,
       "speed": 52,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -4425,8 +4425,8 @@
       "special_attack": 45,
       "special_defense": 65,
       "speed": 55,
-      "primary_type": "Water",
-      "secondary_type": "Rock"
+      "primary_type": "water",
+      "secondary_type": "rock"
     },
     {
       "id": 370,
@@ -4437,7 +4437,7 @@
       "special_attack": 40,
       "special_defense": 65,
       "speed": 97,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -4449,7 +4449,7 @@
       "special_attack": 40,
       "special_defense": 30,
       "speed": 50,
-      "primary_type": "Dragon",
+      "primary_type": "dragon",
       "secondary_type": null
     },
     {
@@ -4461,7 +4461,7 @@
       "special_attack": 60,
       "special_defense": 50,
       "speed": 50,
-      "primary_type": "Dragon",
+      "primary_type": "dragon",
       "secondary_type": null
     },
     {
@@ -4473,8 +4473,8 @@
       "special_attack": 110,
       "special_defense": 80,
       "speed": 100,
-      "primary_type": "Dragon",
-      "secondary_type": "Flying"
+      "primary_type": "dragon",
+      "secondary_type": "flying"
     },
     {
       "id": 374,
@@ -4485,8 +4485,8 @@
       "special_attack": 35,
       "special_defense": 60,
       "speed": 30,
-      "primary_type": "Steel",
-      "secondary_type": "Psychic"
+      "primary_type": "steel",
+      "secondary_type": "psychic"
     },
     {
       "id": 375,
@@ -4497,8 +4497,8 @@
       "special_attack": 55,
       "special_defense": 80,
       "speed": 50,
-      "primary_type": "Steel",
-      "secondary_type": "Psychic"
+      "primary_type": "steel",
+      "secondary_type": "psychic"
     },
     {
       "id": 376,
@@ -4509,8 +4509,8 @@
       "special_attack": 95,
       "special_defense": 90,
       "speed": 70,
-      "primary_type": "Steel",
-      "secondary_type": "Psychic"
+      "primary_type": "steel",
+      "secondary_type": "psychic"
     },
     {
       "id": 377,
@@ -4521,7 +4521,7 @@
       "special_attack": 50,
       "special_defense": 100,
       "speed": 50,
-      "primary_type": "Rock",
+      "primary_type": "rock",
       "secondary_type": null
     },
     {
@@ -4533,7 +4533,7 @@
       "special_attack": 100,
       "special_defense": 200,
       "speed": 50,
-      "primary_type": "Ice",
+      "primary_type": "ice",
       "secondary_type": null
     },
     {
@@ -4545,7 +4545,7 @@
       "special_attack": 75,
       "special_defense": 150,
       "speed": 50,
-      "primary_type": "Steel",
+      "primary_type": "steel",
       "secondary_type": null
     },
     {
@@ -4557,8 +4557,8 @@
       "special_attack": 110,
       "special_defense": 130,
       "speed": 110,
-      "primary_type": "Dragon",
-      "secondary_type": "Psychic"
+      "primary_type": "dragon",
+      "secondary_type": "psychic"
     },
     {
       "id": 381,
@@ -4569,8 +4569,8 @@
       "special_attack": 130,
       "special_defense": 110,
       "speed": 110,
-      "primary_type": "Dragon",
-      "secondary_type": "Psychic"
+      "primary_type": "dragon",
+      "secondary_type": "psychic"
     },
     {
       "id": 382,
@@ -4581,7 +4581,7 @@
       "special_attack": 150,
       "special_defense": 140,
       "speed": 90,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -4593,7 +4593,7 @@
       "special_attack": 100,
       "special_defense": 90,
       "speed": 90,
-      "primary_type": "Ground",
+      "primary_type": "ground",
       "secondary_type": null
     },
     {
@@ -4605,8 +4605,8 @@
       "special_attack": 150,
       "special_defense": 90,
       "speed": 95,
-      "primary_type": "Dragon",
-      "secondary_type": "Flying"
+      "primary_type": "dragon",
+      "secondary_type": "flying"
     },
     {
       "id": 385,
@@ -4617,8 +4617,8 @@
       "special_attack": 100,
       "special_defense": 100,
       "speed": 100,
-      "primary_type": "Steel",
-      "secondary_type": "Psychic"
+      "primary_type": "steel",
+      "secondary_type": "psychic"
     },
     {
       "id": 386,
@@ -4629,7 +4629,7 @@
       "special_attack": 150,
       "special_defense": 50,
       "speed": 150,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -4641,7 +4641,7 @@
       "special_attack": 45,
       "special_defense": 55,
       "speed": 31,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -4653,7 +4653,7 @@
       "special_attack": 55,
       "special_defense": 65,
       "speed": 36,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -4665,8 +4665,8 @@
       "special_attack": 75,
       "special_defense": 85,
       "speed": 56,
-      "primary_type": "Grass",
-      "secondary_type": "Ground"
+      "primary_type": "grass",
+      "secondary_type": "ground"
     },
     {
       "id": 390,
@@ -4677,7 +4677,7 @@
       "special_attack": 58,
       "special_defense": 44,
       "speed": 61,
-      "primary_type": "Fire",
+      "primary_type": "fire",
       "secondary_type": null
     },
     {
@@ -4689,8 +4689,8 @@
       "special_attack": 78,
       "special_defense": 52,
       "speed": 81,
-      "primary_type": "Fire",
-      "secondary_type": "Fighting"
+      "primary_type": "fire",
+      "secondary_type": "fighting"
     },
     {
       "id": 392,
@@ -4701,8 +4701,8 @@
       "special_attack": 104,
       "special_defense": 71,
       "speed": 108,
-      "primary_type": "Fire",
-      "secondary_type": "Fighting"
+      "primary_type": "fire",
+      "secondary_type": "fighting"
     },
     {
       "id": 393,
@@ -4713,7 +4713,7 @@
       "special_attack": 61,
       "special_defense": 56,
       "speed": 40,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -4725,7 +4725,7 @@
       "special_attack": 81,
       "special_defense": 76,
       "speed": 50,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -4737,8 +4737,8 @@
       "special_attack": 111,
       "special_defense": 101,
       "speed": 60,
-      "primary_type": "Water",
-      "secondary_type": "Steel"
+      "primary_type": "water",
+      "secondary_type": "steel"
     },
     {
       "id": 396,
@@ -4749,8 +4749,8 @@
       "special_attack": 30,
       "special_defense": 30,
       "speed": 60,
-      "primary_type": "Normal",
-      "secondary_type": "Flying"
+      "primary_type": "normal",
+      "secondary_type": "flying"
     },
     {
       "id": 397,
@@ -4761,8 +4761,8 @@
       "special_attack": 40,
       "special_defense": 40,
       "speed": 80,
-      "primary_type": "Normal",
-      "secondary_type": "Flying"
+      "primary_type": "normal",
+      "secondary_type": "flying"
     },
     {
       "id": 398,
@@ -4773,8 +4773,8 @@
       "special_attack": 50,
       "special_defense": 60,
       "speed": 100,
-      "primary_type": "Normal",
-      "secondary_type": "Flying"
+      "primary_type": "normal",
+      "secondary_type": "flying"
     },
     {
       "id": 399,
@@ -4785,7 +4785,7 @@
       "special_attack": 35,
       "special_defense": 40,
       "speed": 31,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -4797,8 +4797,8 @@
       "special_attack": 55,
       "special_defense": 60,
       "speed": 71,
-      "primary_type": "Normal",
-      "secondary_type": "Water"
+      "primary_type": "normal",
+      "secondary_type": "water"
     },
     {
       "id": 401,
@@ -4809,7 +4809,7 @@
       "special_attack": 25,
       "special_defense": 41,
       "speed": 25,
-      "primary_type": "Bug",
+      "primary_type": "bug",
       "secondary_type": null
     },
     {
@@ -4821,7 +4821,7 @@
       "special_attack": 55,
       "special_defense": 51,
       "speed": 65,
-      "primary_type": "Bug",
+      "primary_type": "bug",
       "secondary_type": null
     },
     {
@@ -4833,7 +4833,7 @@
       "special_attack": 40,
       "special_defense": 34,
       "speed": 45,
-      "primary_type": "Electric",
+      "primary_type": "electric",
       "secondary_type": null
     },
     {
@@ -4845,7 +4845,7 @@
       "special_attack": 60,
       "special_defense": 49,
       "speed": 60,
-      "primary_type": "Electric",
+      "primary_type": "electric",
       "secondary_type": null
     },
     {
@@ -4857,7 +4857,7 @@
       "special_attack": 95,
       "special_defense": 79,
       "speed": 70,
-      "primary_type": "Electric",
+      "primary_type": "electric",
       "secondary_type": null
     },
     {
@@ -4869,8 +4869,8 @@
       "special_attack": 50,
       "special_defense": 70,
       "speed": 55,
-      "primary_type": "Grass",
-      "secondary_type": "Poison"
+      "primary_type": "grass",
+      "secondary_type": "poison"
     },
     {
       "id": 407,
@@ -4881,8 +4881,8 @@
       "special_attack": 125,
       "special_defense": 105,
       "speed": 90,
-      "primary_type": "Grass",
-      "secondary_type": "Poison"
+      "primary_type": "grass",
+      "secondary_type": "poison"
     },
     {
       "id": 408,
@@ -4893,7 +4893,7 @@
       "special_attack": 30,
       "special_defense": 30,
       "speed": 58,
-      "primary_type": "Rock",
+      "primary_type": "rock",
       "secondary_type": null
     },
     {
@@ -4905,7 +4905,7 @@
       "special_attack": 65,
       "special_defense": 50,
       "speed": 58,
-      "primary_type": "Rock",
+      "primary_type": "rock",
       "secondary_type": null
     },
     {
@@ -4917,8 +4917,8 @@
       "special_attack": 42,
       "special_defense": 88,
       "speed": 30,
-      "primary_type": "Rock",
-      "secondary_type": "Steel"
+      "primary_type": "rock",
+      "secondary_type": "steel"
     },
     {
       "id": 411,
@@ -4929,8 +4929,8 @@
       "special_attack": 47,
       "special_defense": 138,
       "speed": 30,
-      "primary_type": "Rock",
-      "secondary_type": "Steel"
+      "primary_type": "rock",
+      "secondary_type": "steel"
     },
     {
       "id": 412,
@@ -4941,7 +4941,7 @@
       "special_attack": 29,
       "special_defense": 45,
       "speed": 36,
-      "primary_type": "Bug",
+      "primary_type": "bug",
       "secondary_type": null
     },
     {
@@ -4953,8 +4953,8 @@
       "special_attack": 79,
       "special_defense": 105,
       "speed": 36,
-      "primary_type": "Bug",
-      "secondary_type": "Grass"
+      "primary_type": "bug",
+      "secondary_type": "grass"
     },
     {
       "id": 414,
@@ -4965,8 +4965,8 @@
       "special_attack": 94,
       "special_defense": 50,
       "speed": 66,
-      "primary_type": "Bug",
-      "secondary_type": "Flying"
+      "primary_type": "bug",
+      "secondary_type": "flying"
     },
     {
       "id": 415,
@@ -4977,8 +4977,8 @@
       "special_attack": 30,
       "special_defense": 42,
       "speed": 70,
-      "primary_type": "Bug",
-      "secondary_type": "Flying"
+      "primary_type": "bug",
+      "secondary_type": "flying"
     },
     {
       "id": 416,
@@ -4989,8 +4989,8 @@
       "special_attack": 80,
       "special_defense": 102,
       "speed": 40,
-      "primary_type": "Bug",
-      "secondary_type": "Flying"
+      "primary_type": "bug",
+      "secondary_type": "flying"
     },
     {
       "id": 417,
@@ -5001,7 +5001,7 @@
       "special_attack": 45,
       "special_defense": 90,
       "speed": 95,
-      "primary_type": "Electric",
+      "primary_type": "electric",
       "secondary_type": null
     },
     {
@@ -5013,7 +5013,7 @@
       "special_attack": 60,
       "special_defense": 30,
       "speed": 85,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -5025,7 +5025,7 @@
       "special_attack": 85,
       "special_defense": 50,
       "speed": 115,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -5037,7 +5037,7 @@
       "special_attack": 62,
       "special_defense": 53,
       "speed": 35,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -5049,7 +5049,7 @@
       "special_attack": 87,
       "special_defense": 78,
       "speed": 85,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -5061,7 +5061,7 @@
       "special_attack": 57,
       "special_defense": 62,
       "speed": 34,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -5073,8 +5073,8 @@
       "special_attack": 92,
       "special_defense": 82,
       "speed": 39,
-      "primary_type": "Water",
-      "secondary_type": "Ground"
+      "primary_type": "water",
+      "secondary_type": "ground"
     },
     {
       "id": 424,
@@ -5085,7 +5085,7 @@
       "special_attack": 60,
       "special_defense": 66,
       "speed": 115,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -5097,8 +5097,8 @@
       "special_attack": 60,
       "special_defense": 44,
       "speed": 70,
-      "primary_type": "Ghost",
-      "secondary_type": "Flying"
+      "primary_type": "ghost",
+      "secondary_type": "flying"
     },
     {
       "id": 426,
@@ -5109,8 +5109,8 @@
       "special_attack": 90,
       "special_defense": 54,
       "speed": 80,
-      "primary_type": "Ghost",
-      "secondary_type": "Flying"
+      "primary_type": "ghost",
+      "secondary_type": "flying"
     },
     {
       "id": 427,
@@ -5121,7 +5121,7 @@
       "special_attack": 44,
       "special_defense": 56,
       "speed": 85,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -5133,7 +5133,7 @@
       "special_attack": 54,
       "special_defense": 96,
       "speed": 105,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -5145,7 +5145,7 @@
       "special_attack": 105,
       "special_defense": 105,
       "speed": 105,
-      "primary_type": "Ghost",
+      "primary_type": "ghost",
       "secondary_type": null
     },
     {
@@ -5157,8 +5157,8 @@
       "special_attack": 105,
       "special_defense": 52,
       "speed": 71,
-      "primary_type": "Dark",
-      "secondary_type": "Flying"
+      "primary_type": "dark",
+      "secondary_type": "flying"
     },
     {
       "id": 431,
@@ -5169,7 +5169,7 @@
       "special_attack": 42,
       "special_defense": 37,
       "speed": 85,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -5181,7 +5181,7 @@
       "special_attack": 64,
       "special_defense": 59,
       "speed": 112,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -5193,7 +5193,7 @@
       "special_attack": 65,
       "special_defense": 50,
       "speed": 45,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -5205,8 +5205,8 @@
       "special_attack": 41,
       "special_defense": 41,
       "speed": 74,
-      "primary_type": "Poison",
-      "secondary_type": "Dark"
+      "primary_type": "poison",
+      "secondary_type": "dark"
     },
     {
       "id": 435,
@@ -5217,8 +5217,8 @@
       "special_attack": 71,
       "special_defense": 61,
       "speed": 84,
-      "primary_type": "Poison",
-      "secondary_type": "Dark"
+      "primary_type": "poison",
+      "secondary_type": "dark"
     },
     {
       "id": 436,
@@ -5229,8 +5229,8 @@
       "special_attack": 24,
       "special_defense": 86,
       "speed": 23,
-      "primary_type": "Steel",
-      "secondary_type": "Psychic"
+      "primary_type": "steel",
+      "secondary_type": "psychic"
     },
     {
       "id": 437,
@@ -5241,8 +5241,8 @@
       "special_attack": 79,
       "special_defense": 116,
       "speed": 33,
-      "primary_type": "Steel",
-      "secondary_type": "Psychic"
+      "primary_type": "steel",
+      "secondary_type": "psychic"
     },
     {
       "id": 438,
@@ -5253,7 +5253,7 @@
       "special_attack": 10,
       "special_defense": 45,
       "speed": 10,
-      "primary_type": "Rock",
+      "primary_type": "rock",
       "secondary_type": null
     },
     {
@@ -5265,8 +5265,8 @@
       "special_attack": 70,
       "special_defense": 90,
       "speed": 60,
-      "primary_type": "Psychic",
-      "secondary_type": "Fairy"
+      "primary_type": "psychic",
+      "secondary_type": "fairy"
     },
     {
       "id": 440,
@@ -5277,7 +5277,7 @@
       "special_attack": 15,
       "special_defense": 65,
       "speed": 30,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -5289,8 +5289,8 @@
       "special_attack": 92,
       "special_defense": 42,
       "speed": 91,
-      "primary_type": "Normal",
-      "secondary_type": "Flying"
+      "primary_type": "normal",
+      "secondary_type": "flying"
     },
     {
       "id": 442,
@@ -5301,8 +5301,8 @@
       "special_attack": 92,
       "special_defense": 108,
       "speed": 35,
-      "primary_type": "Ghost",
-      "secondary_type": "Dark"
+      "primary_type": "ghost",
+      "secondary_type": "dark"
     },
     {
       "id": 443,
@@ -5313,8 +5313,8 @@
       "special_attack": 40,
       "special_defense": 45,
       "speed": 42,
-      "primary_type": "Dragon",
-      "secondary_type": "Ground"
+      "primary_type": "dragon",
+      "secondary_type": "ground"
     },
     {
       "id": 444,
@@ -5325,8 +5325,8 @@
       "special_attack": 50,
       "special_defense": 55,
       "speed": 82,
-      "primary_type": "Dragon",
-      "secondary_type": "Ground"
+      "primary_type": "dragon",
+      "secondary_type": "ground"
     },
     {
       "id": 445,
@@ -5337,8 +5337,8 @@
       "special_attack": 80,
       "special_defense": 85,
       "speed": 102,
-      "primary_type": "Dragon",
-      "secondary_type": "Ground"
+      "primary_type": "dragon",
+      "secondary_type": "ground"
     },
     {
       "id": 446,
@@ -5349,7 +5349,7 @@
       "special_attack": 40,
       "special_defense": 85,
       "speed": 5,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -5361,7 +5361,7 @@
       "special_attack": 35,
       "special_defense": 40,
       "speed": 60,
-      "primary_type": "Fighting",
+      "primary_type": "fighting",
       "secondary_type": null
     },
     {
@@ -5373,8 +5373,8 @@
       "special_attack": 115,
       "special_defense": 70,
       "speed": 90,
-      "primary_type": "Fighting",
-      "secondary_type": "Steel"
+      "primary_type": "fighting",
+      "secondary_type": "steel"
     },
     {
       "id": 449,
@@ -5385,7 +5385,7 @@
       "special_attack": 38,
       "special_defense": 42,
       "speed": 32,
-      "primary_type": "Ground",
+      "primary_type": "ground",
       "secondary_type": null
     },
     {
@@ -5397,7 +5397,7 @@
       "special_attack": 68,
       "special_defense": 72,
       "speed": 47,
-      "primary_type": "Ground",
+      "primary_type": "ground",
       "secondary_type": null
     },
     {
@@ -5409,8 +5409,8 @@
       "special_attack": 30,
       "special_defense": 55,
       "speed": 65,
-      "primary_type": "Poison",
-      "secondary_type": "Bug"
+      "primary_type": "poison",
+      "secondary_type": "bug"
     },
     {
       "id": 452,
@@ -5421,8 +5421,8 @@
       "special_attack": 60,
       "special_defense": 75,
       "speed": 95,
-      "primary_type": "Poison",
-      "secondary_type": "Dark"
+      "primary_type": "poison",
+      "secondary_type": "dark"
     },
     {
       "id": 453,
@@ -5433,8 +5433,8 @@
       "special_attack": 61,
       "special_defense": 40,
       "speed": 50,
-      "primary_type": "Poison",
-      "secondary_type": "Fighting"
+      "primary_type": "poison",
+      "secondary_type": "fighting"
     },
     {
       "id": 454,
@@ -5445,8 +5445,8 @@
       "special_attack": 86,
       "special_defense": 65,
       "speed": 85,
-      "primary_type": "Poison",
-      "secondary_type": "Fighting"
+      "primary_type": "poison",
+      "secondary_type": "fighting"
     },
     {
       "id": 455,
@@ -5457,7 +5457,7 @@
       "special_attack": 90,
       "special_defense": 72,
       "speed": 46,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -5469,7 +5469,7 @@
       "special_attack": 49,
       "special_defense": 61,
       "speed": 66,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -5481,7 +5481,7 @@
       "special_attack": 69,
       "special_defense": 86,
       "speed": 91,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -5493,8 +5493,8 @@
       "special_attack": 60,
       "special_defense": 120,
       "speed": 50,
-      "primary_type": "Water",
-      "secondary_type": "Flying"
+      "primary_type": "water",
+      "secondary_type": "flying"
     },
     {
       "id": 459,
@@ -5505,8 +5505,8 @@
       "special_attack": 62,
       "special_defense": 60,
       "speed": 40,
-      "primary_type": "Grass",
-      "secondary_type": "Ice"
+      "primary_type": "grass",
+      "secondary_type": "ice"
     },
     {
       "id": 460,
@@ -5517,8 +5517,8 @@
       "special_attack": 92,
       "special_defense": 85,
       "speed": 60,
-      "primary_type": "Grass",
-      "secondary_type": "Ice"
+      "primary_type": "grass",
+      "secondary_type": "ice"
     },
     {
       "id": 461,
@@ -5529,8 +5529,8 @@
       "special_attack": 45,
       "special_defense": 85,
       "speed": 125,
-      "primary_type": "Dark",
-      "secondary_type": "Ice"
+      "primary_type": "dark",
+      "secondary_type": "ice"
     },
     {
       "id": 462,
@@ -5541,8 +5541,8 @@
       "special_attack": 130,
       "special_defense": 90,
       "speed": 60,
-      "primary_type": "Electric",
-      "secondary_type": "Steel"
+      "primary_type": "electric",
+      "secondary_type": "steel"
     },
     {
       "id": 463,
@@ -5553,7 +5553,7 @@
       "special_attack": 80,
       "special_defense": 95,
       "speed": 50,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -5565,8 +5565,8 @@
       "special_attack": 55,
       "special_defense": 55,
       "speed": 40,
-      "primary_type": "Ground",
-      "secondary_type": "Rock"
+      "primary_type": "ground",
+      "secondary_type": "rock"
     },
     {
       "id": 465,
@@ -5577,7 +5577,7 @@
       "special_attack": 110,
       "special_defense": 50,
       "speed": 50,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -5589,7 +5589,7 @@
       "special_attack": 95,
       "special_defense": 85,
       "speed": 95,
-      "primary_type": "Electric",
+      "primary_type": "electric",
       "secondary_type": null
     },
     {
@@ -5601,7 +5601,7 @@
       "special_attack": 125,
       "special_defense": 95,
       "speed": 83,
-      "primary_type": "Fire",
+      "primary_type": "fire",
       "secondary_type": null
     },
     {
@@ -5613,8 +5613,8 @@
       "special_attack": 120,
       "special_defense": 115,
       "speed": 80,
-      "primary_type": "Fairy",
-      "secondary_type": "Flying"
+      "primary_type": "fairy",
+      "secondary_type": "flying"
     },
     {
       "id": 469,
@@ -5625,8 +5625,8 @@
       "special_attack": 116,
       "special_defense": 56,
       "speed": 95,
-      "primary_type": "Bug",
-      "secondary_type": "Flying"
+      "primary_type": "bug",
+      "secondary_type": "flying"
     },
     {
       "id": 470,
@@ -5637,7 +5637,7 @@
       "special_attack": 60,
       "special_defense": 65,
       "speed": 95,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -5649,7 +5649,7 @@
       "special_attack": 130,
       "special_defense": 95,
       "speed": 65,
-      "primary_type": "Ice",
+      "primary_type": "ice",
       "secondary_type": null
     },
     {
@@ -5661,8 +5661,8 @@
       "special_attack": 45,
       "special_defense": 75,
       "speed": 95,
-      "primary_type": "Ground",
-      "secondary_type": "Flying"
+      "primary_type": "ground",
+      "secondary_type": "flying"
     },
     {
       "id": 473,
@@ -5673,8 +5673,8 @@
       "special_attack": 70,
       "special_defense": 60,
       "speed": 80,
-      "primary_type": "Ice",
-      "secondary_type": "Ground"
+      "primary_type": "ice",
+      "secondary_type": "ground"
     },
     {
       "id": 474,
@@ -5685,7 +5685,7 @@
       "special_attack": 135,
       "special_defense": 75,
       "speed": 90,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -5697,8 +5697,8 @@
       "special_attack": 65,
       "special_defense": 115,
       "speed": 80,
-      "primary_type": "Psychic",
-      "secondary_type": "Fighting"
+      "primary_type": "psychic",
+      "secondary_type": "fighting"
     },
     {
       "id": 476,
@@ -5709,8 +5709,8 @@
       "special_attack": 75,
       "special_defense": 150,
       "speed": 40,
-      "primary_type": "Rock",
-      "secondary_type": "Steel"
+      "primary_type": "rock",
+      "secondary_type": "steel"
     },
     {
       "id": 477,
@@ -5721,7 +5721,7 @@
       "special_attack": 65,
       "special_defense": 135,
       "speed": 45,
-      "primary_type": "Ghost",
+      "primary_type": "ghost",
       "secondary_type": null
     },
     {
@@ -5733,8 +5733,8 @@
       "special_attack": 80,
       "special_defense": 70,
       "speed": 110,
-      "primary_type": "Ice",
-      "secondary_type": "Ghost"
+      "primary_type": "ice",
+      "secondary_type": "ghost"
     },
     {
       "id": 479,
@@ -5745,8 +5745,8 @@
       "special_attack": 95,
       "special_defense": 77,
       "speed": 91,
-      "primary_type": "Electric",
-      "secondary_type": "Ghost"
+      "primary_type": "electric",
+      "secondary_type": "ghost"
     },
     {
       "id": 480,
@@ -5757,7 +5757,7 @@
       "special_attack": 75,
       "special_defense": 130,
       "speed": 95,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -5769,7 +5769,7 @@
       "special_attack": 105,
       "special_defense": 105,
       "speed": 80,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -5781,7 +5781,7 @@
       "special_attack": 125,
       "special_defense": 70,
       "speed": 115,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -5793,8 +5793,8 @@
       "special_attack": 150,
       "special_defense": 100,
       "speed": 90,
-      "primary_type": "Steel",
-      "secondary_type": "Dragon"
+      "primary_type": "steel",
+      "secondary_type": "dragon"
     },
     {
       "id": 484,
@@ -5805,8 +5805,8 @@
       "special_attack": 150,
       "special_defense": 120,
       "speed": 100,
-      "primary_type": "Water",
-      "secondary_type": "Dragon"
+      "primary_type": "water",
+      "secondary_type": "dragon"
     },
     {
       "id": 485,
@@ -5817,8 +5817,8 @@
       "special_attack": 130,
       "special_defense": 106,
       "speed": 77,
-      "primary_type": "Fire",
-      "secondary_type": "Steel"
+      "primary_type": "fire",
+      "secondary_type": "steel"
     },
     {
       "id": 486,
@@ -5829,7 +5829,7 @@
       "special_attack": 80,
       "special_defense": 110,
       "speed": 100,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -5841,8 +5841,8 @@
       "special_attack": 100,
       "special_defense": 120,
       "speed": 90,
-      "primary_type": "Ghost",
-      "secondary_type": "Dragon"
+      "primary_type": "ghost",
+      "secondary_type": "dragon"
     },
     {
       "id": 488,
@@ -5853,7 +5853,7 @@
       "special_attack": 75,
       "special_defense": 130,
       "speed": 85,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -5865,7 +5865,7 @@
       "special_attack": 80,
       "special_defense": 80,
       "speed": 80,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -5877,7 +5877,7 @@
       "special_attack": 100,
       "special_defense": 100,
       "speed": 100,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -5889,7 +5889,7 @@
       "special_attack": 135,
       "special_defense": 90,
       "speed": 125,
-      "primary_type": "Dark",
+      "primary_type": "dark",
       "secondary_type": null
     },
     {
@@ -5901,7 +5901,7 @@
       "special_attack": 100,
       "special_defense": 100,
       "speed": 100,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -5913,7 +5913,7 @@
       "special_attack": 120,
       "special_defense": 120,
       "speed": 120,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -5925,8 +5925,8 @@
       "special_attack": 100,
       "special_defense": 100,
       "speed": 100,
-      "primary_type": "Psychic",
-      "secondary_type": "Fire"
+      "primary_type": "psychic",
+      "secondary_type": "fire"
     },
     {
       "id": 495,
@@ -5937,7 +5937,7 @@
       "special_attack": 45,
       "special_defense": 55,
       "speed": 63,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -5949,7 +5949,7 @@
       "special_attack": 60,
       "special_defense": 75,
       "speed": 83,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -5961,7 +5961,7 @@
       "special_attack": 75,
       "special_defense": 95,
       "speed": 113,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -5973,7 +5973,7 @@
       "special_attack": 45,
       "special_defense": 45,
       "speed": 45,
-      "primary_type": "Fire",
+      "primary_type": "fire",
       "secondary_type": null
     },
     {
@@ -5985,8 +5985,8 @@
       "special_attack": 70,
       "special_defense": 55,
       "speed": 55,
-      "primary_type": "Fire",
-      "secondary_type": "Fighting"
+      "primary_type": "fire",
+      "secondary_type": "fighting"
     },
     {
       "id": 500,
@@ -5997,8 +5997,8 @@
       "special_attack": 100,
       "special_defense": 65,
       "speed": 65,
-      "primary_type": "Fire",
-      "secondary_type": "Fighting"
+      "primary_type": "fire",
+      "secondary_type": "fighting"
     },
     {
       "id": 501,
@@ -6009,7 +6009,7 @@
       "special_attack": 63,
       "special_defense": 45,
       "speed": 45,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -6021,7 +6021,7 @@
       "special_attack": 83,
       "special_defense": 60,
       "speed": 60,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -6033,7 +6033,7 @@
       "special_attack": 108,
       "special_defense": 70,
       "speed": 70,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -6045,7 +6045,7 @@
       "special_attack": 35,
       "special_defense": 39,
       "speed": 42,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -6057,7 +6057,7 @@
       "special_attack": 60,
       "special_defense": 69,
       "speed": 77,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -6069,7 +6069,7 @@
       "special_attack": 25,
       "special_defense": 45,
       "speed": 55,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -6081,7 +6081,7 @@
       "special_attack": 35,
       "special_defense": 65,
       "speed": 60,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -6093,7 +6093,7 @@
       "special_attack": 45,
       "special_defense": 90,
       "speed": 80,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -6105,7 +6105,7 @@
       "special_attack": 50,
       "special_defense": 37,
       "speed": 66,
-      "primary_type": "Dark",
+      "primary_type": "dark",
       "secondary_type": null
     },
     {
@@ -6117,7 +6117,7 @@
       "special_attack": 88,
       "special_defense": 50,
       "speed": 106,
-      "primary_type": "Dark",
+      "primary_type": "dark",
       "secondary_type": null
     },
     {
@@ -6129,7 +6129,7 @@
       "special_attack": 53,
       "special_defense": 48,
       "speed": 64,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -6141,7 +6141,7 @@
       "special_attack": 98,
       "special_defense": 63,
       "speed": 101,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -6153,7 +6153,7 @@
       "special_attack": 53,
       "special_defense": 48,
       "speed": 64,
-      "primary_type": "Fire",
+      "primary_type": "fire",
       "secondary_type": null
     },
     {
@@ -6165,7 +6165,7 @@
       "special_attack": 98,
       "special_defense": 63,
       "speed": 101,
-      "primary_type": "Fire",
+      "primary_type": "fire",
       "secondary_type": null
     },
     {
@@ -6177,7 +6177,7 @@
       "special_attack": 53,
       "special_defense": 48,
       "speed": 64,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -6189,7 +6189,7 @@
       "special_attack": 98,
       "special_defense": 63,
       "speed": 101,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -6201,7 +6201,7 @@
       "special_attack": 67,
       "special_defense": 55,
       "speed": 24,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -6213,7 +6213,7 @@
       "special_attack": 107,
       "special_defense": 95,
       "speed": 29,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -6225,8 +6225,8 @@
       "special_attack": 36,
       "special_defense": 30,
       "speed": 43,
-      "primary_type": "Normal",
-      "secondary_type": "Flying"
+      "primary_type": "normal",
+      "secondary_type": "flying"
     },
     {
       "id": 520,
@@ -6237,8 +6237,8 @@
       "special_attack": 50,
       "special_defense": 42,
       "speed": 65,
-      "primary_type": "Normal",
-      "secondary_type": "Flying"
+      "primary_type": "normal",
+      "secondary_type": "flying"
     },
     {
       "id": 521,
@@ -6249,8 +6249,8 @@
       "special_attack": 65,
       "special_defense": 55,
       "speed": 93,
-      "primary_type": "Normal",
-      "secondary_type": "Flying"
+      "primary_type": "normal",
+      "secondary_type": "flying"
     },
     {
       "id": 522,
@@ -6261,7 +6261,7 @@
       "special_attack": 50,
       "special_defense": 32,
       "speed": 76,
-      "primary_type": "Electric",
+      "primary_type": "electric",
       "secondary_type": null
     },
     {
@@ -6273,7 +6273,7 @@
       "special_attack": 80,
       "special_defense": 63,
       "speed": 116,
-      "primary_type": "Electric",
+      "primary_type": "electric",
       "secondary_type": null
     },
     {
@@ -6285,7 +6285,7 @@
       "special_attack": 25,
       "special_defense": 25,
       "speed": 15,
-      "primary_type": "Rock",
+      "primary_type": "rock",
       "secondary_type": null
     },
     {
@@ -6297,7 +6297,7 @@
       "special_attack": 50,
       "special_defense": 40,
       "speed": 20,
-      "primary_type": "Rock",
+      "primary_type": "rock",
       "secondary_type": null
     },
     {
@@ -6309,7 +6309,7 @@
       "special_attack": 60,
       "special_defense": 80,
       "speed": 25,
-      "primary_type": "Rock",
+      "primary_type": "rock",
       "secondary_type": null
     },
     {
@@ -6321,8 +6321,8 @@
       "special_attack": 55,
       "special_defense": 43,
       "speed": 72,
-      "primary_type": "Psychic",
-      "secondary_type": "Flying"
+      "primary_type": "psychic",
+      "secondary_type": "flying"
     },
     {
       "id": 528,
@@ -6333,8 +6333,8 @@
       "special_attack": 77,
       "special_defense": 55,
       "speed": 114,
-      "primary_type": "Psychic",
-      "secondary_type": "Flying"
+      "primary_type": "psychic",
+      "secondary_type": "flying"
     },
     {
       "id": 529,
@@ -6345,7 +6345,7 @@
       "special_attack": 30,
       "special_defense": 45,
       "speed": 68,
-      "primary_type": "Ground",
+      "primary_type": "ground",
       "secondary_type": null
     },
     {
@@ -6357,8 +6357,8 @@
       "special_attack": 50,
       "special_defense": 65,
       "speed": 88,
-      "primary_type": "Ground",
-      "secondary_type": "Steel"
+      "primary_type": "ground",
+      "secondary_type": "steel"
     },
     {
       "id": 531,
@@ -6369,7 +6369,7 @@
       "special_attack": 60,
       "special_defense": 86,
       "speed": 50,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -6381,7 +6381,7 @@
       "special_attack": 25,
       "special_defense": 35,
       "speed": 35,
-      "primary_type": "Fighting",
+      "primary_type": "fighting",
       "secondary_type": null
     },
     {
@@ -6393,7 +6393,7 @@
       "special_attack": 40,
       "special_defense": 50,
       "speed": 40,
-      "primary_type": "Fighting",
+      "primary_type": "fighting",
       "secondary_type": null
     },
     {
@@ -6405,7 +6405,7 @@
       "special_attack": 55,
       "special_defense": 65,
       "speed": 45,
-      "primary_type": "Fighting",
+      "primary_type": "fighting",
       "secondary_type": null
     },
     {
@@ -6417,7 +6417,7 @@
       "special_attack": 50,
       "special_defense": 40,
       "speed": 64,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -6429,8 +6429,8 @@
       "special_attack": 65,
       "special_defense": 55,
       "speed": 69,
-      "primary_type": "Water",
-      "secondary_type": "Ground"
+      "primary_type": "water",
+      "secondary_type": "ground"
     },
     {
       "id": 537,
@@ -6441,8 +6441,8 @@
       "special_attack": 85,
       "special_defense": 75,
       "speed": 74,
-      "primary_type": "Water",
-      "secondary_type": "Ground"
+      "primary_type": "water",
+      "secondary_type": "ground"
     },
     {
       "id": 538,
@@ -6453,7 +6453,7 @@
       "special_attack": 30,
       "special_defense": 85,
       "speed": 45,
-      "primary_type": "Fighting",
+      "primary_type": "fighting",
       "secondary_type": null
     },
     {
@@ -6465,7 +6465,7 @@
       "special_attack": 30,
       "special_defense": 75,
       "speed": 85,
-      "primary_type": "Fighting",
+      "primary_type": "fighting",
       "secondary_type": null
     },
     {
@@ -6477,8 +6477,8 @@
       "special_attack": 40,
       "special_defense": 60,
       "speed": 42,
-      "primary_type": "Bug",
-      "secondary_type": "Grass"
+      "primary_type": "bug",
+      "secondary_type": "grass"
     },
     {
       "id": 541,
@@ -6489,8 +6489,8 @@
       "special_attack": 50,
       "special_defense": 80,
       "speed": 42,
-      "primary_type": "Bug",
-      "secondary_type": "Grass"
+      "primary_type": "bug",
+      "secondary_type": "grass"
     },
     {
       "id": 542,
@@ -6501,8 +6501,8 @@
       "special_attack": 70,
       "special_defense": 80,
       "speed": 92,
-      "primary_type": "Bug",
-      "secondary_type": "Grass"
+      "primary_type": "bug",
+      "secondary_type": "grass"
     },
     {
       "id": 543,
@@ -6513,8 +6513,8 @@
       "special_attack": 30,
       "special_defense": 39,
       "speed": 57,
-      "primary_type": "Bug",
-      "secondary_type": "Poison"
+      "primary_type": "bug",
+      "secondary_type": "poison"
     },
     {
       "id": 544,
@@ -6525,8 +6525,8 @@
       "special_attack": 40,
       "special_defense": 79,
       "speed": 47,
-      "primary_type": "Bug",
-      "secondary_type": "Poison"
+      "primary_type": "bug",
+      "secondary_type": "poison"
     },
     {
       "id": 545,
@@ -6537,8 +6537,8 @@
       "special_attack": 55,
       "special_defense": 69,
       "speed": 112,
-      "primary_type": "Bug",
-      "secondary_type": "Poison"
+      "primary_type": "bug",
+      "secondary_type": "poison"
     },
     {
       "id": 546,
@@ -6549,8 +6549,8 @@
       "special_attack": 37,
       "special_defense": 50,
       "speed": 66,
-      "primary_type": "Grass",
-      "secondary_type": "Fairy"
+      "primary_type": "grass",
+      "secondary_type": "fairy"
     },
     {
       "id": 547,
@@ -6561,8 +6561,8 @@
       "special_attack": 77,
       "special_defense": 75,
       "speed": 116,
-      "primary_type": "Grass",
-      "secondary_type": "Fairy"
+      "primary_type": "grass",
+      "secondary_type": "fairy"
     },
     {
       "id": 548,
@@ -6573,7 +6573,7 @@
       "special_attack": 70,
       "special_defense": 50,
       "speed": 30,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -6585,7 +6585,7 @@
       "special_attack": 110,
       "special_defense": 75,
       "speed": 90,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -6597,7 +6597,7 @@
       "special_attack": 80,
       "special_defense": 55,
       "speed": 98,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -6609,8 +6609,8 @@
       "special_attack": 35,
       "special_defense": 35,
       "speed": 65,
-      "primary_type": "Ground",
-      "secondary_type": "Dark"
+      "primary_type": "ground",
+      "secondary_type": "dark"
     },
     {
       "id": 552,
@@ -6621,8 +6621,8 @@
       "special_attack": 45,
       "special_defense": 45,
       "speed": 74,
-      "primary_type": "Ground",
-      "secondary_type": "Dark"
+      "primary_type": "ground",
+      "secondary_type": "dark"
     },
     {
       "id": 553,
@@ -6633,8 +6633,8 @@
       "special_attack": 65,
       "special_defense": 70,
       "speed": 92,
-      "primary_type": "Ground",
-      "secondary_type": "Dark"
+      "primary_type": "ground",
+      "secondary_type": "dark"
     },
     {
       "id": 554,
@@ -6645,7 +6645,7 @@
       "special_attack": 15,
       "special_defense": 45,
       "speed": 50,
-      "primary_type": "Fire",
+      "primary_type": "fire",
       "secondary_type": null
     },
     {
@@ -6657,7 +6657,7 @@
       "special_attack": 30,
       "special_defense": 55,
       "speed": 95,
-      "primary_type": "Fire",
+      "primary_type": "fire",
       "secondary_type": null
     },
     {
@@ -6669,7 +6669,7 @@
       "special_attack": 106,
       "special_defense": 67,
       "speed": 60,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -6681,8 +6681,8 @@
       "special_attack": 35,
       "special_defense": 35,
       "speed": 55,
-      "primary_type": "Bug",
-      "secondary_type": "Rock"
+      "primary_type": "bug",
+      "secondary_type": "rock"
     },
     {
       "id": 558,
@@ -6693,8 +6693,8 @@
       "special_attack": 65,
       "special_defense": 75,
       "speed": 45,
-      "primary_type": "Bug",
-      "secondary_type": "Rock"
+      "primary_type": "bug",
+      "secondary_type": "rock"
     },
     {
       "id": 559,
@@ -6705,8 +6705,8 @@
       "special_attack": 35,
       "special_defense": 70,
       "speed": 48,
-      "primary_type": "Dark",
-      "secondary_type": "Fighting"
+      "primary_type": "dark",
+      "secondary_type": "fighting"
     },
     {
       "id": 560,
@@ -6717,8 +6717,8 @@
       "special_attack": 45,
       "special_defense": 115,
       "speed": 58,
-      "primary_type": "Dark",
-      "secondary_type": "Fighting"
+      "primary_type": "dark",
+      "secondary_type": "fighting"
     },
     {
       "id": 561,
@@ -6729,8 +6729,8 @@
       "special_attack": 103,
       "special_defense": 80,
       "speed": 97,
-      "primary_type": "Psychic",
-      "secondary_type": "Flying"
+      "primary_type": "psychic",
+      "secondary_type": "flying"
     },
     {
       "id": 562,
@@ -6741,7 +6741,7 @@
       "special_attack": 55,
       "special_defense": 65,
       "speed": 30,
-      "primary_type": "Ghost",
+      "primary_type": "ghost",
       "secondary_type": null
     },
     {
@@ -6753,7 +6753,7 @@
       "special_attack": 95,
       "special_defense": 105,
       "speed": 30,
-      "primary_type": "Ghost",
+      "primary_type": "ghost",
       "secondary_type": null
     },
     {
@@ -6765,8 +6765,8 @@
       "special_attack": 53,
       "special_defense": 45,
       "speed": 22,
-      "primary_type": "Water",
-      "secondary_type": "Rock"
+      "primary_type": "water",
+      "secondary_type": "rock"
     },
     {
       "id": 565,
@@ -6777,8 +6777,8 @@
       "special_attack": 83,
       "special_defense": 65,
       "speed": 32,
-      "primary_type": "Water",
-      "secondary_type": "Rock"
+      "primary_type": "water",
+      "secondary_type": "rock"
     },
     {
       "id": 566,
@@ -6789,8 +6789,8 @@
       "special_attack": 74,
       "special_defense": 45,
       "speed": 70,
-      "primary_type": "Rock",
-      "secondary_type": "Flying"
+      "primary_type": "rock",
+      "secondary_type": "flying"
     },
     {
       "id": 567,
@@ -6801,8 +6801,8 @@
       "special_attack": 112,
       "special_defense": 65,
       "speed": 110,
-      "primary_type": "Rock",
-      "secondary_type": "Flying"
+      "primary_type": "rock",
+      "secondary_type": "flying"
     },
     {
       "id": 568,
@@ -6813,7 +6813,7 @@
       "special_attack": 40,
       "special_defense": 62,
       "speed": 65,
-      "primary_type": "Poison",
+      "primary_type": "poison",
       "secondary_type": null
     },
     {
@@ -6825,7 +6825,7 @@
       "special_attack": 60,
       "special_defense": 82,
       "speed": 75,
-      "primary_type": "Poison",
+      "primary_type": "poison",
       "secondary_type": null
     },
     {
@@ -6837,7 +6837,7 @@
       "special_attack": 80,
       "special_defense": 40,
       "speed": 65,
-      "primary_type": "Dark",
+      "primary_type": "dark",
       "secondary_type": null
     },
     {
@@ -6849,7 +6849,7 @@
       "special_attack": 120,
       "special_defense": 60,
       "speed": 105,
-      "primary_type": "Dark",
+      "primary_type": "dark",
       "secondary_type": null
     },
     {
@@ -6861,7 +6861,7 @@
       "special_attack": 40,
       "special_defense": 40,
       "speed": 75,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -6873,7 +6873,7 @@
       "special_attack": 65,
       "special_defense": 60,
       "speed": 115,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -6885,7 +6885,7 @@
       "special_attack": 55,
       "special_defense": 65,
       "speed": 45,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -6897,7 +6897,7 @@
       "special_attack": 75,
       "special_defense": 85,
       "speed": 55,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -6909,7 +6909,7 @@
       "special_attack": 95,
       "special_defense": 110,
       "speed": 65,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -6921,7 +6921,7 @@
       "special_attack": 105,
       "special_defense": 50,
       "speed": 20,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -6933,7 +6933,7 @@
       "special_attack": 125,
       "special_defense": 60,
       "speed": 30,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -6945,7 +6945,7 @@
       "special_attack": 125,
       "special_defense": 85,
       "speed": 30,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -6957,8 +6957,8 @@
       "special_attack": 44,
       "special_defense": 50,
       "speed": 55,
-      "primary_type": "Water",
-      "secondary_type": "Flying"
+      "primary_type": "water",
+      "secondary_type": "flying"
     },
     {
       "id": 581,
@@ -6969,8 +6969,8 @@
       "special_attack": 87,
       "special_defense": 63,
       "speed": 98,
-      "primary_type": "Water",
-      "secondary_type": "Flying"
+      "primary_type": "water",
+      "secondary_type": "flying"
     },
     {
       "id": 582,
@@ -6981,7 +6981,7 @@
       "special_attack": 65,
       "special_defense": 60,
       "speed": 44,
-      "primary_type": "Ice",
+      "primary_type": "ice",
       "secondary_type": null
     },
     {
@@ -6993,7 +6993,7 @@
       "special_attack": 80,
       "special_defense": 75,
       "speed": 59,
-      "primary_type": "Ice",
+      "primary_type": "ice",
       "secondary_type": null
     },
     {
@@ -7005,7 +7005,7 @@
       "special_attack": 110,
       "special_defense": 95,
       "speed": 79,
-      "primary_type": "Ice",
+      "primary_type": "ice",
       "secondary_type": null
     },
     {
@@ -7017,8 +7017,8 @@
       "special_attack": 40,
       "special_defense": 50,
       "speed": 75,
-      "primary_type": "Normal",
-      "secondary_type": "Grass"
+      "primary_type": "normal",
+      "secondary_type": "grass"
     },
     {
       "id": 586,
@@ -7029,8 +7029,8 @@
       "special_attack": 60,
       "special_defense": 70,
       "speed": 95,
-      "primary_type": "Normal",
-      "secondary_type": "Grass"
+      "primary_type": "normal",
+      "secondary_type": "grass"
     },
     {
       "id": 587,
@@ -7041,8 +7041,8 @@
       "special_attack": 75,
       "special_defense": 60,
       "speed": 103,
-      "primary_type": "Electric",
-      "secondary_type": "Flying"
+      "primary_type": "electric",
+      "secondary_type": "flying"
     },
     {
       "id": 588,
@@ -7053,7 +7053,7 @@
       "special_attack": 40,
       "special_defense": 45,
       "speed": 60,
-      "primary_type": "Bug",
+      "primary_type": "bug",
       "secondary_type": null
     },
     {
@@ -7065,8 +7065,8 @@
       "special_attack": 60,
       "special_defense": 105,
       "speed": 20,
-      "primary_type": "Bug",
-      "secondary_type": "Steel"
+      "primary_type": "bug",
+      "secondary_type": "steel"
     },
     {
       "id": 590,
@@ -7077,8 +7077,8 @@
       "special_attack": 55,
       "special_defense": 55,
       "speed": 15,
-      "primary_type": "Grass",
-      "secondary_type": "Poison"
+      "primary_type": "grass",
+      "secondary_type": "poison"
     },
     {
       "id": 591,
@@ -7089,8 +7089,8 @@
       "special_attack": 85,
       "special_defense": 80,
       "speed": 30,
-      "primary_type": "Grass",
-      "secondary_type": "Poison"
+      "primary_type": "grass",
+      "secondary_type": "poison"
     },
     {
       "id": 592,
@@ -7101,8 +7101,8 @@
       "special_attack": 65,
       "special_defense": 85,
       "speed": 40,
-      "primary_type": "Water",
-      "secondary_type": "Ghost"
+      "primary_type": "water",
+      "secondary_type": "ghost"
     },
     {
       "id": 593,
@@ -7113,8 +7113,8 @@
       "special_attack": 85,
       "special_defense": 105,
       "speed": 60,
-      "primary_type": "Water",
-      "secondary_type": "Ghost"
+      "primary_type": "water",
+      "secondary_type": "ghost"
     },
     {
       "id": 594,
@@ -7125,7 +7125,7 @@
       "special_attack": 40,
       "special_defense": 45,
       "speed": 65,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -7137,8 +7137,8 @@
       "special_attack": 57,
       "special_defense": 50,
       "speed": 65,
-      "primary_type": "Bug",
-      "secondary_type": "Electric"
+      "primary_type": "bug",
+      "secondary_type": "electric"
     },
     {
       "id": 596,
@@ -7149,8 +7149,8 @@
       "special_attack": 97,
       "special_defense": 60,
       "speed": 108,
-      "primary_type": "Bug",
-      "secondary_type": "Electric"
+      "primary_type": "bug",
+      "secondary_type": "electric"
     },
     {
       "id": 597,
@@ -7161,8 +7161,8 @@
       "special_attack": 24,
       "special_defense": 86,
       "speed": 10,
-      "primary_type": "Grass",
-      "secondary_type": "Steel"
+      "primary_type": "grass",
+      "secondary_type": "steel"
     },
     {
       "id": 598,
@@ -7173,8 +7173,8 @@
       "special_attack": 54,
       "special_defense": 116,
       "speed": 20,
-      "primary_type": "Grass",
-      "secondary_type": "Steel"
+      "primary_type": "grass",
+      "secondary_type": "steel"
     },
     {
       "id": 599,
@@ -7185,7 +7185,7 @@
       "special_attack": 45,
       "special_defense": 60,
       "speed": 30,
-      "primary_type": "Steel",
+      "primary_type": "steel",
       "secondary_type": null
     },
     {
@@ -7197,7 +7197,7 @@
       "special_attack": 70,
       "special_defense": 85,
       "speed": 50,
-      "primary_type": "Steel",
+      "primary_type": "steel",
       "secondary_type": null
     },
     {
@@ -7209,7 +7209,7 @@
       "special_attack": 70,
       "special_defense": 85,
       "speed": 90,
-      "primary_type": "Steel",
+      "primary_type": "steel",
       "secondary_type": null
     },
     {
@@ -7221,7 +7221,7 @@
       "special_attack": 45,
       "special_defense": 40,
       "speed": 60,
-      "primary_type": "Electric",
+      "primary_type": "electric",
       "secondary_type": null
     },
     {
@@ -7233,7 +7233,7 @@
       "special_attack": 75,
       "special_defense": 70,
       "speed": 40,
-      "primary_type": "Electric",
+      "primary_type": "electric",
       "secondary_type": null
     },
     {
@@ -7245,7 +7245,7 @@
       "special_attack": 105,
       "special_defense": 80,
       "speed": 50,
-      "primary_type": "Electric",
+      "primary_type": "electric",
       "secondary_type": null
     },
     {
@@ -7257,7 +7257,7 @@
       "special_attack": 85,
       "special_defense": 55,
       "speed": 30,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -7269,7 +7269,7 @@
       "special_attack": 125,
       "special_defense": 95,
       "speed": 40,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -7281,8 +7281,8 @@
       "special_attack": 65,
       "special_defense": 55,
       "speed": 20,
-      "primary_type": "Ghost",
-      "secondary_type": "Fire"
+      "primary_type": "ghost",
+      "secondary_type": "fire"
     },
     {
       "id": 608,
@@ -7293,8 +7293,8 @@
       "special_attack": 95,
       "special_defense": 60,
       "speed": 55,
-      "primary_type": "Ghost",
-      "secondary_type": "Fire"
+      "primary_type": "ghost",
+      "secondary_type": "fire"
     },
     {
       "id": 609,
@@ -7305,8 +7305,8 @@
       "special_attack": 145,
       "special_defense": 90,
       "speed": 80,
-      "primary_type": "Ghost",
-      "secondary_type": "Fire"
+      "primary_type": "ghost",
+      "secondary_type": "fire"
     },
     {
       "id": 610,
@@ -7317,7 +7317,7 @@
       "special_attack": 30,
       "special_defense": 40,
       "speed": 57,
-      "primary_type": "Dragon",
+      "primary_type": "dragon",
       "secondary_type": null
     },
     {
@@ -7329,7 +7329,7 @@
       "special_attack": 40,
       "special_defense": 50,
       "speed": 67,
-      "primary_type": "Dragon",
+      "primary_type": "dragon",
       "secondary_type": null
     },
     {
@@ -7341,7 +7341,7 @@
       "special_attack": 60,
       "special_defense": 70,
       "speed": 97,
-      "primary_type": "Dragon",
+      "primary_type": "dragon",
       "secondary_type": null
     },
     {
@@ -7353,7 +7353,7 @@
       "special_attack": 60,
       "special_defense": 40,
       "speed": 40,
-      "primary_type": "Ice",
+      "primary_type": "ice",
       "secondary_type": null
     },
     {
@@ -7365,7 +7365,7 @@
       "special_attack": 70,
       "special_defense": 80,
       "speed": 50,
-      "primary_type": "Ice",
+      "primary_type": "ice",
       "secondary_type": null
     },
     {
@@ -7377,7 +7377,7 @@
       "special_attack": 95,
       "special_defense": 135,
       "speed": 105,
-      "primary_type": "Ice",
+      "primary_type": "ice",
       "secondary_type": null
     },
     {
@@ -7389,7 +7389,7 @@
       "special_attack": 40,
       "special_defense": 65,
       "speed": 25,
-      "primary_type": "Bug",
+      "primary_type": "bug",
       "secondary_type": null
     },
     {
@@ -7401,7 +7401,7 @@
       "special_attack": 100,
       "special_defense": 60,
       "speed": 145,
-      "primary_type": "Bug",
+      "primary_type": "bug",
       "secondary_type": null
     },
     {
@@ -7413,8 +7413,8 @@
       "special_attack": 81,
       "special_defense": 99,
       "speed": 32,
-      "primary_type": "Ground",
-      "secondary_type": "Electric"
+      "primary_type": "ground",
+      "secondary_type": "electric"
     },
     {
       "id": 619,
@@ -7425,7 +7425,7 @@
       "special_attack": 55,
       "special_defense": 50,
       "speed": 65,
-      "primary_type": "Fighting",
+      "primary_type": "fighting",
       "secondary_type": null
     },
     {
@@ -7437,7 +7437,7 @@
       "special_attack": 95,
       "special_defense": 60,
       "speed": 105,
-      "primary_type": "Fighting",
+      "primary_type": "fighting",
       "secondary_type": null
     },
     {
@@ -7449,7 +7449,7 @@
       "special_attack": 60,
       "special_defense": 90,
       "speed": 48,
-      "primary_type": "Dragon",
+      "primary_type": "dragon",
       "secondary_type": null
     },
     {
@@ -7461,8 +7461,8 @@
       "special_attack": 35,
       "special_defense": 50,
       "speed": 35,
-      "primary_type": "Ground",
-      "secondary_type": "Ghost"
+      "primary_type": "ground",
+      "secondary_type": "ghost"
     },
     {
       "id": 623,
@@ -7473,8 +7473,8 @@
       "special_attack": 55,
       "special_defense": 80,
       "speed": 55,
-      "primary_type": "Ground",
-      "secondary_type": "Ghost"
+      "primary_type": "ground",
+      "secondary_type": "ghost"
     },
     {
       "id": 624,
@@ -7485,8 +7485,8 @@
       "special_attack": 40,
       "special_defense": 40,
       "speed": 60,
-      "primary_type": "Dark",
-      "secondary_type": "Steel"
+      "primary_type": "dark",
+      "secondary_type": "steel"
     },
     {
       "id": 625,
@@ -7497,8 +7497,8 @@
       "special_attack": 60,
       "special_defense": 70,
       "speed": 70,
-      "primary_type": "Dark",
-      "secondary_type": "Steel"
+      "primary_type": "dark",
+      "secondary_type": "steel"
     },
     {
       "id": 626,
@@ -7509,7 +7509,7 @@
       "special_attack": 40,
       "special_defense": 95,
       "speed": 55,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -7521,8 +7521,8 @@
       "special_attack": 37,
       "special_defense": 50,
       "speed": 60,
-      "primary_type": "Normal",
-      "secondary_type": "Flying"
+      "primary_type": "normal",
+      "secondary_type": "flying"
     },
     {
       "id": 628,
@@ -7533,8 +7533,8 @@
       "special_attack": 57,
       "special_defense": 75,
       "speed": 80,
-      "primary_type": "Normal",
-      "secondary_type": "Flying"
+      "primary_type": "normal",
+      "secondary_type": "flying"
     },
     {
       "id": 629,
@@ -7545,8 +7545,8 @@
       "special_attack": 45,
       "special_defense": 65,
       "speed": 60,
-      "primary_type": "Dark",
-      "secondary_type": "Flying"
+      "primary_type": "dark",
+      "secondary_type": "flying"
     },
     {
       "id": 630,
@@ -7557,8 +7557,8 @@
       "special_attack": 55,
       "special_defense": 95,
       "speed": 80,
-      "primary_type": "Dark",
-      "secondary_type": "Flying"
+      "primary_type": "dark",
+      "secondary_type": "flying"
     },
     {
       "id": 631,
@@ -7569,7 +7569,7 @@
       "special_attack": 105,
       "special_defense": 66,
       "speed": 65,
-      "primary_type": "Fire",
+      "primary_type": "fire",
       "secondary_type": null
     },
     {
@@ -7581,8 +7581,8 @@
       "special_attack": 48,
       "special_defense": 48,
       "speed": 109,
-      "primary_type": "Bug",
-      "secondary_type": "Steel"
+      "primary_type": "bug",
+      "secondary_type": "steel"
     },
     {
       "id": 633,
@@ -7593,8 +7593,8 @@
       "special_attack": 45,
       "special_defense": 50,
       "speed": 38,
-      "primary_type": "Dark",
-      "secondary_type": "Dragon"
+      "primary_type": "dark",
+      "secondary_type": "dragon"
     },
     {
       "id": 634,
@@ -7605,8 +7605,8 @@
       "special_attack": 65,
       "special_defense": 70,
       "speed": 58,
-      "primary_type": "Dark",
-      "secondary_type": "Dragon"
+      "primary_type": "dark",
+      "secondary_type": "dragon"
     },
     {
       "id": 635,
@@ -7617,8 +7617,8 @@
       "special_attack": 125,
       "special_defense": 90,
       "speed": 98,
-      "primary_type": "Dark",
-      "secondary_type": "Dragon"
+      "primary_type": "dark",
+      "secondary_type": "dragon"
     },
     {
       "id": 636,
@@ -7629,8 +7629,8 @@
       "special_attack": 50,
       "special_defense": 55,
       "speed": 60,
-      "primary_type": "Bug",
-      "secondary_type": "Fire"
+      "primary_type": "bug",
+      "secondary_type": "fire"
     },
     {
       "id": 637,
@@ -7641,8 +7641,8 @@
       "special_attack": 135,
       "special_defense": 105,
       "speed": 100,
-      "primary_type": "Bug",
-      "secondary_type": "Fire"
+      "primary_type": "bug",
+      "secondary_type": "fire"
     },
     {
       "id": 638,
@@ -7653,8 +7653,8 @@
       "special_attack": 90,
       "special_defense": 72,
       "speed": 108,
-      "primary_type": "Steel",
-      "secondary_type": "Fighting"
+      "primary_type": "steel",
+      "secondary_type": "fighting"
     },
     {
       "id": 639,
@@ -7665,8 +7665,8 @@
       "special_attack": 72,
       "special_defense": 90,
       "speed": 108,
-      "primary_type": "Rock",
-      "secondary_type": "Fighting"
+      "primary_type": "rock",
+      "secondary_type": "fighting"
     },
     {
       "id": 640,
@@ -7677,8 +7677,8 @@
       "special_attack": 90,
       "special_defense": 129,
       "speed": 108,
-      "primary_type": "Grass",
-      "secondary_type": "Fighting"
+      "primary_type": "grass",
+      "secondary_type": "fighting"
     },
     {
       "id": 641,
@@ -7689,7 +7689,7 @@
       "special_attack": 125,
       "special_defense": 80,
       "speed": 111,
-      "primary_type": "Flying",
+      "primary_type": "flying",
       "secondary_type": null
     },
     {
@@ -7701,8 +7701,8 @@
       "special_attack": 125,
       "special_defense": 80,
       "speed": 111,
-      "primary_type": "Electric",
-      "secondary_type": "Flying"
+      "primary_type": "electric",
+      "secondary_type": "flying"
     },
     {
       "id": 643,
@@ -7713,8 +7713,8 @@
       "special_attack": 150,
       "special_defense": 120,
       "speed": 90,
-      "primary_type": "Dragon",
-      "secondary_type": "Fire"
+      "primary_type": "dragon",
+      "secondary_type": "fire"
     },
     {
       "id": 644,
@@ -7725,8 +7725,8 @@
       "special_attack": 120,
       "special_defense": 100,
       "speed": 90,
-      "primary_type": "Dragon",
-      "secondary_type": "Electric"
+      "primary_type": "dragon",
+      "secondary_type": "electric"
     },
     {
       "id": 645,
@@ -7737,8 +7737,8 @@
       "special_attack": 115,
       "special_defense": 80,
       "speed": 101,
-      "primary_type": "Ground",
-      "secondary_type": "Flying"
+      "primary_type": "ground",
+      "secondary_type": "flying"
     },
     {
       "id": 646,
@@ -7749,8 +7749,8 @@
       "special_attack": 130,
       "special_defense": 90,
       "speed": 95,
-      "primary_type": "Dragon",
-      "secondary_type": "Ice"
+      "primary_type": "dragon",
+      "secondary_type": "ice"
     },
     {
       "id": 647,
@@ -7761,8 +7761,8 @@
       "special_attack": 129,
       "special_defense": 90,
       "speed": 108,
-      "primary_type": "Water",
-      "secondary_type": "Fighting"
+      "primary_type": "water",
+      "secondary_type": "fighting"
     },
     {
       "id": 648,
@@ -7773,8 +7773,8 @@
       "special_attack": 128,
       "special_defense": 128,
       "speed": 90,
-      "primary_type": "Normal",
-      "secondary_type": "Psychic"
+      "primary_type": "normal",
+      "secondary_type": "psychic"
     },
     {
       "id": 649,
@@ -7785,8 +7785,8 @@
       "special_attack": 120,
       "special_defense": 95,
       "speed": 99,
-      "primary_type": "Bug",
-      "secondary_type": "Steel"
+      "primary_type": "bug",
+      "secondary_type": "steel"
     },
     {
       "id": 650,
@@ -7797,7 +7797,7 @@
       "special_attack": 48,
       "special_defense": 45,
       "speed": 38,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -7809,7 +7809,7 @@
       "special_attack": 56,
       "special_defense": 58,
       "speed": 57,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -7821,8 +7821,8 @@
       "special_attack": 74,
       "special_defense": 75,
       "speed": 64,
-      "primary_type": "Grass",
-      "secondary_type": "Fighting"
+      "primary_type": "grass",
+      "secondary_type": "fighting"
     },
     {
       "id": 653,
@@ -7833,7 +7833,7 @@
       "special_attack": 62,
       "special_defense": 60,
       "speed": 60,
-      "primary_type": "Fire",
+      "primary_type": "fire",
       "secondary_type": null
     },
     {
@@ -7845,7 +7845,7 @@
       "special_attack": 90,
       "special_defense": 70,
       "speed": 73,
-      "primary_type": "Fire",
+      "primary_type": "fire",
       "secondary_type": null
     },
     {
@@ -7857,8 +7857,8 @@
       "special_attack": 114,
       "special_defense": 100,
       "speed": 104,
-      "primary_type": "Fire",
-      "secondary_type": "Psychic"
+      "primary_type": "fire",
+      "secondary_type": "psychic"
     },
     {
       "id": 656,
@@ -7869,7 +7869,7 @@
       "special_attack": 62,
       "special_defense": 44,
       "speed": 71,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -7881,7 +7881,7 @@
       "special_attack": 83,
       "special_defense": 56,
       "speed": 97,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -7893,8 +7893,8 @@
       "special_attack": 103,
       "special_defense": 71,
       "speed": 122,
-      "primary_type": "Water",
-      "secondary_type": "Dark"
+      "primary_type": "water",
+      "secondary_type": "dark"
     },
     {
       "id": 659,
@@ -7905,7 +7905,7 @@
       "special_attack": 32,
       "special_defense": 36,
       "speed": 57,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -7917,8 +7917,8 @@
       "special_attack": 50,
       "special_defense": 77,
       "speed": 78,
-      "primary_type": "Normal",
-      "secondary_type": "Ground"
+      "primary_type": "normal",
+      "secondary_type": "ground"
     },
     {
       "id": 661,
@@ -7929,8 +7929,8 @@
       "special_attack": 40,
       "special_defense": 38,
       "speed": 62,
-      "primary_type": "Normal",
-      "secondary_type": "Flying"
+      "primary_type": "normal",
+      "secondary_type": "flying"
     },
     {
       "id": 662,
@@ -7941,8 +7941,8 @@
       "special_attack": 56,
       "special_defense": 52,
       "speed": 84,
-      "primary_type": "Fire",
-      "secondary_type": "Flying"
+      "primary_type": "fire",
+      "secondary_type": "flying"
     },
     {
       "id": 663,
@@ -7953,8 +7953,8 @@
       "special_attack": 74,
       "special_defense": 69,
       "speed": 126,
-      "primary_type": "Fire",
-      "secondary_type": "Flying"
+      "primary_type": "fire",
+      "secondary_type": "flying"
     },
     {
       "id": 664,
@@ -7965,7 +7965,7 @@
       "special_attack": 27,
       "special_defense": 25,
       "speed": 35,
-      "primary_type": "Bug",
+      "primary_type": "bug",
       "secondary_type": null
     },
     {
@@ -7977,7 +7977,7 @@
       "special_attack": 27,
       "special_defense": 30,
       "speed": 29,
-      "primary_type": "Bug",
+      "primary_type": "bug",
       "secondary_type": null
     },
     {
@@ -7989,8 +7989,8 @@
       "special_attack": 90,
       "special_defense": 50,
       "speed": 89,
-      "primary_type": "Bug",
-      "secondary_type": "Flying"
+      "primary_type": "bug",
+      "secondary_type": "flying"
     },
     {
       "id": 667,
@@ -8001,8 +8001,8 @@
       "special_attack": 73,
       "special_defense": 54,
       "speed": 72,
-      "primary_type": "Fire",
-      "secondary_type": "Normal"
+      "primary_type": "fire",
+      "secondary_type": "normal"
     },
     {
       "id": 668,
@@ -8013,19 +8013,19 @@
       "special_attack": 109,
       "special_defense": 66,
       "speed": 106,
-      "primary_type": "Fire",
-      "secondary_type": "Normal"
+      "primary_type": "fire",
+      "secondary_type": "normal"
     },
     {
       "id": 669,
-      "name": "Flabébé",
+      "name": "Flab\u00e9b\u00e9",
       "hp": 44,
       "attack": 38,
       "defense": 39,
       "special_attack": 61,
       "special_defense": 79,
       "speed": 42,
-      "primary_type": "Fairy",
+      "primary_type": "fairy",
       "secondary_type": null
     },
     {
@@ -8037,7 +8037,7 @@
       "special_attack": 75,
       "special_defense": 98,
       "speed": 52,
-      "primary_type": "Fairy",
+      "primary_type": "fairy",
       "secondary_type": null
     },
     {
@@ -8049,7 +8049,7 @@
       "special_attack": 112,
       "special_defense": 154,
       "speed": 75,
-      "primary_type": "Fairy",
+      "primary_type": "fairy",
       "secondary_type": null
     },
     {
@@ -8061,7 +8061,7 @@
       "special_attack": 62,
       "special_defense": 57,
       "speed": 52,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -8073,7 +8073,7 @@
       "special_attack": 97,
       "special_defense": 81,
       "speed": 68,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -8085,7 +8085,7 @@
       "special_attack": 46,
       "special_defense": 48,
       "speed": 43,
-      "primary_type": "Fighting",
+      "primary_type": "fighting",
       "secondary_type": null
     },
     {
@@ -8097,8 +8097,8 @@
       "special_attack": 69,
       "special_defense": 71,
       "speed": 58,
-      "primary_type": "Fighting",
-      "secondary_type": "Dark"
+      "primary_type": "fighting",
+      "secondary_type": "dark"
     },
     {
       "id": 676,
@@ -8109,7 +8109,7 @@
       "special_attack": 65,
       "special_defense": 90,
       "speed": 102,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -8121,7 +8121,7 @@
       "special_attack": 63,
       "special_defense": 60,
       "speed": 68,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -8133,7 +8133,7 @@
       "special_attack": 83,
       "special_defense": 81,
       "speed": 104,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -8145,8 +8145,8 @@
       "special_attack": 35,
       "special_defense": 37,
       "speed": 28,
-      "primary_type": "Steel",
-      "secondary_type": "Ghost"
+      "primary_type": "steel",
+      "secondary_type": "ghost"
     },
     {
       "id": 680,
@@ -8157,8 +8157,8 @@
       "special_attack": 45,
       "special_defense": 49,
       "speed": 35,
-      "primary_type": "Steel",
-      "secondary_type": "Ghost"
+      "primary_type": "steel",
+      "secondary_type": "ghost"
     },
     {
       "id": 681,
@@ -8169,8 +8169,8 @@
       "special_attack": 50,
       "special_defense": 150,
       "speed": 60,
-      "primary_type": "Steel",
-      "secondary_type": "Ghost"
+      "primary_type": "steel",
+      "secondary_type": "ghost"
     },
     {
       "id": 682,
@@ -8181,7 +8181,7 @@
       "special_attack": 63,
       "special_defense": 65,
       "speed": 23,
-      "primary_type": "Fairy",
+      "primary_type": "fairy",
       "secondary_type": null
     },
     {
@@ -8193,7 +8193,7 @@
       "special_attack": 99,
       "special_defense": 89,
       "speed": 29,
-      "primary_type": "Fairy",
+      "primary_type": "fairy",
       "secondary_type": null
     },
     {
@@ -8205,7 +8205,7 @@
       "special_attack": 59,
       "special_defense": 57,
       "speed": 49,
-      "primary_type": "Fairy",
+      "primary_type": "fairy",
       "secondary_type": null
     },
     {
@@ -8217,7 +8217,7 @@
       "special_attack": 85,
       "special_defense": 75,
       "speed": 72,
-      "primary_type": "Fairy",
+      "primary_type": "fairy",
       "secondary_type": null
     },
     {
@@ -8229,8 +8229,8 @@
       "special_attack": 37,
       "special_defense": 46,
       "speed": 45,
-      "primary_type": "Dark",
-      "secondary_type": "Psychic"
+      "primary_type": "dark",
+      "secondary_type": "psychic"
     },
     {
       "id": 687,
@@ -8241,8 +8241,8 @@
       "special_attack": 68,
       "special_defense": 75,
       "speed": 73,
-      "primary_type": "Dark",
-      "secondary_type": "Psychic"
+      "primary_type": "dark",
+      "secondary_type": "psychic"
     },
     {
       "id": 688,
@@ -8253,8 +8253,8 @@
       "special_attack": 39,
       "special_defense": 56,
       "speed": 50,
-      "primary_type": "Rock",
-      "secondary_type": "Water"
+      "primary_type": "rock",
+      "secondary_type": "water"
     },
     {
       "id": 689,
@@ -8265,8 +8265,8 @@
       "special_attack": 54,
       "special_defense": 86,
       "speed": 68,
-      "primary_type": "Rock",
-      "secondary_type": "Water"
+      "primary_type": "rock",
+      "secondary_type": "water"
     },
     {
       "id": 690,
@@ -8277,8 +8277,8 @@
       "special_attack": 60,
       "special_defense": 60,
       "speed": 30,
-      "primary_type": "Poison",
-      "secondary_type": "Water"
+      "primary_type": "poison",
+      "secondary_type": "water"
     },
     {
       "id": 691,
@@ -8289,8 +8289,8 @@
       "special_attack": 97,
       "special_defense": 123,
       "speed": 44,
-      "primary_type": "Poison",
-      "secondary_type": "Dragon"
+      "primary_type": "poison",
+      "secondary_type": "dragon"
     },
     {
       "id": 692,
@@ -8301,7 +8301,7 @@
       "special_attack": 58,
       "special_defense": 63,
       "speed": 44,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -8313,7 +8313,7 @@
       "special_attack": 120,
       "special_defense": 89,
       "speed": 59,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -8325,8 +8325,8 @@
       "special_attack": 61,
       "special_defense": 43,
       "speed": 70,
-      "primary_type": "Electric",
-      "secondary_type": "Normal"
+      "primary_type": "electric",
+      "secondary_type": "normal"
     },
     {
       "id": 695,
@@ -8337,8 +8337,8 @@
       "special_attack": 109,
       "special_defense": 94,
       "speed": 109,
-      "primary_type": "Electric",
-      "secondary_type": "Normal"
+      "primary_type": "electric",
+      "secondary_type": "normal"
     },
     {
       "id": 696,
@@ -8349,8 +8349,8 @@
       "special_attack": 45,
       "special_defense": 45,
       "speed": 48,
-      "primary_type": "Rock",
-      "secondary_type": "Dragon"
+      "primary_type": "rock",
+      "secondary_type": "dragon"
     },
     {
       "id": 697,
@@ -8361,8 +8361,8 @@
       "special_attack": 69,
       "special_defense": 59,
       "speed": 71,
-      "primary_type": "Rock",
-      "secondary_type": "Dragon"
+      "primary_type": "rock",
+      "secondary_type": "dragon"
     },
     {
       "id": 698,
@@ -8373,8 +8373,8 @@
       "special_attack": 67,
       "special_defense": 63,
       "speed": 46,
-      "primary_type": "Rock",
-      "secondary_type": "Ice"
+      "primary_type": "rock",
+      "secondary_type": "ice"
     },
     {
       "id": 699,
@@ -8385,8 +8385,8 @@
       "special_attack": 99,
       "special_defense": 92,
       "speed": 58,
-      "primary_type": "Rock",
-      "secondary_type": "Ice"
+      "primary_type": "rock",
+      "secondary_type": "ice"
     },
     {
       "id": 700,
@@ -8397,7 +8397,7 @@
       "special_attack": 110,
       "special_defense": 130,
       "speed": 60,
-      "primary_type": "Fairy",
+      "primary_type": "fairy",
       "secondary_type": null
     },
     {
@@ -8409,8 +8409,8 @@
       "special_attack": 74,
       "special_defense": 63,
       "speed": 118,
-      "primary_type": "Fighting",
-      "secondary_type": "Flying"
+      "primary_type": "fighting",
+      "secondary_type": "flying"
     },
     {
       "id": 702,
@@ -8421,8 +8421,8 @@
       "special_attack": 81,
       "special_defense": 67,
       "speed": 101,
-      "primary_type": "Electric",
-      "secondary_type": "Fairy"
+      "primary_type": "electric",
+      "secondary_type": "fairy"
     },
     {
       "id": 703,
@@ -8433,8 +8433,8 @@
       "special_attack": 50,
       "special_defense": 150,
       "speed": 50,
-      "primary_type": "Rock",
-      "secondary_type": "Fairy"
+      "primary_type": "rock",
+      "secondary_type": "fairy"
     },
     {
       "id": 704,
@@ -8445,7 +8445,7 @@
       "special_attack": 55,
       "special_defense": 75,
       "speed": 40,
-      "primary_type": "Dragon",
+      "primary_type": "dragon",
       "secondary_type": null
     },
     {
@@ -8457,7 +8457,7 @@
       "special_attack": 83,
       "special_defense": 113,
       "speed": 60,
-      "primary_type": "Dragon",
+      "primary_type": "dragon",
       "secondary_type": null
     },
     {
@@ -8469,7 +8469,7 @@
       "special_attack": 110,
       "special_defense": 150,
       "speed": 80,
-      "primary_type": "Dragon",
+      "primary_type": "dragon",
       "secondary_type": null
     },
     {
@@ -8481,8 +8481,8 @@
       "special_attack": 80,
       "special_defense": 87,
       "speed": 75,
-      "primary_type": "Steel",
-      "secondary_type": "Fairy"
+      "primary_type": "steel",
+      "secondary_type": "fairy"
     },
     {
       "id": 708,
@@ -8493,8 +8493,8 @@
       "special_attack": 50,
       "special_defense": 60,
       "speed": 38,
-      "primary_type": "Ghost",
-      "secondary_type": "Grass"
+      "primary_type": "ghost",
+      "secondary_type": "grass"
     },
     {
       "id": 709,
@@ -8505,8 +8505,8 @@
       "special_attack": 65,
       "special_defense": 82,
       "speed": 56,
-      "primary_type": "Ghost",
-      "secondary_type": "Grass"
+      "primary_type": "ghost",
+      "secondary_type": "grass"
     },
     {
       "id": 710,
@@ -8517,8 +8517,8 @@
       "special_attack": 44,
       "special_defense": 55,
       "speed": 41,
-      "primary_type": "Ghost",
-      "secondary_type": "Grass"
+      "primary_type": "ghost",
+      "secondary_type": "grass"
     },
     {
       "id": 711,
@@ -8529,8 +8529,8 @@
       "special_attack": 58,
       "special_defense": 75,
       "speed": 54,
-      "primary_type": "Ghost",
-      "secondary_type": "Grass"
+      "primary_type": "ghost",
+      "secondary_type": "grass"
     },
     {
       "id": 712,
@@ -8541,7 +8541,7 @@
       "special_attack": 32,
       "special_defense": 35,
       "speed": 28,
-      "primary_type": "Ice",
+      "primary_type": "ice",
       "secondary_type": null
     },
     {
@@ -8553,7 +8553,7 @@
       "special_attack": 44,
       "special_defense": 46,
       "speed": 28,
-      "primary_type": "Ice",
+      "primary_type": "ice",
       "secondary_type": null
     },
     {
@@ -8565,8 +8565,8 @@
       "special_attack": 45,
       "special_defense": 40,
       "speed": 55,
-      "primary_type": "Flying",
-      "secondary_type": "Dragon"
+      "primary_type": "flying",
+      "secondary_type": "dragon"
     },
     {
       "id": 715,
@@ -8577,8 +8577,8 @@
       "special_attack": 97,
       "special_defense": 80,
       "speed": 123,
-      "primary_type": "Flying",
-      "secondary_type": "Dragon"
+      "primary_type": "flying",
+      "secondary_type": "dragon"
     },
     {
       "id": 716,
@@ -8589,7 +8589,7 @@
       "special_attack": 131,
       "special_defense": 98,
       "speed": 99,
-      "primary_type": "Fairy",
+      "primary_type": "fairy",
       "secondary_type": null
     },
     {
@@ -8601,8 +8601,8 @@
       "special_attack": 131,
       "special_defense": 98,
       "speed": 99,
-      "primary_type": "Dark",
-      "secondary_type": "Flying"
+      "primary_type": "dark",
+      "secondary_type": "flying"
     },
     {
       "id": 718,
@@ -8613,8 +8613,8 @@
       "special_attack": 81,
       "special_defense": 95,
       "speed": 95,
-      "primary_type": "Dragon",
-      "secondary_type": "Ground"
+      "primary_type": "dragon",
+      "secondary_type": "ground"
     },
     {
       "id": 719,
@@ -8625,8 +8625,8 @@
       "special_attack": 100,
       "special_defense": 150,
       "speed": 50,
-      "primary_type": "Rock",
-      "secondary_type": "Fairy"
+      "primary_type": "rock",
+      "secondary_type": "fairy"
     },
     {
       "id": 720,
@@ -8637,8 +8637,8 @@
       "special_attack": 150,
       "special_defense": 130,
       "speed": 70,
-      "primary_type": "Psychic",
-      "secondary_type": "Ghost"
+      "primary_type": "psychic",
+      "secondary_type": "ghost"
     },
     {
       "id": 721,
@@ -8649,8 +8649,8 @@
       "special_attack": 130,
       "special_defense": 90,
       "speed": 70,
-      "primary_type": "Fire",
-      "secondary_type": "Water"
+      "primary_type": "fire",
+      "secondary_type": "water"
     },
     {
       "id": 722,
@@ -8661,8 +8661,8 @@
       "special_attack": 50,
       "special_defense": 50,
       "speed": 42,
-      "primary_type": "Grass",
-      "secondary_type": "Flying"
+      "primary_type": "grass",
+      "secondary_type": "flying"
     },
     {
       "id": 723,
@@ -8673,8 +8673,8 @@
       "special_attack": 70,
       "special_defense": 70,
       "speed": 52,
-      "primary_type": "Grass",
-      "secondary_type": "Flying"
+      "primary_type": "grass",
+      "secondary_type": "flying"
     },
     {
       "id": 724,
@@ -8685,8 +8685,8 @@
       "special_attack": 100,
       "special_defense": 100,
       "speed": 70,
-      "primary_type": "Grass",
-      "secondary_type": "Ghost"
+      "primary_type": "grass",
+      "secondary_type": "ghost"
     },
     {
       "id": 725,
@@ -8697,7 +8697,7 @@
       "special_attack": 60,
       "special_defense": 40,
       "speed": 70,
-      "primary_type": "Fire",
+      "primary_type": "fire",
       "secondary_type": null
     },
     {
@@ -8709,7 +8709,7 @@
       "special_attack": 80,
       "special_defense": 50,
       "speed": 90,
-      "primary_type": "Fire",
+      "primary_type": "fire",
       "secondary_type": null
     },
     {
@@ -8721,8 +8721,8 @@
       "special_attack": 80,
       "special_defense": 90,
       "speed": 60,
-      "primary_type": "Fire",
-      "secondary_type": "Dark"
+      "primary_type": "fire",
+      "secondary_type": "dark"
     },
     {
       "id": 728,
@@ -8733,7 +8733,7 @@
       "special_attack": 66,
       "special_defense": 56,
       "speed": 40,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -8745,7 +8745,7 @@
       "special_attack": 91,
       "special_defense": 81,
       "speed": 50,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -8757,8 +8757,8 @@
       "special_attack": 126,
       "special_defense": 116,
       "speed": 60,
-      "primary_type": "Water",
-      "secondary_type": "Fairy"
+      "primary_type": "water",
+      "secondary_type": "fairy"
     },
     {
       "id": 731,
@@ -8769,8 +8769,8 @@
       "special_attack": 30,
       "special_defense": 30,
       "speed": 65,
-      "primary_type": "Normal",
-      "secondary_type": "Flying"
+      "primary_type": "normal",
+      "secondary_type": "flying"
     },
     {
       "id": 732,
@@ -8781,8 +8781,8 @@
       "special_attack": 40,
       "special_defense": 50,
       "speed": 75,
-      "primary_type": "Normal",
-      "secondary_type": "Flying"
+      "primary_type": "normal",
+      "secondary_type": "flying"
     },
     {
       "id": 733,
@@ -8793,8 +8793,8 @@
       "special_attack": 75,
       "special_defense": 75,
       "speed": 60,
-      "primary_type": "Normal",
-      "secondary_type": "Flying"
+      "primary_type": "normal",
+      "secondary_type": "flying"
     },
     {
       "id": 734,
@@ -8805,7 +8805,7 @@
       "special_attack": 30,
       "special_defense": 30,
       "speed": 45,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -8817,7 +8817,7 @@
       "special_attack": 55,
       "special_defense": 60,
       "speed": 45,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -8829,7 +8829,7 @@
       "special_attack": 55,
       "special_defense": 45,
       "speed": 46,
-      "primary_type": "Bug",
+      "primary_type": "bug",
       "secondary_type": null
     },
     {
@@ -8841,8 +8841,8 @@
       "special_attack": 55,
       "special_defense": 75,
       "speed": 36,
-      "primary_type": "Bug",
-      "secondary_type": "Electric"
+      "primary_type": "bug",
+      "secondary_type": "electric"
     },
     {
       "id": 738,
@@ -8853,8 +8853,8 @@
       "special_attack": 145,
       "special_defense": 75,
       "speed": 43,
-      "primary_type": "Bug",
-      "secondary_type": "Electric"
+      "primary_type": "bug",
+      "secondary_type": "electric"
     },
     {
       "id": 739,
@@ -8865,7 +8865,7 @@
       "special_attack": 42,
       "special_defense": 47,
       "speed": 63,
-      "primary_type": "Fighting",
+      "primary_type": "fighting",
       "secondary_type": null
     },
     {
@@ -8877,8 +8877,8 @@
       "special_attack": 62,
       "special_defense": 67,
       "speed": 43,
-      "primary_type": "Fighting",
-      "secondary_type": "Ice"
+      "primary_type": "fighting",
+      "secondary_type": "ice"
     },
     {
       "id": 741,
@@ -8889,8 +8889,8 @@
       "special_attack": 98,
       "special_defense": 70,
       "speed": 93,
-      "primary_type": "Fire",
-      "secondary_type": "Flying"
+      "primary_type": "fire",
+      "secondary_type": "flying"
     },
     {
       "id": 742,
@@ -8901,8 +8901,8 @@
       "special_attack": 55,
       "special_defense": 40,
       "speed": 84,
-      "primary_type": "Bug",
-      "secondary_type": "Fairy"
+      "primary_type": "bug",
+      "secondary_type": "fairy"
     },
     {
       "id": 743,
@@ -8913,8 +8913,8 @@
       "special_attack": 95,
       "special_defense": 70,
       "speed": 124,
-      "primary_type": "Bug",
-      "secondary_type": "Fairy"
+      "primary_type": "bug",
+      "secondary_type": "fairy"
     },
     {
       "id": 744,
@@ -8925,7 +8925,7 @@
       "special_attack": 30,
       "special_defense": 40,
       "speed": 60,
-      "primary_type": "Rock",
+      "primary_type": "rock",
       "secondary_type": null
     },
     {
@@ -8937,7 +8937,7 @@
       "special_attack": 55,
       "special_defense": 65,
       "speed": 112,
-      "primary_type": "Rock",
+      "primary_type": "rock",
       "secondary_type": null
     },
     {
@@ -8949,7 +8949,7 @@
       "special_attack": 25,
       "special_defense": 25,
       "speed": 40,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -8961,8 +8961,8 @@
       "special_attack": 43,
       "special_defense": 52,
       "speed": 45,
-      "primary_type": "Poison",
-      "secondary_type": "Water"
+      "primary_type": "poison",
+      "secondary_type": "water"
     },
     {
       "id": 748,
@@ -8973,8 +8973,8 @@
       "special_attack": 53,
       "special_defense": 142,
       "speed": 35,
-      "primary_type": "Poison",
-      "secondary_type": "Water"
+      "primary_type": "poison",
+      "secondary_type": "water"
     },
     {
       "id": 749,
@@ -8985,7 +8985,7 @@
       "special_attack": 45,
       "special_defense": 55,
       "speed": 45,
-      "primary_type": "Ground",
+      "primary_type": "ground",
       "secondary_type": null
     },
     {
@@ -8997,7 +8997,7 @@
       "special_attack": 55,
       "special_defense": 85,
       "speed": 35,
-      "primary_type": "Ground",
+      "primary_type": "ground",
       "secondary_type": null
     },
     {
@@ -9009,8 +9009,8 @@
       "special_attack": 40,
       "special_defense": 72,
       "speed": 27,
-      "primary_type": "Water",
-      "secondary_type": "Bug"
+      "primary_type": "water",
+      "secondary_type": "bug"
     },
     {
       "id": 752,
@@ -9021,8 +9021,8 @@
       "special_attack": 50,
       "special_defense": 132,
       "speed": 42,
-      "primary_type": "Water",
-      "secondary_type": "Bug"
+      "primary_type": "water",
+      "secondary_type": "bug"
     },
     {
       "id": 753,
@@ -9033,7 +9033,7 @@
       "special_attack": 50,
       "special_defense": 35,
       "speed": 35,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -9045,7 +9045,7 @@
       "special_attack": 80,
       "special_defense": 90,
       "speed": 45,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -9057,8 +9057,8 @@
       "special_attack": 65,
       "special_defense": 75,
       "speed": 15,
-      "primary_type": "Grass",
-      "secondary_type": "Fairy"
+      "primary_type": "grass",
+      "secondary_type": "fairy"
     },
     {
       "id": 756,
@@ -9069,8 +9069,8 @@
       "special_attack": 90,
       "special_defense": 100,
       "speed": 30,
-      "primary_type": "Grass",
-      "secondary_type": "Fairy"
+      "primary_type": "grass",
+      "secondary_type": "fairy"
     },
     {
       "id": 757,
@@ -9081,8 +9081,8 @@
       "special_attack": 71,
       "special_defense": 40,
       "speed": 77,
-      "primary_type": "Poison",
-      "secondary_type": "Fire"
+      "primary_type": "poison",
+      "secondary_type": "fire"
     },
     {
       "id": 758,
@@ -9093,8 +9093,8 @@
       "special_attack": 111,
       "special_defense": 60,
       "speed": 117,
-      "primary_type": "Poison",
-      "secondary_type": "Fire"
+      "primary_type": "poison",
+      "secondary_type": "fire"
     },
     {
       "id": 759,
@@ -9105,8 +9105,8 @@
       "special_attack": 45,
       "special_defense": 50,
       "speed": 50,
-      "primary_type": "Normal",
-      "secondary_type": "Fighting"
+      "primary_type": "normal",
+      "secondary_type": "fighting"
     },
     {
       "id": 760,
@@ -9117,8 +9117,8 @@
       "special_attack": 55,
       "special_defense": 60,
       "speed": 60,
-      "primary_type": "Normal",
-      "secondary_type": "Fighting"
+      "primary_type": "normal",
+      "secondary_type": "fighting"
     },
     {
       "id": 761,
@@ -9129,7 +9129,7 @@
       "special_attack": 30,
       "special_defense": 38,
       "speed": 32,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -9141,7 +9141,7 @@
       "special_attack": 40,
       "special_defense": 48,
       "speed": 62,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -9153,7 +9153,7 @@
       "special_attack": 50,
       "special_defense": 98,
       "speed": 72,
-      "primary_type": "Grass",
+      "primary_type": "grass",
       "secondary_type": null
     },
     {
@@ -9165,7 +9165,7 @@
       "special_attack": 82,
       "special_defense": 110,
       "speed": 100,
-      "primary_type": "Fairy",
+      "primary_type": "fairy",
       "secondary_type": null
     },
     {
@@ -9177,8 +9177,8 @@
       "special_attack": 90,
       "special_defense": 110,
       "speed": 60,
-      "primary_type": "Normal",
-      "secondary_type": "Psychic"
+      "primary_type": "normal",
+      "secondary_type": "psychic"
     },
     {
       "id": 766,
@@ -9189,7 +9189,7 @@
       "special_attack": 40,
       "special_defense": 60,
       "speed": 80,
-      "primary_type": "Fighting",
+      "primary_type": "fighting",
       "secondary_type": null
     },
     {
@@ -9201,8 +9201,8 @@
       "special_attack": 20,
       "special_defense": 30,
       "speed": 80,
-      "primary_type": "Bug",
-      "secondary_type": "Water"
+      "primary_type": "bug",
+      "secondary_type": "water"
     },
     {
       "id": 768,
@@ -9213,8 +9213,8 @@
       "special_attack": 60,
       "special_defense": 90,
       "speed": 40,
-      "primary_type": "Bug",
-      "secondary_type": "Water"
+      "primary_type": "bug",
+      "secondary_type": "water"
     },
     {
       "id": 769,
@@ -9225,8 +9225,8 @@
       "special_attack": 70,
       "special_defense": 45,
       "speed": 15,
-      "primary_type": "Ghost",
-      "secondary_type": "Ground"
+      "primary_type": "ghost",
+      "secondary_type": "ground"
     },
     {
       "id": 770,
@@ -9237,8 +9237,8 @@
       "special_attack": 100,
       "special_defense": 75,
       "speed": 35,
-      "primary_type": "Ghost",
-      "secondary_type": "Ground"
+      "primary_type": "ghost",
+      "secondary_type": "ground"
     },
     {
       "id": 771,
@@ -9249,7 +9249,7 @@
       "special_attack": 30,
       "special_defense": 130,
       "speed": 5,
-      "primary_type": "Water",
+      "primary_type": "water",
       "secondary_type": null
     },
     {
@@ -9261,7 +9261,7 @@
       "special_attack": 95,
       "special_defense": 95,
       "speed": 59,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -9273,7 +9273,7 @@
       "special_attack": 95,
       "special_defense": 95,
       "speed": 95,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -9285,8 +9285,8 @@
       "special_attack": 60,
       "special_defense": 100,
       "speed": 60,
-      "primary_type": "Rock",
-      "secondary_type": "Flying"
+      "primary_type": "rock",
+      "secondary_type": "flying"
     },
     {
       "id": 775,
@@ -9297,7 +9297,7 @@
       "special_attack": 75,
       "special_defense": 95,
       "speed": 65,
-      "primary_type": "Normal",
+      "primary_type": "normal",
       "secondary_type": null
     },
     {
@@ -9309,8 +9309,8 @@
       "special_attack": 91,
       "special_defense": 85,
       "speed": 36,
-      "primary_type": "Fire",
-      "secondary_type": "Dragon"
+      "primary_type": "fire",
+      "secondary_type": "dragon"
     },
     {
       "id": 777,
@@ -9321,8 +9321,8 @@
       "special_attack": 40,
       "special_defense": 73,
       "speed": 96,
-      "primary_type": "Electric",
-      "secondary_type": "Steel"
+      "primary_type": "electric",
+      "secondary_type": "steel"
     },
     {
       "id": 778,
@@ -9333,8 +9333,8 @@
       "special_attack": 50,
       "special_defense": 105,
       "speed": 96,
-      "primary_type": "Ghost",
-      "secondary_type": "Fairy"
+      "primary_type": "ghost",
+      "secondary_type": "fairy"
     },
     {
       "id": 779,
@@ -9345,8 +9345,8 @@
       "special_attack": 70,
       "special_defense": 70,
       "speed": 92,
-      "primary_type": "Water",
-      "secondary_type": "Psychic"
+      "primary_type": "water",
+      "secondary_type": "psychic"
     },
     {
       "id": 780,
@@ -9357,8 +9357,8 @@
       "special_attack": 135,
       "special_defense": 91,
       "speed": 36,
-      "primary_type": "Normal",
-      "secondary_type": "Dragon"
+      "primary_type": "normal",
+      "secondary_type": "dragon"
     },
     {
       "id": 781,
@@ -9369,8 +9369,8 @@
       "special_attack": 86,
       "special_defense": 90,
       "speed": 40,
-      "primary_type": "Ghost",
-      "secondary_type": "Grass"
+      "primary_type": "ghost",
+      "secondary_type": "grass"
     },
     {
       "id": 782,
@@ -9381,7 +9381,7 @@
       "special_attack": 45,
       "special_defense": 45,
       "speed": 45,
-      "primary_type": "Dragon",
+      "primary_type": "dragon",
       "secondary_type": null
     },
     {
@@ -9393,8 +9393,8 @@
       "special_attack": 65,
       "special_defense": 70,
       "speed": 65,
-      "primary_type": "Dragon",
-      "secondary_type": "Fighting"
+      "primary_type": "dragon",
+      "secondary_type": "fighting"
     },
     {
       "id": 784,
@@ -9405,8 +9405,8 @@
       "special_attack": 100,
       "special_defense": 105,
       "speed": 85,
-      "primary_type": "Dragon",
-      "secondary_type": "Fighting"
+      "primary_type": "dragon",
+      "secondary_type": "fighting"
     },
     {
       "id": 785,
@@ -9417,8 +9417,8 @@
       "special_attack": 95,
       "special_defense": 75,
       "speed": 130,
-      "primary_type": "Electric",
-      "secondary_type": "Fairy"
+      "primary_type": "electric",
+      "secondary_type": "fairy"
     },
     {
       "id": 786,
@@ -9429,8 +9429,8 @@
       "special_attack": 130,
       "special_defense": 115,
       "speed": 95,
-      "primary_type": "Psychic",
-      "secondary_type": "Fairy"
+      "primary_type": "psychic",
+      "secondary_type": "fairy"
     },
     {
       "id": 787,
@@ -9441,8 +9441,8 @@
       "special_attack": 85,
       "special_defense": 95,
       "speed": 75,
-      "primary_type": "Grass",
-      "secondary_type": "Fairy"
+      "primary_type": "grass",
+      "secondary_type": "fairy"
     },
     {
       "id": 788,
@@ -9453,8 +9453,8 @@
       "special_attack": 95,
       "special_defense": 130,
       "speed": 85,
-      "primary_type": "Water",
-      "secondary_type": "Fairy"
+      "primary_type": "water",
+      "secondary_type": "fairy"
     },
     {
       "id": 789,
@@ -9465,7 +9465,7 @@
       "special_attack": 29,
       "special_defense": 31,
       "speed": 37,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -9477,7 +9477,7 @@
       "special_attack": 29,
       "special_defense": 131,
       "speed": 37,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -9489,8 +9489,8 @@
       "special_attack": 113,
       "special_defense": 89,
       "speed": 97,
-      "primary_type": "Psychic",
-      "secondary_type": "Steel"
+      "primary_type": "psychic",
+      "secondary_type": "steel"
     },
     {
       "id": 792,
@@ -9501,8 +9501,8 @@
       "special_attack": 137,
       "special_defense": 107,
       "speed": 97,
-      "primary_type": "Psychic",
-      "secondary_type": "Ghost"
+      "primary_type": "psychic",
+      "secondary_type": "ghost"
     },
     {
       "id": 793,
@@ -9513,8 +9513,8 @@
       "special_attack": 127,
       "special_defense": 131,
       "speed": 103,
-      "primary_type": "Rock",
-      "secondary_type": "Poison"
+      "primary_type": "rock",
+      "secondary_type": "poison"
     },
     {
       "id": 794,
@@ -9525,8 +9525,8 @@
       "special_attack": 53,
       "special_defense": 53,
       "speed": 79,
-      "primary_type": "Bug",
-      "secondary_type": "Fighting"
+      "primary_type": "bug",
+      "secondary_type": "fighting"
     },
     {
       "id": 795,
@@ -9537,8 +9537,8 @@
       "special_attack": 137,
       "special_defense": 37,
       "speed": 151,
-      "primary_type": "Bug",
-      "secondary_type": "Fighting"
+      "primary_type": "bug",
+      "secondary_type": "fighting"
     },
     {
       "id": 796,
@@ -9549,7 +9549,7 @@
       "special_attack": 173,
       "special_defense": 71,
       "speed": 83,
-      "primary_type": "Electric",
+      "primary_type": "electric",
       "secondary_type": null
     },
     {
@@ -9561,8 +9561,8 @@
       "special_attack": 107,
       "special_defense": 101,
       "speed": 61,
-      "primary_type": "Steel",
-      "secondary_type": "Flying"
+      "primary_type": "steel",
+      "secondary_type": "flying"
     },
     {
       "id": 798,
@@ -9573,8 +9573,8 @@
       "special_attack": 59,
       "special_defense": 31,
       "speed": 109,
-      "primary_type": "Grass",
-      "secondary_type": "Steel"
+      "primary_type": "grass",
+      "secondary_type": "steel"
     },
     {
       "id": 799,
@@ -9585,8 +9585,8 @@
       "special_attack": 97,
       "special_defense": 53,
       "speed": 43,
-      "primary_type": "Dark",
-      "secondary_type": "Dragon"
+      "primary_type": "dark",
+      "secondary_type": "dragon"
     },
     {
       "id": 800,
@@ -9597,7 +9597,7 @@
       "special_attack": 127,
       "special_defense": 89,
       "speed": 79,
-      "primary_type": "Psychic",
+      "primary_type": "psychic",
       "secondary_type": null
     },
     {
@@ -9609,8 +9609,8 @@
       "special_attack": 130,
       "special_defense": 115,
       "speed": 65,
-      "primary_type": "Steel",
-      "secondary_type": "Fairy"
+      "primary_type": "steel",
+      "secondary_type": "fairy"
     },
     {
       "id": 802,
@@ -9621,8 +9621,8 @@
       "special_attack": 90,
       "special_defense": 90,
       "speed": 125,
-      "primary_type": "Fighting",
-      "secondary_type": "Ghost"
+      "primary_type": "fighting",
+      "secondary_type": "ghost"
     },
     {
       "id": 803,
@@ -9633,7 +9633,7 @@
       "special_attack": 73,
       "special_defense": 67,
       "speed": 73,
-      "primary_type": "Poison",
+      "primary_type": "poison",
       "secondary_type": null
     },
     {
@@ -9645,8 +9645,8 @@
       "special_attack": 127,
       "special_defense": 73,
       "speed": 121,
-      "primary_type": "Poison",
-      "secondary_type": "Dragon"
+      "primary_type": "poison",
+      "secondary_type": "dragon"
     },
     {
       "id": 805,
@@ -9657,8 +9657,8 @@
       "special_attack": 53,
       "special_defense": 101,
       "speed": 13,
-      "primary_type": "Rock",
-      "secondary_type": "Steel"
+      "primary_type": "rock",
+      "secondary_type": "steel"
     },
     {
       "id": 806,
@@ -9669,8 +9669,8 @@
       "special_attack": 151,
       "special_defense": 79,
       "speed": 107,
-      "primary_type": "Fire",
-      "secondary_type": "Ghost"
+      "primary_type": "fire",
+      "secondary_type": "ghost"
     },
     {
       "id": 807,
@@ -9681,7 +9681,7 @@
       "special_attack": 102,
       "special_defense": 80,
       "speed": 143,
-      "primary_type": "Electric",
+      "primary_type": "electric",
       "secondary_type": null
     },
     {
@@ -9693,7 +9693,7 @@
       "special_attack": 55,
       "special_defense": 35,
       "speed": 34,
-      "primary_type": "Steel",
+      "primary_type": "steel",
       "secondary_type": null
     },
     {
@@ -9705,7 +9705,7 @@
       "special_attack": 80,
       "special_defense": 65,
       "speed": 34,
-      "primary_type": "Steel",
+      "primary_type": "steel",
       "secondary_type": null
     }
   ]

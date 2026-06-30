@@ -1,4 +1,5 @@
 export {
+  useFilters,
   useFiltersActions,
   useMode,
   useModeActions,
@@ -8,5 +9,4 @@ export {
   useQueryParams,
   useSorting,
   useSortingActions,
-  useStatsFilters,
 } from './global.store'

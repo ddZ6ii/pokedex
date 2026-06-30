@@ -11,11 +11,11 @@ import {
 import { Button } from '@/shared/components/ui/button'
 
 export function StatFilters({
-  onStatsReset,
+  onResetStats,
   stats,
   setStats,
 }: {
-  onStatsReset: () => void
+  onResetStats: () => void
   stats: FilteringStats
   setStats: React.Dispatch<React.SetStateAction<FilteringStats>>
 }) {
@@ -46,7 +46,7 @@ export function StatFilters({
       <Button
         variant="outline"
         onClick={() => {
-          onStatsReset()
+          onResetStats()
         }}
         className="group mx-auto w-full max-w-xs items-center px-4 aria-expanded:bg-transparent"
       >

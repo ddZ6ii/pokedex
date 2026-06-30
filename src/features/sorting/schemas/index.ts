@@ -1,1 +1,1 @@
-export { SortingSchema } from './sorting.schema'
+export { SortingSchema, type Sorting } from './sorting.schema'

@@ -8,18 +8,21 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from '@/shared/components/ui/collapsible'
+import { cn } from '@/shared/lib/utils'
 
 export function CollapsibleFilter({
   activeFiltersCount,
+  className,
   children,
   label,
   ...props
 }: React.ComponentProps<typeof Collapsible> & {
-  label: string
   activeFiltersCount: number
+  className?: string
+  label: string
 }) {
   return (
-    <Card className="w-full py-1">
+    <Card className={cn('w-full py-1', className)}>
       <CardContent className="p-0">
         <Collapsible {...props}>
           <CollapsibleTrigger asChild>

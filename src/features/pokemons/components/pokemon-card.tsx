@@ -10,29 +10,30 @@ import {
   type PokemonType,
 } from '@/features/pokemons/schemas/pokemon.schema'
 import { cn } from '@/shared/lib/utils'
+import { capitalize } from '@/shared/utilities'
 
 const BASE_IMAGE_URL =
   'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork'
 
 const COLORS = new Map<PokemonType, string>([
-  ['Bug', 'bg-[#92bd2d]'],
-  ['Dark', 'bg-[#595761]'],
-  ['Dragon', 'bg-[#076ac8]'],
-  ['Electric', 'bg-[#f2d94e]'],
-  ['Fairy', 'bg-[#ee91e5]'],
-  ['Fighting', 'bg-[#d3425f]'],
-  ['Fire', 'bg-[#fba54d]'],
-  ['Flying', 'bg-[#a1bbec]'],
-  ['Ghost', 'bg-[#5f6dbc]'],
-  ['Grass', 'bg-[#5fbe58]'],
-  ['Ground', 'bg-[#da7c4c]'],
-  ['Ice', 'bg-[#76d0c1]'],
-  ['Normal', 'bg-[#a0a29f]'],
-  ['Poison', 'bg-[#b863cf]'],
-  ['Psychic', 'bg-[#fa8582]'],
-  ['Rock', 'bg-[#c9bc8a]'],
-  ['Steel', 'bg-[#5894a3]'],
-  ['Water', 'bg-[#549ce0]'],
+  ['bug', 'bg-[#92bd2d]'],
+  ['dark', 'bg-[#595761]'],
+  ['dragon', 'bg-[#076ac8]'],
+  ['electric', 'bg-[#f2d94e]'],
+  ['fairy', 'bg-[#ee91e5]'],
+  ['fighting', 'bg-[#d3425f]'],
+  ['fire', 'bg-[#fba54d]'],
+  ['flying', 'bg-[#a1bbec]'],
+  ['ghost', 'bg-[#5f6dbc]'],
+  ['grass', 'bg-[#5fbe58]'],
+  ['ground', 'bg-[#da7c4c]'],
+  ['ice', 'bg-[#76d0c1]'],
+  ['normal', 'bg-[#a0a29f]'],
+  ['poison', 'bg-[#b863cf]'],
+  ['psychic', 'bg-[#fa8582]'],
+  ['rock', 'bg-[#c9bc8a]'],
+  ['steel', 'bg-[#5894a3]'],
+  ['water', 'bg-[#549ce0]'],
 ])
 
 const getColorForType = (type: PokemonType): string => {
@@ -55,7 +56,7 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
     <Card className="relative max-w-xs cursor-pointer">
       <div className="absolute top-2 right-2 flex flex-col gap-2">
         {types.map((type) => (
-          <WithTooltip key={type} tooltip={type} side="right">
+          <WithTooltip key={type} tooltip={capitalize(type)} side="right">
             <div
               className={cn(
                 'size-6 cursor-pointer rounded-full p-1 transition-transform hover:scale-110',
@@ -83,7 +84,7 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
             alt={pokemon.name}
             width={280}
             height={280}
-            className={cn('mx-auto block size-70', !loaded && 'hidden')}
+            className={cn('mx-auto block object-cover', !loaded && 'hidden')}
             onLoad={() => {
               setLoaded(true)
             }}

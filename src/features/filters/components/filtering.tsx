@@ -8,31 +8,46 @@ export function Filtering({ className }: { className?: string }) {
   const isMobile = useIsMobile()
 
   const {
-    activeFiltersCount,
-    activeStatsCount,
     applyFilters,
+    appliedFiltersCount,
+    draftStats,
+    draftStatsCount,
+    draftTypes,
+    draftTypesCount,
+    error,
+    hasFiltersChange,
+    resetDraftStats,
     resetFilters,
-    resetStats,
-    setStats,
-    stats,
+    selectAllDraftTypes,
+    selectDraftType,
+    setDraftStats,
     syncFilters,
+    unselectAllDraftTypes,
   } = useFilteringPanel()
 
   const FilteringPanel = isMobile ? FilteringDrawer : FilteringPopover
 
   return (
     <FilteringPanel
-      activeFiltersCount={activeFiltersCount}
+      appliedFilterCount={appliedFiltersCount}
+      hasFiltersChange={hasFiltersChange}
       className={className}
+      error={error}
       onApply={applyFilters}
       onOpen={syncFilters}
       onReset={resetFilters}
     >
       <FilteringPanelContent
-        activeStatsCount={activeStatsCount}
-        onStatsReset={resetStats}
-        stats={stats}
-        setStats={setStats}
+        error={error}
+        onResetStats={resetDraftStats}
+        onSelectType={selectDraftType}
+        onSelectAllTypes={selectAllDraftTypes}
+        onUnselectAllTypes={unselectAllDraftTypes}
+        stats={draftStats}
+        statsCount={draftStatsCount}
+        setStats={setDraftStats}
+        types={draftTypes}
+        typesCount={draftTypesCount}
       />
     </FilteringPanel>
   )

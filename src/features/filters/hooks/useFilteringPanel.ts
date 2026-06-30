@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 
 import {
   MAX_STAT_VALUE,
@@ -6,86 +6,200 @@ import {
   type FilteringStats,
   type Filters,
 } from '@/features/filters/schemas'
-import { POKEMON_SKILLS, type PokemonSkills } from '@/features/pokemons/schemas'
-import { useStatsFilters, useFiltersActions } from '@/shared/store'
+import {
+  POKEMON_SKILLS,
+  POKEMON_TYPES,
+  type PokemonType,
+} from '@/features/pokemons/schemas'
+import { useFilters, useFiltersActions } from '@/shared/store'
 
-export const defaultStats = Object.fromEntries(
+export const DEFAULT_DRAFT_STATS = Object.fromEntries(
   POKEMON_SKILLS.map((skill) => [skill, [MIN_STAT_VALUE, MAX_STAT_VALUE]]),
 ) as FilteringStats
 
-export const initStats = (globalStats: Filters['stats']): FilteringStats => {
-  if (!globalStats) return defaultStats
+const DEFAULT_TYPES = new Set<PokemonType>(POKEMON_TYPES)
+
+const TYPE_FILTERS_ERROR = 'Please select at least one type.'
+
+export const initDraftStats = (
+  appliedStats: Filters['stats'] = null,
+): FilteringStats => {
+  if (!appliedStats) return DEFAULT_DRAFT_STATS
 
   const initialStats = {} as FilteringStats
 
   for (const skill of POKEMON_SKILLS) {
-    if (globalStats[skill] === undefined) {
+    if (appliedStats[skill] === undefined) {
       initialStats[skill] = [MIN_STAT_VALUE, MAX_STAT_VALUE]
       continue
     }
-    initialStats[skill] = [...globalStats[skill]]
+    initialStats[skill] = [...appliedStats[skill]]
   }
 
   return initialStats
 }
 
-export function useFilteringPanel() {
-  const { stats: activeStats } = useStatsFilters()
-  const { setStats: setActiveStats, resetStats: resetActiveStats } =
-    useFiltersActions()
+export const initDraftTypes = (
+  appliedTypes: Filters['types'],
+): Set<PokemonType> => {
+  if (!appliedTypes) return DEFAULT_TYPES
+  return new Set(appliedTypes)
+}
 
-  const [stats, setStats] = useState(() => initStats(activeStats))
+export function useFilteringPanel() {
+  const { stats: appliedStats, types: appliedTypes } = useFilters()
+  const {
+    setStats: setAppliedStats,
+    setTypes: setAppliedTypes,
+    resetStats: resetAppliedStats,
+    resetTypes: resetAppliedTypes,
+  } = useFiltersActions()
+
+  const [error, setError] = useState<Error | null>(null)
+  const [draftStats, setDraftStats] = useState(() =>
+    initDraftStats(appliedStats),
+  )
+  const [draftTypes, setDraftTypes] = useState(() =>
+    initDraftTypes(appliedTypes),
+  )
 
   const applyFilters = useCallback(() => {
-    const nextStats: Filters['stats'] = {}
+    if (error) return
 
-    for (const stat in stats) {
-      const hasChanged =
-        stats[stat as PokemonSkills][0] !== MIN_STAT_VALUE ||
-        stats[stat as PokemonSkills][1] !== MAX_STAT_VALUE
+    const nextAppliedStats = Object.fromEntries(
+      Object.entries(draftStats).filter(
+        ([_, [min, max]]) => min !== MIN_STAT_VALUE || max !== MAX_STAT_VALUE,
+      ),
+    ) as FilteringStats
 
-      if (!hasChanged) continue
-
-      nextStats[stat as PokemonSkills] = stats[stat as PokemonSkills]
+    if (Object.keys(nextAppliedStats).length) {
+      setAppliedStats(nextAppliedStats)
+    } else if (appliedStats) {
+      resetAppliedStats()
     }
 
-    setActiveStats(nextStats)
-  }, [stats, setActiveStats])
+    if (draftTypes.size === POKEMON_TYPES.length) {
+      if (appliedTypes) resetAppliedTypes()
+    } else {
+      setAppliedTypes(new Set(draftTypes))
+    }
+  }, [
+    appliedStats,
+    appliedTypes,
+    draftStats,
+    draftTypes,
+    error,
+    resetAppliedStats,
+    resetAppliedTypes,
+    setAppliedStats,
+    setAppliedTypes,
+  ])
 
   // Sync local component state with global store.
   // This is needed in case user opens the drawer, makes some changes, but doesn't apply them and closes the drawer. When they open it again, we want to show the currently applied filtering options, not the ones they were editing before.
   const syncFilters = useCallback(() => {
-    setStats(initStats(activeStats))
-  }, [activeStats])
+    setDraftStats(initDraftStats(appliedStats))
+    setDraftTypes(initDraftTypes(appliedTypes))
+    setError(null)
+  }, [appliedStats, appliedTypes])
 
-  const resetStats = useCallback(() => {
-    setStats(defaultStats)
-    if (activeStats) {
-      resetActiveStats()
-    }
-  }, [activeStats, resetActiveStats])
+  const resetDraftStats = useCallback(() => {
+    setDraftStats(DEFAULT_DRAFT_STATS)
+  }, [])
+
+  const resetDraftTypes = useCallback(() => {
+    setError(null)
+    setDraftTypes(DEFAULT_TYPES)
+  }, [])
 
   const resetFilters = useCallback(() => {
-    setStats(defaultStats)
-    if (activeStats) {
-      resetActiveStats()
-    }
-  }, [resetActiveStats, activeStats])
+    resetDraftStats()
+    resetDraftTypes()
+    resetAppliedStats()
+    resetAppliedTypes()
+  }, [resetAppliedStats, resetAppliedTypes, resetDraftStats, resetDraftTypes])
 
-  const activeStatsCount = Object.values(stats).filter(
+  const selectDraftType = useCallback(
+    (type: PokemonType, nextChecked: boolean) => {
+      let nextError: Error | null = null
+
+      setDraftTypes((prev) => {
+        const newSet = new Set(prev)
+        if (nextChecked) {
+          newSet.add(type)
+        } else {
+          newSet.delete(type)
+        }
+        if (newSet.size === 0) {
+          nextError = new Error(TYPE_FILTERS_ERROR)
+        }
+        return newSet
+      })
+
+      setError(nextError)
+    },
+    [],
+  )
+
+  const selectAllDraftTypes = useCallback(() => {
+    setError(null)
+    setDraftTypes(DEFAULT_TYPES)
+  }, [])
+
+  const unselectAllDraftTypes = useCallback(() => {
+    setError(new Error(TYPE_FILTERS_ERROR))
+    setDraftTypes(new Set())
+  }, [])
+
+  const _appliedStatsCount = Object.values(appliedStats ?? {}).length
+  const appliedTypesCount = appliedTypes?.size ?? 0
+  const appliedFiltersCount = _appliedStatsCount + appliedTypesCount
+
+  const draftStatsCount = Object.values(draftStats).filter(
     ([min, max]) => min > MIN_STAT_VALUE || max < MAX_STAT_VALUE,
   ).length
 
-  const activeFiltersCount = activeStatsCount
+  const draftTypesCount =
+    draftTypes.size === POKEMON_TYPES.length ? 0 : draftTypes.size
+
+  const _hasStatFiltersChange = useMemo(
+    () =>
+      Object.entries(draftStats).some(([skill, [min, max]]) => {
+        const appliedStat = appliedStats?.[skill as keyof FilteringStats]
+        if (!appliedStat) {
+          return min !== MIN_STAT_VALUE || max !== MAX_STAT_VALUE
+        }
+        return appliedStat[0] !== min || appliedStat[1] !== max
+      }),
+    [draftStats, appliedStats],
+  )
+
+  const _effectiveAppliedTypes = appliedTypes ?? DEFAULT_TYPES
+
+  const _hasTypeFiltersChange = useMemo(
+    () =>
+      draftTypes.size !== _effectiveAppliedTypes.size ||
+      [...draftTypes].some((type) => !_effectiveAppliedTypes.has(type)),
+    [draftTypes, _effectiveAppliedTypes],
+  )
+
+  const hasFiltersChange = _hasStatFiltersChange || _hasTypeFiltersChange
 
   return {
-    activeFiltersCount,
-    activeStatsCount,
     applyFilters,
+    appliedFiltersCount,
+    draftStats,
+    draftStatsCount,
+    draftTypes,
+    draftTypesCount,
+    error,
+    hasFiltersChange,
     resetFilters,
-    resetStats,
-    setStats,
-    stats,
+    resetDraftStats,
+    selectAllDraftTypes,
+    selectDraftType,
+    setDraftStats,
     syncFilters,
+    unselectAllDraftTypes,
   }
 }

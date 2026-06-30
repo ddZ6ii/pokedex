@@ -18,20 +18,24 @@ import { cn } from '@/shared/lib/utils'
 const LABEL = 'Edit filtering options'
 
 export function FilteringDrawer({
-  activeFiltersCount,
+  appliedFilterCount,
   children,
   className,
+  hasFiltersChange,
+  error,
   onApply,
   onOpen,
   onReset,
 }: React.PropsWithChildren & {
-  activeFiltersCount: number
+  appliedFilterCount: number
   className?: string
+  hasFiltersChange: boolean
+  error?: Error | null
   onApply?: () => void
   onOpen?: () => void
   onReset?: () => void
 }) {
-  const hasFiltersSelected = activeFiltersCount > 0
+  const hasFiltersApplied = appliedFilterCount > 0
 
   return (
     <Drawer
@@ -50,7 +54,7 @@ export function FilteringDrawer({
               size="icon-md"
               className={cn(
                 className,
-                hasFiltersSelected &&
+                hasFiltersApplied &&
                   'dark:text-foreground! text-background bg-primary! hover:bg-primary/95! hover:text-background',
               )}
             >
@@ -59,7 +63,7 @@ export function FilteringDrawer({
           </DrawerTrigger>
         </WithTooltip>
 
-        {hasFiltersSelected && <CountBadge count={activeFiltersCount} />}
+        {hasFiltersApplied && <CountBadge count={appliedFilterCount} />}
       </div>
 
       <DrawerContent className="items-center overflow-hidden">
@@ -81,6 +85,7 @@ export function FilteringDrawer({
           <DrawerFooter className="gap-x-4 @md/drawer-content:flex-row">
             <DrawerClose asChild>
               <Button
+                disabled={!!error || !hasFiltersChange}
                 className="@md/drawer-content:flex-1"
                 onClick={() => {
                   onApply?.()
@@ -91,6 +96,7 @@ export function FilteringDrawer({
             </DrawerClose>
             <DrawerClose asChild>
               <Button
+                disabled={!hasFiltersChange}
                 variant="outline"
                 className="@md/drawer-content:flex-1"
                 onClick={() => {

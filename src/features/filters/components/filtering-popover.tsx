@@ -17,20 +17,24 @@ import { cn } from '@/shared/lib/utils'
 const LABEL = 'Edit filtering options'
 
 export function FilteringPopover({
-  activeFiltersCount,
+  appliedFilterCount,
   children,
   className,
+  hasFiltersChange,
+  error,
   onApply,
   onOpen,
   onReset,
 }: React.PropsWithChildren & {
-  activeFiltersCount: number
+  appliedFilterCount: number
   className?: string
+  hasFiltersChange: boolean
+  error?: Error | null
   onApply?: () => void
   onOpen?: () => void
   onReset?: () => void
 }) {
-  const hasFiltersSelected = activeFiltersCount > 0
+  const hasAppliedFilters = appliedFilterCount > 0
 
   return (
     <Popover
@@ -49,7 +53,7 @@ export function FilteringPopover({
               size="icon-md"
               className={cn(
                 className,
-                hasFiltersSelected &&
+                hasAppliedFilters &&
                   'dark:text-foreground! text-background bg-primary! hover:bg-primary/95! hover:text-background',
               )}
             >
@@ -58,7 +62,7 @@ export function FilteringPopover({
           </PopoverTrigger>
         </WithTooltip>
 
-        {hasFiltersSelected && <CountBadge count={activeFiltersCount} />}
+        {hasAppliedFilters && <CountBadge count={appliedFilterCount} />}
       </div>
 
       <PopoverContent
@@ -82,6 +86,7 @@ export function FilteringPopover({
 
           <PopoverFooter className="gap-x-4 p-4 @md/popover-content:flex-row">
             <Button
+              disabled={!!error || !hasFiltersChange}
               className="@md/popover-content:flex-1"
               onClick={() => {
                 onApply?.()
@@ -90,6 +95,7 @@ export function FilteringPopover({
               Apply
             </Button>
             <Button
+              disabled={!hasFiltersChange}
               variant="outline"
               className="@md/popover-content:flex-1"
               onClick={() => {

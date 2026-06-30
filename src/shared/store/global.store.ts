@@ -97,8 +97,8 @@ const usePaginationFilters = () =>
   useStore(
     useShallow((state) => ({ page: state.page, perPage: state.perPage })),
   )
-const useStatsFilters = () =>
-  useStore(useShallow((state) => ({ stats: state.stats })))
+const useFilters = () =>
+  useStore(useShallow((state) => ({ stats: state.stats, types: state.types })))
 const useFiltersActions = () => useStore((state) => state.filterActions)
 
 // Sorting slice selectors
@@ -114,10 +114,12 @@ const useQueryParams = () =>
       search: state.search,
       sort: state.sort,
       stats: state.stats,
+      types: state.types,
     })),
   )
 
 export {
+  useFilters,
   useFiltersActions,
   useMode,
   useModeActions,
@@ -127,5 +129,4 @@ export {
   useQueryParams,
   useSorting,
   useSortingActions,
-  useStatsFilters,
 }

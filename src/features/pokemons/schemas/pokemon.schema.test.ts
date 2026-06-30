@@ -10,8 +10,8 @@ import {
 const validPokemon: Pokemon = {
   id: 1,
   name: 'Bulbasaur',
-  primary_type: 'Grass',
-  secondary_type: 'Poison',
+  primary_type: 'grass',
+  secondary_type: 'poison',
   hp: 45,
   attack: 49,
   defense: 49,

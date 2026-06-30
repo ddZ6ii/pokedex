@@ -1,3 +1,4 @@
+export { CheckboxField } from './checkbox-field'
 export { CountBadge } from './count-badge'
 export { ErrorAlert } from './error-alert'
 export { ErrorFallback } from './error-fallback'

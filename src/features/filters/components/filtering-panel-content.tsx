@@ -2,36 +2,76 @@ import { useState } from 'react'
 
 import { CollapsibleFilter } from '@/features/filters/components/collapsible-filter'
 import { StatFilters } from '@/features/filters/components/stat-filters'
+import { TypeFilters } from '@/features/filters/components/type-filters'
 import { type FilteringStats } from '@/features/filters/schemas/filter.schema'
+import { type PokemonType } from '@/features/pokemons/schemas'
+import { cn } from '@/shared/lib/utils'
+
+const activeClassName = 'shadow-foreground/5 shadow-lg'
 
 export function FilteringPanelContent({
-  activeStatsCount,
-  onStatsReset,
+  error = null,
+  onSelectType,
+  onSelectAllTypes,
+  onResetStats,
+  onUnselectAllTypes,
   setStats,
   stats,
+  statsCount,
+  typesCount,
+  types,
 }: {
-  activeStatsCount: number
-  onStatsReset: () => void
+  error?: Error | null
+  onSelectType: (type: PokemonType, nextChecked: boolean) => void
+  onSelectAllTypes: () => void
+  onResetStats: () => void
+  onUnselectAllTypes: () => void
   stats: FilteringStats
+  statsCount: number
   setStats: React.Dispatch<React.SetStateAction<FilteringStats>>
+  types: Set<PokemonType>
+  typesCount: number
 }) {
-  const [activeIndex, setActiveIndex] = useState(0)
+  const [activeIndex, setActiveIndex] = useState(
+    statsCount > 0 ? 0 : typesCount > 0 ? 1 : -1,
+  )
 
   return (
-    <CollapsibleFilter
-      label="Pokémon Stats"
-      activeFiltersCount={activeStatsCount}
-      defaultOpen={true}
-      open={activeIndex === 0}
-      onOpenChange={(open) => {
-        setActiveIndex(open ? 0 : -1)
-      }}
-    >
-      <StatFilters
-        stats={stats}
-        setStats={setStats}
-        onStatsReset={onStatsReset}
-      />
-    </CollapsibleFilter>
+    <div className="space-y-4">
+      <CollapsibleFilter
+        label="Pokémon Stats"
+        activeFiltersCount={statsCount}
+        defaultOpen={true}
+        open={activeIndex === 0}
+        onOpenChange={(open) => {
+          setActiveIndex(open ? 0 : -1)
+        }}
+        className={cn(activeIndex === 0 && activeClassName)}
+      >
+        <StatFilters
+          stats={stats}
+          setStats={setStats}
+          onResetStats={onResetStats}
+        />
+      </CollapsibleFilter>
+
+      <CollapsibleFilter
+        label="Pokémon Types"
+        activeFiltersCount={typesCount}
+        open={activeIndex === 1}
+        onOpenChange={(open) => {
+          setActiveIndex(open ? 1 : -1)
+        }}
+        className={cn(activeIndex === 1 && activeClassName)}
+      >
+        <TypeFilters
+          error={error}
+          types={types}
+          onSelectType={onSelectType}
+          onSelectAllTypes={onSelectAllTypes}
+          onUnselectAllTypes={onUnselectAllTypes}
+        />
+      </CollapsibleFilter>
+    </div>
   )
 }

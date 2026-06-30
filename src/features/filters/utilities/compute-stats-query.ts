@@ -4,22 +4,21 @@ import {
   type Filters,
 } from '@/features/filters/schemas/filter.schema'
 
-export function computeStatsQuery(
-  stats: Filters['stats'],
-): Record<string, string> {
-  return Object.entries(stats ?? {}).reduce<Record<string, string>>(
+export type StatCondition = { eq: number } | { gte?: number; lte?: number }
+export type StatsQuery = Record<string, StatCondition>
+
+export function computeStatsQuery(stats: Filters['stats']): StatsQuery {
+  return Object.entries(stats ?? {}).reduce<StatsQuery>(
     (acc, [stat, [gte, lte]]) => {
       if (gte === lte) {
-        acc[`${stat}:eq`] = String(gte)
+        acc[stat] = { eq: gte }
         return acc
       }
 
-      if (gte > MIN_STAT_VALUE) {
-        acc[`${stat}:gte`] = String(gte)
-      }
-      if (lte < MAX_STAT_VALUE) {
-        acc[`${stat}:lte`] = String(lte)
-      }
+      const condition: { gte?: number; lte?: number } = {}
+      if (gte > MIN_STAT_VALUE) condition.gte = gte
+      if (lte < MAX_STAT_VALUE) condition.lte = lte
+      acc[stat] = condition
       return acc
     },
     {},

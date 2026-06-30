@@ -12,6 +12,8 @@ const validFilterInput: Filters = {
   page: 2,
   perPage: 20,
   search: 'bulba',
+  stats: null,
+  types: null,
 }
 
 describe('FilterSchema', () => {
@@ -20,6 +22,8 @@ describe('FilterSchema', () => {
       page: 2,
       perPage: 20,
       search: 'bulba',
+      stats: null,
+      types: null,
     })
   })
 
@@ -62,8 +66,12 @@ describe('FilterSchema', () => {
   })
 
   describe('stats', () => {
-    it('omits stats when not provided', () => {
-      expect(FilterSchema.parse({}).stats).toBeUndefined()
+    it('defaults to null', () => {
+      expect(FilterSchema.parse({}).stats).toBeNull()
+    })
+
+    it('accepts null', () => {
+      expect(FilterSchema.parse({ stats: null }).stats).toBeNull()
     })
 
     it('accepts a partial stats object', () => {
@@ -98,11 +106,43 @@ describe('FilterSchema', () => {
     })
 
     it('rejects stat value below MIN_STAT_VALUE', () => {
-      expect(() => FilterSchema.parse({ stats: { hp: [-1, 100] } })).toThrow()
+      expect(() =>
+        FilterSchema.parse({
+          stats: { hp: [MIN_STAT_VALUE - 1, MAX_STAT_VALUE] },
+        }),
+      ).toThrow()
     })
 
     it('rejects stat value above MAX_STAT_VALUE', () => {
-      expect(() => FilterSchema.parse({ stats: { hp: [0, 101] } })).toThrow()
+      expect(() =>
+        FilterSchema.parse({ stats: { hp: [0, MAX_STAT_VALUE + 1] } }),
+      ).toThrow()
+    })
+  })
+
+  describe('types', () => {
+    it('defaults to null', () => {
+      expect(FilterSchema.parse({}).types).toBeNull()
+    })
+
+    it('accepts null', () => {
+      expect(FilterSchema.parse({ types: null }).types).toBeNull()
+    })
+
+    it('accepts a Set of valid types', () => {
+      expect(() =>
+        FilterSchema.parse({ types: new Set(['fire', 'water']) }),
+      ).not.toThrow()
+    })
+
+    it('accepts an empty Set', () => {
+      expect(() => FilterSchema.parse({ types: new Set() })).not.toThrow()
+    })
+
+    it('rejects a Set with invalid type strings', () => {
+      expect(() =>
+        FilterSchema.parse({ types: new Set(['invalid']) }),
+      ).toThrow()
     })
   })
 })
