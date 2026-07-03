@@ -1,12 +1,8 @@
-import { SortingDrawer } from '@/features/sorting/components/sorting-drawer'
+import { SortingPanel } from '@/features/sorting/components/sorting-panel'
 import { SortingPanelContent } from '@/features/sorting/components/sorting-panel-content'
-import { SortingPopover } from '@/features/sorting/components/sorting-popover'
 import { useSortingPanel } from '@/features/sorting/hooks/useSortingPanel'
-import { useIsMobile } from '@/shared/hooks'
 
 export function Sorting({ className }: { className?: string }) {
-  const isMobile = useIsMobile()
-
   const {
     selectedCriteria,
     selectedCriteriaCount,
@@ -15,8 +11,6 @@ export function Sorting({ className }: { className?: string }) {
     resetSorting,
     syncSorting,
   } = useSortingPanel()
-
-  const SortingPanel = isMobile ? SortingDrawer : SortingPopover
 
   return (
     <SortingPanel
