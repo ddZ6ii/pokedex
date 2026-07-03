@@ -1,12 +1,8 @@
-import { FilteringDrawer } from '@/features/filters/components/filtering-drawer'
+import { FilteringPanel } from '@/features/filters/components/filtering-panel'
 import { FilteringPanelContent } from '@/features/filters/components/filtering-panel-content'
-import { FilteringPopover } from '@/features/filters/components/filtering-popover'
 import { useFilteringPanel } from '@/features/filters/hooks/useFilteringPanel'
-import { useIsMobile } from '@/shared/hooks'
 
 export function Filtering({ className }: { className?: string }) {
-  const isMobile = useIsMobile()
-
   const {
     applyFilters,
     appliedFiltersCount,
@@ -24,8 +20,6 @@ export function Filtering({ className }: { className?: string }) {
     syncFilters,
     unselectAllDraftTypes,
   } = useFilteringPanel()
-
-  const FilteringPanel = isMobile ? FilteringDrawer : FilteringPopover
 
   return (
     <FilteringPanel
