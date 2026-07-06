@@ -73,8 +73,7 @@ const useSortItemContext = <T extends string>() => {
 
 type Criterion<T extends string> = [T | null, SortingOrder | null]
 type SetCriteria<T extends string> =
-  | Criterion<T>[]
-  | ((prev: Criterion<T>[]) => Criterion<T>[])
+  Criterion<T>[] | ((prev: Criterion<T>[]) => Criterion<T>[])
 
 type BaseProps<T extends string> = React.PropsWithChildren & {
   sortOptions: readonly SelectOption<T>[]
@@ -90,8 +89,7 @@ type ControlledProps<T extends string> = BaseProps<T> & {
   setSelectedCriteria: (value: SetCriteria<T>) => void
 }
 type MultiSortProps<T extends string> =
-  | UncontrolledProps<T>
-  | ControlledProps<T>
+  UncontrolledProps<T> | ControlledProps<T>
 
 function MultiSort<T extends string>({
   children,
