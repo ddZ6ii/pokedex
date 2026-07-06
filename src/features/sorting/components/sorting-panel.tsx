@@ -13,30 +13,30 @@ import {
   DrawerTrigger,
 } from '@/shared/components/ui/drawer'
 import {
-  Popover,
-  PopoverContent,
-  PopoverDescription,
-  PopoverFooter,
-  PopoverHeader,
-  PopoverTitle,
-  PopoverTrigger,
-} from '@/shared/components/ui/popover'
-import { Separator } from '@/shared/components/ui/separator'
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/shared/components/ui/dialog'
 import { cn } from '@/shared/lib/utils'
 import { useIsMobile } from '@/shared/hooks'
 
 const LABEL = 'Edit sorting options'
 
 export function SortingTrigger({
-  className,
+  appliedCriteriaCount,
   asChild: TriggerComponent,
-  selectedCount,
+  className,
 }: {
+  appliedCriteriaCount: number
   className?: string
   asChild: React.ElementType
-  selectedCount?: number
 }) {
-  const hasCriteriaSelected = selectedCount !== undefined && selectedCount > 0
+  const hasCriteriaSelected = appliedCriteriaCount > 0
 
   return (
     <div className="relative">
@@ -57,21 +57,23 @@ export function SortingTrigger({
         </TriggerComponent>
       </WithTooltip>
 
-      {hasCriteriaSelected && <CountBadge count={selectedCount} />}
+      {hasCriteriaSelected && <CountBadge count={appliedCriteriaCount} />}
     </div>
   )
 }
 
 export function SortingPanel({
+  appliedCriteriaCount,
   children,
-  selectedCount,
+  className,
+  hasSortingChange,
   onApply,
   onOpen,
   onReset,
-  className,
 }: React.PropsWithChildren & {
+  appliedCriteriaCount: number
   className?: string
-  selectedCount?: number
+  hasSortingChange: boolean
   onApply?: () => void
   onOpen?: () => void
   onReset?: () => void
@@ -88,14 +90,14 @@ export function SortingPanel({
         }}
       >
         <SortingTrigger
+          appliedCriteriaCount={appliedCriteriaCount}
           asChild={DrawerTrigger}
           className={className}
-          selectedCount={selectedCount}
         />
 
         <DrawerContent className="items-center overflow-hidden">
-          <div className="@container/drawer-content flex min-h-0 w-full max-w-xl flex-1 flex-col">
-            <DrawerHeader>
+          <div className="flex min-h-0 w-full flex-1 flex-col">
+            <DrawerHeader className="mx-auto max-w-xl p-4 text-center">
               <DrawerTitle>Sorting Options</DrawerTitle>
               <DrawerDescription>
                 Choose a field to sort by and a direction.
@@ -103,34 +105,34 @@ export function SortingPanel({
             </DrawerHeader>
 
             {/* Content */}
-            <div className="no-scrollbar flex-1 overflow-y-auto p-4">
+            <div className="no-scrollbar mx-auto mb-4 w-full max-w-xl flex-1 overflow-y-auto p-4">
               {children}
             </div>
 
-            <Separator className="mx-auto my-2 max-w-1/2" />
-
-            <DrawerFooter className="gap-x-4 @md/drawer-content:flex-row">
-              <DrawerClose asChild>
-                <Button
-                  className="@md/drawer-content:flex-1"
-                  onClick={() => {
-                    onApply?.()
-                  }}
-                >
-                  Apply
-                </Button>
-              </DrawerClose>
-              <DrawerClose asChild>
+            <DrawerFooter className="bg-muted/50">
+              <div className="mx-auto flex w-full max-w-xl flex-col gap-4 px-4 py-2 sm:flex-row">
                 <Button
                   variant="outline"
-                  className="@md/drawer-content:flex-1"
+                  className="sm:flex-1"
+                  disabled={appliedCriteriaCount === 0}
                   onClick={() => {
                     onReset?.()
                   }}
                 >
                   Reset
                 </Button>
-              </DrawerClose>
+                <DrawerClose asChild>
+                  <Button
+                    className="sm:flex-1"
+                    disabled={!hasSortingChange}
+                    onClick={() => {
+                      onApply?.()
+                    }}
+                  >
+                    Apply
+                  </Button>
+                </DrawerClose>
+              </div>
             </DrawerFooter>
           </div>
         </DrawerContent>
@@ -139,7 +141,7 @@ export function SortingPanel({
   }
 
   return (
-    <Popover
+    <Dialog
       onOpenChange={(open) => {
         if (open) {
           onOpen?.()
@@ -147,51 +149,49 @@ export function SortingPanel({
       }}
     >
       <SortingTrigger
-        asChild={PopoverTrigger}
+        asChild={DialogTrigger}
         className={className}
-        selectedCount={selectedCount}
+        appliedCriteriaCount={appliedCriteriaCount}
       />
 
-      <PopoverContent
-        align="end"
-        className="h-fit w-fit min-w-lg items-center overflow-hidden p-0"
-      >
-        <div className="@container/popover-content flex min-h-0 w-full max-w-xl flex-1 flex-col">
-          <PopoverHeader className="p-4 text-center">
-            <PopoverTitle className="text-base">Sorting Options</PopoverTitle>
-            <PopoverDescription>
+      <DialogContent className="h-fit w-fit min-w-lg items-center overflow-hidden p-0">
+        <div className="flex min-h-0 w-full max-w-xl flex-1 flex-col">
+          <DialogHeader className="p-4 text-center">
+            <DialogTitle className="text-base">Sorting Options</DialogTitle>
+            <DialogDescription>
               Choose a field to sort by and a direction.
-            </PopoverDescription>
-          </PopoverHeader>
+            </DialogDescription>
+          </DialogHeader>
 
           {/* Content */}
           <div className="no-scrollbar flex-1 overflow-y-auto p-4">
             {children}
           </div>
 
-          <Separator className="mx-auto my-2 max-w-1/2" />
-
-          <PopoverFooter className="gap-x-4 p-4 @md/popover-content:flex-row">
-            <Button
-              className="@md/popover-content:flex-1"
-              onClick={() => {
-                onApply?.()
-              }}
-            >
-              Apply
-            </Button>
+          <DialogFooter>
             <Button
               variant="outline"
-              className="@md/popover-content:flex-1"
+              disabled={appliedCriteriaCount === 0}
               onClick={() => {
                 onReset?.()
               }}
             >
               Reset
             </Button>
-          </PopoverFooter>
+
+            <DialogClose asChild>
+              <Button
+                disabled={!hasSortingChange}
+                onClick={() => {
+                  onApply?.()
+                }}
+              >
+                Apply
+              </Button>
+            </DialogClose>
+          </DialogFooter>
         </div>
-      </PopoverContent>
-    </Popover>
+      </DialogContent>
+    </Dialog>
   )
 }

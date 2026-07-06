@@ -358,7 +358,7 @@ describe('syncFilters', () => {
   })
 })
 
-describe('resetDraftStats', () => {
+describe('clearDraftStats', () => {
   it('resets local stats to default values', () => {
     const { result } = renderHook(() => useFilteringPanel())
 
@@ -366,7 +366,7 @@ describe('resetDraftStats', () => {
       result.current.setDraftStats((prev) => ({ ...prev, hp: [10, 90] }))
     })
     act(() => {
-      result.current.resetDraftStats()
+      result.current.clearDraftStats()
     })
 
     expect(result.current.draftStats).toEqual(DEFAULT_DRAFT_STATS)

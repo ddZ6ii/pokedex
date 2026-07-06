@@ -11,11 +11,13 @@ import {
 import { Button } from '@/shared/components/ui/button'
 
 export function StatFilters({
-  onResetStats,
+  disableClear,
+  onClearStats,
   stats,
   setStats,
 }: {
-  onResetStats: () => void
+  disableClear?: boolean
+  onClearStats: () => void
   stats: FilteringStats
   setStats: React.Dispatch<React.SetStateAction<FilteringStats>>
 }) {
@@ -45,12 +47,13 @@ export function StatFilters({
 
       <Button
         variant="outline"
+        disabled={disableClear}
         onClick={() => {
-          onResetStats()
+          onClearStats()
         }}
         className="group mx-auto w-full max-w-xs items-center px-4 aria-expanded:bg-transparent"
       >
-        Reset Stats
+        Clear Edits
       </Button>
     </>
   )

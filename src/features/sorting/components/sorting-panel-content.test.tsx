@@ -23,25 +23,19 @@ function Wrapper({
   initialCriteria?: SortingCriterion[]
   onChange?: (criteria: SortingCriterion[]) => void
 }) {
-  const [selectedCriteria, setSelectedCriteria] =
-    useState<SortingCriterion[]>(initialCriteria)
+  const [criteria, setCriteria] = useState<SortingCriterion[]>(initialCriteria)
 
   const handleSet: React.Dispatch<React.SetStateAction<SortingCriterion[]>> = (
     value,
   ) => {
-    setSelectedCriteria((prev) => {
+    setCriteria((prev) => {
       const next = typeof value === 'function' ? value(prev) : value
       onChange?.(next)
       return next
     })
   }
 
-  return (
-    <SortingPanelContent
-      selectedCriteria={selectedCriteria}
-      setSelectedCriteria={handleSet}
-    />
-  )
+  return <SortingPanelContent criteria={criteria} setCriteria={handleSet} />
 }
 
 describe('SortingPanelContent', () => {

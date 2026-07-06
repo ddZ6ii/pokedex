@@ -30,7 +30,7 @@ import { cn } from '@/shared/lib/utils'
 import type { SelectOption } from '@/shared/types'
 
 type MultiSortContextValue<T extends string> = {
-  selectedCriteria: [T | null, SortingOrder | null][]
+  criteria: [T | null, SortingOrder | null][]
   sortOptions: readonly SelectOption<T>[]
 }
 
@@ -79,14 +79,14 @@ type BaseProps<T extends string> = React.PropsWithChildren & {
   sortOptions: readonly SelectOption<T>[]
 }
 type UncontrolledProps<T extends string> = BaseProps<T> & {
-  onChange?: (selectedCriteria: Criterion<T>[]) => void
-  selectedCriteria?: never
-  setSelectedCriteria?: never
+  onChange?: (criteria: Criterion<T>[]) => void
+  criteria?: never
+  setCriteria?: never
 }
 type ControlledProps<T extends string> = BaseProps<T> & {
   onChange?: never
-  selectedCriteria: Criterion<T>[]
-  setSelectedCriteria: (value: SetCriteria<T>) => void
+  criteria: Criterion<T>[]
+  setCriteria: (value: SetCriteria<T>) => void
 }
 type MultiSortProps<T extends string> =
   UncontrolledProps<T> | ControlledProps<T>
@@ -96,18 +96,14 @@ function MultiSort<T extends string>({
   sortOptions,
   ...props
 }: MultiSortProps<T>) {
-  const [_selectedCriteria, _setSelectedCriteria] = useState<Criterion<T>[]>(
-    props.selectedCriteria ?? [[null, null]],
+  const [_criteria, _setCriteria] = useState<Criterion<T>[]>(
+    props.criteria ?? [[null, null]],
   )
 
-  const isControlled = props.selectedCriteria !== undefined
+  const isControlled = props.criteria !== undefined
 
-  const selectedCriteria = isControlled
-    ? props.selectedCriteria
-    : _selectedCriteria
-  const setSelectedCriteria = isControlled
-    ? props.setSelectedCriteria
-    : _setSelectedCriteria
+  const criteria = isControlled ? props.criteria : _criteria
+  const setCriteria = isControlled ? props.setCriteria : _setCriteria
 
   const isMounted = useRef(false)
   const onChangeRef = useRef(props.onChange)
@@ -127,13 +123,13 @@ function MultiSort<T extends string>({
       return
     }
     if (!isControlled) {
-      onChangeRef.current?.(selectedCriteria)
+      onChangeRef.current?.(criteria)
     }
-  }, [isControlled, selectedCriteria])
+  }, [isControlled, criteria])
 
   const selectSortBy = useCallback(
     (value: string | null, index: number) => {
-      setSelectedCriteria((prev) => {
+      setCriteria((prev) => {
         // Remove row when clearing selection on a non-last row
         if (!value && index > 0) {
           return prev.filter((_, i) => i !== index)
@@ -151,34 +147,34 @@ function MultiSort<T extends string>({
         })
       })
     },
-    [setSelectedCriteria],
+    [setCriteria],
   )
   const selectOrderBy = useCallback(
     (value: SortingOrder, index: number) => {
-      setSelectedCriteria((prev) =>
+      setCriteria((prev) =>
         prev.map((criteria, i) =>
           i === index ? ([criteria[0], value] as Criterion<T>) : criteria,
         ),
       )
     },
-    [setSelectedCriteria],
+    [setCriteria],
   )
   const addCriteria = useCallback(() => {
-    setSelectedCriteria((prev) => [...prev, [null, null]])
-  }, [setSelectedCriteria])
+    setCriteria((prev) => [...prev, [null, null]])
+  }, [setCriteria])
   const removeCriteria = useCallback(
     (index: number) => {
-      setSelectedCriteria((prev) => prev.filter((_, i) => i !== index))
+      setCriteria((prev) => prev.filter((_, i) => i !== index))
     },
-    [setSelectedCriteria],
+    [setCriteria],
   )
 
   const context = useMemo(
     () => ({
       sortOptions,
-      selectedCriteria,
+      criteria,
     }),
-    [selectedCriteria, sortOptions],
+    [criteria, sortOptions],
   )
   const actionsContext = useMemo(
     () => ({
@@ -203,11 +199,11 @@ function MultiSortAddTrigger({
   children,
   className,
 }: React.PropsWithChildren & { className?: string }) {
-  const { selectedCriteria, sortOptions } = useMultiSortContext()
+  const { criteria, sortOptions } = useMultiSortContext()
   const { addCriteria } = useMultiSortActionsContext()
 
-  const isFull = selectedCriteria.length === sortOptions.length
-  const hasEmptyCriteria = selectedCriteria.some(([sortBy]) => sortBy === null)
+  const isFull = criteria.length === sortOptions.length
+  const hasEmptyCriteria = criteria.some(([sortBy]) => sortBy === null)
   const tooltip = isFull
     ? 'Maximum number of sorting criteria reached'
     : hasEmptyCriteria
@@ -243,14 +239,14 @@ function MultiSortList({
 }: React.PropsWithChildren & {
   className?: string
 }) {
-  const { selectedCriteria, sortOptions } = useMultiSortContext()
+  const { criteria, sortOptions } = useMultiSortContext()
 
-  const takenOptions = selectedCriteria.map(([sortBy]) => sortBy)
+  const takenOptions = criteria.map(([sortBy]) => sortBy)
 
   return (
     <FieldSet className={className}>
       <FieldGroup className="gap-6">
-        {selectedCriteria.map(([selectedSortBy, selectedSortOrder], index) => {
+        {criteria.map(([selectedSortBy, selectedSortOrder], index) => {
           const availableOptions = sortOptions.filter(
             (option) =>
               !takenOptions.includes(option.value) ||

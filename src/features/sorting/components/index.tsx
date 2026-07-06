@@ -4,25 +4,27 @@ import { useSortingPanel } from '@/features/sorting/hooks/useSortingPanel'
 
 export function Sorting({ className }: { className?: string }) {
   const {
-    selectedCriteria,
-    selectedCriteriaCount,
-    setSelectedCriteria,
+    appliedCriteriaCount,
     applySorting,
+    draftCriteria,
+    hasSortingChange,
     resetSorting,
+    setDraftCriteria,
     syncSorting,
   } = useSortingPanel()
 
   return (
     <SortingPanel
-      selectedCount={selectedCriteriaCount}
+      appliedCriteriaCount={appliedCriteriaCount}
+      className={className}
+      hasSortingChange={hasSortingChange}
       onApply={applySorting}
       onOpen={syncSorting}
       onReset={resetSorting}
-      className={className}
     >
       <SortingPanelContent
-        selectedCriteria={selectedCriteria}
-        setSelectedCriteria={setSelectedCriteria}
+        criteria={draftCriteria}
+        setCriteria={setDraftCriteria}
       />
     </SortingPanel>
   )

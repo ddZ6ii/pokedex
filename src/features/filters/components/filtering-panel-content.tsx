@@ -11,9 +11,9 @@ const activeClassName = 'shadow-foreground/5 shadow-lg'
 
 export function FilteringPanelContent({
   error = null,
+  onClearStats,
   onSelectType,
   onSelectAllTypes,
-  onResetStats,
   onUnselectAllTypes,
   setStats,
   stats,
@@ -22,9 +22,9 @@ export function FilteringPanelContent({
   types,
 }: {
   error?: Error | null
+  onClearStats: () => void
   onSelectType: (type: PokemonType, nextChecked: boolean) => void
   onSelectAllTypes: () => void
-  onResetStats: () => void
   onUnselectAllTypes: () => void
   stats: FilteringStats
   statsCount: number
@@ -33,7 +33,7 @@ export function FilteringPanelContent({
   typesCount: number
 }) {
   const [activeIndex, setActiveIndex] = useState(
-    statsCount > 0 ? 0 : typesCount > 0 ? 1 : -1,
+    statsCount > 0 ? 0 : typesCount > 0 ? 1 : 0,
   )
 
   return (
@@ -41,7 +41,6 @@ export function FilteringPanelContent({
       <CollapsibleFilter
         label="Pokémon Stats"
         activeFiltersCount={statsCount}
-        defaultOpen={true}
         open={activeIndex === 0}
         onOpenChange={(open) => {
           setActiveIndex(open ? 0 : -1)
@@ -49,9 +48,10 @@ export function FilteringPanelContent({
         className={cn(activeIndex === 0 && activeClassName)}
       >
         <StatFilters
+          disableClear={statsCount === 0}
+          onClearStats={onClearStats}
           stats={stats}
           setStats={setStats}
-          onResetStats={onResetStats}
         />
       </CollapsibleFilter>
 

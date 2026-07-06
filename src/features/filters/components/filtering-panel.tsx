@@ -13,15 +13,15 @@ import {
   DrawerTrigger,
 } from '@/shared/components/ui/drawer'
 import {
-  Popover,
-  PopoverContent,
-  PopoverDescription,
-  PopoverFooter,
-  PopoverHeader,
-  PopoverTitle,
-  PopoverTrigger,
-} from '@/shared/components/ui/popover'
-import { Separator } from '@/shared/components/ui/separator'
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/shared/components/ui/dialog'
 import { cn } from '@/shared/lib/utils'
 import { useIsMobile } from '@/shared/hooks'
 
@@ -97,8 +97,8 @@ export function FilteringPanel({
           className={className}
         />
         <DrawerContent className="items-center overflow-hidden">
-          <div className="@container/drawer-content flex min-h-0 w-full max-w-xl flex-1 flex-col">
-            <DrawerHeader>
+          <div className="flex min-h-0 w-full flex-1 flex-col">
+            <DrawerHeader className="mx-auto max-w-xl p-4 text-center">
               <DrawerTitle>Filtering Options</DrawerTitle>
               <DrawerDescription>
                 Select criteria to filter the Pokémon list.
@@ -106,36 +106,34 @@ export function FilteringPanel({
             </DrawerHeader>
 
             {/* Content */}
-            <div className="no-scrollbar flex-1 overflow-y-auto p-4">
+            <div className="no-scrollbar mx-auto mb-4 w-full max-w-xl flex-1 overflow-y-auto p-4">
               {children}
             </div>
 
-            <Separator className="mx-auto my-2 max-w-1/2" />
-
-            <DrawerFooter className="gap-x-4 @md/drawer-content:flex-row">
-              <DrawerClose asChild>
+            <DrawerFooter className="bg-muted/50">
+              <div className="mx-auto flex w-full max-w-xl flex-col gap-4 px-4 py-2 sm:flex-row">
                 <Button
-                  disabled={!!error || !hasFiltersChange}
-                  className="@md/drawer-content:flex-1"
-                  onClick={() => {
-                    onApply?.()
-                  }}
-                >
-                  Apply
-                </Button>
-              </DrawerClose>
-              <DrawerClose asChild>
-                <Button
-                  disabled={!hasFiltersChange}
                   variant="outline"
-                  className="@md/drawer-content:flex-1"
+                  disabled={appliedFilterCount === 0}
+                  className="sm:flex-1"
                   onClick={() => {
                     onReset?.()
                   }}
                 >
                   Reset
                 </Button>
-              </DrawerClose>
+                <DrawerClose asChild>
+                  <Button
+                    disabled={!!error || !hasFiltersChange}
+                    className="sm:flex-1"
+                    onClick={() => {
+                      onApply?.()
+                    }}
+                  >
+                    Apply
+                  </Button>
+                </DrawerClose>
+              </div>
             </DrawerFooter>
           </div>
         </DrawerContent>
@@ -144,7 +142,7 @@ export function FilteringPanel({
   }
 
   return (
-    <Popover
+    <Dialog
       onOpenChange={(open) => {
         if (open) {
           onOpen?.()
@@ -153,52 +151,48 @@ export function FilteringPanel({
     >
       <FilteringTrigger
         appliedFilterCount={appliedFilterCount}
-        asChild={PopoverTrigger}
+        asChild={DialogTrigger}
         className={className}
       />
 
-      <PopoverContent
-        align="end"
-        className="h-fit w-fit min-w-lg items-center overflow-hidden p-0"
-      >
-        <div className="@container/popover-content flex min-h-0 w-full max-w-xl flex-1 flex-col">
-          <PopoverHeader className="p-4 text-center">
-            <PopoverTitle className="text-base">Filtering Options</PopoverTitle>
-            <PopoverDescription>
+      <DialogContent className="h-fit w-fit min-w-lg items-center overflow-hidden">
+        <div className="flex min-h-0 w-full max-w-xl flex-1 flex-col">
+          <DialogHeader className="p-4 text-center">
+            <DialogTitle className="text-base">Filtering Options</DialogTitle>
+            <DialogDescription>
               Choose a field to sort by and a direction.
-            </PopoverDescription>
-          </PopoverHeader>
+            </DialogDescription>
+          </DialogHeader>
 
           {/* Content */}
-          <div className="no-scrollbar flex-1 overflow-y-auto p-4">
+          <div className="no-scrollbar mb-4 flex-1 overflow-y-auto p-4">
             {children}
           </div>
 
-          <Separator className="mx-auto my-2 max-w-1/2" />
-
-          <PopoverFooter className="gap-x-4 p-4 @md/popover-content:flex-row">
+          <DialogFooter className="gap-4">
             <Button
-              disabled={!!error || !hasFiltersChange}
-              className="@md/popover-content:flex-1"
-              onClick={() => {
-                onApply?.()
-              }}
-            >
-              Apply
-            </Button>
-            <Button
-              disabled={!hasFiltersChange}
               variant="outline"
-              className="@md/popover-content:flex-1"
+              disabled={appliedFilterCount === 0}
               onClick={() => {
                 onReset?.()
               }}
             >
               Reset
             </Button>
-          </PopoverFooter>
+
+            <DialogClose asChild>
+              <Button
+                disabled={!!error || !hasFiltersChange}
+                onClick={() => {
+                  onApply?.()
+                }}
+              >
+                Apply
+              </Button>
+            </DialogClose>
+          </DialogFooter>
         </div>
-      </PopoverContent>
-    </Popover>
+      </DialogContent>
+    </Dialog>
   )
 }

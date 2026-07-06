@@ -6,13 +6,13 @@ export function Filtering({ className }: { className?: string }) {
   const {
     applyFilters,
     appliedFiltersCount,
+    clearDraftStats,
     draftStats,
     draftStatsCount,
     draftTypes,
     draftTypesCount,
     error,
     hasFiltersChange,
-    resetDraftStats,
     resetFilters,
     selectAllDraftTypes,
     selectDraftType,
@@ -24,16 +24,16 @@ export function Filtering({ className }: { className?: string }) {
   return (
     <FilteringPanel
       appliedFilterCount={appliedFiltersCount}
-      hasFiltersChange={hasFiltersChange}
       className={className}
       error={error}
+      hasFiltersChange={hasFiltersChange}
       onApply={applyFilters}
       onOpen={syncFilters}
       onReset={resetFilters}
     >
       <FilteringPanelContent
         error={error}
-        onResetStats={resetDraftStats}
+        onClearStats={clearDraftStats}
         onSelectType={selectDraftType}
         onSelectAllTypes={selectAllDraftTypes}
         onUnselectAllTypes={unselectAllDraftTypes}

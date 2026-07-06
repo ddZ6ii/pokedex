@@ -28,22 +28,22 @@ beforeEach(() => {
 })
 
 describe('initial state', () => {
-  it('selectedCriteria is initialized from the store', () => {
+  it('draftCriteria is initialized from the store', () => {
     const initial: SortingCriterion[] = [['name', 'asc']]
     setupMocks(initial)
 
     const { result } = renderHook(() => useSortingPanel())
 
-    expect(result.current.selectedCriteria).toEqual(initial)
+    expect(result.current.draftCriteria).toEqual(initial)
   })
 
-  it('selectedCriteriaCount is 0 when no criterion is selected', () => {
+  it('draftCriteriaCount is 0 when no criterion is selected', () => {
     const { result } = renderHook(() => useSortingPanel())
 
-    expect(result.current.selectedCriteriaCount).toBe(0)
+    expect(result.current.draftCriteriaCount).toBe(0)
   })
 
-  it('selectedCriteriaCount counts only non-null criteria', () => {
+  it('draftCriteriaCount counts only non-null criteria', () => {
     setupMocks([
       ['name', 'asc'],
       [null, null],
@@ -51,11 +51,11 @@ describe('initial state', () => {
 
     const { result } = renderHook(() => useSortingPanel())
 
-    expect(result.current.selectedCriteriaCount).toBe(1)
+    expect(result.current.draftCriteriaCount).toBe(1)
   })
 })
 
-describe('selectedCriteriaCount', () => {
+describe('draftCriteriaCount', () => {
   it('reflects all filled criteria', () => {
     setupMocks([
       ['name', 'asc'],
@@ -64,17 +64,17 @@ describe('selectedCriteriaCount', () => {
 
     const { result } = renderHook(() => useSortingPanel())
 
-    expect(result.current.selectedCriteriaCount).toBe(2)
+    expect(result.current.draftCriteriaCount).toBe(2)
   })
 
-  it('updates when setSelectedCriteria is called', () => {
+  it('updates when setDraftCriteria is called', () => {
     const { result } = renderHook(() => useSortingPanel())
 
     act(() => {
-      result.current.setSelectedCriteria([['name', 'asc']])
+      result.current.setDraftCriteria([['name', 'asc']])
     })
 
-    expect(result.current.selectedCriteriaCount).toBe(1)
+    expect(result.current.draftCriteriaCount).toBe(1)
   })
 })
 
@@ -93,7 +93,7 @@ describe('applySorting', () => {
     const { result } = renderHook(() => useSortingPanel())
 
     act(() => {
-      result.current.setSelectedCriteria([
+      result.current.setDraftCriteria([
         ['name', 'asc'],
         [null, null],
       ])
@@ -109,7 +109,7 @@ describe('applySorting', () => {
     const { result } = renderHook(() => useSortingPanel())
 
     act(() => {
-      result.current.setSelectedCriteria([
+      result.current.setDraftCriteria([
         ['name', 'asc'],
         ['hp', null],
       ])
@@ -125,7 +125,7 @@ describe('applySorting', () => {
     const { result } = renderHook(() => useSortingPanel())
 
     act(() => {
-      result.current.setSelectedCriteria([
+      result.current.setDraftCriteria([
         ['name', 'asc'],
         ['hp', 'desc'],
       ])
@@ -142,34 +142,34 @@ describe('applySorting', () => {
 })
 
 describe('syncSorting', () => {
-  it('resets selectedCriteria to the current store value', () => {
+  it('resets draftCriteria to the current store value', () => {
     const { result } = renderHook(() => useSortingPanel())
 
     act(() => {
-      result.current.setSelectedCriteria([['name', 'asc']])
+      result.current.setDraftCriteria([['name', 'asc']])
     })
-    expect(result.current.selectedCriteria).toEqual([['name', 'asc']])
+    expect(result.current.draftCriteria).toEqual([['name', 'asc']])
 
     act(() => {
       result.current.syncSorting()
     })
 
-    expect(result.current.selectedCriteria).toEqual([[null, null]])
+    expect(result.current.draftCriteria).toEqual([[null, null]])
   })
 })
 
 describe('resetSorting', () => {
-  it('resets selectedCriteria to the initial state', () => {
+  it('resets draftCriteria to the initial state', () => {
     const { result } = renderHook(() => useSortingPanel())
 
     act(() => {
-      result.current.setSelectedCriteria([['name', 'asc']])
+      result.current.setDraftCriteria([['name', 'asc']])
     })
     act(() => {
       result.current.resetSorting()
     })
 
-    expect(result.current.selectedCriteria).toEqual(initialSortingState.sort)
+    expect(result.current.draftCriteria).toEqual(initialSortingState.sort)
   })
 
   it('calls the store reset action', () => {

@@ -103,21 +103,21 @@ export function useFilteringPanel() {
     setError(null)
   }, [appliedStats, appliedTypes])
 
-  const resetDraftStats = useCallback(() => {
+  const clearDraftStats = useCallback(() => {
     setDraftStats(DEFAULT_DRAFT_STATS)
   }, [])
 
-  const resetDraftTypes = useCallback(() => {
+  const _clearDraftTypes = useCallback(() => {
     setError(null)
     setDraftTypes(DEFAULT_TYPES)
   }, [])
 
   const resetFilters = useCallback(() => {
-    resetDraftStats()
-    resetDraftTypes()
+    clearDraftStats()
+    _clearDraftTypes()
     resetAppliedStats()
     resetAppliedTypes()
-  }, [resetAppliedStats, resetAppliedTypes, resetDraftStats, resetDraftTypes])
+  }, [resetAppliedStats, resetAppliedTypes, clearDraftStats, _clearDraftTypes])
 
   const selectDraftType = useCallback(
     (type: PokemonType, nextChecked: boolean) => {
@@ -188,6 +188,7 @@ export function useFilteringPanel() {
   return {
     applyFilters,
     appliedFiltersCount,
+    clearDraftStats,
     draftStats,
     draftStatsCount,
     draftTypes,
@@ -195,7 +196,6 @@ export function useFilteringPanel() {
     error,
     hasFiltersChange,
     resetFilters,
-    resetDraftStats,
     selectAllDraftTypes,
     selectDraftType,
     setDraftStats,

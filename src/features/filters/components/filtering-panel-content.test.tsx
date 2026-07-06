@@ -27,7 +27,7 @@ function Wrapper({
   initialStats = DEFAULT_DRAFT_STATS,
   initialTypes = DEFAULT_TYPES,
   error = null,
-  onResetStats = noop,
+  onClearStats = noop,
   onSelectAllTypes = noop,
   onUnselectAllTypes = noop,
   onSelectType,
@@ -38,7 +38,7 @@ function Wrapper({
   initialStats?: FilteringStats
   initialTypes?: Set<PokemonType>
   error?: Error | null
-  onResetStats?: () => void
+  onClearStats?: () => void
   onSelectAllTypes?: () => void
   onUnselectAllTypes?: () => void
   onSelectType?: (type: PokemonType, nextChecked: boolean) => void
@@ -74,7 +74,7 @@ function Wrapper({
       error={error}
       onSelectType={handleSelectType}
       onSelectAllTypes={onSelectAllTypes}
-      onResetStats={onResetStats}
+      onClearStats={onClearStats}
       onUnselectAllTypes={onUnselectAllTypes}
       setStats={handleSetStats}
       stats={stats}
@@ -98,10 +98,12 @@ describe('FilteringPanelContent', () => {
       ).toBeInTheDocument()
     })
 
-    it('shows no panels open when no active filters', () => {
+    it('opens Stats panel by default when no active filters', () => {
       renderWithProviders(<Wrapper />)
 
-      expect(screen.queryAllByRole('slider')).toHaveLength(0)
+      expect(screen.getAllByRole('slider')).toHaveLength(
+        POKEMON_SKILLS.length * 2,
+      )
       for (const type of POKEMON_TYPES) {
         expect(
           screen.queryByRole('checkbox', { name: type }),
@@ -149,7 +151,7 @@ describe('FilteringPanelContent', () => {
   describe('accordion behavior', () => {
     it('clicking Stats trigger opens it', async () => {
       const user = userEvent.setup()
-      renderWithProviders(<Wrapper />)
+      renderWithProviders(<Wrapper typesCount={2} />)
 
       await user.click(
         screen.getByRole('button', { name: STATS_TRIGGER_LABEL }),
@@ -224,24 +226,24 @@ describe('FilteringPanelContent', () => {
       expect(screen.getByText('80')).toBeInTheDocument()
     })
 
-    it('renders Reset Stats button', () => {
+    it('renders Clear Edits button', () => {
       renderWithProviders(<Wrapper statsCount={1} />)
 
       expect(
-        screen.getByRole('button', { name: /reset stats/i }),
+        screen.getByRole('button', { name: /clear edits/i }),
       ).toBeInTheDocument()
     })
 
-    it('clicking Reset Stats calls onResetStats', async () => {
-      const onResetStats = vi.fn()
+    it('clicking Clear Edits calls onClearStats', async () => {
+      const onClearStats = vi.fn()
       const user = userEvent.setup()
       renderWithProviders(
-        <Wrapper statsCount={1} onResetStats={onResetStats} />,
+        <Wrapper statsCount={1} onClearStats={onClearStats} />,
       )
 
-      await user.click(screen.getByRole('button', { name: /reset stats/i }))
+      await user.click(screen.getByRole('button', { name: /clear edits/i }))
 
-      expect(onResetStats).toHaveBeenCalledOnce()
+      expect(onClearStats).toHaveBeenCalledOnce()
     })
 
     it('adjusting a slider updates stats via setStats', async () => {

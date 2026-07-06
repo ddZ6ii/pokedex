@@ -12,17 +12,17 @@ import {
 } from '@/features/sorting/schemas/sorting.schema'
 
 export function SortingPanelContent({
-  selectedCriteria,
-  setSelectedCriteria,
+  criteria,
+  setCriteria,
 }: {
-  selectedCriteria: SortingCriterion[]
-  setSelectedCriteria: React.Dispatch<React.SetStateAction<SortingCriterion[]>>
+  criteria: SortingCriterion[]
+  setCriteria: React.Dispatch<React.SetStateAction<SortingCriterion[]>>
 }) {
   return (
     <MultiSort
+      criteria={criteria}
+      setCriteria={setCriteria}
       sortOptions={SORT_BY_OPTIONS}
-      selectedCriteria={selectedCriteria}
-      setSelectedCriteria={setSelectedCriteria}
     >
       <MultiSortList>
         <MultiSortItem>
