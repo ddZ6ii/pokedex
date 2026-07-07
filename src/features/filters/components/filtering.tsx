@@ -1,6 +1,8 @@
-import { FilteringPanel } from '@/features/filters/components/filtering-panel'
+import { ListFilterIcon } from 'lucide-react'
+
 import { FilteringPanelContent } from '@/features/filters/components/filtering-panel-content'
 import { useFilteringPanel } from '@/features/filters/hooks/useFilteringPanel'
+import { ResponsivePanel } from '@/shared/components/responsive-panel'
 
 export function Filtering({ className }: { className?: string }) {
   const {
@@ -22,11 +24,14 @@ export function Filtering({ className }: { className?: string }) {
   } = useFilteringPanel()
 
   return (
-    <FilteringPanel
-      appliedFilterCount={appliedFiltersCount}
+    <ResponsivePanel
       className={className}
+      count={appliedFiltersCount}
+      description="Filter Pokémons by type and stats."
       error={error}
-      hasFiltersChange={hasFiltersChange}
+      hasChanges={hasFiltersChange}
+      Icon={ListFilterIcon}
+      label="filtering options"
       onApply={applyFilters}
       onOpen={syncFilters}
       onReset={resetFilters}
@@ -43,6 +48,6 @@ export function Filtering({ className }: { className?: string }) {
         types={draftTypes}
         typesCount={draftTypesCount}
       />
-    </FilteringPanel>
+    </ResponsivePanel>
   )
 }

@@ -1,6 +1,8 @@
-import { SortingPanel } from '@/features/sorting/components/sorting-panel'
+import { ArrowUpDownIcon } from 'lucide-react'
+
 import { SortingPanelContent } from '@/features/sorting/components/sorting-panel-content'
 import { useSortingPanel } from '@/features/sorting/hooks/useSortingPanel'
+import { ResponsivePanel } from '@/shared/components/responsive-panel'
 
 export function Sorting({ className }: { className?: string }) {
   const {
@@ -14,10 +16,13 @@ export function Sorting({ className }: { className?: string }) {
   } = useSortingPanel()
 
   return (
-    <SortingPanel
-      appliedCriteriaCount={appliedCriteriaCount}
+    <ResponsivePanel
       className={className}
-      hasSortingChange={hasSortingChange}
+      count={appliedCriteriaCount}
+      description="Choose a field to sort by and a direction."
+      hasChanges={hasSortingChange}
+      Icon={ArrowUpDownIcon}
+      label="sorting options"
       onApply={applySorting}
       onOpen={syncSorting}
       onReset={resetSorting}
@@ -26,6 +31,6 @@ export function Sorting({ className }: { className?: string }) {
         criteria={draftCriteria}
         setCriteria={setDraftCriteria}
       />
-    </SortingPanel>
+    </ResponsivePanel>
   )
 }

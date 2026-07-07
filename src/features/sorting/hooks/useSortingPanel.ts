@@ -44,7 +44,10 @@ export function useSortingPanel() {
   ).length
 
   const hasSortingChange = useMemo(() => {
-    if (draftCriteria.length !== appliedCriteria.length) {
+    if (
+      draftCriteria.length !== appliedCriteria.length &&
+      !draftCriteria.some(([sortBy]) => sortBy === null)
+    ) {
       return true
     }
 

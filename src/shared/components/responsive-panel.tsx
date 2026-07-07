@@ -1,17 +1,7 @@
-import { ArrowUpDownIcon } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 
 import { CountBadge, WithTooltip } from '@/shared/components'
 import { Button } from '@/shared/components/ui/button'
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from '@/shared/components/ui/drawer'
 import {
   Dialog,
   DialogClose,
@@ -22,58 +12,79 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/shared/components/ui/dialog'
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from '@/shared/components/ui/drawer'
 import { cn } from '@/shared/lib/utils'
 import { useIsMobile } from '@/shared/hooks'
 
-const LABEL = 'Edit sorting options'
-
-export function SortingTrigger({
-  appliedCriteriaCount,
+function PanelTrigger({
   asChild: TriggerComponent,
   className,
+  count,
+  Icon,
+  label,
 }: {
-  appliedCriteriaCount: number
-  className?: string
   asChild: React.ElementType
+  className?: string
+  count: number
+  Icon: LucideIcon
+  label: string
 }) {
-  const hasCriteriaSelected = appliedCriteriaCount > 0
+  const showCount = count > 0
+  const triggerLabel = `Edit ${label}`
 
   return (
     <div className="relative">
-      <WithTooltip tooltip={LABEL}>
+      <WithTooltip tooltip={triggerLabel}>
         <TriggerComponent asChild>
           <Button
-            aria-label={LABEL}
             variant="outline"
             size="icon-md"
             className={cn(
               className,
-              hasCriteriaSelected &&
+              showCount &&
                 'dark:text-foreground! text-background bg-primary! hover:bg-primary/95! hover:text-background',
             )}
           >
-            <ArrowUpDownIcon aria-hidden={true} />
+            <span className="sr-only">{triggerLabel}</span>
+            <Icon aria-hidden={true} />
           </Button>
         </TriggerComponent>
       </WithTooltip>
 
-      {hasCriteriaSelected && <CountBadge count={appliedCriteriaCount} />}
+      {showCount && <CountBadge count={count} />}
     </div>
   )
 }
 
-export function SortingPanel({
-  appliedCriteriaCount,
-  children,
+export function ResponsivePanel({
   className,
-  hasSortingChange,
+  children,
+  count,
+  description,
+  error = null,
+  hasChanges,
+  Icon,
+  label,
   onApply,
   onOpen,
   onReset,
 }: React.PropsWithChildren & {
-  appliedCriteriaCount: number
   className?: string
-  hasSortingChange: boolean
+  count: number
+  description?: string
+  error?: Error | null
+  hasChanges: boolean
+  Icon: LucideIcon
+  label: string
   onApply?: () => void
   onOpen?: () => void
   onReset?: () => void
@@ -89,19 +100,21 @@ export function SortingPanel({
           }
         }}
       >
-        <SortingTrigger
-          appliedCriteriaCount={appliedCriteriaCount}
+        <PanelTrigger
           asChild={DrawerTrigger}
           className={className}
+          count={count}
+          Icon={Icon}
+          label={label}
         />
 
         <DrawerContent className="items-center overflow-hidden">
           <div className="flex min-h-0 w-full flex-1 flex-col">
             <DrawerHeader className="mx-auto max-w-xl p-4 text-center">
-              <DrawerTitle>Sorting Options</DrawerTitle>
-              <DrawerDescription>
-                Choose a field to sort by and a direction.
-              </DrawerDescription>
+              <DrawerTitle className="capitalize">{label}</DrawerTitle>
+              {description && (
+                <DrawerDescription>{description}</DrawerDescription>
+              )}
             </DrawerHeader>
 
             {/* Content */}
@@ -113,8 +126,8 @@ export function SortingPanel({
               <div className="mx-auto flex w-full max-w-xl flex-col gap-4 px-4 py-2 sm:flex-row">
                 <Button
                   variant="outline"
+                  disabled={count === 0}
                   className="sm:flex-1"
-                  disabled={appliedCriteriaCount === 0}
                   onClick={() => {
                     onReset?.()
                   }}
@@ -123,8 +136,8 @@ export function SortingPanel({
                 </Button>
                 <DrawerClose asChild>
                   <Button
+                    disabled={!!error || !hasChanges}
                     className="sm:flex-1"
-                    disabled={!hasSortingChange}
                     onClick={() => {
                       onApply?.()
                     }}
@@ -148,30 +161,32 @@ export function SortingPanel({
         }
       }}
     >
-      <SortingTrigger
+      <PanelTrigger
         asChild={DialogTrigger}
         className={className}
-        appliedCriteriaCount={appliedCriteriaCount}
+        count={count}
+        Icon={Icon}
+        label={label}
       />
 
-      <DialogContent className="h-fit w-fit min-w-lg items-center overflow-hidden p-0">
+      <DialogContent className="h-fit w-fit min-w-lg items-center overflow-hidden">
         <div className="flex min-h-0 w-full max-w-xl flex-1 flex-col">
           <DialogHeader className="p-4 text-center">
-            <DialogTitle className="text-base">Sorting Options</DialogTitle>
-            <DialogDescription>
-              Choose a field to sort by and a direction.
-            </DialogDescription>
+            <DialogTitle className="text-base capitalize">{label}</DialogTitle>
+            {description && (
+              <DialogDescription>{description}</DialogDescription>
+            )}
           </DialogHeader>
 
           {/* Content */}
-          <div className="no-scrollbar flex-1 overflow-y-auto p-4">
+          <div className="no-scrollbar mb-4 flex-1 overflow-y-auto p-4">
             {children}
           </div>
 
-          <DialogFooter>
+          <DialogFooter className="gap-4">
             <Button
               variant="outline"
-              disabled={appliedCriteriaCount === 0}
+              disabled={count === 0}
               onClick={() => {
                 onReset?.()
               }}
@@ -181,7 +196,7 @@ export function SortingPanel({
 
             <DialogClose asChild>
               <Button
-                disabled={!hasSortingChange}
+                disabled={!!error || !hasChanges}
                 onClick={() => {
                   onApply?.()
                 }}
