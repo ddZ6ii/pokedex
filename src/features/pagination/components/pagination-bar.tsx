@@ -26,6 +26,8 @@ export function PaginationBar({
   maxPage: number
   totalItems: number
 }) {
+  const hidden = useScrollVisibility(0.95, 'up', true)
+
   // ℹ️ Why useTransition?
   //
   // Problem:
@@ -43,12 +45,13 @@ export function PaginationBar({
   // Share the same transition state between Pagination and PageSizePicker to disable both controls during any transition
   const [isPending, startTransition] = useTransition()
 
-  const hidden = useScrollVisibility(0.95, 'up', true)
+  if (maxPage <= 1) return null
 
   return (
-    <motion.div
+    <motion.nav
+      aria-label="Pagination"
       className={cn(
-        'sticky bottom-4 z-10 min-w-1/2 rounded-lg px-4 py-2 text-sm backdrop-blur-sm',
+        'sticky bottom-4 z-10 flex min-w-1/2 flex-col items-center gap-3 rounded-lg px-4 py-2 text-sm backdrop-blur-sm',
         className,
       )}
       variants={variants}
@@ -59,19 +62,17 @@ export function PaginationBar({
         ease: 'easeInOut',
       }}
     >
-      <div className="flex flex-col items-center gap-3">
-        <Pagination
-          disabled={isPending}
-          maxPage={maxPage}
-          startTransition={startTransition}
-        />
+      <Pagination
+        disabled={isPending}
+        maxPage={maxPage}
+        startTransition={startTransition}
+      />
 
-        <PageSizeControl
-          totalItems={totalItems}
-          disabled={isPending}
-          startTransition={startTransition}
-        />
-      </div>
-    </motion.div>
+      <PageSizeControl
+        totalItems={totalItems}
+        disabled={isPending}
+        startTransition={startTransition}
+      />
+    </motion.nav>
   )
 }

@@ -5,6 +5,7 @@ export { ErrorFallback } from './error-fallback'
 export { Header } from './header'
 export { Logo } from './logo'
 export { ModeSelect } from './mode-select'
+export { PageLayout } from './page-layout'
 export { ResponsivePanel } from './responsive-panel'
 export {
   Search,
