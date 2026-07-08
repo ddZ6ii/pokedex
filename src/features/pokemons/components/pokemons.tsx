@@ -2,7 +2,7 @@ import {
   QueryErrorResetBoundary,
   useSuspenseQuery,
 } from '@tanstack/react-query'
-import { Suspense } from 'react'
+import { Suspense, useEffect, useRef } from 'react'
 import { ErrorBoundary, type FallbackProps } from 'react-error-boundary'
 
 import { PaginationBar } from '@/features/pagination/components'
@@ -25,6 +25,9 @@ function WidgetFallback(props: FallbackProps) {
 }
 
 function PokemonsFetcher() {
+  const firstRenderRef = useRef(true)
+  const params = useQueryParams()
+
   // ℹ️ How useSuspenseQuery works
   //
   // useSuspenseQuery throws synchronously on error.
@@ -33,7 +36,24 @@ function PokemonsFetcher() {
   // React bubbles the error up to the closest error boundary.
   const {
     data: { data: pokemons, pages: maxPage, items: totalItems },
-  } = useSuspenseQuery(createPokemonsQueryOptions(useQueryParams()))
+  } = useSuspenseQuery(createPokemonsQueryOptions(params))
+
+  // `startTransition` keeps the old list mounted while refetching (no
+  // unmount), so the browser never resets scroll on param change — force it.
+  useEffect(() => {
+    if (firstRenderRef.current) {
+      firstRenderRef.current = false
+      return
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [
+    params.page,
+    params.perPage,
+    params.search,
+    params.sort,
+    params.stats,
+    params.types,
+  ])
 
   return (
     <>
