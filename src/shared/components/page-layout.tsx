@@ -8,7 +8,7 @@ export function PageLayout({
   return (
     <div
       className={cn(
-        'relative container mx-auto flex min-h-screen flex-col p-3',
+        'container mx-auto flex min-h-screen flex-col p-3',
         className,
       )}
     >

@@ -8,7 +8,6 @@ export function Pokedex() {
       <Heading as="h1" className="text-center">
         Pokédex
       </Heading>
-
       <PokedexControls />
       <Pokemons />
     </section>

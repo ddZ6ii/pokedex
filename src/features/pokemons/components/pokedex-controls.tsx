@@ -8,19 +8,20 @@ export function PokedexControls({ className }: { className?: string }) {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
+    <div
       className={cn(
-        'flex w-full max-w-78 gap-2 md:max-w-162 2xl:max-w-330',
+        'sticky top-4 z-10 w-full max-w-78 rounded-lg backdrop-blur-sm md:max-w-125',
         className,
       )}
     >
-      <SearchPokemon />
+      <form onSubmit={handleSubmit} className="flex gap-2">
+        <SearchPokemon />
 
-      <div className="flex items-center gap-1 lg:gap-4">
-        <Filtering className="flex-1" />
-        <Sorting className="flex-1" />
-      </div>
-    </form>
+        <div className="flex items-center gap-1 lg:gap-4">
+          <Filtering className="flex-1" />
+          <Sorting className="flex-1" />
+        </div>
+      </form>
+    </div>
   )
 }
