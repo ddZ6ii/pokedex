@@ -14,7 +14,7 @@ export function Filtering({ className }: { className?: string }) {
     draftTypes,
     draftTypesCount,
     error,
-    hasFiltersChange,
+    isApplyDisabled,
     resetFilters,
     selectAllDraftTypes,
     selectDraftType,
@@ -28,9 +28,8 @@ export function Filtering({ className }: { className?: string }) {
       className={className}
       count={appliedFiltersCount}
       description="Filter Pokémons by type and stats."
-      error={error}
-      hasChanges={hasFiltersChange}
       Icon={ListFilterIcon}
+      isApplyDisabled={isApplyDisabled}
       label="filtering options"
       onApply={applyFilters}
       onOpen={syncFilters}

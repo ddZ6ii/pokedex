@@ -9,7 +9,7 @@ export function Sorting({ className }: { className?: string }) {
     appliedCriteriaCount,
     applySorting,
     draftCriteria,
-    hasSortingChange,
+    isApplyDisabled,
     resetSorting,
     setDraftCriteria,
     syncSorting,
@@ -20,8 +20,8 @@ export function Sorting({ className }: { className?: string }) {
       className={className}
       count={appliedCriteriaCount}
       description="Choose a field to sort by and a direction."
-      hasChanges={hasSortingChange}
       Icon={ArrowUpDownIcon}
+      isApplyDisabled={isApplyDisabled}
       label="sorting options"
       onApply={applySorting}
       onOpen={syncSorting}

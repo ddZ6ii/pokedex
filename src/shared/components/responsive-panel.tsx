@@ -70,8 +70,7 @@ export function ResponsivePanel({
   children,
   count,
   description,
-  error = null,
-  hasChanges,
+  isApplyDisabled,
   Icon,
   label,
   onApply,
@@ -81,8 +80,7 @@ export function ResponsivePanel({
   className?: string
   count: number
   description?: string
-  error?: Error | null
-  hasChanges: boolean
+  isApplyDisabled?: boolean
   Icon: LucideIcon
   label: string
   onApply?: () => void
@@ -136,7 +134,7 @@ export function ResponsivePanel({
                 </Button>
                 <DrawerClose asChild>
                   <Button
-                    disabled={!!error || !hasChanges}
+                    disabled={isApplyDisabled}
                     className="sm:flex-1"
                     onClick={() => {
                       onApply?.()
@@ -196,7 +194,7 @@ export function ResponsivePanel({
 
             <DialogClose asChild>
               <Button
-                disabled={!!error || !hasChanges}
+                disabled={isApplyDisabled}
                 onClick={() => {
                   onApply?.()
                 }}

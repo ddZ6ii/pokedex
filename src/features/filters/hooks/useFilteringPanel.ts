@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useMemo, useState, useTransition } from 'react'
 
 import {
   MAX_STAT_VALUE,
@@ -47,6 +47,7 @@ export const initDraftTypes = (
 }
 
 export function useFilteringPanel() {
+  const [isPending, startTransition] = useTransition()
   const { stats: appliedStats, types: appliedTypes } = useFilters()
   const {
     setStats: setAppliedStats,
@@ -72,17 +73,21 @@ export function useFilteringPanel() {
       ),
     ) as FilteringStats
 
-    if (Object.keys(nextAppliedStats).length) {
-      setAppliedStats(nextAppliedStats)
-    } else if (appliedStats) {
-      resetAppliedStats()
-    }
+    startTransition(() => {
+      if (Object.keys(nextAppliedStats).length) {
+        setAppliedStats(nextAppliedStats)
+      } else if (appliedStats) {
+        resetAppliedStats()
+      }
 
-    if (draftTypes.size === POKEMON_TYPES.length) {
-      if (appliedTypes) resetAppliedTypes()
-    } else {
-      setAppliedTypes(new Set(draftTypes))
-    }
+      if (draftTypes.size === POKEMON_TYPES.length) {
+        if (appliedTypes) {
+          resetAppliedTypes()
+        }
+      } else {
+        setAppliedTypes(new Set(draftTypes))
+      }
+    })
   }, [
     appliedStats,
     appliedTypes,
@@ -115,8 +120,10 @@ export function useFilteringPanel() {
   const resetFilters = useCallback(() => {
     clearDraftStats()
     _clearDraftTypes()
-    resetAppliedStats()
-    resetAppliedTypes()
+    startTransition(() => {
+      resetAppliedStats()
+      resetAppliedTypes()
+    })
   }, [resetAppliedStats, resetAppliedTypes, clearDraftStats, _clearDraftTypes])
 
   const selectDraftType = useCallback(
@@ -185,6 +192,8 @@ export function useFilteringPanel() {
 
   const hasFiltersChange = _hasStatFiltersChange || _hasTypeFiltersChange
 
+  const isApplyDisabled = isPending || !!error || !hasFiltersChange
+
   return {
     applyFilters,
     appliedFiltersCount,
@@ -195,6 +204,7 @@ export function useFilteringPanel() {
     draftTypesCount,
     error,
     hasFiltersChange,
+    isApplyDisabled,
     resetFilters,
     selectAllDraftTypes,
     selectDraftType,

@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useMemo, useState, useTransition } from 'react'
 
 import { type SortingCriterion } from '@/features/sorting/schemas/sorting.schema'
 import { initialSortingState } from '@/features/sorting/store'
@@ -7,6 +7,7 @@ import { nth } from '@/shared/utilities/nth'
 
 export function useSortingPanel() {
   const appliedCriteria = useSorting()
+  const [isPending, startTransition] = useTransition()
   const { setSorting: setAppliedCriteria, resetSorting: resetAppliedCriteria } =
     useSortingActions()
 
@@ -21,7 +22,9 @@ export function useSortingPanel() {
       nextAppliedCriteria.push([sortBy, orderBy])
     }
 
-    setAppliedCriteria(nextAppliedCriteria)
+    startTransition(() => {
+      setAppliedCriteria(nextAppliedCriteria)
+    })
   }, [draftCriteria, setAppliedCriteria])
 
   // Sync local component state with global store.
@@ -32,7 +35,9 @@ export function useSortingPanel() {
 
   const resetSorting = useCallback(() => {
     setDraftCriteria(initialSortingState.sort)
-    resetAppliedCriteria()
+    startTransition(() => {
+      resetAppliedCriteria()
+    })
   }, [resetAppliedCriteria])
 
   const appliedCriteriaCount = appliedCriteria.filter(
@@ -43,7 +48,7 @@ export function useSortingPanel() {
     ([sortBy]) => sortBy !== null,
   ).length
 
-  const hasSortingChange = useMemo(() => {
+  const _hasSortingChange = useMemo(() => {
     if (
       draftCriteria.length !== appliedCriteria.length &&
       !draftCriteria.some(([sortBy]) => sortBy === null)
@@ -70,12 +75,14 @@ export function useSortingPanel() {
     })
   }, [appliedCriteria, draftCriteria])
 
+  const isApplyDisabled = isPending || !_hasSortingChange
+
   return {
     appliedCriteriaCount,
     applySorting,
     draftCriteria,
     draftCriteriaCount,
-    hasSortingChange,
+    isApplyDisabled,
     resetSorting,
     setDraftCriteria,
     syncSorting,
