@@ -7,9 +7,11 @@ import { cn } from '@/shared/lib/utils'
 import { usePerPage } from '@/shared/store'
 
 function PokemonList({
+  'aria-busy': ariaBusy,
   className,
   pokemons,
 }: {
+  'aria-busy'?: boolean
   className?: string
   pokemons: Pokemon[]
 }) {
@@ -18,7 +20,10 @@ function PokemonList({
   }
 
   return (
-    <ul className={cn('flex flex-1 flex-wrap justify-center gap-6', className)}>
+    <ul
+      aria-busy={ariaBusy}
+      className={cn('flex flex-1 flex-wrap justify-center gap-6', className)}
+    >
       {pokemons.map((pokemon) => (
         <li key={pokemon.id}>
           <PokemonCardMemoized pokemon={pokemon} />

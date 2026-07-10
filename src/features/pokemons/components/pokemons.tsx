@@ -12,6 +12,7 @@ import {
   PokemonListSkeleton,
 } from '@/features/pokemons/components/pokemon-list'
 import { ErrorFallback } from '@/shared/components'
+import { cn } from '@/shared/lib/utils'
 import { useQueryParams } from '@/shared/store'
 
 function WidgetFallback(props: FallbackProps) {
@@ -68,9 +69,18 @@ function PokemonsFetcher() {
     params.types,
   ])
 
+  const isStale = deferredParams !== params
+
   return (
     <>
-      <PokemonList pokemons={pokemons} />
+      <PokemonList
+        pokemons={pokemons}
+        aria-busy={isStale}
+        className={cn(
+          'transition-opacity duration-300',
+          isStale && 'opacity-60',
+        )}
+      />
       <PaginationBar maxPage={maxPage} totalItems={totalItems} />
     </>
   )
