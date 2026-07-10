@@ -1,4 +1,4 @@
-import { memo, useState } from 'react'
+import { memo, useRef, useState } from 'react'
 
 import { WithTooltip } from '@/shared/components'
 import { Card, CardContent, CardFooter } from '@/shared/components/ui/card'
@@ -48,6 +48,26 @@ const getColorForType = (type: PokemonType): string => {
 
 function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
   const [loaded, setLoaded] = useState(false)
+  const [src, setSrc] = useState(`${BASE_IMAGE_URL}/${String(pokemon.id)}.png`)
+
+  const retriesRef = useRef(0)
+
+  const handleLoad = () => {
+    setLoaded(true)
+  }
+
+  // Retry loading the thumbnail image with exponential backoff if it fails to load
+  const handleError = () => {
+    if (retriesRef.current >= 3) return // give up, show fallback
+
+    const delay = 500 * 2 ** retriesRef.current + Math.random() * 200
+    retriesRef.current += 1
+    setTimeout(() => {
+      setSrc(
+        `${BASE_IMAGE_URL}/${String(pokemon.id)}.png?retry=${retriesRef.current.toString()}`,
+      )
+    }, delay)
+  }
 
   const types: PokemonType[] = [pokemon.primary_type]
   if (pokemon.secondary_type) types.push(pokemon.secondary_type)
@@ -64,11 +84,11 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
               )}
             >
               <img
-                loading="lazy"
                 src={`/pokemon-types/${type.toLowerCase()}.svg`}
                 alt={type}
                 width={16}
                 height={16}
+                loading="lazy"
                 className="aspect-square w-full object-cover"
               />
             </div>
@@ -77,17 +97,17 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
       </div>
 
       <CardContent>
-        <div className="flex flex-col items-center gap-4">
-          {!loaded && <ImageSkeleton />}
+        <div className="relative flex flex-col items-center gap-4">
+          {!loaded && <ImageSkeleton className="absolute" />}
           <img
-            src={`${BASE_IMAGE_URL}/${String(pokemon.id)}.png`}
+            src={src}
             alt={pokemon.name}
             width={280}
             height={280}
-            className={cn('mx-auto block object-cover', !loaded && 'hidden')}
-            onLoad={() => {
-              setLoaded(true)
-            }}
+            loading="lazy"
+            className={cn('mx-auto block object-cover', !loaded && 'opacity-0')}
+            onError={handleError}
+            onLoad={handleLoad}
           />
           <Heading as="h2">{pokemon.name}</Heading>
         </div>
@@ -120,8 +140,8 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
   )
 }
 
-function ImageSkeleton() {
-  return <Skeleton className="size-70 rounded-full" />
+function ImageSkeleton({ className }: { className?: string }) {
+  return <Skeleton className={cn('size-70 rounded-full', className)} />
 }
 
 function PokemonCardSkeleton() {
