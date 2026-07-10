@@ -15,16 +15,12 @@ import { useFiltersActions, useQueryParams } from '@/shared/store'
 
 export function Pagination({
   className,
-  disabled,
   maxDisplayedPages = 7,
   maxPage,
-  startTransition,
 }: {
   className?: string
-  disabled?: boolean
   maxDisplayedPages?: number
   maxPage: number
-  startTransition: React.TransitionStartFunction
 }) {
   const queryClient = useQueryClient()
   const { page, ...queryParmas } = useQueryParams()
@@ -32,10 +28,7 @@ export function Pagination({
 
   const handlePageChange = (nextPage: number) => {
     if (nextPage >= 1 && nextPage <= maxPage) {
-      // If this update suspends, don't hide the already displayed content
-      startTransition(() => {
-        setPage(nextPage)
-      })
+      setPage(nextPage)
     }
   }
   const handlePageHover = async (nextPage: number) => {
@@ -55,7 +48,7 @@ export function Pagination({
         <PaginationContent>
           <PaginationItem>
             <PaginationPrevious
-              disabled={page <= 1 || disabled}
+              disabled={page <= 1}
               onClick={() => {
                 handlePageChange(page - 1)
               }}
@@ -75,7 +68,7 @@ export function Pagination({
             ) : (
               <PaginationItem key={pageNumber}>
                 <PaginationLink
-                  disabled={(disabled ?? false) || pageNumber > maxPage}
+                  disabled={pageNumber > maxPage}
                   isActive={page === pageNumber}
                   onClick={() => {
                     handlePageChange(pageNumber)
@@ -94,7 +87,7 @@ export function Pagination({
 
           <PaginationItem>
             <PaginationNext
-              disabled={page >= maxPage || disabled}
+              disabled={page >= maxPage}
               onClick={() => {
                 handlePageChange(page + 1)
               }}

@@ -57,6 +57,9 @@ async function typeAndWait(value: string) {
   await act(async () => {
     await vi.advanceTimersByTimeAsync(DEBOUNCE_DELAY)
   })
+  await act(async () => {
+    await vi.runAllTimersAsync()
+  })
 }
 
 beforeAll(() => {

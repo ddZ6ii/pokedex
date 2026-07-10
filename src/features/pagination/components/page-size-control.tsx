@@ -5,18 +5,14 @@ import { cn } from '@/shared/lib/utils'
 
 export function PageSizeControl({
   className,
-  disabled,
-  startTransition,
   totalItems,
 }: {
   className?: string
-  disabled?: boolean
-  startTransition: React.TransitionStartFunction
   totalItems: number
 }) {
   return (
     <div className={cn('flex items-center gap-3', className)}>
-      <PageSizePicker disabled={disabled} startTransition={startTransition} />
+      <PageSizePicker />
 
       <Separator
         orientation="vertical"

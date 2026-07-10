@@ -2,7 +2,7 @@ import {
   QueryErrorResetBoundary,
   useSuspenseQuery,
 } from '@tanstack/react-query'
-import { Suspense, useEffect, useRef } from 'react'
+import { Suspense, useDeferredValue, useEffect, useRef } from 'react'
 import { ErrorBoundary, type FallbackProps } from 'react-error-boundary'
 
 import { PaginationBar } from '@/features/pagination/components'
@@ -28,17 +28,30 @@ function PokemonsFetcher() {
   const firstRenderRef = useRef(true)
   const params = useQueryParams()
 
-  // ℹ️ How useSuspenseQuery works
+  // ℹ️ Why `useDeferredValue` here
   //
-  // useSuspenseQuery throws synchronously on error.
+  // `useSuspenseQuery` has no `placeholderData`/`keepPreviousData` escape
+  // hatch (that's a `useQuery`-only feature), so a query-key change with
+  // nothing cached for it suspends immediately, replacing the list with
+  // the Suspense fallback (UI flickers with skeletons).
+  // `useDeferredValue(params)` keeps returning the *previous* params while
+  // React re-renders this component in the background with the new ones.
+  // If that background render suspends, React doesn't show the fallback —
+  // it keeps the current list mounted (rendered with the stale params)
+  // until the new data is ready, then swaps in the fresh list.
+  const deferredParams = useDeferredValue(params)
+
+  // ℹ️ How `useSuspenseQuery` works
+  //
+  // `useSuspenseQuery` throws synchronously on error.
   // The component never reaches the return statement.
   // -> `error`, `isError` and related component's branching logic are unreachable.
   // React bubbles the error up to the closest error boundary.
   const {
     data: { data: pokemons, pages: maxPage, items: totalItems },
-  } = useSuspenseQuery(createPokemonsQueryOptions(params))
+  } = useSuspenseQuery(createPokemonsQueryOptions(deferredParams))
 
-  // `startTransition` keeps the old list mounted while refetching (no
+  // `useDeferredValue` keeps the old list mounted while refetching (no
   // unmount), so the browser never resets scroll on param change — force it.
   useEffect(() => {
     if (firstRenderRef.current) {

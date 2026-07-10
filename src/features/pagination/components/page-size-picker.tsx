@@ -3,15 +3,7 @@ import { Select } from '@/shared/components/select'
 import { cn } from '@/shared/lib/utils'
 import { useFiltersActions, usePerPage } from '@/shared/store'
 
-export function PageSizePicker({
-  className,
-  disabled,
-  startTransition,
-}: {
-  className?: string
-  disabled?: boolean
-  startTransition: React.TransitionStartFunction
-}) {
+export function PageSizePicker({ className }: { className?: string }) {
   const perPage = usePerPage()
   const { setPerPage } = useFiltersActions()
 
@@ -22,13 +14,10 @@ export function PageSizePicker({
       <Select
         placeholder="Items per page"
         size="sm"
-        disabled={disabled}
         options={PER_PAGE_OPTIONS}
         value={String(perPage)}
         onValueChange={(nextValue) => {
-          startTransition(() => {
-            setPerPage(Number(nextValue) as Filters['perPage'])
-          })
+          setPerPage(Number(nextValue) as Filters['perPage'])
         }}
         className={cn('w-full max-w-17', className)}
       />

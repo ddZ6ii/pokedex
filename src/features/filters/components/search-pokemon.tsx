@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { useMemo, useRef, useTransition } from 'react'
+import { useMemo, useRef } from 'react'
 
 import { createPokemonsQueryOptions } from '@/features/pokemons/api'
 import type { PokemonsPaginatedResponse } from '@/features/pokemons/schemas'
@@ -27,12 +27,11 @@ export function SearchPokemon({
   id?: string
 }) {
   const inputRef = useRef<HTMLInputElement>(null)
-  const [isPending, startTransition] = useTransition()
 
   const { search, ...queryParams } = useQueryParams()
   const { setSearch } = useFiltersActions()
 
-  const { data: results } = useQuery({
+  const { data: results, isFetching } = useQuery({
     ...createPokemonsQueryOptions({ search, ...queryParams }),
     select: selectItems,
     enabled: !!search,
@@ -42,13 +41,11 @@ export function SearchPokemon({
     () =>
       debounce(
         (nextSearch: string) => {
-          startTransition(() => {
-            setSearch(nextSearch.trim())
-          })
+          setSearch(nextSearch.trim())
         },
         { delay: 350 },
       ),
-    [setSearch, startTransition],
+    [setSearch],
   )
 
   const showResults =
@@ -72,9 +69,9 @@ export function SearchPokemon({
         {showResults && <SearchResults>{results} results</SearchResults>}
         <SearchResetTrigger
           aria-controls={id}
-          aria-label={isPending ? 'Loading' : 'Clear search'}
-          disabled={isPending}
-          loading={isPending}
+          aria-label={isFetching ? 'Loading' : 'Clear search'}
+          disabled={isFetching}
+          loading={isFetching}
           size="icon-xs"
           onSearchClear={() => {
             debouncedSetSearch.cancel()
