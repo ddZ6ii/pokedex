@@ -33,34 +33,17 @@ export function FilteringPanelContent({
   typesCount: number
 }) {
   const [activeIndex, setActiveIndex] = useState(
-    statsCount > 0 ? 0 : typesCount > 0 ? 1 : 0,
+    typesCount > 0 ? 0 : statsCount > 0 ? 1 : 0,
   )
 
   return (
     <div className="space-y-4">
       <CollapsibleFilter
-        label="Pokémon Stats"
-        activeFiltersCount={statsCount}
+        label="Pokémon Types"
+        activeFiltersCount={typesCount}
         open={activeIndex === 0}
         onOpenChange={(open) => {
           setActiveIndex(open ? 0 : -1)
-        }}
-        className={cn(activeIndex === 0 && activeClassName)}
-      >
-        <StatFilters
-          disableClear={statsCount === 0}
-          onClearStats={onClearStats}
-          stats={stats}
-          setStats={setStats}
-        />
-      </CollapsibleFilter>
-
-      <CollapsibleFilter
-        label="Pokémon Types"
-        activeFiltersCount={typesCount}
-        open={activeIndex === 1}
-        onOpenChange={(open) => {
-          setActiveIndex(open ? 1 : -1)
         }}
         className={cn(activeIndex === 1 && activeClassName)}
       >
@@ -70,6 +53,23 @@ export function FilteringPanelContent({
           onSelectType={onSelectType}
           onSelectAllTypes={onSelectAllTypes}
           onUnselectAllTypes={onUnselectAllTypes}
+        />
+      </CollapsibleFilter>
+
+      <CollapsibleFilter
+        label="Pokémon Stats"
+        activeFiltersCount={statsCount}
+        open={activeIndex === 1}
+        onOpenChange={(open) => {
+          setActiveIndex(open ? 1 : -1)
+        }}
+        className={cn(activeIndex === 0 && activeClassName)}
+      >
+        <StatFilters
+          disableClear={statsCount === 0}
+          onClearStats={onClearStats}
+          stats={stats}
+          setStats={setStats}
         />
       </CollapsibleFilter>
     </div>

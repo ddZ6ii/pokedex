@@ -18,6 +18,9 @@ const validPokemon: Pokemon = {
   special_attack: 65,
   special_defense: 65,
   speed: 45,
+  stage: 'base',
+  evolves_from_id: null,
+  evolves_from_name: null,
 }
 
 describe('PokemonSchema', () => {
@@ -97,6 +100,26 @@ describe('PokemonSchema', () => {
   it('rejects missing required field', () => {
     const { hp: _, ...withoutHp } = validPokemon
     expect(() => PokemonSchema.parse(withoutHp)).toThrow()
+  })
+
+  it('accepts null evolves_from_id', () => {
+    expect(
+      PokemonSchema.parse({ ...validPokemon, evolves_from_id: null })
+        .evolves_from_id,
+    ).toBeNull()
+  })
+
+  it('coerces evolves_from_id from string', () => {
+    expect(
+      PokemonSchema.parse({ ...validPokemon, evolves_from_id: '1' })
+        .evolves_from_id,
+    ).toBe(1)
+  })
+
+  it('rejects negative evolves_from_id', () => {
+    expect(() =>
+      PokemonSchema.parse({ ...validPokemon, evolves_from_id: -1 }),
+    ).toThrow()
   })
 })
 

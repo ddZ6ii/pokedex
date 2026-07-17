@@ -3,7 +3,7 @@ import z from 'zod'
 import {
   POKEMON_SKILLS,
   POKEMON_TYPES,
-  type PokemonSkills,
+  type PokemonSkill,
 } from '@/features/pokemons/schemas'
 import type { SelectOption } from '@/shared/types'
 
@@ -26,7 +26,7 @@ const _StatRangeSchema = z.tuple([
 const _FilteringStatSchema = z.object(
   Object.fromEntries(
     POKEMON_SKILLS.map((skill) => [skill, _StatRangeSchema]),
-  ) as Record<PokemonSkills, typeof _StatRangeSchema>,
+  ) as Record<PokemonSkill, typeof _StatRangeSchema>,
 )
 
 const _FilteringTypeSchema = z.set(z.enum(POKEMON_TYPES))

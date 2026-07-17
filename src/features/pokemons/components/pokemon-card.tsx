@@ -1,127 +1,164 @@
-import { memo, useRef, useState } from 'react'
+import { memo, useState } from 'react'
 
+import {
+  BASE_IMAGE_URL,
+  usePokemonImage,
+} from '@/features/pokemons/hooks/usePokemonImage'
+import {
+  POKEMON_SKILLS,
+  type Pokemon,
+  type PokemonStage,
+  type PokemonType,
+} from '@/features/pokemons/schemas/pokemon.schema'
 import { WithTooltip } from '@/shared/components'
 import { Card, CardContent, CardFooter } from '@/shared/components/ui/card'
 import { Heading } from '@/shared/components/ui/heading'
 import { Skeleton } from '@/shared/components/ui/skeleton'
-import {
-  POKEMON_SKILLS,
-  type Pokemon,
-  type PokemonType,
-} from '@/features/pokemons/schemas/pokemon.schema'
 import { cn } from '@/shared/lib/utils'
-import { capitalize } from '@/shared/utilities'
+import { capitalize, nth } from '@/shared/utilities'
 
-const BASE_IMAGE_URL =
-  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork'
-
-const COLORS = new Map<PokemonType, string>([
-  ['bug', 'bg-[#92bd2d]'],
-  ['dark', 'bg-[#595761]'],
-  ['dragon', 'bg-[#076ac8]'],
-  ['electric', 'bg-[#f2d94e]'],
-  ['fairy', 'bg-[#ee91e5]'],
-  ['fighting', 'bg-[#d3425f]'],
-  ['fire', 'bg-[#fba54d]'],
-  ['flying', 'bg-[#a1bbec]'],
-  ['ghost', 'bg-[#5f6dbc]'],
-  ['grass', 'bg-[#5fbe58]'],
-  ['ground', 'bg-[#da7c4c]'],
-  ['ice', 'bg-[#76d0c1]'],
-  ['normal', 'bg-[#a0a29f]'],
-  ['poison', 'bg-[#b863cf]'],
-  ['psychic', 'bg-[#fa8582]'],
-  ['rock', 'bg-[#c9bc8a]'],
-  ['steel', 'bg-[#5894a3]'],
-  ['water', 'bg-[#549ce0]'],
+const BG_IMAGES = new Map<PokemonType, string>([
+  ['bug', '/pokemon-backgrounds/bg-bug.png'],
+  ['dark', '/pokemon-backgrounds/bg-dark.png'],
+  ['dragon', '/pokemon-backgrounds/bg-dragon.png'],
+  ['electric', '/pokemon-backgrounds/bg-electric.png'],
+  ['fairy', '/pokemon-backgrounds/bg-fairy.png'],
+  ['fighting', '/pokemon-backgrounds/bg-fighting.png'],
+  ['fire', '/pokemon-backgrounds/bg-fire.png'],
+  ['flying', '/pokemon-backgrounds/bg-flying.png'],
+  ['ghost', '/pokemon-backgrounds/bg-ghost.png'],
+  ['grass', '/pokemon-backgrounds/bg-grass.png'],
+  ['ground', '/pokemon-backgrounds/bg-ground.png'],
+  ['ice', '/pokemon-backgrounds/bg-ice.png'],
+  ['normal', '/pokemon-backgrounds/bg-normal.png'],
+  ['poison', '/pokemon-backgrounds/bg-poison.png'],
+  ['psychic', '/pokemon-backgrounds/bg-psychic.png'],
+  ['rock', '/pokemon-backgrounds/bg-rock.png'],
+  ['steel', '/pokemon-backgrounds/bg-steel.png'],
+  ['water', '/pokemon-backgrounds/bg-water.png'],
 ])
 
-const getColorForType = (type: PokemonType): string => {
-  const color = COLORS.get(type)
-  if (!color) {
+const getBackgroundForType = (
+  type: PokemonType,
+  stage: PokemonStage,
+): string => {
+  let background = BG_IMAGES.get(type)
+  if (!background) {
     throw new Error(
-      `No color found for pokemon type "${type}". Please ensure that all types have a corresponding color defined in the COLORS map.`,
+      `No background found for pokemon type "${type}". Please ensure that all types have a corresponding background defined in the BG_IMAGES map.`,
     )
   }
-  return color
+  if (stage === '2') {
+    background = background.replace('.png', '-stage-2.png')
+  }
+  if (stage === '3') {
+    background = background.replace('.png', '-stage-3.png')
+  }
+  return background
 }
 
 function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
-  const [loaded, setLoaded] = useState(false)
-  const [src, setSrc] = useState(`${BASE_IMAGE_URL}/${String(pokemon.id)}.png`)
-
-  const retriesRef = useRef(0)
-
-  const handleLoad = () => {
-    setLoaded(true)
-  }
-
-  // Retry loading the thumbnail image with exponential backoff if it fails to load
-  const handleError = () => {
-    if (retriesRef.current >= 3) return // give up, show fallback
-
-    const delay = 500 * 2 ** retriesRef.current + Math.random() * 200
-    retriesRef.current += 1
-    setTimeout(() => {
-      setSrc(
-        `${BASE_IMAGE_URL}/${String(pokemon.id)}.png?retry=${retriesRef.current.toString()}`,
-      )
-    }, delay)
-  }
+  const { src, loaded, handleLoad, handleError } = usePokemonImage(pokemon.id)
+  const [evolvesFromLoaded, setEvolvesFromLoaded] = useState(false)
 
   const types: PokemonType[] = [pokemon.primary_type]
-  if (pokemon.secondary_type) types.push(pokemon.secondary_type)
+  if (pokemon.secondary_type) {
+    types.push(pokemon.secondary_type)
+  }
+
+  const evolvesFromSrc = pokemon.evolves_from_id
+    ? `${BASE_IMAGE_URL}/${String(pokemon.evolves_from_id)}.png`
+    : null
 
   return (
-    <Card className="relative max-w-xs cursor-pointer">
-      <div className="absolute top-2 right-2 flex flex-col gap-2">
+    <Card
+      className={cn('relative min-h-109.5 max-w-78 cursor-pointer gap-3 p-0')}
+      style={{
+        backgroundImage: `url('${getBackgroundForType(nth(types, 0), pokemon.stage)}')`,
+        backgroundSize: 'contain',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+      }}
+    >
+      <div className="outline-muted-foreground/20 absolute top-3.5 right-3.5 z-10 flex rounded-full outline">
         {types.map((type) => (
-          <WithTooltip key={type} tooltip={capitalize(type)} side="right">
-            <div
-              className={cn(
-                'size-6 cursor-pointer rounded-full p-1 transition-transform hover:scale-110',
-                getColorForType(type),
-              )}
-            >
+          <WithTooltip key={type} tooltip={capitalize(type)} side="top">
+            <div className="size-7 cursor-pointer rounded-full p-0.5 transition-transform hover:scale-110">
               <img
-                src={`/pokemon-types/${type.toLowerCase()}.svg`}
+                src={`/pokemon-types/${type.toLowerCase()}.png`}
                 alt={type}
-                width={16}
-                height={16}
+                width={32}
+                height={32}
                 loading="lazy"
-                className="aspect-square w-full object-cover"
+                className="block aspect-square w-full object-cover"
               />
             </div>
           </WithTooltip>
         ))}
       </div>
 
+      {pokemon.stage !== 'base' && evolvesFromSrc && (
+        <div className="absolute top-8.5 left-5 z-10 size-8 rounded-full">
+          <WithTooltip
+            tooltip={`Evolves from ${pokemon.evolves_from_name ?? ''}`}
+            side="top"
+            className="h-full w-full"
+          >
+            <img
+              src={evolvesFromSrc}
+              alt={pokemon.evolves_from_name ?? ''}
+              width={40}
+              height={40}
+              className={cn(
+                'mx-auto block object-cover',
+                !evolvesFromLoaded && 'opacity-0',
+              )}
+              onLoad={() => {
+                setEvolvesFromLoaded(true)
+              }}
+            />
+          </WithTooltip>
+        </div>
+      )}
+
       <CardContent>
-        <div className="relative flex flex-col items-center gap-4">
-          {!loaded && <ImageSkeleton className="absolute" />}
+        <div className="relative flex flex-col items-center gap-2 text-black">
+          {!loaded && (
+            <ImageSkeleton className="absolute top-12.5 mx-auto size-42 rounded-full" />
+          )}
           <img
             src={src}
             alt={pokemon.name}
             width={280}
             height={280}
             loading="lazy"
-            className={cn('mx-auto block object-cover', !loaded && 'opacity-0')}
+            className={cn(
+              'mx-auto block -translate-y-1 scale-65 object-cover transition-transform hover:scale-87',
+              !loaded && 'opacity-0',
+            )}
             onError={handleError}
             onLoad={handleLoad}
           />
-          <Heading as="h2">{pokemon.name}</Heading>
+          <Heading
+            as="h2"
+            className="font-heading -mt-12 tracking-wide lg:text-xl"
+          >
+            {pokemon.name}
+          </Heading>
+          {pokemon.description && (
+            <p className="mt-2 line-clamp-3 px-4">{pokemon.description}</p>
+          )}
         </div>
       </CardContent>
-
-      <CardFooter>
-        <div className="text-muted-foreground flex w-full items-center text-xs">
+      <CardFooter className="mx-2 mb-8 rounded-none border-none bg-transparent px-4 py-1.5">
+        <div className="text-muted-foreground ml-2 flex w-full items-center gap-4 text-xs">
           {POKEMON_SKILLS.map((skill) => (
             <WithTooltip
               key={skill}
               tooltip={`${skill}: ${String(pokemon[skill])}`}
-              className="after:bg-muted-foreground hover:text-foreground relative flex flex-1 justify-center transition-[colors_transform] after:absolute after:right-0 after:h-4 after:w-px after:content-[''] last:after:hidden hover:scale-110"
+              className="hover:text-foreground relative flex transition-[colors_transform] after:absolute after:-right-2 after:h-4 after:w-px after:bg-black after:content-[''] last:after:hidden hover:scale-110"
             >
-              <div className="flex cursor-pointer items-center gap-1">
+              <div className="flex cursor-pointer items-center gap-0.5 font-semibold text-black">
                 <img
                   loading="lazy"
                   src={`/pokemon-skills/${skill}.svg`}
@@ -141,26 +178,33 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
 }
 
 function ImageSkeleton({ className }: { className?: string }) {
-  return <Skeleton className={cn('size-70 rounded-full', className)} />
+  return <Skeleton className={cn('h-45.5 w-full', className)} />
 }
 
 function PokemonCardSkeleton() {
   return (
-    <Card className="relative max-w-xs">
-      <div className="absolute top-2 right-2 flex flex-col gap-2">
+    <Card className="relative h-109.5 w-78">
+      <div className="absolute top-3.5 right-3.5 flex gap-1">
         <Skeleton className="size-6 rounded-full" />
         <Skeleton className="size-6 rounded-full" />
       </div>
+
       <CardContent>
-        <div className="flex flex-col items-center gap-4">
+        <div className="mt-8 flex flex-col gap-4 px-2">
           <ImageSkeleton />
-          <Skeleton className="h-7 w-1/2" />
+          <Skeleton className="mx-auto h-6 w-1/2" />
+          <div className="mt-1 space-y-1">
+            {Array.from({ length: 3 }).map((_, i) => (
+              <Skeleton key={i} className="flex h-3.5 justify-center" />
+            ))}
+          </div>
         </div>
       </CardContent>
-      <CardFooter>
-        <div className="text-muted-foreground flex w-full items-center justify-between text-xs">
+
+      <CardFooter className="mx-2 mb-8 rounded-none border-none bg-transparent px-4 py-1.5">
+        <div className="text-muted-foreground flex w-full items-center gap-4 text-xs">
           {Array.from({ length: POKEMON_SKILLS.length }).map((_, i) => (
-            <Skeleton key={i} className="flex h-5 w-1/5 justify-center" />
+            <Skeleton key={i} className="h-5.5 w-1/6" />
           ))}
         </div>
       </CardFooter>

@@ -6,7 +6,7 @@ import {
 } from '@/features/filters/schemas/filter.schema'
 import {
   POKEMON_SKILLS,
-  type PokemonSkills,
+  type PokemonSkill,
 } from '@/features/pokemons/schemas/pokemon.schema'
 import { Button } from '@/shared/components/ui/button'
 
@@ -21,7 +21,7 @@ export function StatFilters({
   stats: FilteringStats
   setStats: React.Dispatch<React.SetStateAction<FilteringStats>>
 }) {
-  const handleValueChange = (value: number[], skill: PokemonSkills) => {
+  const handleValueChange = (value: number[], skill: PokemonSkill) => {
     setStats((prev) => ({ ...prev, [skill]: value }))
   }
 

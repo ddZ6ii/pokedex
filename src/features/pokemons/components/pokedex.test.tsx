@@ -46,6 +46,9 @@ const successResponse: PokemonsPaginatedResponse = {
       special_attack: 65,
       special_defense: 65,
       speed: 45,
+      stage: 'base',
+      evolves_from_id: null,
+      evolves_from_name: null,
     },
   ],
 }

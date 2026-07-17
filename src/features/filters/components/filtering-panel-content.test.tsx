@@ -98,16 +98,12 @@ describe('FilteringPanelContent', () => {
       ).toBeInTheDocument()
     })
 
-    it('opens Stats panel by default when no active filters', () => {
+    it('opens Types panel by default when no active filters', () => {
       renderWithProviders(<Wrapper />)
 
-      expect(screen.getAllByRole('slider')).toHaveLength(
-        POKEMON_SKILLS.length * 2,
-      )
+      expect(screen.queryAllByRole('slider')).toHaveLength(0)
       for (const type of POKEMON_TYPES) {
-        expect(
-          screen.queryByRole('checkbox', { name: type }),
-        ).not.toBeInTheDocument()
+        expect(screen.getByRole('checkbox', { name: type })).toBeInTheDocument()
       }
     })
 
@@ -266,13 +262,8 @@ describe('FilteringPanelContent', () => {
   })
 
   describe('Types panel', () => {
-    it('renders a checkbox for each Pokémon type', async () => {
-      const user = userEvent.setup()
+    it('renders a checkbox for each Pokémon type', () => {
       renderWithProviders(<Wrapper />)
-
-      await user.click(
-        screen.getByRole('button', { name: TYPES_TRIGGER_LABEL }),
-      )
 
       for (const type of POKEMON_TYPES) {
         expect(screen.getByRole('checkbox', { name: type })).toBeInTheDocument()
@@ -343,13 +334,8 @@ describe('FilteringPanelContent', () => {
       expect(onUnselectAllTypes).toHaveBeenCalledOnce()
     })
 
-    it('shows error message when error prop is set', async () => {
-      const user = userEvent.setup()
+    it('shows error message when error prop is set', () => {
       renderWithProviders(<Wrapper error={new Error('Failed to load types')} />)
-
-      await user.click(
-        screen.getByRole('button', { name: TYPES_TRIGGER_LABEL }),
-      )
 
       expect(screen.getByText('Failed to load types')).toBeInTheDocument()
     })

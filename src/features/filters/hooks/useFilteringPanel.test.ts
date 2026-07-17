@@ -14,7 +14,7 @@ import {
 } from '@/features/filters/schemas'
 import {
   POKEMON_TYPES,
-  type PokemonSkills,
+  type PokemonSkill,
   type PokemonType,
 } from '@/features/pokemons/schemas'
 import { useFilters, useFiltersActions } from '@/shared/store'
@@ -59,7 +59,7 @@ describe('initDraftStats', () => {
 
     for (const skill of Object.keys(result)) {
       if (skill === 'hp') continue
-      expect(result[skill as PokemonSkills]).toEqual([
+      expect(result[skill as PokemonSkill]).toEqual([
         MIN_STAT_VALUE,
         MAX_STAT_VALUE,
       ])
@@ -106,7 +106,7 @@ describe('initial state', () => {
 
     for (const skill of Object.keys(result.current.draftStats)) {
       if (skill === 'hp') continue
-      expect(result.current.draftStats[skill as PokemonSkills]).toEqual([
+      expect(result.current.draftStats[skill as PokemonSkill]).toEqual([
         MIN_STAT_VALUE,
         MAX_STAT_VALUE,
       ])
