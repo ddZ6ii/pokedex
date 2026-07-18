@@ -1,5 +1,7 @@
+import { motion } from 'motion/react'
 import { memo, useState } from 'react'
 
+import { useMouseTilt } from '@/features/pokemons/hooks/useMouseTilt'
 import {
   BASE_IMAGE_URL,
   usePokemonImage,
@@ -57,6 +59,49 @@ const getBackgroundForType = (
   return background
 }
 
+function TiltedCard({
+  className,
+  children,
+  size = 'default',
+  ...props
+}: React.ComponentProps<typeof motion.div> & { size?: 'default' | 'sm' }) {
+  const {
+    handleMouseEnter,
+    handleMouseMove,
+    handleMouseLeave,
+    rotateX,
+    rotateY,
+  } = useMouseTilt()
+
+  const { style, ...restProps } = props
+  return (
+    <motion.div
+      data-slot="card"
+      data-size={size}
+      className={cn(
+        'group/card bg-card text-card-foreground ring-foreground/10 flex flex-col gap-4 overflow-hidden rounded-xl py-4 text-sm ring-1 has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[size=sm]:gap-3 data-[size=sm]:py-3 data-[size=sm]:has-data-[slot=card-footer]:pb-0 *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl',
+        className,
+      )}
+      onMouseEnter={handleMouseEnter}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        ...style,
+        rotateX,
+        rotateY,
+      }}
+      {...restProps}
+    >
+      {children as React.ReactNode}
+
+      {/* Shimmer effect  */}
+      <div className="pointer-events-none absolute inset-0 translate-z-44 overflow-hidden rounded-xl opacity-0 group-hover/card:opacity-100">
+        <div className="motion-safe:group-hover/card:animate-shimmer absolute inset-y-0 left-1/2 w-1/3 -translate-x-1/2 bg-linear-to-r from-transparent via-white/60 to-transparent opacity-0" />
+      </div>
+    </motion.div>
+  )
+}
+
 function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
   const { src, loaded, handleLoad, handleError } = usePokemonImage(pokemon.id)
   const [evolvesFromLoaded, setEvolvesFromLoaded] = useState(false)
@@ -71,8 +116,10 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
     : null
 
   return (
-    <Card
-      className={cn('relative min-h-109.5 max-w-78 cursor-pointer gap-3 p-0')}
+    <TiltedCard
+      className={cn(
+        'relative min-h-109.5 max-w-78 cursor-pointer gap-3 p-0 perspective-near transform-3d',
+      )}
       style={{
         backgroundImage: `url('${getBackgroundForType(nth(types, 0), pokemon.stage)}')`,
         backgroundSize: 'contain',
@@ -80,10 +127,10 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
         backgroundPosition: 'center',
       }}
     >
-      <div className="outline-muted-foreground/20 absolute top-3.5 right-3.5 z-10 flex rounded-full outline">
+      <div className="outline-muted-foreground/20 absolute top-10 right-8 z-10 flex translate-z-10 rounded-full outline transform-3d">
         {types.map((type) => (
           <WithTooltip key={type} tooltip={capitalize(type)} side="top">
-            <div className="size-7 cursor-pointer rounded-full p-0.5 transition-transform hover:scale-110">
+            <div className="size-7 cursor-pointer rounded-full p-0.5 hover:drop-shadow-lg motion-safe:hover:translate-z-14 motion-safe:hover:scale-110 motion-safe:hover:scale-3d">
               <img
                 src={`/pokemon-types/${type.toLowerCase()}.png`}
                 alt={type}
@@ -96,9 +143,8 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
           </WithTooltip>
         ))}
       </div>
-
       {pokemon.stage !== 'base' && evolvesFromSrc && (
-        <div className="absolute top-8.5 left-5 z-10 size-8 rounded-full">
+        <div className="hover:drop-shadow-black/60', absolute top-13.5 left-9 z-10 size-8 translate-z-10 rounded-full transition-transform hover:drop-shadow-lg motion-safe:hover:translate-z-14 motion-safe:hover:scale-140 motion-safe:hover:scale-3d">
           <WithTooltip
             tooltip={`Evolves from ${pokemon.evolves_from_name ?? ''}`}
             side="top"
@@ -120,9 +166,8 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
           </WithTooltip>
         </div>
       )}
-
-      <CardContent>
-        <div className="relative flex flex-col items-center gap-2 text-black">
+      <CardContent className="transform-3d">
+        <div className="relative flex flex-col items-center gap-2 text-black transform-3d">
           {!loaded && (
             <ImageSkeleton className="absolute top-12.5 mx-auto size-42 rounded-full" />
           )}
@@ -133,7 +178,7 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
             height={280}
             loading="lazy"
             className={cn(
-              'mx-auto block -translate-y-1 scale-65 object-cover transition-transform hover:scale-87',
+              'mx-auto block translate-y-8 translate-z-36 scale-40 object-cover drop-shadow-xl drop-shadow-black/40 transition-transform hover:drop-shadow-xl hover:drop-shadow-black/60 motion-safe:hover:translate-z-40 motion-safe:hover:scale-3d',
               !loaded && 'opacity-0',
             )}
             onError={handleError}
@@ -141,22 +186,24 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
           />
           <Heading
             as="h2"
-            className="font-heading -mt-12 tracking-wide lg:text-xl"
+            className="font-heading -mt-13 translate-z-8 font-medium tracking-wide text-shadow-white lg:text-xl"
           >
             {pokemon.name}
           </Heading>
           {pokemon.description && (
-            <p className="mt-2 line-clamp-3 px-4">{pokemon.description}</p>
+            <p className="text-shadow-accent mt-1 line-clamp-3 translate-z-4 px-4">
+              {pokemon.description}
+            </p>
           )}
         </div>
       </CardContent>
-      <CardFooter className="mx-2 mb-8 rounded-none border-none bg-transparent px-4 py-1.5">
-        <div className="text-muted-foreground ml-2 flex w-full items-center gap-4 text-xs">
+      <CardFooter className="mx-2 -mt-1 mb-8 rounded-none border-none bg-transparent px-4 py-1.5 transform-3d">
+        <div className="text-muted-foreground ml-3 flex w-full translate-z-6 items-center gap-4 text-xs">
           {POKEMON_SKILLS.map((skill) => (
             <WithTooltip
               key={skill}
               tooltip={`${skill}: ${String(pokemon[skill])}`}
-              className="hover:text-foreground relative flex transition-[colors_transform] after:absolute after:-right-2 after:h-4 after:w-px after:bg-black after:content-[''] last:after:hidden hover:scale-110"
+              className="hover:text-foreground relative flex transition-[colors_transform] after:absolute after:-right-2 after:h-4 after:w-px after:bg-black after:content-[''] last:after:hidden motion-safe:hover:scale-110"
             >
               <div className="flex cursor-pointer items-center gap-0.5 font-semibold text-black">
                 <img
@@ -173,7 +220,7 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
           ))}
         </div>
       </CardFooter>
-    </Card>
+    </TiltedCard>
   )
 }
 

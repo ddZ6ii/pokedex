@@ -9,6 +9,7 @@
 
 @theme inline {
   --animate-loader: animloader 0.3s linear 0.3s infinite alternate;
+  --animate-shimmer: shimmer 0.9s ease-out;
 
   --font-heading: 'Fredoka Variable', sans-serif;
   --font-sans: 'Nunito Variable', 'Geist Variable', sans-serif;
@@ -136,13 +137,30 @@
   [role='button']:not(:disabled) {
     cursor: pointer;
   }
+}
 
-  @keyframes animloader {
-    0% {
-      height: 40px;
-    }
-    100% {
-      height: 10px;
-    }
+@keyframes animloader {
+  0% {
+    height: 40px;
+  }
+  100% {
+    height: 10px;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(150%) skewX(-20deg);
+    opacity: 0;
   }
 }
