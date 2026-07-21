@@ -79,23 +79,29 @@ function TiltedCard({
       data-slot="card"
       data-size={size}
       className={cn(
-        'group/card bg-card text-card-foreground ring-foreground/10 flex flex-col gap-4 overflow-hidden rounded-xl py-4 text-sm ring-1 has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[size=sm]:gap-3 data-[size=sm]:py-3 data-[size=sm]:has-data-[slot=card-footer]:pb-0 *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl',
+        'group/card bg-card text-card-foreground ring-foreground/10 flex flex-col gap-4 rounded-xl py-4 text-sm ring-1 has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[size=sm]:gap-3 data-[size=sm]:py-3 data-[size=sm]:has-data-[slot=card-footer]:pb-0',
         className,
       )}
       onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      style={{
-        ...style,
-        rotateX,
-        rotateY,
-      }}
+      style={{ rotateX, rotateY }}
       {...restProps}
     >
+      {/*
+        Kept out of the transform-3d chain on purpose: overflow-hidden forces
+        transform-style back to flat (per spec, enforced strictly by Firefox),
+        which would collapse every translate-z descendant onto one plane.
+      */}
+      <div
+        className="pointer-events-none absolute inset-0 -z-10 overflow-hidden rounded-xl"
+        style={style as React.CSSProperties | undefined}
+      />
+
       {children as React.ReactNode}
 
       {/* Shimmer effect  */}
-      <div className="pointer-events-none absolute inset-0 translate-z-44 overflow-hidden rounded-xl opacity-0 group-hover/card:opacity-100">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-xl opacity-0 group-hover/card:opacity-100">
         <div className="motion-safe:group-hover/card:animate-shimmer absolute inset-y-0 left-1/2 w-1/3 -translate-x-1/2 bg-linear-to-r from-transparent via-white/60 to-transparent opacity-0" />
       </div>
     </motion.div>
@@ -127,7 +133,7 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
         backgroundPosition: 'center',
       }}
     >
-      <div className="outline-muted-foreground/20 absolute top-10 right-8 z-10 flex translate-z-10 rounded-full outline transform-3d">
+      <div className="outline-muted-foreground/20 absolute top-3.5 right-3.5 z-10 flex rounded-full outline transform-3d">
         {types.map((type) => (
           <WithTooltip key={type} tooltip={capitalize(type)} side="top">
             <div className="size-7 cursor-pointer rounded-full p-0.5 hover:drop-shadow-lg motion-safe:hover:translate-z-14 motion-safe:hover:scale-110 motion-safe:hover:scale-3d">
@@ -143,8 +149,9 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
           </WithTooltip>
         ))}
       </div>
+
       {pokemon.stage !== 'base' && evolvesFromSrc && (
-        <div className="hover:drop-shadow-black/60', absolute top-13.5 left-9 z-10 size-8 translate-z-10 rounded-full transition-transform hover:drop-shadow-lg motion-safe:hover:translate-z-14 motion-safe:hover:scale-140 motion-safe:hover:scale-3d">
+        <div className="hover:drop-shadow-black/60', absolute top-8.5 left-5 z-10 size-8 translate-z-1 rounded-full transition-transform hover:drop-shadow-lg motion-safe:hover:translate-z-2 motion-safe:hover:scale-300 motion-safe:hover:scale-3d">
           <WithTooltip
             tooltip={`Evolves from ${pokemon.evolves_from_name ?? ''}`}
             side="top"
@@ -166,8 +173,9 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
           </WithTooltip>
         </div>
       )}
-      <CardContent className="transform-3d">
-        <div className="relative flex flex-col items-center gap-2 text-black transform-3d">
+
+      <CardContent className="perspective-normal transform-3d">
+        <div className="relative flex flex-col items-center gap-2 text-black perspective-normal transform-3d">
           {!loaded && (
             <ImageSkeleton className="absolute top-12.5 mx-auto size-42 rounded-full" />
           )}
@@ -178,7 +186,7 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
             height={280}
             loading="lazy"
             className={cn(
-              'mx-auto block translate-y-8 translate-z-36 scale-40 object-cover drop-shadow-xl drop-shadow-black/40 transition-transform hover:drop-shadow-xl hover:drop-shadow-black/60 motion-safe:hover:translate-z-40 motion-safe:hover:scale-3d',
+              'mx-auto block translate-y-0 translate-z-4 scale-70 object-cover drop-shadow-xl drop-shadow-black/40 transition-transform',
               !loaded && 'opacity-0',
             )}
             onError={handleError}
@@ -186,19 +194,20 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
           />
           <Heading
             as="h2"
-            className="font-heading -mt-13 translate-z-8 font-medium tracking-wide text-shadow-white lg:text-xl"
+            className="font-heading -mt-13 translate-z-3 font-medium tracking-wide text-shadow-white lg:text-xl"
           >
             {pokemon.name}
           </Heading>
           {pokemon.description && (
-            <p className="text-shadow-accent mt-1 line-clamp-3 translate-z-4 px-4">
+            <p className="text-shadow-accent mx-2 mt-1 line-clamp-3 translate-z-3 px-4">
               {pokemon.description}
             </p>
           )}
         </div>
       </CardContent>
-      <CardFooter className="mx-2 -mt-1 mb-8 rounded-none border-none bg-transparent px-4 py-1.5 transform-3d">
-        <div className="text-muted-foreground ml-3 flex w-full translate-z-6 items-center gap-4 text-xs">
+
+      <CardFooter className="mx-2 mt-1 mb-8 rounded-none border-none bg-transparent px-4 py-1.5 transform-3d">
+        <div className="text-muted-foreground ml-3 flex w-full translate-z-3 items-center gap-4 text-xs">
           {POKEMON_SKILLS.map((skill) => (
             <WithTooltip
               key={skill}
