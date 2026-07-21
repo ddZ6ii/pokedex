@@ -1,4 +1,5 @@
 import type { LucideIcon } from 'lucide-react'
+import { useEffect, useRef } from 'react'
 
 import { CountBadge, WithTooltip } from '@/shared/components'
 import { Button } from '@/shared/components/ui/button'
@@ -24,6 +25,12 @@ import {
 } from '@/shared/components/ui/drawer'
 import { cn } from '@/shared/lib/utils'
 import { useIsMobile } from '@/shared/hooks'
+
+// Slightly longer than the dialog's close animation (`duration-100`), so the
+// close has always painted before `onApply` runs — with a hard fallback in
+// case the close animation doesn't fire (e.g. reduced motion, no animation
+// support).
+const APPLY_FALLBACK_DELAY_MS = 150
 
 function PanelTrigger({
   asChild: TriggerComponent,
@@ -88,6 +95,29 @@ export function ResponsivePanel({
   onReset?: () => void
 }) {
   const isMobile = useIsMobile()
+
+  // Applying filters/sorting re-renders the (potentially near-fully-swapped)
+  // list behind the dialog, which is expensive enough to block the main
+  // thread and delay the dialog's own close-animation `animationend` event —
+  // making the dialog appear to hang open, then vanish (a visual flash).
+  // Deferring `onApply` until the close animation has genuinely finished
+  // avoids that collision.
+  const pendingApplyRef = useRef(false)
+  const applyFallbackTimeoutRef =
+    useRef<ReturnType<typeof setTimeout>>(undefined)
+
+  const finishApply = () => {
+    if (!pendingApplyRef.current) return
+    pendingApplyRef.current = false
+    clearTimeout(applyFallbackTimeoutRef.current)
+    onApply?.()
+  }
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(applyFallbackTimeoutRef.current)
+    }
+  }, [])
 
   if (isMobile) {
     return (
@@ -167,7 +197,15 @@ export function ResponsivePanel({
         label={label}
       />
 
-      <DialogContent className="h-fit w-fit min-w-lg items-center overflow-hidden">
+      <DialogContent
+        className="h-fit w-fit min-w-lg items-center overflow-hidden"
+        onAnimationEnd={(e) => {
+          if (e.target !== e.currentTarget) return
+          if (e.currentTarget.dataset.state === 'closed') {
+            finishApply()
+          }
+        }}
+      >
         <div className="flex min-h-0 w-full max-w-xl flex-1 flex-col">
           <DialogHeader className="p-4 text-center">
             <DialogTitle className="text-base capitalize">{label}</DialogTitle>
@@ -196,7 +234,11 @@ export function ResponsivePanel({
               <Button
                 disabled={isApplyDisabled}
                 onClick={() => {
-                  onApply?.()
+                  pendingApplyRef.current = true
+                  applyFallbackTimeoutRef.current = setTimeout(
+                    finishApply,
+                    APPLY_FALLBACK_DELAY_MS,
+                  )
                 }}
               >
                 Apply

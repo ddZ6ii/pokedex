@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react'
+import { startTransition, useCallback, useMemo, useState } from 'react'
 
 import {
   MAX_STAT_VALUE,
@@ -72,19 +72,21 @@ export function useFilteringPanel() {
       ),
     ) as FilteringStats
 
-    if (Object.keys(nextAppliedStats).length) {
-      setAppliedStats(nextAppliedStats)
-    } else if (appliedStats) {
-      resetAppliedStats()
-    }
-
-    if (draftTypes.size === POKEMON_TYPES.length) {
-      if (appliedTypes) {
-        resetAppliedTypes()
+    startTransition(() => {
+      if (Object.keys(nextAppliedStats).length) {
+        setAppliedStats(nextAppliedStats)
+      } else if (appliedStats) {
+        resetAppliedStats()
       }
-    } else {
-      setAppliedTypes(new Set(draftTypes))
-    }
+
+      if (draftTypes.size === POKEMON_TYPES.length) {
+        if (appliedTypes) {
+          resetAppliedTypes()
+        }
+      } else {
+        setAppliedTypes(new Set(draftTypes))
+      }
+    })
   }, [
     appliedStats,
     appliedTypes,
