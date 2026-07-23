@@ -1,11 +1,7 @@
-import { Logo, ModeSelect } from '@/shared/components'
-import { useSystemModeSync } from '@/shared/hooks'
-
+import { Logo, ModeSelect } from '@/routes/-components'
 import { cn } from '@/shared/lib/utils'
 
 export function Header({ className }: { className?: string }) {
-  useSystemModeSync()
-
   return (
     <header
       className={cn(

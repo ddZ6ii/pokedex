@@ -1,12 +1,18 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { createRouter, RouterProvider } from '@tanstack/react-router'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { ErrorBoundary, type FallbackProps } from 'react-error-boundary'
 
-import { App } from '@/app'
+import { routeTree } from '@/routeTree.gen'
 import { ValidationError } from '@/shared/api'
-import { ErrorFallback } from '@/shared/components'
+import {
+  DefaultErrorComponent,
+  DefaultNotFoundComponent,
+  DefaultPendingComponent,
+  ErrorFallback,
+} from '@/shared/components'
 import './index.css'
 
 const rootEl = document.getElementById('root')
@@ -27,6 +33,24 @@ const queryClient = new QueryClient({
   },
 })
 
+const router = createRouter({
+  routeTree,
+  context: {},
+  defaultPreload: 'intent',
+  defaultStructuralSharing: true,
+  defaultErrorComponent: DefaultErrorComponent,
+  defaultNotFoundComponent: DefaultNotFoundComponent,
+  defaultPendingComponent: DefaultPendingComponent,
+  scrollRestoration: true,
+  scrollRestorationBehavior: 'smooth',
+})
+
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router
+  }
+}
+
 const RootFallback = (props: FallbackProps) => (
   <ErrorFallback {...props} className="min-h-screen" />
 )
@@ -36,8 +60,8 @@ if (rootEl) {
     <StrictMode>
       <ErrorBoundary FallbackComponent={RootFallback}>
         <QueryClientProvider client={queryClient}>
-          <App />
-          <ReactQueryDevtools />
+          <RouterProvider router={router} />
+          <ReactQueryDevtools buttonPosition="bottom-right" />
         </QueryClientProvider>
       </ErrorBoundary>
     </StrictMode>,
