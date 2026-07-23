@@ -30,4 +30,4 @@ function Heading({ className, as = 'h2', ...props }: HeadingProps) {
   return <Tag className={cn(headingVariants({ as, className }))} {...props} />
 }
 
-export { Heading }
+export { Heading, headingVariants }
