@@ -2,6 +2,7 @@ import {
   QueryErrorResetBoundary,
   useSuspenseQuery,
 } from '@tanstack/react-query'
+import { getRouteApi } from '@tanstack/react-router'
 import { Suspense, useDeferredValue, useEffect, useRef } from 'react'
 import { ErrorBoundary, type FallbackProps } from 'react-error-boundary'
 
@@ -11,9 +12,11 @@ import {
   PokemonList,
   PokemonListSkeleton,
 } from '@/features/pokemons/components/pokemon-list'
+import { toPokemonsQueryOptions } from '@/features/pokemons/schemas'
 import { ErrorFallback } from '@/shared/components'
 import { cn } from '@/shared/lib/utils'
-import { useQueryParams } from '@/shared/store'
+
+const routeApi = getRouteApi('/(public)/pokemons')
 
 function WidgetFallback(props: FallbackProps) {
   return (
@@ -27,7 +30,7 @@ function WidgetFallback(props: FallbackProps) {
 
 function PokemonsFetcher() {
   const firstRenderRef = useRef(true)
-  const params = useQueryParams()
+  const params = routeApi.useSearch()
 
   // ℹ️ Why `useDeferredValue` here
   //
@@ -50,7 +53,9 @@ function PokemonsFetcher() {
   // React bubbles the error up to the closest error boundary.
   const {
     data: { data: pokemons, pages: maxPage, items: totalItems },
-  } = useSuspenseQuery(createPokemonsQueryOptions(deferredParams))
+  } = useSuspenseQuery(
+    createPokemonsQueryOptions(toPokemonsQueryOptions(deferredParams)),
+  )
 
   // `useDeferredValue` keeps the old list mounted while refetching (no
   // unmount), so the browser never resets scroll on param change — force it.

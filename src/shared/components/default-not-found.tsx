@@ -31,7 +31,7 @@ export function DefaultNotFoundComponent({
           Page Not Found
         </Heading>
         <p className="text-muted-foreground">
-          <i>Psyduck is confused...</i> this page doesn't exist.
+          <i>Psyduck is confused...</i> this page doesn&apos;t exist.
         </p>
       </div>
 

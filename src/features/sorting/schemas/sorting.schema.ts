@@ -1,6 +1,6 @@
 import z from 'zod'
 
-import { POKEMON_SKILLS } from '@/features/pokemons/schemas'
+import { POKEMON_SKILLS } from '@/features/pokemons/schemas/pokemon.schema'
 import type { SelectOption } from '@/shared/types'
 import { capitalize } from '@/shared/utilities'
 
