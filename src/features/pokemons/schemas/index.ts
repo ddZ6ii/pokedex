@@ -6,3 +6,9 @@ export {
   type PokemonStage,
   type PokemonType,
 } from './pokemon.schema'
+
+export {
+  PokemonsSearchSchema,
+  toPokemonsQueryOptions,
+  type PokemonsSearch,
+} from './pokemons-search.schema'

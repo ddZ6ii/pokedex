@@ -4,7 +4,7 @@ import {
   POKEMON_SKILLS,
   POKEMON_TYPES,
   type PokemonSkill,
-} from '@/features/pokemons/schemas'
+} from '@/features/pokemons/schemas/pokemon.schema'
 import type { SelectOption } from '@/shared/types'
 
 const PER_PAGES = ['10', '20', '50', '100'] as const
