@@ -26,7 +26,7 @@ const _SortingCriterionSchema = z.tuple([
 ])
 
 const SortingSchema = z.object({
-  sort: z.array(_SortingCriterionSchema).default([]),
+  sort: z.array(_SortingCriterionSchema).optional(),
 })
 
 type Sorting = z.infer<typeof SortingSchema>

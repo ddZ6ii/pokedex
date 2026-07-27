@@ -19,6 +19,29 @@ import { renderWithProviders } from '@/tests/utilities'
 const DEBOUNCE_DELAY = 350
 const POKEMONS_URL = '*/pokemons'
 
+type MockSearch = { search?: string; page: number; perPage: 10 | 20 | 50 | 100 }
+
+const mockNavigate =
+  vi.fn<
+    (opts: { search: (prev: MockSearch) => unknown; replace?: boolean }) => void
+  >()
+let mockSearch: MockSearch = {
+  search: undefined,
+  page: 1,
+  perPage: 10,
+}
+
+vi.mock('@tanstack/react-router', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@tanstack/react-router')>()
+  return {
+    ...actual,
+    getRouteApi: () => ({
+      useSearch: () => mockSearch,
+      useNavigate: () => mockNavigate,
+    }),
+  }
+})
+
 const successResponse: PokemonsPaginatedResponse = {
   first: 1,
   prev: null,
@@ -68,8 +91,12 @@ async function typeAndWait(value: string) {
 beforeAll(() => {
   server.listen()
 })
+beforeEach(() => {
+  mockSearch = { search: undefined, page: 1, perPage: 10 }
+})
 afterEach(() => {
   server.resetHandlers()
+  vi.clearAllMocks()
 })
 afterAll(() => {
   server.close()
@@ -89,16 +116,23 @@ describe('Search', () => {
       expect(screen.queryByText(/results/i)).not.toBeInTheDocument()
     })
 
-    it('typing triggers API request after debounce → result count appears', async () => {
+    it('typing triggers navigate with the trimmed search and resets page to 1', async () => {
       renderSearch()
       await typeAndWait('Bulba')
-      expect(screen.getByText('1 results')).toBeInTheDocument()
+
+      expect(mockNavigate).toHaveBeenCalledWith({
+        search: expect.any(Function) as (prev: MockSearch) => unknown,
+        replace: true,
+      })
+      const updater = mockNavigate.mock.calls[0]?.[0]?.search
+      expect(updater?.(mockSearch)).toEqual({
+        search: 'Bulba',
+        page: 1,
+        perPage: 10,
+      })
     })
 
-    it('rapid typing only fires one request', async () => {
-      const handler = vi.fn(() => HttpResponse.json(successResponse))
-      server.use(http.get(POKEMONS_URL, handler))
-
+    it('rapid typing only fires one navigate call', async () => {
       renderSearch()
       const input = screen.getByRole('searchbox')
 
@@ -114,7 +148,7 @@ describe('Search', () => {
         await vi.advanceTimersByTimeAsync(DEBOUNCE_DELAY)
       })
 
-      expect(handler).toHaveBeenCalledOnce()
+      expect(mockNavigate).toHaveBeenCalledOnce()
     })
   })
 
@@ -126,24 +160,29 @@ describe('Search', () => {
       ).not.toBeInTheDocument()
     })
 
-    it('appears after typing → click clears input and hides result count', async () => {
+    it('appears after typing → click clears input and navigates with empty search', async () => {
       renderSearch()
 
       const input = screen.getByRole('searchbox')
       await typeAndWait('Bulba')
-
-      expect(screen.getByText('1 results')).toBeInTheDocument()
+      mockNavigate.mockClear()
 
       fireEvent.click(screen.getByRole('button', { name: /clear search/i }))
 
       expect(input).toHaveValue('')
-      expect(screen.queryByText(/results/i)).not.toBeInTheDocument()
+      expect(mockNavigate).toHaveBeenCalledWith({
+        search: expect.any(Function) as (prev: MockSearch) => unknown,
+        replace: true,
+      })
+      const updater = mockNavigate.mock.calls[0]?.[0]?.search
+      expect(updater?.(mockSearch)).toEqual({
+        search: '',
+        page: 1,
+        perPage: 10,
+      })
     })
 
-    it('cancels pending debounce so no API call fires', async () => {
-      const handler = vi.fn(() => HttpResponse.json(successResponse))
-      server.use(http.get(POKEMONS_URL, handler))
-
+    it('cancels pending debounce so navigate is not called twice', async () => {
       renderSearch()
       const input = screen.getByRole('searchbox')
 
@@ -154,7 +193,7 @@ describe('Search', () => {
         await vi.advanceTimersByTimeAsync(DEBOUNCE_DELAY)
       })
 
-      expect(handler).not.toHaveBeenCalled()
+      expect(mockNavigate).toHaveBeenCalledOnce()
     })
   })
 })

@@ -1,7 +1,7 @@
-import { useQueryClient } from '@tanstack/react-query'
+import { getRouteApi, Link } from '@tanstack/react-router'
+import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 
 import { getPages } from '@/features/pagination/utilities/get-pages'
-import { createPokemonsQueryOptions } from '@/features/pokemons/api'
 import {
   Pagination as UIPagination,
   PaginationContent,
@@ -11,7 +11,8 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/shared/components/ui/pagination'
-import { useFiltersActions, useQueryParams } from '@/shared/store'
+
+const routeApi = getRouteApi('/(public)/pokemons')
 
 export function Pagination({
   className,
@@ -22,23 +23,7 @@ export function Pagination({
   maxDisplayedPages?: number
   maxPage: number
 }) {
-  const queryClient = useQueryClient()
-  const { page, ...queryParmas } = useQueryParams()
-  const { setPage } = useFiltersActions()
-
-  const handlePageChange = (nextPage: number) => {
-    if (nextPage >= 1 && nextPage <= maxPage) {
-      setPage(nextPage)
-    }
-  }
-  const handlePageHover = async (nextPage: number) => {
-    await queryClient.prefetchQuery(
-      createPokemonsQueryOptions({
-        page: nextPage,
-        ...queryParmas,
-      }),
-    )
-  }
+  const { page } = routeApi.useSearch()
 
   const pages = getPages(page, maxDisplayedPages, maxPage)
 
@@ -47,17 +32,27 @@ export function Pagination({
       <UIPagination>
         <PaginationContent>
           <PaginationItem>
-            <PaginationPrevious
-              disabled={page <= 1}
-              onClick={() => {
-                handlePageChange(page - 1)
-              }}
-              onMouseEnter={() => {
-                if (page > 1) {
-                  void handlePageHover(page - 1)
-                }
-              }}
-            />
+            {page <= 1 ? (
+              <PaginationPrevious disabled />
+            ) : (
+              <PaginationLink
+                asChild
+                aria-label="Go to previous page"
+                size="default"
+                className="pl-1.5!"
+              >
+                <Link
+                  to="/pokemons"
+                  search={(prev) => ({ ...prev, page: page - 1 })}
+                >
+                  <ChevronLeftIcon
+                    aria-hidden={true}
+                    data-icon="inline-start"
+                  />
+                  <span className="hidden md:block">Previous</span>
+                </Link>
+              </PaginationLink>
+            )}
           </PaginationItem>
 
           {pages.map((pageNumber, i) =>
@@ -67,36 +62,37 @@ export function Pagination({
               </PaginationItem>
             ) : (
               <PaginationItem key={pageNumber}>
-                <PaginationLink
-                  disabled={pageNumber > maxPage}
-                  isActive={page === pageNumber}
-                  onClick={() => {
-                    handlePageChange(pageNumber)
-                  }}
-                  onMouseEnter={() => {
-                    if (pageNumber !== page) {
-                      void handlePageHover(pageNumber)
-                    }
-                  }}
-                >
-                  {pageNumber}
+                <PaginationLink asChild isActive={page === pageNumber}>
+                  <Link
+                    to="/pokemons"
+                    search={(prev) => ({ ...prev, page: pageNumber })}
+                  >
+                    {pageNumber}
+                  </Link>
                 </PaginationLink>
               </PaginationItem>
             ),
           )}
 
           <PaginationItem>
-            <PaginationNext
-              disabled={page >= maxPage}
-              onClick={() => {
-                handlePageChange(page + 1)
-              }}
-              onMouseEnter={() => {
-                if (page < maxPage) {
-                  void handlePageHover(page + 1)
-                }
-              }}
-            />
+            {page >= maxPage ? (
+              <PaginationNext disabled />
+            ) : (
+              <PaginationLink
+                asChild
+                aria-label="Go to next page"
+                size="default"
+                className="pr-1.5!"
+              >
+                <Link
+                  to="/pokemons"
+                  search={(prev) => ({ ...prev, page: page + 1 })}
+                >
+                  <span className="hidden md:block">Next</span>
+                  <ChevronRightIcon aria-hidden={true} data-icon="inline-end" />
+                </Link>
+              </PaginationLink>
+            )}
           </PaginationItem>
         </PaginationContent>
       </UIPagination>

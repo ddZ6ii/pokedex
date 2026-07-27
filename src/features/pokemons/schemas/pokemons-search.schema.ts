@@ -9,9 +9,9 @@ const PokemonsSearchSchema = z.object({
   page: FilterSchema.shape.page.catch(1),
   perPage: FilterSchema.shape.perPage.catch(10),
   search: FilterSchema.shape.search.catch(undefined),
-  stats: FilterSchema.shape.stats.catch(null),
-  types: z.array(z.enum(POKEMON_TYPES)).nullable().default(null).catch(null),
-  sort: SortingSchema.shape.sort.catch([]),
+  stats: FilterSchema.shape.stats.catch(undefined),
+  types: z.array(z.enum(POKEMON_TYPES)).optional().catch(undefined),
+  sort: SortingSchema.shape.sort.catch(undefined),
 })
 
 type PokemonsSearch = z.infer<typeof PokemonsSearchSchema>

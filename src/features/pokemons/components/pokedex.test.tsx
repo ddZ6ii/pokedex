@@ -11,7 +11,6 @@ import {
   vi,
 } from 'vitest'
 
-import { initialFilterState } from '@/features/filters/store'
 import type { PokemonsPaginatedResponse } from '@/features/pokemons/schemas'
 import { renderWithRouter } from '@/tests/utilities'
 
@@ -59,7 +58,7 @@ afterAll(() => {
 })
 
 describe('Pokedex', () => {
-  it('shows Heading and PokedexControls immediately, with a skeleton for the list, while loading', async () => {
+  it('shows Heading and PokedexControls immediately, with a skeleton sized to the URL perPage, while loading', async () => {
     let resolveFetch: (response: Response) => void
     vi.spyOn(globalThis, 'fetch').mockImplementation(
       () =>
@@ -70,13 +69,9 @@ describe('Pokedex', () => {
     )
 
     // Calls fetch within useSuspenseQuery -> returns a forever-pending promise -> component shows skeleton
-    renderWithRouter()
+    renderWithRouter(['/pokemons?perPage=20'])
 
-    // Assertions happen here while fetch is still pending. `findByRole`
-    // (rather than `getByRole`) tolerates the router's initial microtask-tick
-    // match resolution (RouterProvider mounts before its first route match is
-    // ready); the fetch mock never resolves on its own, so this wait doesn't
-    // let the request settle underneath us.
+    // Assertions happen here while fetch is still pending
     expect(
       await screen.findByRole('heading', { name: /pokédex/i }),
     ).toBeInTheDocument()
@@ -84,13 +79,9 @@ describe('Pokedex', () => {
       await screen.findByRole('searchbox', { name: /search pokemon/i }),
     ).toBeInTheDocument()
 
-    // `PokemonListSkeleton` still sizes itself from the Zustand `perPage`
-    // default (it isn't wired to route search — out of scope for this task;
-    // see docs/superpowers/specs/2026-07-27-pokemons-route-loader-design.md),
-    // so it renders `initialFilterState.perPage` items regardless of the URL.
     const list = screen.getByRole('status')
     const listItems = within(list).getAllByRole('listitem')
-    expect(listItems).toHaveLength(initialFilterState.perPage)
+    expect(listItems).toHaveLength(20)
 
     // Cleanly resolve the fetch promise to avoid test leaks and allow any pending effects to finish
     await act(

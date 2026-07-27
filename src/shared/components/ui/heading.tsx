@@ -30,4 +30,5 @@ function Heading({ className, as = 'h2', ...props }: HeadingProps) {
   return <Tag className={cn(headingVariants({ as, className }))} {...props} />
 }
 
+// eslint-disable-next-line react-refresh/only-export-components -- shadcn/ui convention: variants co-located with component
 export { Heading, headingVariants }

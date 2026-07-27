@@ -1,8 +1,12 @@
+import { getRouteApi } from '@tanstack/react-router'
 import { useQuery } from '@tanstack/react-query'
-import { useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 
 import { createPokemonsQueryOptions } from '@/features/pokemons/api'
-import type { PokemonsPaginatedResponse } from '@/features/pokemons/schemas'
+import {
+  toPokemonsQueryOptions,
+  type PokemonsPaginatedResponse,
+} from '@/features/pokemons/schemas'
 
 import {
   Search,
@@ -14,8 +18,9 @@ import {
   SearchResults,
 } from '@/shared/components/search'
 import { cn } from '@/shared/lib/utils'
-import { useFiltersActions, useQueryParams } from '@/shared/store'
 import { debounce } from '@/shared/utilities'
+
+const routeApi = getRouteApi('/(public)/pokemons')
 
 const selectItems = (data: PokemonsPaginatedResponse) => data.items
 
@@ -28,28 +33,44 @@ export function SearchPokemon({
 }) {
   const inputRef = useRef<HTMLInputElement>(null)
 
-  const { search, ...queryParams } = useQueryParams()
-  const { setSearch } = useFiltersActions()
+  const search = routeApi.useSearch()
+  const navigate = routeApi.useNavigate()
 
   const { data: results, isFetching } = useQuery({
-    ...createPokemonsQueryOptions({ search, ...queryParams }),
+    ...createPokemonsQueryOptions(toPokemonsQueryOptions(search)),
     select: selectItems,
-    enabled: !!search,
+    enabled: !!search.search,
   })
 
   const debouncedSetSearch = useMemo(
     () =>
       debounce(
         (nextSearch: string) => {
-          setSearch(nextSearch.trim())
+          const trimmedSearch = nextSearch.trim()
+          void navigate({
+            search: (prev) => ({
+              ...prev,
+              search: trimmedSearch.length > 0 ? trimmedSearch : undefined,
+              page: 1,
+            }),
+            replace: true,
+          })
         },
         { delay: 350 },
       ),
-    [setSearch],
+    [navigate],
   )
 
+  useEffect(() => {
+    return () => {
+      debouncedSetSearch.cancel()
+    }
+  }, [debouncedSetSearch])
+
   const showResults =
-    search !== undefined && search.length > 0 && results !== undefined
+    search.search !== undefined &&
+    search.search.length > 0 &&
+    results !== undefined
 
   return (
     <Search>
@@ -75,7 +96,10 @@ export function SearchPokemon({
           size="icon-xs"
           onSearchClear={() => {
             debouncedSetSearch.cancel()
-            setSearch('')
+            void navigate({
+              search: (prev) => ({ ...prev, search: undefined, page: 1 }),
+              replace: true,
+            })
             inputRef.current?.focus()
           }}
         />

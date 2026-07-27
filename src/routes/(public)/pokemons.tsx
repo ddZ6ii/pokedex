@@ -11,6 +11,11 @@ export const Route = createFileRoute('/(public)/pokemons')({
   validateSearch: PokemonsSearchSchema,
   loaderDeps: ({ search }) => search,
   loader: ({ context, deps }) => {
+    // Not awaited (intentional): letting the loader block here would skip
+    // the route transition's pending state, so the PokemonList skeleton
+    // never shows. PokemonsFetcher's useSuspenseQuery shares this query key,
+    // so it reads the cache (or suspends on this same pending promise)
+    // instead of firing a duplicate request.
     context.queryClient
       .ensureQueryData(createPokemonsQueryOptions(toPokemonsQueryOptions(deps)))
       .catch(() => {

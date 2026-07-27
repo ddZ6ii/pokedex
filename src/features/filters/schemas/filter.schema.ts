@@ -37,7 +37,7 @@ const FilterSchema = z.object({
     .union([z.literal(10), z.literal(20), z.literal(50), z.literal(100)])
     .default(10),
   search: z.string().optional(),
-  stats: _FilteringStatSchema.partial().nullable().default(null),
+  stats: _FilteringStatSchema.partial().optional(),
   types: _FilteringTypeSchema.nullable().default(null),
 })
 

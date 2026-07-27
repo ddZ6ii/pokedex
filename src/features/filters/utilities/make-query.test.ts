@@ -7,7 +7,7 @@ import type { Sorting } from '@/features/sorting/schemas'
 // makeQuery accepts Filters but reads `sort` via SortingSchema.parse internally
 type TestInput = Filters & Partial<Sorting>
 
-const base: TestInput = { page: 1, perPage: 10, stats: null, types: null }
+const base: TestInput = { page: 1, perPage: 10, types: null }
 
 describe('makeQuery', () => {
   describe('pagination', () => {

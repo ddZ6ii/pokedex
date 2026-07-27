@@ -1,3 +1,4 @@
+import { getRouteApi } from '@tanstack/react-router'
 import { startTransition, useCallback, useMemo, useState } from 'react'
 
 import {
@@ -11,7 +12,8 @@ import {
   POKEMON_TYPES,
   type PokemonType,
 } from '@/features/pokemons/schemas'
-import { useFilters, useFiltersActions } from '@/shared/store'
+
+const routeApi = getRouteApi('/(public)/pokemons')
 
 export const DEFAULT_DRAFT_STATS = Object.fromEntries(
   POKEMON_SKILLS.map((skill) => [skill, [MIN_STAT_VALUE, MAX_STAT_VALUE]]),
@@ -22,7 +24,7 @@ const DEFAULT_TYPES = new Set<PokemonType>(POKEMON_TYPES)
 const TYPE_FILTERS_ERROR = 'Please select at least one type.'
 
 export const initDraftStats = (
-  appliedStats: Filters['stats'] = null,
+  appliedStats?: Filters['stats'],
 ): FilteringStats => {
   if (!appliedStats) return DEFAULT_DRAFT_STATS
 
@@ -47,13 +49,12 @@ export const initDraftTypes = (
 }
 
 export function useFilteringPanel() {
-  const { stats: appliedStats, types: appliedTypes } = useFilters()
-  const {
-    setStats: setAppliedStats,
-    setTypes: setAppliedTypes,
-    resetStats: resetAppliedStats,
-    resetTypes: resetAppliedTypes,
-  } = useFiltersActions()
+  const { stats: appliedStats, types: rawAppliedTypes } = routeApi.useSearch()
+  const navigate = routeApi.useNavigate()
+  const appliedTypes = useMemo(
+    () => (rawAppliedTypes ? new Set(rawAppliedTypes) : null),
+    [rawAppliedTypes],
+  )
 
   const [error, setError] = useState<Error | null>(null)
   const [draftStats, setDraftStats] = useState(() =>
@@ -72,32 +73,32 @@ export function useFilteringPanel() {
       ),
     ) as FilteringStats
 
-    startTransition(() => {
-      if (Object.keys(nextAppliedStats).length) {
-        setAppliedStats(nextAppliedStats)
-      } else if (appliedStats) {
-        resetAppliedStats()
-      }
+    const nextStats = Object.keys(nextAppliedStats).length
+      ? nextAppliedStats
+      : undefined
+    const nextTypes =
+      draftTypes.size === POKEMON_TYPES.length ? undefined : [...draftTypes]
 
-      if (draftTypes.size === POKEMON_TYPES.length) {
-        if (appliedTypes) {
-          resetAppliedTypes()
-        }
-      } else {
-        setAppliedTypes(new Set(draftTypes))
-      }
+    if (
+      !appliedStats &&
+      nextStats === undefined &&
+      appliedTypes === null &&
+      nextTypes === undefined
+    ) {
+      return
+    }
+
+    startTransition(() => {
+      void navigate({
+        search: (prev) => ({
+          ...prev,
+          stats: nextStats,
+          types: nextTypes,
+          page: 1,
+        }),
+      })
     })
-  }, [
-    appliedStats,
-    appliedTypes,
-    draftStats,
-    draftTypes,
-    error,
-    resetAppliedStats,
-    resetAppliedTypes,
-    setAppliedStats,
-    setAppliedTypes,
-  ])
+  }, [appliedStats, appliedTypes, draftStats, draftTypes, error, navigate])
 
   // Sync local component state with global store.
   // This is needed in case user opens the drawer, makes some changes, but doesn't apply them and closes the drawer. When they open it again, we want to show the currently applied filtering options, not the ones they were editing before.
@@ -119,9 +120,15 @@ export function useFilteringPanel() {
   const resetFilters = useCallback(() => {
     clearDraftStats()
     _clearDraftTypes()
-    resetAppliedStats()
-    resetAppliedTypes()
-  }, [resetAppliedStats, resetAppliedTypes, clearDraftStats, _clearDraftTypes])
+    void navigate({
+      search: (prev) => ({
+        ...prev,
+        stats: undefined,
+        types: undefined,
+        page: 1,
+      }),
+    })
+  }, [navigate, clearDraftStats, _clearDraftTypes])
 
   const selectDraftType = useCallback(
     (type: PokemonType, nextChecked: boolean) => {

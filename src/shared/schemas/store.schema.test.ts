@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest'
 
-import { PER_PAGE_OPTIONS } from '@/features/filters/schemas'
 import { MODES } from '@/shared/schemas/mode.schema'
 import {
   StorageSchema,
@@ -9,7 +8,7 @@ import {
 
 const validInput: PersistedStoreState = {
   version: 1,
-  state: { mode: 'light', perPage: 10, sort: [['name', 'asc']] },
+  state: { mode: 'light' },
 }
 
 describe('StorageSchema', () => {
@@ -29,33 +28,6 @@ describe('StorageSchema', () => {
         }),
       ).not.toThrow()
     })
-
-    it.each(PER_PAGE_OPTIONS)('accepts perPage %s', (perPage) => {
-      expect(() =>
-        StorageSchema.parse({
-          ...validInput,
-          state: { ...validInput.state, perPage: Number(perPage.value) },
-        }),
-      ).not.toThrow()
-    })
-
-    it('accepts sortBy "name"', () => {
-      expect(() =>
-        StorageSchema.parse({
-          ...validInput,
-          state: { ...validInput.state, sort: [['name', 'asc']] },
-        }),
-      ).not.toThrow()
-    })
-
-    it('accepts sortOrder "desc"', () => {
-      expect(() =>
-        StorageSchema.parse({
-          ...validInput,
-          state: { ...validInput.state, sort: [['name', 'desc']] },
-        }),
-      ).not.toThrow()
-    })
   })
 
   describe('default values', () => {
@@ -65,22 +37,6 @@ describe('StorageSchema', () => {
         StorageSchema.parse({ ...validInput, state: stateWithoutMode }).state
           .mode,
       ).toBe('system')
-    })
-
-    it('defaults state.perPage to "10"', () => {
-      const { perPage: _, ...stateWithoutPerPage } = validInput.state
-      expect(
-        StorageSchema.parse({ ...validInput, state: stateWithoutPerPage }).state
-          .perPage,
-      ).toBe(10)
-    })
-
-    it('defaults state.sort to "[]"', () => {
-      const { sort: _, ...stateWithoutSort } = validInput.state
-      expect(
-        StorageSchema.parse({ ...validInput, state: stateWithoutSort }).state
-          .sort,
-      ).toEqual([])
     })
   })
 
@@ -106,24 +62,6 @@ describe('StorageSchema', () => {
         StorageSchema.parse({
           ...validInput,
           state: { ...validInput.state, mode: 'auto' },
-        }),
-      ).toThrow()
-    })
-
-    it('rejects an invalid perPage', () => {
-      expect(() =>
-        StorageSchema.parse({
-          ...validInput,
-          state: { ...validInput.state, perPage: 37 },
-        }),
-      ).toThrow()
-    })
-
-    it('rejects invalid sortBy', () => {
-      expect(() =>
-        StorageSchema.parse({
-          ...validInput,
-          state: { ...validInput.state, sort: [['weight', 'asc']] },
         }),
       ).toThrow()
     })

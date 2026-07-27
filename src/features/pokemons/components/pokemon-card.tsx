@@ -251,6 +251,7 @@ function PokemonCardSkeleton() {
           <Skeleton className="mx-auto h-6 w-1/2" />
           <div className="mt-1 space-y-1">
             {Array.from({ length: 3 }).map((_, i) => (
+              // eslint-disable-next-line react-x/no-array-index-key -- static-length skeleton placeholders, never reordered/added/removed individually
               <Skeleton key={i} className="flex h-3.5 justify-center" />
             ))}
           </div>
@@ -259,8 +260,8 @@ function PokemonCardSkeleton() {
 
       <CardFooter className="mx-2 mb-8 rounded-none border-none bg-transparent px-4 py-1.5">
         <div className="text-muted-foreground flex w-full items-center gap-4 text-xs">
-          {Array.from({ length: POKEMON_SKILLS.length }).map((_, i) => (
-            <Skeleton key={i} className="h-5.5 w-1/6" />
+          {POKEMON_SKILLS.map((skill) => (
+            <Skeleton key={skill} className="h-5.5 w-1/6" />
           ))}
         </div>
       </CardFooter>
