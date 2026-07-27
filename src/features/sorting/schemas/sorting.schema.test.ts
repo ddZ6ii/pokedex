@@ -32,8 +32,8 @@ describe('SortingSchema', () => {
     })
   })
 
-  it('defaults sort to empty array', () => {
-    expect(SortingSchema.parse({}).sort).toEqual([])
+  it('defaults sort to undefined', () => {
+    expect(SortingSchema.parse({}).sort).toBeUndefined()
   })
 
   it('accepts null sortBy in a criterion', () => {

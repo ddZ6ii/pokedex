@@ -1,5 +1,8 @@
+import { getRouteApi } from '@tanstack/react-router'
+
 import { cn } from '@/shared/lib/utils'
-import { usePaginationFilters } from '@/shared/store'
+
+const routeApi = getRouteApi('/(public)/pokemons')
 
 export function PaginationRangeDisplay({
   className,
@@ -8,7 +11,7 @@ export function PaginationRangeDisplay({
   className?: string
   totalItems: number
 }) {
-  const { page, perPage } = usePaginationFilters()
+  const { page, perPage } = routeApi.useSearch()
 
   return (
     <p

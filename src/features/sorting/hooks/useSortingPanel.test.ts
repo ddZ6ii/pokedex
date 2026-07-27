@@ -3,23 +3,27 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { useSortingPanel } from '@/features/sorting/hooks/useSortingPanel'
 import { type SortingCriterion } from '@/features/sorting/schemas/sorting.schema'
-import { initialSortingState } from '@/features/sorting/store'
-import { useSorting, useSortingActions } from '@/shared/store'
 
-vi.mock('@/shared/store', () => ({
-  useSorting: vi.fn(),
-  useSortingActions: vi.fn(),
-}))
+type MockSearch = { sort: SortingCriterion[] | undefined }
+type MockSearchResult = { sort: SortingCriterion[] | undefined; page: number }
 
-const mockSetSorting = vi.fn()
-const mockResetSorting = vi.fn()
+const mockNavigate =
+  vi.fn<(opts: { search: (prev: MockSearch) => MockSearchResult }) => void>()
+let mockSort: SortingCriterion[] | undefined = undefined
 
-function setupMocks(sorting: SortingCriterion[] = [[null, null]]) {
-  vi.mocked(useSorting).mockReturnValue(sorting)
-  vi.mocked(useSortingActions).mockReturnValue({
-    setSorting: mockSetSorting,
-    resetSorting: mockResetSorting,
-  })
+vi.mock('@tanstack/react-router', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@tanstack/react-router')>()
+  return {
+    ...actual,
+    getRouteApi: () => ({
+      useSearch: () => ({ sort: mockSort }),
+      useNavigate: () => mockNavigate,
+    }),
+  }
+})
+
+function setupMocks(sort?: SortingCriterion[]) {
+  mockSort = sort
 }
 
 beforeEach(() => {
@@ -28,7 +32,13 @@ beforeEach(() => {
 })
 
 describe('initial state', () => {
-  it('draftCriteria is initialized from the store', () => {
+  it('draftCriteria falls back to a single empty row when the URL has no sort applied', () => {
+    const { result } = renderHook(() => useSortingPanel())
+
+    expect(result.current.draftCriteria).toEqual([[null, null]])
+  })
+
+  it('draftCriteria is initialized from the URL when sort is present', () => {
     const initial: SortingCriterion[] = [['name', 'asc']]
     setupMocks(initial)
 
@@ -79,14 +89,18 @@ describe('draftCriteriaCount', () => {
 })
 
 describe('applySorting', () => {
-  it('always includes the first criterion even if null', () => {
+  it('navigates with sort undefined when only a single null row exists, and resets page to 1', () => {
     const { result } = renderHook(() => useSortingPanel())
 
     act(() => {
       result.current.applySorting()
     })
 
-    expect(mockSetSorting).toHaveBeenCalledWith([[null, null]])
+    const updater = mockNavigate.mock.calls[0]?.[0].search
+    expect(updater?.({ sort: mockSort })).toEqual({
+      sort: undefined,
+      page: 1,
+    })
   })
 
   it('filters out subsequent criteria where sortBy is null', () => {
@@ -102,7 +116,8 @@ describe('applySorting', () => {
       result.current.applySorting()
     })
 
-    expect(mockSetSorting).toHaveBeenCalledWith([['name', 'asc']])
+    const updater = mockNavigate.mock.calls[0]?.[0].search
+    expect(updater?.({ sort: mockSort }).sort).toEqual([['name', 'asc']])
   })
 
   it('filters out subsequent criteria where orderBy is null', () => {
@@ -118,7 +133,8 @@ describe('applySorting', () => {
       result.current.applySorting()
     })
 
-    expect(mockSetSorting).toHaveBeenCalledWith([['name', 'asc']])
+    const updater = mockNavigate.mock.calls[0]?.[0].search
+    expect(updater?.({ sort: mockSort }).sort).toEqual([['name', 'asc']])
   })
 
   it('keeps all fully-filled criteria', () => {
@@ -134,7 +150,8 @@ describe('applySorting', () => {
       result.current.applySorting()
     })
 
-    expect(mockSetSorting).toHaveBeenCalledWith([
+    const updater = mockNavigate.mock.calls[0]?.[0].search
+    expect(updater?.({ sort: mockSort }).sort).toEqual([
       ['name', 'asc'],
       ['hp', 'desc'],
     ])
@@ -142,7 +159,7 @@ describe('applySorting', () => {
 })
 
 describe('syncSorting', () => {
-  it('resets draftCriteria to the current store value', () => {
+  it('resets draftCriteria to the current URL value', () => {
     const { result } = renderHook(() => useSortingPanel())
 
     act(() => {
@@ -159,7 +176,7 @@ describe('syncSorting', () => {
 })
 
 describe('resetSorting', () => {
-  it('resets draftCriteria to the initial state', () => {
+  it('resets draftCriteria to a single empty row', () => {
     const { result } = renderHook(() => useSortingPanel())
 
     act(() => {
@@ -169,16 +186,17 @@ describe('resetSorting', () => {
       result.current.resetSorting()
     })
 
-    expect(result.current.draftCriteria).toEqual(initialSortingState.sort)
+    expect(result.current.draftCriteria).toEqual([[null, null]])
   })
 
-  it('calls the store reset action', () => {
+  it('navigates with sort reset to undefined and page to 1', () => {
     const { result } = renderHook(() => useSortingPanel())
 
     act(() => {
       result.current.resetSorting()
     })
 
-    expect(mockResetSorting).toHaveBeenCalledOnce()
+    const updater = mockNavigate.mock.calls[0]?.[0].search
+    expect(updater?.({ sort: mockSort })).toEqual({ sort: undefined, page: 1 })
   })
 })

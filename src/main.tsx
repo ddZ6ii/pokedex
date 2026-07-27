@@ -51,14 +51,14 @@ declare module '@tanstack/react-router' {
   }
 }
 
-const RootFallback = (props: FallbackProps) => (
-  <ErrorFallback {...props} className="min-h-screen" />
-)
-
 if (rootEl) {
   createRoot(rootEl).render(
     <StrictMode>
-      <ErrorBoundary FallbackComponent={RootFallback}>
+      <ErrorBoundary
+        FallbackComponent={(props: FallbackProps) => (
+          <ErrorFallback {...props} className="min-h-screen" />
+        )}
+      >
         <QueryClientProvider client={queryClient}>
           <RouterProvider router={router} />
           <ReactQueryDevtools buttonPosition="bottom-right" />

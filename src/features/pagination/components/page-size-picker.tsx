@@ -1,11 +1,14 @@
+import { getRouteApi } from '@tanstack/react-router'
+
 import { PER_PAGE_OPTIONS, type Filters } from '@/features/filters/schemas'
 import { Select } from '@/shared/components/select'
 import { cn } from '@/shared/lib/utils'
-import { useFiltersActions, usePerPage } from '@/shared/store'
+
+const routeApi = getRouteApi('/(public)/pokemons')
 
 export function PageSizePicker({ className }: { className?: string }) {
-  const perPage = usePerPage()
-  const { setPerPage } = useFiltersActions()
+  const { perPage } = routeApi.useSearch()
+  const navigate = routeApi.useNavigate()
 
   return (
     <div className="flex items-center justify-center gap-2">
@@ -17,7 +20,13 @@ export function PageSizePicker({ className }: { className?: string }) {
         options={PER_PAGE_OPTIONS}
         value={String(perPage)}
         onValueChange={(nextValue) => {
-          setPerPage(Number(nextValue) as Filters['perPage'])
+          void navigate({
+            search: (prev) => ({
+              ...prev,
+              perPage: Number(nextValue) as Filters['perPage'],
+              page: 1,
+            }),
+          })
         }}
         className={cn('w-full max-w-17', className)}
       />

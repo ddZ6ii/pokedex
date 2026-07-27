@@ -8,8 +8,8 @@ import {
 import { computeStatsQuery } from './compute-stats-query'
 
 describe('computeStatsQuery', () => {
-  it('returns empty object for null stats', () => {
-    expect(computeStatsQuery(null)).toEqual({})
+  it('returns empty object for undefined stats', () => {
+    expect(computeStatsQuery(undefined)).toEqual({})
   })
 
   it('returns empty object for empty stats', () => {

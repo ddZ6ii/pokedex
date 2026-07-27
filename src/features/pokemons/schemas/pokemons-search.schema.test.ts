@@ -6,14 +6,14 @@ import {
 } from './pokemons-search.schema'
 
 describe('PokemonsSearchSchema', () => {
-  it('defaults page, perPage, stats, types and sort when the URL has no search params', () => {
+  it('defaults page and perPage, and omits search/stats/types/sort when the URL has no search params', () => {
     expect(PokemonsSearchSchema.parse({})).toEqual({
       page: 1,
       perPage: 10,
       search: undefined,
-      stats: null,
-      types: null,
-      sort: [],
+      stats: undefined,
+      types: undefined,
+      sort: undefined,
     })
   })
 
@@ -22,16 +22,16 @@ describe('PokemonsSearchSchema', () => {
     expect(result.types).toEqual(['grass', 'fire'])
   })
 
-  it('falls back to defaults instead of throwing when search params are malformed', () => {
+  it('falls back to undefined instead of throwing when search params are malformed', () => {
     expect(
       PokemonsSearchSchema.parse({ perPage: 999, types: ['not-a-real-type'] }),
     ).toEqual({
       page: 1,
       perPage: 10,
       search: undefined,
-      stats: null,
-      types: null,
-      sort: [],
+      stats: undefined,
+      types: undefined,
+      sort: undefined,
     })
   })
 })
@@ -42,9 +42,9 @@ describe('toPokemonsQueryOptions', () => {
       page: 1,
       perPage: 10,
       search: undefined,
-      stats: null,
+      stats: undefined,
       types: ['grass', 'fire'],
-      sort: [],
+      sort: undefined,
     })
     expect(options.types).toEqual(new Set(['grass', 'fire']))
   })
@@ -54,9 +54,9 @@ describe('toPokemonsQueryOptions', () => {
       page: 1,
       perPage: 10,
       search: undefined,
-      stats: null,
-      types: null,
-      sort: [],
+      stats: undefined,
+      types: undefined,
+      sort: undefined,
     })
     expect(options.types).toBeNull()
   })

@@ -1,4 +1,5 @@
 import { motion, useReducedMotion, type Variants } from 'motion/react'
+import { getRouteApi } from '@tanstack/react-router'
 
 import {
   PokemonCardMemoized,
@@ -6,7 +7,8 @@ import {
 } from '@/features/pokemons/components/pokemon-card'
 import type { Pokemon } from '@/features/pokemons/schemas/pokemon.schema'
 import { cn } from '@/shared/lib/utils'
-import { usePerPage } from '@/shared/store'
+
+const routeApi = getRouteApi('/(public)/pokemons')
 
 const CARD_VARIANTS: Variants = {
   hidden: { opacity: 0, y: 20 },
@@ -78,12 +80,13 @@ function PokemonList({
 }
 
 function PokemonListSkeleton() {
-  const perPage = usePerPage()
+  const { perPage } = routeApi.useSearch()
 
   return (
     <div role="status" aria-live="polite">
       <ul className="flex flex-wrap justify-center gap-6">
         {Array.from({ length: perPage }).map((_, index) => (
+          // eslint-disable-next-line react-x/no-array-index-key -- static-length skeleton placeholders, never reordered/added/removed individually
           <li key={index}>
             <PokemonCardSkeleton aria-hidden={true} />
           </li>

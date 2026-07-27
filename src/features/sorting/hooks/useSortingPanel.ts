@@ -1,39 +1,58 @@
+import { getRouteApi } from '@tanstack/react-router'
 import { useCallback, useMemo, useState } from 'react'
 
 import { type SortingCriterion } from '@/features/sorting/schemas/sorting.schema'
-import { initialSortingState } from '@/features/sorting/store'
-import { useSorting, useSortingActions } from '@/shared/store'
 import { nth } from '@/shared/utilities/nth'
 
-export function useSortingPanel() {
-  const appliedCriteria = useSorting()
-  const { setSorting: setAppliedCriteria, resetSorting: resetAppliedCriteria } =
-    useSortingActions()
+const routeApi = getRouteApi('/(public)/pokemons')
 
-  const [draftCriteria, setDraftCriteria] =
-    useState<SortingCriterion[]>(appliedCriteria)
+const emptyCriteria = (): SortingCriterion[] => [[null, null]]
+
+const getInitialCriteria = (
+  appliedCriteria: SortingCriterion[],
+): SortingCriterion[] =>
+  appliedCriteria.length ? appliedCriteria : emptyCriteria()
+
+export function useSortingPanel() {
+  const { sort: rawAppliedCriteria } = routeApi.useSearch()
+  const appliedCriteria = useMemo(
+    () => rawAppliedCriteria ?? [],
+    [rawAppliedCriteria],
+  )
+  const navigate = routeApi.useNavigate()
+
+  const [draftCriteria, setDraftCriteria] = useState<SortingCriterion[]>(() =>
+    getInitialCriteria(appliedCriteria),
+  )
 
   const applySorting = useCallback(() => {
-    const nextAppliedCriteria: SortingCriterion[] = [nth(draftCriteria, 0)]
+    const nextAppliedCriteria: SortingCriterion[] =
+      draftCriteria[0]?.[0] === null ? [] : [nth(draftCriteria, 0)]
 
     for (const [sortBy, orderBy] of draftCriteria.slice(1)) {
       if (sortBy === null || orderBy === null) continue
       nextAppliedCriteria.push([sortBy, orderBy])
     }
 
-    setAppliedCriteria(nextAppliedCriteria)
-  }, [draftCriteria, setAppliedCriteria])
+    void navigate({
+      search: (prev) => ({
+        ...prev,
+        sort: nextAppliedCriteria.length ? nextAppliedCriteria : undefined,
+        page: 1,
+      }),
+    })
+  }, [draftCriteria, navigate])
 
   // Sync local component state with global store.
   // This is needed in case user opens the drawer, makes some changes, but doesn't apply them and closes the drawer. When they open it again, we want to show the currently applied sorting options, not the ones they were editing before.
   const syncSorting = useCallback(() => {
-    setDraftCriteria(appliedCriteria)
+    setDraftCriteria(appliedCriteria.length ? appliedCriteria : emptyCriteria())
   }, [appliedCriteria])
 
   const resetSorting = useCallback(() => {
-    setDraftCriteria(initialSortingState.sort)
-    resetAppliedCriteria()
-  }, [resetAppliedCriteria])
+    setDraftCriteria(emptyCriteria())
+    void navigate({ search: (prev) => ({ ...prev, sort: undefined, page: 1 }) })
+  }, [navigate])
 
   const appliedCriteriaCount = appliedCriteria.filter(
     ([sortBy]) => sortBy !== null,

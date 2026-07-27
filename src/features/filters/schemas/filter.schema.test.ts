@@ -12,7 +12,6 @@ const validFilterInput: Filters = {
   page: 2,
   perPage: 20,
   search: 'bulba',
-  stats: null,
   types: null,
 }
 
@@ -22,7 +21,6 @@ describe('FilterSchema', () => {
       page: 2,
       perPage: 20,
       search: 'bulba',
-      stats: null,
       types: null,
     })
   })
@@ -66,12 +64,12 @@ describe('FilterSchema', () => {
   })
 
   describe('stats', () => {
-    it('defaults to null', () => {
-      expect(FilterSchema.parse({}).stats).toBeNull()
+    it('defaults to undefined', () => {
+      expect(FilterSchema.parse({}).stats).toBeUndefined()
     })
 
-    it('accepts null', () => {
-      expect(FilterSchema.parse({ stats: null }).stats).toBeNull()
+    it('rejects null', () => {
+      expect(() => FilterSchema.parse({ stats: null })).toThrow()
     })
 
     it('accepts a partial stats object', () => {

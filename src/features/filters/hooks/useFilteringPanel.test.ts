@@ -17,31 +17,32 @@ import {
   type PokemonSkill,
   type PokemonType,
 } from '@/features/pokemons/schemas'
-import { useFilters, useFiltersActions } from '@/shared/store'
-
-vi.mock('@/shared/store', () => ({
-  useFilters: vi.fn(),
-  useFiltersActions: vi.fn(),
-}))
 
 const DEFAULT_TYPES = new Set<PokemonType>(POKEMON_TYPES)
 
-const mockSetStats = vi.fn()
-const mockResetStats = vi.fn()
-const mockSetTypes = vi.fn()
-const mockResetTypes = vi.fn()
+type MockSearch = { stats: Filters['stats']; types: PokemonType[] | undefined }
+type MockSearchResult = MockSearch & { page: number }
 
-function setupMocks(
-  stats: Filters['stats'] = null,
-  types: Filters['types'] = null,
-) {
-  vi.mocked(useFilters).mockReturnValue({ stats, types })
-  vi.mocked(useFiltersActions).mockReturnValue({
-    setStats: mockSetStats,
-    resetStats: mockResetStats,
-    setTypes: mockSetTypes,
-    resetTypes: mockResetTypes,
-  } as unknown as ReturnType<typeof useFiltersActions>)
+const mockNavigate =
+  vi.fn<(opts: { search: (prev: MockSearch) => MockSearchResult }) => void>()
+let mockSearch: MockSearch = {
+  stats: undefined,
+  types: undefined,
+}
+
+vi.mock('@tanstack/react-router', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@tanstack/react-router')>()
+  return {
+    ...actual,
+    getRouteApi: () => ({
+      useSearch: () => mockSearch,
+      useNavigate: () => mockNavigate,
+    }),
+  }
+})
+
+function setupMocks(stats?: Filters['stats'], types: Filters['types'] = null) {
+  mockSearch = { stats, types: types ? [...types] : undefined }
 }
 
 beforeEach(() => {
@@ -126,7 +127,7 @@ describe('initial state', () => {
   })
 
   it('types initializes from the store when active types are present', () => {
-    setupMocks(null, new Set<PokemonType>(['fire', 'water']))
+    setupMocks(undefined, new Set<PokemonType>(['fire', 'water']))
 
     const { result } = renderHook(() => useFilteringPanel())
 
@@ -202,7 +203,7 @@ describe('draftTypesCount', () => {
   })
 
   it('reflects the number of selected types when not all are selected', () => {
-    setupMocks(null, new Set<PokemonType>(['fire', 'water']))
+    setupMocks(undefined, new Set<PokemonType>(['fire', 'water']))
 
     const { result } = renderHook(() => useFilteringPanel())
 
@@ -224,14 +225,14 @@ describe('appliedFiltersCount', () => {
 })
 
 describe('applyFilters', () => {
-  it('does not call setAppliedStats when stats are already null and unchanged', () => {
+  it('does not navigate when stats are unset and unchanged, and no types selected', () => {
     const { result } = renderHook(() => useFilteringPanel())
 
     act(() => {
       result.current.applyFilters()
     })
 
-    expect(mockSetStats).not.toHaveBeenCalled()
+    expect(mockNavigate).not.toHaveBeenCalled()
   })
 
   it('omits stats that are at default values', () => {
@@ -244,7 +245,8 @@ describe('applyFilters', () => {
       result.current.applyFilters()
     })
 
-    expect(mockSetStats).toHaveBeenCalledWith({ hp: [10, 90] })
+    const updater = mockNavigate.mock.calls[0]?.[0].search
+    expect(updater?.(mockSearch).stats).toEqual({ hp: [10, 90] })
   })
 
   it('passes all changed stats', () => {
@@ -261,11 +263,15 @@ describe('applyFilters', () => {
       result.current.applyFilters()
     })
 
-    expect(mockSetStats).toHaveBeenCalledWith({ hp: [10, 90], attack: [5, 80] })
+    const updater = mockNavigate.mock.calls[0]?.[0].search
+    expect(updater?.(mockSearch).stats).toEqual({
+      hp: [10, 90],
+      attack: [5, 80],
+    })
   })
 
-  it('calls resetAppliedTypes when all types are selected', () => {
-    setupMocks(null, new Set<PokemonType>(['fire']))
+  it('sets types to undefined when all types are selected', () => {
+    setupMocks(undefined, new Set<PokemonType>(['fire']))
 
     const { result } = renderHook(() => useFilteringPanel())
 
@@ -276,11 +282,11 @@ describe('applyFilters', () => {
       result.current.applyFilters()
     })
 
-    expect(mockResetTypes).toHaveBeenCalledOnce()
-    expect(mockSetTypes).not.toHaveBeenCalled()
+    const updater = mockNavigate.mock.calls[0]?.[0].search
+    expect(updater?.(mockSearch).types).toBeUndefined()
   })
 
-  it('calls setAppliedTypes when a subset of types is selected', () => {
+  it('passes an array of selected types when a subset is selected', () => {
     const { result } = renderHook(() => useFilteringPanel())
 
     act(() => {
@@ -290,8 +296,26 @@ describe('applyFilters', () => {
       result.current.applyFilters()
     })
 
-    const expectedTypes = new Set(POKEMON_TYPES.filter((t) => t !== 'fire'))
-    expect(mockSetTypes).toHaveBeenCalledWith(expectedTypes)
+    const updater = mockNavigate.mock.calls[0]?.[0].search
+    const expectedTypes = POKEMON_TYPES.filter((t) => t !== 'fire')
+    expect(updater?.(mockSearch).types).toEqual(
+      expect.arrayContaining(expectedTypes),
+    )
+    expect(updater?.(mockSearch).types).toHaveLength(expectedTypes.length)
+  })
+
+  it('resets page to 1', () => {
+    const { result } = renderHook(() => useFilteringPanel())
+
+    act(() => {
+      result.current.setDraftStats((prev) => ({ ...prev, hp: [10, 90] }))
+    })
+    act(() => {
+      result.current.applyFilters()
+    })
+
+    const updater = mockNavigate.mock.calls[0]?.[0].search
+    expect(updater?.(mockSearch).page).toBe(1)
   })
 
   it('does not apply when there is an error', () => {
@@ -304,8 +328,7 @@ describe('applyFilters', () => {
       result.current.applyFilters()
     })
 
-    expect(mockSetStats).not.toHaveBeenCalled()
-    expect(mockSetTypes).not.toHaveBeenCalled()
+    expect(mockNavigate).not.toHaveBeenCalled()
   })
 })
 
@@ -328,7 +351,7 @@ describe('syncFilters', () => {
   })
 
   it('resets local types to the current store value', () => {
-    setupMocks(null, new Set<PokemonType>(['fire', 'water']))
+    setupMocks(undefined, new Set<PokemonType>(['fire', 'water']))
 
     const { result } = renderHook(() => useFilteringPanel())
 
@@ -385,7 +408,7 @@ describe('selectDraftType', () => {
   })
 
   it('adds a type when checked', () => {
-    setupMocks(null, new Set<PokemonType>(['water']))
+    setupMocks(undefined, new Set<PokemonType>(['water']))
 
     const { result } = renderHook(() => useFilteringPanel())
 
@@ -397,7 +420,7 @@ describe('selectDraftType', () => {
   })
 
   it('sets an error when the last type is unchecked', () => {
-    setupMocks(null, new Set<PokemonType>(['fire']))
+    setupMocks(undefined, new Set<PokemonType>(['fire']))
 
     const { result } = renderHook(() => useFilteringPanel())
 
@@ -409,7 +432,7 @@ describe('selectDraftType', () => {
   })
 
   it('clears the error when a type is added back', () => {
-    setupMocks(null, new Set<PokemonType>(['fire']))
+    setupMocks(undefined, new Set<PokemonType>(['fire']))
 
     const { result } = renderHook(() => useFilteringPanel())
 
@@ -426,7 +449,7 @@ describe('selectDraftType', () => {
 
 describe('selectAllDraftTypes', () => {
   it('selects all types', () => {
-    setupMocks(null, new Set<PokemonType>(['fire']))
+    setupMocks(undefined, new Set<PokemonType>(['fire']))
 
     const { result } = renderHook(() => useFilteringPanel())
 
@@ -520,7 +543,7 @@ describe('resetFilters', () => {
   })
 
   it('resets local types to all selected', () => {
-    setupMocks(null, new Set<PokemonType>(['fire']))
+    setupMocks(undefined, new Set<PokemonType>(['fire']))
 
     const { result } = renderHook(() => useFilteringPanel())
 
@@ -531,8 +554,8 @@ describe('resetFilters', () => {
     expect(result.current.draftTypes).toEqual(DEFAULT_TYPES)
   })
 
-  it('calls resetAppliedStats when active stats exist in the store', () => {
-    setupMocks({ attack: [0, 50] })
+  it('navigates with stats and types reset to undefined', () => {
+    setupMocks({ attack: [0, 50] }, new Set<PokemonType>(['fire']))
 
     const { result } = renderHook(() => useFilteringPanel())
 
@@ -540,27 +563,12 @@ describe('resetFilters', () => {
       result.current.resetFilters()
     })
 
-    expect(mockResetStats).toHaveBeenCalledOnce()
-  })
-
-  it('always calls resetAppliedStats', () => {
-    const { result } = renderHook(() => useFilteringPanel())
-
-    act(() => {
-      result.current.resetFilters()
+    const updater = mockNavigate.mock.calls[0]?.[0].search
+    expect(updater?.(mockSearch)).toEqual({
+      stats: undefined,
+      types: undefined,
+      page: 1,
     })
-
-    expect(mockResetStats).toHaveBeenCalledOnce()
-  })
-
-  it('calls resetAppliedTypes', () => {
-    const { result } = renderHook(() => useFilteringPanel())
-
-    act(() => {
-      result.current.resetFilters()
-    })
-
-    expect(mockResetTypes).toHaveBeenCalledOnce()
   })
 
   it('clears the error', () => {
