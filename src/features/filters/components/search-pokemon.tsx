@@ -73,7 +73,7 @@ export function SearchPokemon({
     results !== undefined
 
   return (
-    <Search>
+    <Search key={search.search} initialSearch={search.search}>
       <SearchLabel htmlFor={id}>Search pokemon</SearchLabel>
       <SearchInputGroup
         className={cn(

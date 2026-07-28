@@ -23,11 +23,13 @@ type SearchUpdater = (value: string | ((prev: string) => string)) => void
 type BaseSearchProps = React.PropsWithChildren
 
 type UncontrolledSearchProps = BaseSearchProps & {
+  initialSearch?: string
   search?: never
   setSearch?: never
 }
 
 type ControlledSearchProps = BaseSearchProps & {
+  initialSearch?: never
   search: string
   setSearch: SearchUpdater
 }
@@ -59,7 +61,7 @@ const useSearchActionsContext = () => {
 }
 
 function Search({ children, ...props }: SearchProps) {
-  const [_search, _setSearch] = useState(props.search ?? '')
+  const [_search, _setSearch] = useState(props.initialSearch ?? '')
 
   const isControlled = props.search !== undefined
   const wasControlled = useRef(isControlled)
