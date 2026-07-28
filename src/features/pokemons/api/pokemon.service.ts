@@ -32,7 +32,10 @@ class PokemonService {
       if (isAbortError(error)) throw error
       if (error instanceof HttpError) throw error
       if (error instanceof ZodError) throw new ValidationError(error)
-      throw new ServerError(error)
+      throw new ServerError(
+        'Something went wrong while loading Pokémon data. Please try again later.',
+        error,
+      )
     }
   }
 
