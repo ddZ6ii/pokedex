@@ -110,6 +110,16 @@ describe('Search', () => {
     vi.useRealTimers()
   })
 
+  describe('Initial value from URL', () => {
+    it('seeds the input from the current search param on first render', () => {
+      mockSearch = { search: 'Bulba', page: 1, perPage: 10 }
+
+      renderSearch()
+
+      expect(screen.getByRole('searchbox')).toHaveValue('Bulba')
+    })
+  })
+
   describe('Typing and debounce', () => {
     it('hides result count initially', () => {
       renderSearch()
@@ -160,7 +170,7 @@ describe('Search', () => {
       ).not.toBeInTheDocument()
     })
 
-    it('appears after typing → click clears input and navigates with empty search', async () => {
+    it('appears after typing → click clears input and navigates with search removed', async () => {
       renderSearch()
 
       const input = screen.getByRole('searchbox')
@@ -176,7 +186,7 @@ describe('Search', () => {
       })
       const updater = mockNavigate.mock.calls[0]?.[0]?.search
       expect(updater?.(mockSearch)).toEqual({
-        search: '',
+        search: undefined,
         page: 1,
         perPage: 10,
       })
