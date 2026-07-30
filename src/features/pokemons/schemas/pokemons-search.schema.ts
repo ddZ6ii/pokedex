@@ -3,8 +3,9 @@ import z from 'zod'
 import { FilterSchema } from '@/features/filters/schemas'
 import { POKEMON_TYPES } from '@/features/pokemons/schemas/pokemon.schema'
 import { SortingSchema } from '@/features/sorting/schemas'
-import type { QueryOptions } from '@/shared/schemas'
 
+// Per-field `.catch()`: a malformed value (bad URL edit, stale link) resets only
+// that field to its default, instead of throwing and losing the whole search state.
 const PokemonsSearchSchema = z.object({
   page: FilterSchema.shape.page.catch(1),
   perPage: FilterSchema.shape.perPage.catch(10),
@@ -16,15 +17,4 @@ const PokemonsSearchSchema = z.object({
 
 type PokemonsSearch = z.infer<typeof PokemonsSearchSchema>
 
-const toPokemonsQueryOptions = (
-  search: PokemonsSearch,
-): NonNullable<QueryOptions> => ({
-  page: search.page,
-  perPage: search.perPage,
-  search: search.search,
-  stats: search.stats,
-  types: search.types ? new Set(search.types) : null,
-  sort: search.sort,
-})
-
-export { PokemonsSearchSchema, toPokemonsQueryOptions, type PokemonsSearch }
+export { PokemonsSearchSchema, type PokemonsSearch }

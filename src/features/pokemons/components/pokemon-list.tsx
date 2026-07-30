@@ -10,6 +10,7 @@ import { cn } from '@/shared/lib/utils'
 
 const routeApi = getRouteApi('/(public)/pokemons')
 
+const MAX_STAGGER_DURATION = 0.6
 const CARD_VARIANTS: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
@@ -20,25 +21,28 @@ const CARD_VARIANTS: Variants = {
     },
   },
 }
-
-const LIST_VARIANTS: Variants = {
-  hidden: { opacity: 0.8 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-}
-
 const REDUCED_CARD_VARIANTS: Variants = {
   hidden: { opacity: 1, y: 0 },
   visible: { opacity: 1, y: 0 },
 }
-
 const REDUCED_LIST_VARIANTS: Variants = {
   hidden: { opacity: 1 },
   visible: { opacity: 1 },
+}
+
+function getListVariants(itemCount: number): Variants {
+  return {
+    hidden: { opacity: 0.8 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: Math.min(
+          0.1,
+          MAX_STAGGER_DURATION / Math.max(itemCount, 1),
+        ),
+      },
+    },
+  }
 }
 
 function PokemonList({
@@ -60,7 +64,11 @@ function PokemonList({
     <motion.ul
       aria-busy={ariaBusy}
       className={cn('flex flex-1 flex-wrap justify-center gap-6', className)}
-      variants={prefersReducedMotion ? REDUCED_LIST_VARIANTS : LIST_VARIANTS}
+      variants={
+        prefersReducedMotion
+          ? REDUCED_LIST_VARIANTS
+          : getListVariants(pokemons.length)
+      }
       initial={'hidden'}
       animate="visible"
     >

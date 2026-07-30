@@ -3,7 +3,7 @@ import {
   useSuspenseQuery,
 } from '@tanstack/react-query'
 import { getRouteApi } from '@tanstack/react-router'
-import { Suspense, useDeferredValue, useEffect, useRef } from 'react'
+import { Suspense, useDeferredValue } from 'react'
 import { ErrorBoundary, type FallbackProps } from 'react-error-boundary'
 
 import { PaginationBar } from '@/features/pagination/components'
@@ -12,7 +12,7 @@ import {
   PokemonList,
   PokemonListSkeleton,
 } from '@/features/pokemons/components/pokemon-list'
-import { toPokemonsQueryOptions } from '@/features/pokemons/schemas'
+import { toPokemonsQueryOptions } from '@/features/pokemons/utilities'
 import { ErrorFallback } from '@/shared/components'
 import { cn } from '@/shared/lib/utils'
 
@@ -29,7 +29,6 @@ function WidgetFallback(props: FallbackProps) {
 }
 
 function PokemonsFetcher() {
-  const firstRenderRef = useRef(true)
   const params = routeApi.useSearch()
 
   // ℹ️ Why `useDeferredValue` here
@@ -57,23 +56,6 @@ function PokemonsFetcher() {
     createPokemonsQueryOptions(toPokemonsQueryOptions(deferredParams)),
   )
 
-  // `useDeferredValue` keeps the old list mounted while refetching (no
-  // unmount), so the browser never resets scroll on param change — force it.
-  useEffect(() => {
-    if (firstRenderRef.current) {
-      firstRenderRef.current = false
-      return
-    }
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }, [
-    params.page,
-    params.perPage,
-    params.search,
-    params.sort,
-    params.stats,
-    params.types,
-  ])
-
   const isStale = deferredParams !== params
 
   return (
@@ -93,11 +75,8 @@ function PokemonsFetcher() {
 
 export function Pokemons() {
   // ℹ️ How QueryErrorResetBoundary works
-
   // 1. resetErrorBoundary calls reset (from QueryErrorResetBoundary). This tells TanStack Query to clear the error state for queries inside the boundary.
-
   // 2. ErrorBoundary then re-renders its children. useSuspenseQuery runs again, sees the query is no longer in error state, and triggers a fresh fetch (suspending while it loads).
-
   // Without QueryErrorResetBoundary, clicking retry would re-render the component but useSuspenseQuery would immediately re-throw the cached error — no network request would be made.
   return (
     <QueryErrorResetBoundary>

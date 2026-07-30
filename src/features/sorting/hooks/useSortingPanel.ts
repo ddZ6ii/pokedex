@@ -14,12 +14,10 @@ const getInitialCriteria = (
   appliedCriteria.length ? appliedCriteria : emptyCriteria()
 
 export function useSortingPanel() {
-  const { sort: rawAppliedCriteria } = routeApi.useSearch()
-  const appliedCriteria = useMemo(
-    () => rawAppliedCriteria ?? [],
-    [rawAppliedCriteria],
-  )
+  const { sort } = routeApi.useSearch()
   const navigate = routeApi.useNavigate()
+
+  const appliedCriteria = useMemo(() => sort ?? [], [sort])
 
   const [draftCriteria, setDraftCriteria] = useState<SortingCriterion[]>(() =>
     getInitialCriteria(appliedCriteria),

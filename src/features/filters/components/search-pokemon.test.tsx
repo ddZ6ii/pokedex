@@ -13,8 +13,7 @@ import {
 } from 'vitest'
 
 import { SearchPokemon } from '@/features/filters/components/search-pokemon'
-import type { PokemonsPaginatedResponse } from '@/features/pokemons/schemas'
-import { renderWithProviders } from '@/tests/utilities'
+import { renderWithProviders, successPokemonsResponse } from '@/tests/utilities'
 
 const DEBOUNCE_DELAY = 350
 const POKEMONS_URL = '*/pokemons'
@@ -42,34 +41,8 @@ vi.mock('@tanstack/react-router', async (importOriginal) => {
   }
 })
 
-const successResponse: PokemonsPaginatedResponse = {
-  first: 1,
-  prev: null,
-  next: null,
-  last: 1,
-  pages: 1,
-  items: 1,
-  data: [
-    {
-      id: 1,
-      name: 'Bulbasaur',
-      primary_type: 'grass',
-      secondary_type: 'poison',
-      hp: 45,
-      attack: 49,
-      defense: 49,
-      special_attack: 65,
-      special_defense: 65,
-      speed: 45,
-      stage: 'base',
-      evolves_from_id: null,
-      evolves_from_name: null,
-    },
-  ],
-}
-
 const server = setupServer(
-  http.get(POKEMONS_URL, () => HttpResponse.json(successResponse)),
+  http.get(POKEMONS_URL, () => HttpResponse.json(successPokemonsResponse)),
 )
 
 function renderSearch() {

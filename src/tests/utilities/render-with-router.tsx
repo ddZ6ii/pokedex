@@ -21,6 +21,7 @@ export function renderWithRouter(initialEntries: string[] = ['/pokemons']) {
 
   return {
     queryClient,
+    router,
     ...render(
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />

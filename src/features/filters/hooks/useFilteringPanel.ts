@@ -49,12 +49,10 @@ export const initDraftTypes = (
 }
 
 export function useFilteringPanel() {
-  const { stats: appliedStats, types: rawAppliedTypes } = routeApi.useSearch()
+  const { stats: appliedStats, types } = routeApi.useSearch()
   const navigate = routeApi.useNavigate()
-  const appliedTypes = useMemo(
-    () => (rawAppliedTypes ? new Set(rawAppliedTypes) : null),
-    [rawAppliedTypes],
-  )
+
+  const appliedTypes = useMemo(() => (types ? new Set(types) : null), [types])
 
   const [error, setError] = useState<Error | null>(null)
   const [draftStats, setDraftStats] = useState(() =>

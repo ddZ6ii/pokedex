@@ -2,19 +2,22 @@ import { describe, expect, it } from 'vitest'
 
 import {
   PokemonsSearchSchema,
-  toPokemonsQueryOptions,
+  type PokemonsSearch,
 } from './pokemons-search.schema'
+import { toPokemonsQueryOptions } from '@/features/pokemons/utilities'
+
+const BASE_SEARCH: PokemonsSearch = {
+  page: 1,
+  perPage: 10,
+  search: undefined,
+  stats: undefined,
+  types: undefined,
+  sort: undefined,
+}
 
 describe('PokemonsSearchSchema', () => {
   it('defaults page and perPage, and omits search/stats/types/sort when the URL has no search params', () => {
-    expect(PokemonsSearchSchema.parse({})).toEqual({
-      page: 1,
-      perPage: 10,
-      search: undefined,
-      stats: undefined,
-      types: undefined,
-      sort: undefined,
-    })
+    expect(PokemonsSearchSchema.parse({})).toEqual(BASE_SEARCH)
   })
 
   it('keeps types as a plain array (not a Set) so it stays URL-serializable', () => {
@@ -24,15 +27,12 @@ describe('PokemonsSearchSchema', () => {
 
   it('falls back to undefined instead of throwing when search params are malformed', () => {
     expect(
-      PokemonsSearchSchema.parse({ perPage: 999, types: ['not-a-real-type'] }),
-    ).toEqual({
-      page: 1,
-      perPage: 10,
-      search: undefined,
-      stats: undefined,
-      types: undefined,
-      sort: undefined,
-    })
+      PokemonsSearchSchema.parse({
+        ...BASE_SEARCH,
+        perPage: 999,
+        types: ['not-a-real-type'],
+      }),
+    ).toEqual(BASE_SEARCH)
   })
 })
 
