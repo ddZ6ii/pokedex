@@ -3,19 +3,12 @@ import { http, HttpResponse } from 'msw'
 import { setupServer } from 'msw/node'
 import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest'
 
-import type { PokemonsPaginatedResponse } from '@/features/pokemons/schemas'
-import { renderWithRouter } from '@/tests/utilities'
+import {
+  emptyPokemonsResponse,
+  POKEMONS_URL,
+  renderWithRouter,
+} from '@/tests/utilities'
 
-const POKEMONS_URL = '*/pokemons'
-const emptyResponse: PokemonsPaginatedResponse = {
-  first: 1,
-  prev: null,
-  next: null,
-  last: 1,
-  pages: 0,
-  items: 0,
-  data: [],
-}
 const server = setupServer()
 
 beforeAll(() => {
@@ -30,20 +23,28 @@ afterAll(() => {
 
 describe('/pokemons route loader', () => {
   it('prefetches pokemons using the search params from the URL', async () => {
+    const path = '/pokemons'
+    const search = '?page=2&perPage=20'
     const requests: URL[] = []
+
     server.use(
       http.get(POKEMONS_URL, ({ request }) => {
         requests.push(new URL(request.url))
-        return HttpResponse.json(emptyResponse)
+        return HttpResponse.json(emptyPokemonsResponse)
       }),
     )
 
-    renderWithRouter(['/pokemons?perPage=20'])
+    const { router } = renderWithRouter([`${path}${search}`])
 
     await waitFor(() => {
-      expect(
-        requests.find((url) => url.searchParams.get('_per_page') === '20'),
-      ).toBeDefined()
+      expect(requests).toHaveLength(1)
     })
+
+    const [request] = requests
+    expect(request?.searchParams.get('_page')).toBe('2')
+    expect(request?.searchParams.get('_per_page')).toBe('20')
+
+    expect(router.state.location.pathname).toBe(path)
+    expect(router.state.location.search).toEqual({ page: 2, perPage: 20 })
   })
 })

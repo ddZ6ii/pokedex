@@ -1,7 +1,7 @@
 import { ArrowRightIcon } from 'lucide-react'
 import { motion, type Transition, type Variants } from 'motion/react'
 
-import { AnimatedBlobBackground } from '@/features/landing/components'
+import { AnimatedBlobBackground } from '@/features/landing/components/animated-blob-background'
 import { useAccentStyles, useColorCycle } from '@/features/landing/hooks'
 import { CustomAnimatedLink } from '@/shared/components'
 import { headingVariants } from '@/shared/components/ui/heading'
@@ -66,7 +66,7 @@ export function LandingPage() {
           Get Started
           <ArrowRightIcon
             aria-hidden={true}
-            className="text-base transition-transform duration-300 group-hover:rotate-90"
+            className="text-base transition-transform duration-300 group-hover:rotate-90 group-focus-visible:rotate-90"
           />
         </CustomAnimatedLink>
       </section>

@@ -9,6 +9,5 @@ export {
 
 export {
   PokemonsSearchSchema,
-  toPokemonsQueryOptions,
   type PokemonsSearch,
 } from './pokemons-search.schema'

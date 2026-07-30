@@ -3,10 +3,8 @@ import { useQuery } from '@tanstack/react-query'
 import { useEffect, useMemo, useRef } from 'react'
 
 import { createPokemonsQueryOptions } from '@/features/pokemons/api'
-import {
-  toPokemonsQueryOptions,
-  type PokemonsPaginatedResponse,
-} from '@/features/pokemons/schemas'
+import { type PokemonsPaginatedResponse } from '@/features/pokemons/schemas'
+import { toPokemonsQueryOptions } from '@/features/pokemons/utilities'
 
 import {
   Search,
@@ -32,9 +30,8 @@ export function SearchPokemon({
   id?: string
 }) {
   const inputRef = useRef<HTMLInputElement>(null)
-
-  const search = routeApi.useSearch()
   const navigate = routeApi.useNavigate()
+  const search = routeApi.useSearch()
 
   const { data: results, isFetching } = useQuery({
     ...createPokemonsQueryOptions(toPokemonsQueryOptions(search)),
@@ -100,7 +97,9 @@ export function SearchPokemon({
               search: (prev) => ({ ...prev, search: undefined, page: 1 }),
               replace: true,
             })
-            inputRef.current?.focus()
+            requestAnimationFrame(() => {
+              inputRef.current?.focus()
+            })
           }}
         />
       </SearchInputGroup>

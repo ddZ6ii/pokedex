@@ -11,8 +11,7 @@ import {
   vi,
 } from 'vitest'
 
-import type { PokemonsPaginatedResponse } from '@/features/pokemons/schemas'
-import { renderWithRouter } from '@/tests/utilities'
+import { renderWithRouter, successPokemonsResponse } from '@/tests/utilities'
 
 // Filtering/sorting/pagination integration tests (previously here) move to the
 // follow-up plan that wires those controls to `navigate({ search })`. Until
@@ -20,31 +19,7 @@ import { renderWithRouter } from '@/tests/utilities'
 // docs/superpowers/specs/2026-07-27-pokemons-route-loader-design.md.
 
 const POKEMONS_URL = '*/pokemons'
-const successResponse: PokemonsPaginatedResponse = {
-  first: 1,
-  prev: null,
-  next: null,
-  last: 1,
-  pages: 1,
-  items: 1,
-  data: [
-    {
-      id: 1,
-      name: 'Bulbasaur',
-      primary_type: 'grass',
-      secondary_type: 'poison',
-      hp: 45,
-      attack: 49,
-      defense: 49,
-      special_attack: 65,
-      special_defense: 65,
-      speed: 45,
-      stage: 'base',
-      evolves_from_id: null,
-      evolves_from_name: null,
-    },
-  ],
-}
+
 const server = setupServer()
 
 beforeAll(() => {
@@ -88,7 +63,7 @@ describe('Pokedex', () => {
       () =>
         new Promise<void>((resolve) => {
           resolveFetch(
-            new Response(JSON.stringify(successResponse), {
+            new Response(JSON.stringify(successPokemonsResponse), {
               status: 200,
               headers: { 'Content-Type': 'application/json' },
             }),
@@ -134,7 +109,7 @@ describe('Pokedex', () => {
         once: true,
       }),
       // Subsequent calls: success → recovery
-      http.get(POKEMONS_URL, () => HttpResponse.json(successResponse)),
+      http.get(POKEMONS_URL, () => HttpResponse.json(successPokemonsResponse)),
     )
 
     renderWithRouter()

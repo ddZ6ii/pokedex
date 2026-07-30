@@ -1,7 +1,8 @@
-import { getRouteApi, Link } from '@tanstack/react-router'
+import { getRouteApi } from '@tanstack/react-router'
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 
 import { getPages } from '@/features/pagination/utilities/get-pages'
+import { CustomLink } from '@/shared/components'
 import {
   Pagination as UIPagination,
   PaginationContent,
@@ -41,7 +42,7 @@ export function Pagination({
                 size="default"
                 className="pl-1.5!"
               >
-                <Link
+                <CustomLink
                   to="/pokemons"
                   search={(prev) => ({ ...prev, page: page - 1 })}
                 >
@@ -50,7 +51,7 @@ export function Pagination({
                     data-icon="inline-start"
                   />
                   <span className="hidden md:block">Previous</span>
-                </Link>
+                </CustomLink>
               </PaginationLink>
             )}
           </PaginationItem>
@@ -63,12 +64,12 @@ export function Pagination({
             ) : (
               <PaginationItem key={pageNumber}>
                 <PaginationLink asChild isActive={page === pageNumber}>
-                  <Link
+                  <CustomLink
                     to="/pokemons"
                     search={(prev) => ({ ...prev, page: pageNumber })}
                   >
                     {pageNumber}
-                  </Link>
+                  </CustomLink>
                 </PaginationLink>
               </PaginationItem>
             ),
@@ -84,13 +85,13 @@ export function Pagination({
                 size="default"
                 className="pr-1.5!"
               >
-                <Link
+                <CustomLink
                   to="/pokemons"
                   search={(prev) => ({ ...prev, page: page + 1 })}
                 >
                   <span className="hidden md:block">Next</span>
                   <ChevronRightIcon aria-hidden={true} data-icon="inline-end" />
-                </Link>
+                </CustomLink>
               </PaginationLink>
             )}
           </PaginationItem>
