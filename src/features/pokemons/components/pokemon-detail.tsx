@@ -154,11 +154,11 @@ function PokemonDetail({ pokemon }: { pokemon: Pokemon }) {
             </div>
           </Category>
 
-          {pokemon.evolves_from_name && pokemon.evolves_from_id !== null && (
+          {pokemon.evolves_from && (
             <Category label=" Evolves from">
               <EvolutionLink
-                name={pokemon.evolves_from_name}
-                id={pokemon.evolves_from_id}
+                name={pokemon.evolves_from.name}
+                id={pokemon.evolves_from.id}
               />
             </Category>
           )}

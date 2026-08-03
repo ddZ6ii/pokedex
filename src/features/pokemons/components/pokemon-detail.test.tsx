@@ -177,8 +177,7 @@ describe('PokemonDetailModal', () => {
           ...pokemonFixture,
           id: 2,
           stage: '2',
-          evolves_from_id: 1,
-          evolves_from_name: 'Bulbasaur',
+          evolves_from: { id: 1, name: 'Bulbasaur' },
         }),
       ),
     )
@@ -193,7 +192,7 @@ describe('PokemonDetailModal', () => {
   })
 
   it('shows no evolution note for a base-stage pokemon', async () => {
-    renderWithRouter(['/pokemons/1']) // pokemonFixture is base stage, evolves_from_name: null
+    renderWithRouter(['/pokemons/1']) // pokemonFixture is base stage, evolves_from: null
 
     await screen.findByRole('dialog')
     expect(screen.queryByText(/evolves from/i)).not.toBeInTheDocument()
