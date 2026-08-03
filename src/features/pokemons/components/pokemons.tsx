@@ -2,7 +2,6 @@ import {
   QueryErrorResetBoundary,
   useSuspenseQuery,
 } from '@tanstack/react-query'
-import { getRouteApi } from '@tanstack/react-router'
 import { Suspense, useDeferredValue } from 'react'
 import { ErrorBoundary, type FallbackProps } from 'react-error-boundary'
 
@@ -13,10 +12,9 @@ import {
   PokemonListSkeleton,
 } from '@/features/pokemons/components/pokemon-list'
 import { toPokemonsQueryOptions } from '@/features/pokemons/utilities'
+import { pokemonsRouteApi as routeApi } from '@/routes/(public)/-route-api'
 import { ErrorFallback } from '@/shared/components'
 import { cn } from '@/shared/lib/utils'
-
-const routeApi = getRouteApi('/(public)/pokemons')
 
 function WidgetFallback(props: FallbackProps) {
   return (
@@ -24,12 +22,13 @@ function WidgetFallback(props: FallbackProps) {
       {...props}
       title="Failed to load pokemons"
       className="h-full"
+      variant="destructive"
     />
   )
 }
 
 function PokemonsFetcher() {
-  const params = routeApi.useSearch()
+  const searchParams = routeApi.useSearch()
 
   // ℹ️ Why `useDeferredValue` here
   //
@@ -37,12 +36,12 @@ function PokemonsFetcher() {
   // hatch (that's a `useQuery`-only feature), so a query-key change with
   // nothing cached for it suspends immediately, replacing the list with
   // the Suspense fallback (UI flickers with skeletons).
-  // `useDeferredValue(params)` keeps returning the *previous* params while
+  // `useDeferredValue(searchParams)` keeps returning the *previous* searchParams while
   // React re-renders this component in the background with the new ones.
   // If that background render suspends, React doesn't show the fallback —
-  // it keeps the current list mounted (rendered with the stale params)
+  // it keeps the current list mounted (rendered with the stale searchParams)
   // until the new data is ready, then swaps in the fresh list.
-  const deferredParams = useDeferredValue(params)
+  const deferredSearchParams = useDeferredValue(searchParams)
 
   // ℹ️ How `useSuspenseQuery` works
   //
@@ -53,10 +52,10 @@ function PokemonsFetcher() {
   const {
     data: { data: pokemons, pages: maxPage, items: totalItems },
   } = useSuspenseQuery(
-    createPokemonsQueryOptions(toPokemonsQueryOptions(deferredParams)),
+    createPokemonsQueryOptions(toPokemonsQueryOptions(deferredSearchParams)),
   )
 
-  const isStale = deferredParams !== params
+  const isStale = deferredSearchParams !== searchParams
 
   return (
     <>

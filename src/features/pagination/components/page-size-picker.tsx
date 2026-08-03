@@ -1,10 +1,7 @@
-import { getRouteApi } from '@tanstack/react-router'
-
 import { PER_PAGE_OPTIONS, type Filters } from '@/features/filters/schemas'
+import { pokemonsRouteApi as routeApi } from '@/routes/(public)/-route-api'
 import { Select } from '@/shared/components/select'
 import { cn } from '@/shared/lib/utils'
-
-const routeApi = getRouteApi('/(public)/pokemons')
 
 export function PageSizePicker({ className }: { className?: string }) {
   const { perPage } = routeApi.useSearch()

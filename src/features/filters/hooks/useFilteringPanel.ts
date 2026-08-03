@@ -1,4 +1,3 @@
-import { getRouteApi } from '@tanstack/react-router'
 import { startTransition, useCallback, useMemo, useState } from 'react'
 
 import {
@@ -12,8 +11,7 @@ import {
   POKEMON_TYPES,
   type PokemonType,
 } from '@/features/pokemons/schemas'
-
-const routeApi = getRouteApi('/(public)/pokemons')
+import { pokemonsRouteApi as routeApi } from '@/routes/(public)/-route-api'
 
 export const DEFAULT_DRAFT_STATS = Object.fromEntries(
   POKEMON_SKILLS.map((skill) => [skill, [MIN_STAT_VALUE, MAX_STAT_VALUE]]),

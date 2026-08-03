@@ -17,9 +17,9 @@ type ErrorAlertProps = Omit<React.ComponentProps<typeof Alert>, 'children'> & {
 
 export function ErrorAlert({
   className,
-  title = 'Something went wrong',
   errorMessage,
   onRetry,
+  title = 'Something went wrong',
   ...props
 }: ErrorAlertProps) {
   return (

@@ -1,14 +1,13 @@
+import { Link } from '@tanstack/react-router'
 import { motion, useReducedMotion, type Variants } from 'motion/react'
-import { getRouteApi } from '@tanstack/react-router'
 
 import {
   PokemonCardMemoized,
   PokemonCardSkeleton,
 } from '@/features/pokemons/components/pokemon-card'
 import type { Pokemon } from '@/features/pokemons/schemas/pokemon.schema'
+import { pokemonsRouteApi as routeApi } from '@/routes/(public)/-route-api'
 import { cn } from '@/shared/lib/utils'
-
-const routeApi = getRouteApi('/(public)/pokemons')
 
 const MAX_STAGGER_DURATION = 0.6
 const CARD_VARIANTS: Variants = {
@@ -80,7 +79,13 @@ function PokemonList({
           }
           className="perspective-distant"
         >
-          <PokemonCardMemoized pokemon={pokemon} />
+          <Link
+            to="/pokemons/$pokemonId"
+            params={{ pokemonId: pokemon.id }}
+            search={(prev) => prev}
+          >
+            <PokemonCardMemoized pokemon={pokemon} />
+          </Link>
         </motion.li>
       ))}
     </motion.ul>

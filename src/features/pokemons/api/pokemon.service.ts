@@ -1,9 +1,12 @@
 import { ZodError, type ZodType } from 'zod'
 
 import {
+  PokemonSchema,
   PokemonsPaginatedResponseSchema,
+  type Pokemon,
   type PokemonsPaginatedResponse,
-} from '@/features/pokemons/schemas/pokemon.schema'
+  type PokemonResponse,
+} from '@/features/pokemons/schemas'
 import { HttpError, ServerError, ValidationError } from '@/shared/api'
 import { envSchema, type ApiQueryParams } from '@/shared/schemas'
 import { isAbortError } from '@/shared/utilities'
@@ -48,6 +51,17 @@ class PokemonService {
     return this.#fetch(
       `${this.#baseUrl}/pokemons?${searchParams}`,
       PokemonsPaginatedResponseSchema,
+      signal,
+    )
+  }
+
+  async getPokemon(
+    id: Pokemon['id'],
+    signal?: AbortSignal,
+  ): Promise<PokemonResponse> {
+    return this.#fetch(
+      `${this.#baseUrl}/pokemons/${id.toString()}`,
+      PokemonSchema,
       signal,
     )
   }

@@ -13,7 +13,7 @@ function RootLayout() {
   return (
     <>
       <TooltipProvider>
-        <div className="container mx-auto flex min-h-screen flex-col p-3">
+        <div className="relative container mx-auto flex min-h-screen flex-col p-3">
           <Header />
 
           <main className="flex flex-1 flex-col">

@@ -27,6 +27,16 @@ const _PokemonSkillSchema = z.enum(POKEMON_SKILLS)
 const _PokemonStageSchema = z.enum(POKEMON_STAGES)
 const _PokemonTypeSchema = z.enum(POKEMON_TYPES)
 
+const PokemonAbilitySchema = z.object({
+  name: z.string().min(1),
+  is_hidden: z.boolean(),
+})
+
+const PokemonEvolutionSchema = z.object({
+  id: z.coerce.number().int().positive(),
+  name: z.string().min(1),
+})
+
 const PokemonSchema = z.object({
   id: z.coerce.number().int().positive(),
   name: z.string().min(1),
@@ -42,6 +52,10 @@ const PokemonSchema = z.object({
   stage: _PokemonStageSchema,
   evolves_from_id: z.coerce.number().int().positive().nullable(),
   evolves_from_name: z.string().min(1).nullable(),
+  height: z.number().positive(),
+  weight: z.number().positive(),
+  abilities: z.array(PokemonAbilitySchema),
+  evolves_to: z.array(PokemonEvolutionSchema),
 })
 
 const PokemonsResponseSchema = z.array(PokemonSchema)
@@ -60,8 +74,11 @@ type PokemonSkill = z.infer<typeof _PokemonSkillSchema>
 type PokemonStage = z.infer<typeof _PokemonStageSchema>
 type PokemonType = z.infer<typeof _PokemonTypeSchema>
 type Pokemon = z.infer<typeof PokemonSchema>
+type PokemonAbility = z.infer<typeof PokemonAbilitySchema>
+type PokemonEvolution = z.infer<typeof PokemonEvolutionSchema>
 
 type PokemonsPaginatedResponse = z.infer<typeof PokemonsPaginatedResponseSchema>
+type PokemonResponse = z.infer<typeof PokemonSchema>
 
 export {
   POKEMON_TYPES,
@@ -70,8 +87,11 @@ export {
   PokemonsResponseSchema,
   PokemonsPaginatedResponseSchema,
   type Pokemon,
-  type PokemonType,
+  type PokemonAbility,
+  type PokemonEvolution,
+  type PokemonResponse,
+  type PokemonsPaginatedResponse,
   type PokemonSkill,
   type PokemonStage,
-  type PokemonsPaginatedResponse,
+  type PokemonType,
 }
