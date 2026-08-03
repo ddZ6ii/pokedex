@@ -29,8 +29,7 @@ export const pokemonFixture: Pokemon = {
   special_defense: 65,
   speed: 45,
   stage: 'base',
-  evolves_from_id: null,
-  evolves_from_name: null,
+  evolves_from: null,
   height: 0.7,
   weight: 6.9,
   abilities: [

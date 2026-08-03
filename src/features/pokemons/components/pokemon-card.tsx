@@ -115,8 +115,8 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
 
   const types: PokemonType[] = getPokemonTypes(pokemon)
 
-  const evolvesFromSrc = pokemon.evolves_from_id
-    ? `${BASE_IMAGE_URL}/${String(pokemon.evolves_from_id)}.png`
+  const evolvesFromSrc = pokemon.evolves_from
+    ? `${BASE_IMAGE_URL}/${String(pokemon.evolves_from.id)}.png`
     : null
 
   return (
@@ -151,13 +151,13 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
       {pokemon.stage !== 'base' && evolvesFromSrc && (
         <div className="hover:drop-shadow-black/60', absolute top-8.5 left-5 z-10 size-8 translate-z-1 rounded-full transition-transform hover:drop-shadow-lg motion-safe:hover:translate-z-2 motion-safe:hover:scale-300 motion-safe:hover:scale-3d">
           <WithTooltip
-            tooltip={`Evolves from ${pokemon.evolves_from_name ?? ''}`}
+            tooltip={`Evolves from ${pokemon.evolves_from?.name ?? ''}`}
             side="top"
             className="h-full w-full"
           >
             <img
               src={evolvesFromSrc}
-              alt={pokemon.evolves_from_name ?? ''}
+              alt={pokemon.evolves_from?.name ?? ''}
               width={40}
               height={40}
               className={cn(
