@@ -5,36 +5,25 @@ import { setupServer } from 'msw/node'
 import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest'
 
 import type { PokemonsPaginatedResponse } from '@/features/pokemons/schemas'
-import { renderWithRouter } from '@/tests/utilities'
+import {
+  makePaginatedResponse,
+  makePokemon,
+  renderWithRouter,
+} from '@/tests/utilities'
 
 const POKEMONS_URL = '*/pokemons'
 
 function makePage(page: number): PokemonsPaginatedResponse {
-  return {
-    first: 1,
-    prev: page > 1 ? page - 1 : null,
-    next: page < 3 ? page + 1 : null,
-    last: 3,
-    pages: 3,
-    items: 3,
-    data: [
-      {
-        id: page,
-        name: `Pokemon${String(page)}`,
-        primary_type: 'grass',
-        secondary_type: null,
-        hp: 45,
-        attack: 49,
-        defense: 49,
-        special_attack: 65,
-        special_defense: 65,
-        speed: 45,
-        stage: 'base',
-        evolves_from_id: null,
-        evolves_from_name: null,
-      },
-    ],
-  }
+  return makePaginatedResponse(
+    [makePokemon({ id: page, name: `Pokemon${String(page)}` })],
+    {
+      prev: page > 1 ? page - 1 : null,
+      next: page < 3 ? page + 1 : null,
+      last: 3,
+      pages: 3,
+      items: 3,
+    },
+  )
 }
 
 const server = setupServer()

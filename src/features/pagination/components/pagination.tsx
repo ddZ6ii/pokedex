@@ -1,7 +1,7 @@
-import { getRouteApi } from '@tanstack/react-router'
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 
 import { getPages } from '@/features/pagination/utilities/get-pages'
+import { pokemonsRouteApi as routeApi } from '@/routes/(public)/-route-api'
 import { CustomLink } from '@/shared/components'
 import {
   Pagination as UIPagination,
@@ -12,8 +12,6 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/shared/components/ui/pagination'
-
-const routeApi = getRouteApi('/(public)/pokemons')
 
 export function Pagination({
   className,

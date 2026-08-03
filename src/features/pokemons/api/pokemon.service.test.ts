@@ -1,9 +1,9 @@
 import { describe, expect, it, vi } from 'vitest'
 
 import { pokemonService } from '@/features/pokemons/api/pokemon.service'
-import { type PokemonsPaginatedResponse } from '@/features/pokemons/schemas'
 import { HttpError, ServerError, ValidationError } from '@/shared/api'
 import { type ApiQueryParams } from '@/shared/schemas'
+import { makePaginatedResponse, makePokemon } from '@/tests/utilities'
 
 const defaultParams: ApiQueryParams = {
   _page: '1',
@@ -11,31 +11,9 @@ const defaultParams: ApiQueryParams = {
   _sort: 'id',
 }
 
-const validResponse: PokemonsPaginatedResponse = {
-  first: 1,
-  prev: null,
-  next: null,
-  last: 1,
-  pages: 1,
-  items: 1,
-  data: [
-    {
-      id: 1,
-      name: 'Bulbasaur',
-      primary_type: 'grass',
-      secondary_type: 'poison',
-      hp: 45,
-      attack: 49,
-      defense: 49,
-      special_attack: 65,
-      special_defense: 65,
-      speed: 45,
-      stage: 'base',
-      evolves_from_id: null,
-      evolves_from_name: null,
-    },
-  ],
-}
+const validResponse = makePaginatedResponse([
+  makePokemon({ abilities: [{ name: 'overgrow', is_hidden: false }] }),
+])
 
 function mockFetch(body: unknown, status = 200) {
   vi.spyOn(globalThis, 'fetch').mockResolvedValueOnce(

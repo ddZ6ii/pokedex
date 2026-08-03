@@ -1,3 +1,4 @@
+export { Category } from './category'
 export { CheckboxField } from './checkbox-field'
 export { CountBadge } from './count-badge'
 export { CustomAnimatedLink, CustomLink } from './custom-link'

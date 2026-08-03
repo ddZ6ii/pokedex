@@ -1,10 +1,11 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Outlet } from '@tanstack/react-router'
 
 import { createPokemonsQueryOptions } from '@/features/pokemons/api'
 import { Pokedex } from '@/features/pokemons/components'
 import { PokemonsSearchSchema } from '@/features/pokemons/schemas'
 import { toPokemonsQueryOptions } from '@/features/pokemons/utilities'
 
+// Parent layout route
 export const Route = createFileRoute('/(public)/pokemons')({
   validateSearch: PokemonsSearchSchema,
   loaderDeps: ({ search }) => search,
@@ -22,5 +23,15 @@ export const Route = createFileRoute('/(public)/pokemons')({
         // This prefetch is fire-and-forget, not the source of truth.
       })
   },
-  component: Pokedex,
+  component: PokemonsRouteComponent,
 })
+
+function PokemonsRouteComponent() {
+  return (
+    <>
+      <Pokedex />
+      {/* Allow to display the Pokemon details modal ($pokemonId) over the PokemonList */}
+      <Outlet />
+    </>
+  )
+}

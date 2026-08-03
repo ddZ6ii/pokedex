@@ -13,10 +13,16 @@ import {
 } from 'vitest'
 
 import { SearchPokemon } from '@/features/filters/components/search-pokemon'
-import { renderWithProviders, successPokemonsResponse } from '@/tests/utilities'
+import {
+  makePaginatedResponse,
+  makePokemon,
+  renderWithProviders,
+} from '@/tests/utilities'
 
 const DEBOUNCE_DELAY = 350
 const POKEMONS_URL = '*/pokemons'
+
+const validResponse = makePaginatedResponse([makePokemon()])
 
 type MockSearch = { search?: string; page: number; perPage: 10 | 20 | 50 | 100 }
 
@@ -42,7 +48,7 @@ vi.mock('@tanstack/react-router', async (importOriginal) => {
 })
 
 const server = setupServer(
-  http.get(POKEMONS_URL, () => HttpResponse.json(successPokemonsResponse)),
+  http.get(POKEMONS_URL, () => HttpResponse.json(validResponse)),
 )
 
 function renderSearch() {

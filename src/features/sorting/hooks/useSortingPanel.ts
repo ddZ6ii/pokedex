@@ -1,10 +1,8 @@
-import { getRouteApi } from '@tanstack/react-router'
 import { useCallback, useMemo, useState } from 'react'
 
 import { type SortingCriterion } from '@/features/sorting/schemas/sorting.schema'
+import { pokemonsRouteApi as routeApi } from '@/routes/(public)/-route-api'
 import { nth } from '@/shared/utilities/nth'
-
-const routeApi = getRouteApi('/(public)/pokemons')
 
 const emptyCriteria = (): SortingCriterion[] => [[null, null]]
 

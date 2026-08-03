@@ -1,11 +1,10 @@
-import { getRouteApi } from '@tanstack/react-router'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect, useMemo, useRef } from 'react'
 
 import { createPokemonsQueryOptions } from '@/features/pokemons/api'
 import { type PokemonsPaginatedResponse } from '@/features/pokemons/schemas'
 import { toPokemonsQueryOptions } from '@/features/pokemons/utilities'
-
+import { pokemonsRouteApi as routeApi } from '@/routes/(public)/-route-api'
 import {
   Search,
   SearchInput,
@@ -17,8 +16,6 @@ import {
 } from '@/shared/components/search'
 import { cn } from '@/shared/lib/utils'
 import { debounce } from '@/shared/utilities'
-
-const routeApi = getRouteApi('/(public)/pokemons')
 
 const selectItems = (data: PokemonsPaginatedResponse) => data.items
 
@@ -42,6 +39,7 @@ export function SearchPokemon({
   const debouncedSetSearch = useMemo(
     () =>
       debounce(
+        // eslint-disable-next-line react-hooks/refs
         (nextSearch: string) => {
           const trimmedSearch = nextSearch.trim()
           void navigate({
@@ -51,6 +49,9 @@ export function SearchPokemon({
               page: 1,
             }),
             replace: true,
+          })
+          requestAnimationFrame(() => {
+            inputRef.current?.focus()
           })
         },
         { delay: 350 },

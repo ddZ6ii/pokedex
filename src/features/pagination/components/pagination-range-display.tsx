@@ -1,8 +1,5 @@
-import { getRouteApi } from '@tanstack/react-router'
-
+import { pokemonsRouteApi as routeApi } from '@/routes/(public)/-route-api'
 import { cn } from '@/shared/lib/utils'
-
-const routeApi = getRouteApi('/(public)/pokemons')
 
 export function PaginationRangeDisplay({
   className,

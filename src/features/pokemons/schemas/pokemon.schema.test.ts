@@ -21,6 +21,10 @@ const validPokemon: Pokemon = {
   stage: 'base',
   evolves_from_id: null,
   evolves_from_name: null,
+  height: 0.7,
+  weight: 6.9,
+  abilities: [{ name: 'overgrow', is_hidden: false }],
+  evolves_to: [{ id: 2, name: 'Ivysaur' }],
 }
 
 describe('PokemonSchema', () => {

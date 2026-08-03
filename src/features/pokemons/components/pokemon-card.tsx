@@ -12,6 +12,7 @@ import {
   type PokemonStage,
   type PokemonType,
 } from '@/features/pokemons/schemas/pokemon.schema'
+import { getPokemonTypes } from '@/features/pokemons/utilities/get-pokemon-types'
 import { WithTooltip } from '@/shared/components'
 import { Card, CardContent, CardFooter } from '@/shared/components/ui/card'
 import { Heading } from '@/shared/components/ui/heading'
@@ -112,10 +113,7 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
   const { src, loaded, handleLoad, handleError } = usePokemonImage(pokemon.id)
   const [evolvesFromLoaded, setEvolvesFromLoaded] = useState(false)
 
-  const types: PokemonType[] = [pokemon.primary_type]
-  if (pokemon.secondary_type) {
-    types.push(pokemon.secondary_type)
-  }
+  const types: PokemonType[] = getPokemonTypes(pokemon)
 
   const evolvesFromSrc = pokemon.evolves_from_id
     ? `${BASE_IMAGE_URL}/${String(pokemon.evolves_from_id)}.png`
