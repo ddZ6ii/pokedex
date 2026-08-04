@@ -53,7 +53,11 @@ function PokemonModalShell({ children }: { children: React.ReactNode }) {
       open
       onOpenChange={(open) => {
         if (!open) {
-          void navigate({ to: '/pokemons', search: (prev) => prev })
+          void navigate({
+            to: '/pokemons',
+            resetScroll: false,
+            search: (prev) => prev,
+          })
         }
       }}
     >
