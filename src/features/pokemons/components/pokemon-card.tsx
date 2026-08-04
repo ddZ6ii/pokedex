@@ -122,7 +122,7 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
   return (
     <TiltedCard
       className={cn(
-        'relative min-h-109.5 max-w-78 cursor-pointer gap-3 p-0 perspective-near transform-3d',
+        'relative min-h-109.5 w-78 cursor-pointer gap-3 p-0 perspective-near transform-3d',
       )}
       style={{
         backgroundImage: `url('${getBackgroundForType(nth(types, 0), pokemon.stage)}')`,
