@@ -131,7 +131,15 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
         backgroundPosition: 'center',
       }}
     >
-      <div className="outline-muted-foreground/20 absolute top-3.5 right-3.5 z-10 flex rounded-full outline transform-3d">
+      <div
+        className="outline-muted-foreground/20 absolute top-3.5 right-3.5 z-10 flex rounded-full outline transform-3d"
+        // Freeze the card tilt while hovering: this pill sits far from the
+        // tilt's rotation center, so letting mousemove keep re-tilting the
+        // card shifts the badge out from under the cursor and flickers hover.
+        onMouseMove={(e) => {
+          e.stopPropagation()
+        }}
+      >
         {types.map((type) => (
           <WithTooltip key={type} tooltip={capitalize(type)} side="top">
             <div className="size-7 cursor-pointer rounded-full p-0.5 hover:drop-shadow-lg motion-safe:hover:translate-z-14 motion-safe:hover:scale-110 motion-safe:hover:scale-3d">
@@ -149,7 +157,14 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
       </div>
 
       {pokemon.stage !== 'base' && evolvesFromSrc && (
-        <div className="hover:drop-shadow-black/60', absolute top-8.5 left-5 z-10 size-8 translate-z-1 rounded-full transition-transform hover:drop-shadow-lg motion-safe:hover:translate-z-2 motion-safe:hover:scale-300 motion-safe:hover:scale-3d">
+        <div
+          className="hover:drop-shadow-black/60', absolute top-8.5 left-5 z-10 size-8 translate-z-1 rounded-full transition-transform duration-500 hover:drop-shadow-lg motion-safe:hover:translate-z-2 motion-safe:hover:scale-300 motion-safe:hover:scale-3d"
+          // Same tilt-freeze as the type badges above — this badge is also
+          // off-center enough for continuous re-tilting to flicker its hover.
+          onMouseMove={(e) => {
+            e.stopPropagation()
+          }}
+        >
           <WithTooltip
             tooltip={`Evolves from ${pokemon.evolves_from?.name ?? ''}`}
             side="top"
@@ -184,7 +199,7 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
             height={280}
             loading="lazy"
             className={cn(
-              'mx-auto block translate-y-0 translate-z-4 scale-70 object-cover drop-shadow-xl drop-shadow-black/40 transition-transform',
+              'mx-auto block translate-y-0 translate-z-2 scale-70 object-cover drop-shadow-xl drop-shadow-black/40 transition-transform',
               !loaded && 'opacity-0',
             )}
             onError={handleError}
@@ -192,12 +207,12 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
           />
           <Heading
             as="h2"
-            className="font-heading -mt-13 translate-z-3 font-medium tracking-wide text-shadow-white lg:text-xl"
+            className="font-heading -mt-13 translate-z-2 font-medium tracking-wide text-shadow-white lg:text-xl"
           >
             {pokemon.name}
           </Heading>
           {pokemon.description && (
-            <p className="text-shadow-accent mx-2 mt-1 line-clamp-3 translate-z-3 px-4">
+            <p className="text-shadow-accent mx-2 mt-1 line-clamp-3 translate-z-2 px-4">
               {pokemon.description}
             </p>
           )}
@@ -205,11 +220,11 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
       </CardContent>
 
       <CardFooter className="mx-2 mt-1 mb-8 rounded-none border-none bg-transparent px-4 py-1.5 transform-3d">
-        <div className="text-muted-foreground ml-3 flex w-full translate-z-3 items-center gap-4 text-xs">
+        <div className="text-muted-foreground ml-3 flex w-full translate-z-2 items-center gap-4 text-xs">
           {POKEMON_SKILLS.map((skill) => (
             <WithTooltip
               key={skill}
-              tooltip={`${skill}: ${String(pokemon[skill])}`}
+              tooltip={`${capitalize(skill)}: ${String(pokemon[skill])}`}
               className="hover:text-foreground relative flex transition-[colors_transform] after:absolute after:-right-2 after:h-4 after:w-px after:bg-black after:content-[''] last:after:hidden motion-safe:hover:scale-110"
             >
               <div className="flex cursor-pointer items-center gap-0.5 font-semibold text-black">
