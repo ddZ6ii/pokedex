@@ -74,7 +74,7 @@ function PokemonsFetcher() {
       */}
       <div
         className={cn(
-          'transition-opacity duration-300',
+          'w-full transition-opacity duration-300',
           isStale && 'opacity-60',
         )}
       >

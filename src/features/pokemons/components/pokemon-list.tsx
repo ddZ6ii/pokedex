@@ -62,7 +62,10 @@ function PokemonList({
   return (
     <motion.ul
       aria-busy={ariaBusy}
-      className={cn('flex flex-1 flex-wrap justify-center gap-6', className)}
+      className={cn(
+        'grid w-full grid-cols-[repeat(auto-fill,312px)] justify-center gap-6',
+        className,
+      )}
       variants={
         prefersReducedMotion
           ? REDUCED_LIST_VARIANTS
