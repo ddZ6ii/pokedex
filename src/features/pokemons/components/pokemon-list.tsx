@@ -86,6 +86,7 @@ function PokemonList({
             to="/pokemons/$pokemonId"
             params={{ pokemonId: pokemon.id }}
             search={(prev) => prev}
+            resetScroll={false}
           >
             <PokemonCardMemoized pokemon={pokemon} />
           </Link>
