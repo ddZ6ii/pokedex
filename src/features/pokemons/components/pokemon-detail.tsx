@@ -141,7 +141,7 @@ function PokemonDetail({ pokemon }: { pokemon: Pokemon }) {
             </div>
           </Category>
 
-          <Category label=" Abilities">
+          <Category label="Abilities">
             <div className="flex flex-wrap gap-1">
               {pokemon.abilities
                 .filter((ability) => !ability.is_hidden)
@@ -152,14 +152,13 @@ function PokemonDetail({ pokemon }: { pokemon: Pokemon }) {
                     className="h-auto py-0.5 text-[length:inherit]"
                   >
                     {capitalize(ability.name.replace(/-/g, ' '))}
-                    {ability.is_hidden && ' (Hidden)'}
                   </Badge>
                 ))}
             </div>
           </Category>
 
           {pokemon.evolves_from && (
-            <Category label=" Evolves from">
+            <Category label="Evolves from">
               <EvolutionLink
                 name={pokemon.evolves_from.name}
                 id={pokemon.evolves_from.id}
@@ -168,7 +167,7 @@ function PokemonDetail({ pokemon }: { pokemon: Pokemon }) {
           )}
 
           {pokemon.evolves_to.length > 0 && (
-            <Category label=" Evolves to">
+            <Category label="Evolves to">
               <div className="flex flex-wrap gap-x-3 gap-y-1">
                 {pokemon.evolves_to.map((evolution) => (
                   <EvolutionLink
@@ -181,7 +180,7 @@ function PokemonDetail({ pokemon }: { pokemon: Pokemon }) {
             </Category>
           )}
 
-          <Category label=" Stats" className="space-y-1">
+          <Category label="Stats" className="space-y-1">
             <dl className="grid grid-cols-2 gap-x-4 gap-y-1">
               {[...POKEMON_SKILLS].sort().map((skill) => (
                 <div key={skill} className="flex items-center gap-x-2">

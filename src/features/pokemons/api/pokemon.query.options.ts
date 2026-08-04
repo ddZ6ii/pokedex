@@ -48,6 +48,7 @@ const createPokemonQueryOptions = (id: Pokemon['id']) => {
         if (err instanceof HttpError) {
           throw new ServerError(
             'Something went wrong while loading Pokémon data. Please try again later.',
+            err,
           )
         }
         throw err

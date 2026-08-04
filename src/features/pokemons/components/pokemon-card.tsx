@@ -158,7 +158,7 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
 
       {pokemon.stage !== 'base' && evolvesFromSrc && (
         <div
-          className="hover:drop-shadow-black/60', absolute top-8.5 left-5 z-10 size-8 translate-z-1 rounded-full transition-transform duration-500 hover:drop-shadow-lg motion-safe:hover:translate-z-2 motion-safe:hover:scale-300 motion-safe:hover:scale-3d"
+          className="absolute top-8.5 left-5 z-10 size-8 translate-z-1 rounded-full transition-transform duration-500 hover:drop-shadow-lg hover:drop-shadow-black/60 motion-safe:hover:translate-z-2 motion-safe:hover:scale-300 motion-safe:hover:scale-3d"
           // Same tilt-freeze as the type badges above — this badge is also
           // off-center enough for continuous re-tilting to flicker its hover.
           onMouseMove={(e) => {
