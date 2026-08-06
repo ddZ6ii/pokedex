@@ -3,8 +3,8 @@ import type {
   PokemonsPaginatedResponse,
 } from '@/features/pokemons/schemas'
 
-export const POKEMONS_URL = '*/pokemons'
-export const POKEMON_URL = '*/pokemons/:id'
+export const POKEMONS_URL = '*/api/pokemons'
+export const POKEMON_URL = '*/api/pokemons/:id'
 
 export const emptyPokemonsResponse: PokemonsPaginatedResponse = {
   first: 1,

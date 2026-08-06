@@ -12,3 +12,7 @@ overrides:
   # Mitigate supply chain attacks
   minimumReleaseAge: '4320' # 3 days (in minutes)
   ignore-scripts: 'true'
+
+# Record the ignore-scripts decision so fresh/non-interactive installs (Docker, CI) don't fail on unapproved build scripts
+allowBuilds:
+  msw: false

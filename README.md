@@ -31,6 +31,108 @@ pnpm install
 # Terminal 1 — start the JSON API (http://localhost:3000)
 pnpm json-server
 
-# Terminal 2 — start the dev server
+# Terminal 2 — start the dev server (proxies /api requests to the JSON API)
 pnpm dev
 ```
+
+## Docker (local smoke test)
+
+`docker-compose.yml` spins up the same three-container topology used in staging/production — `gateway` (nginx, routes `/` → `frontend`, `/api/*` → `backend`), `frontend` (nginx serving the built SPA), `backend` (json-server + baked-in `db.json`) — so you can validate the full request path locally before touching the VPS infra:
+
+```bash
+docker compose up --build -d
+
+curl http://localhost:8000/                                  # → SPA, 200
+curl http://localhost:8000/api/pokemons?_page=1&_per_page=1   # → JSON, via gateway → backend
+
+docker compose down
+```
+
+The gateway's host port defaults to `8000`; override with `GATEWAY_PORT`:
+
+```bash
+GATEWAY_PORT=9000 docker compose up --build -d
+```
+
+Only `gateway` is published to the host — `frontend` and `backend` stay reachable exclusively through it, mirroring how only `gateway` is exposed to the outside on the real VPS deployment (see details about [VPS setup](https://github.com/ddZ6ii/vps-infra/blob/main/docs/vps-setup.md)).
+
+## Contributing
+
+- **Branches:** `dev` is staging, `main` is production (fast-forward only, no merge commits). Create short-lived branches off `dev` using `feat/`, `fix/`, `ci/`, `docs/`, `refactor/`, `perf/`, `test/`, `style/`, or `chore/` prefixes.
+- **Workflow:** rebase your branch onto `dev`, open a PR, squash-merge. `dev` → `main` is promoted locally via `git merge --ff-only` — never through a GitHub PR merge.
+- Details: [Branching Strategy](docs/github-branching-strategy.md) · [Linear History Workflow](docs/github-linear-history-workflow.md)
+
+## CI/CD
+
+### Workflows
+
+```mermaid
+flowchart TD
+    FEAT["Push to any branch<br/>except dev"]
+    PR["Pull request<br/>(any base branch)"]
+    DEVPUSH["Push to dev"]
+    TAGPUSH["Push tag v*.*.*"]
+
+    FEAT --> CI
+    PR --> CI
+
+    subgraph CI["ci.yml"]
+        direction TB
+        CQ["code-quality<br/>format:check + lint"] --> T["test"]
+        CQ --> B["build<br/>tsc -b + vite build"]
+    end
+
+    DEVPUSH --> STAGING
+
+    subgraph STAGING["staging.yml"]
+        direction TB
+        SSHA["get-short-sha"]
+        SCQ["code-quality<br/>(calls ci.yml)"]
+        SSHA --> SSTEP["build-and-deploy"]
+        SCQ --> SSTEP
+        SSTEP --> SPUSH["push pokedex-frontend / pokedex-api<br/>:dev-&lt;sha&gt;"]
+        SPUSH --> SHOOK["HMAC-signed curl<br/>→ staging webhook"]
+    end
+    SCQ -.-> CI
+    SHOOK --> STAGEVPS[("VPS staging containers<br/>pull + up")]
+
+    TAGPUSH --> RELEASE
+
+    subgraph RELEASE["release.yml"]
+        direction TB
+        RCQ["code-quality<br/>(calls ci.yml)"] --> RSTEP["build-and-push"]
+        RSTEP --> RPUSH["push pokedex-frontend / pokedex-api<br/>:vX.Y.Z + :latest"]
+    end
+    RCQ -.-> CI
+    RPUSH --> MANUAL[["scripts/deploy-prod.sh<br/>(run manually)"]]
+    MANUAL --> PRODVPS[("VPS production containers<br/>pull :latest + up")]
+```
+
+### Deploying to staging (automated)
+
+Push to `dev`:
+
+```bash
+git push origin dev
+```
+
+`staging.yml` picks it up, runs the `ci.yml` checks, builds + pushes `pokedex-frontend`/`pokedex-api:dev-<short-sha>` to Docker Hub, and triggers the staging webhook — no manual step needed.
+
+### Deploying to production (manual)
+
+1. Push a `v*.*.*` tag to build + push the release images:
+
+   ```bash
+   git tag v1.2.3
+   git push origin v1.2.3
+   ```
+
+   `release.yml` runs the `ci.yml` checks and pushes `pokedex-frontend`/`pokedex-api:v1.2.3` and `:latest` to Docker Hub — it does **not** deploy anything.
+
+2. Trigger the actual deploy yourself, from `scripts/`:
+
+   ```bash
+   scripts/deploy-prod.sh pokedex v1.2.3
+   ```
+
+   Requires `WEBHOOK_SECRET_POKEDEX_PROD` set in `scripts/.env` (gitignored — copy `scripts/.env.sample` and fill it in). The script HMAC-signs the request and pulls `:latest` on the VPS.

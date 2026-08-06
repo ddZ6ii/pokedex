@@ -16,9 +16,9 @@ const validResponse = makePaginatedResponse([
 ])
 
 function mockFetch(body: unknown, status = 200) {
-  vi.spyOn(globalThis, 'fetch').mockResolvedValueOnce(
-    new Response(JSON.stringify(body), { status }),
-  )
+  return vi
+    .spyOn(globalThis, 'fetch')
+    .mockResolvedValueOnce(new Response(JSON.stringify(body), { status }))
 }
 
 describe('pokemonService.getPokemons', () => {
@@ -84,6 +84,15 @@ describe('pokemonService.getPokemons', () => {
     expect(spy).toHaveBeenCalledWith(
       expect.any(String),
       expect.objectContaining({ signal: controller.signal }),
+    )
+  })
+
+  it('requests a relative /api URL, not an absolute localhost URL', async () => {
+    const spy = mockFetch(validResponse)
+    await pokemonService.getPokemons(defaultParams)
+    expect(spy).toHaveBeenCalledWith(
+      expect.stringMatching(/^\/api\/pokemons\?/),
+      expect.anything(),
     )
   })
 })

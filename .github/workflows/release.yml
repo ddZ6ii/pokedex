@@ -1,0 +1,46 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*.*.*']
+
+jobs:
+  code-quality:
+    uses: ./.github/workflows/ci.yml
+
+  build-and-push:
+    needs: [code-quality]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Strip v prefix from tag
+        id: vars
+        run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+
+      - name: Build and push frontend image to Docker Hub
+        uses: ./.github/actions/build-push-docker
+        with:
+          docker-username: ${{ vars.DOCKERHUB_USERNAME }}
+          docker-repository: ${{ vars.DOCKERHUB_USERNAME }}/pokedex-frontend
+          docker-token: ${{ secrets.DOCKERHUB_TOKEN }}
+          dockerfile-path: ./docker/frontend/Dockerfile
+          push-latest: true
+          image-tag: ${{ github.ref_name }}
+          version: ${{ steps.vars.outputs.version }}
+          revision: ${{ github.sha }}
+
+      - name: Build and push backend image to Docker Hub
+        uses: ./.github/actions/build-push-docker
+        with:
+          docker-username: ${{ vars.DOCKERHUB_USERNAME }}
+          docker-repository: ${{ vars.DOCKERHUB_USERNAME }}/pokedex-api
+          docker-token: ${{ secrets.DOCKERHUB_TOKEN }}
+          dockerfile-path: ./docker/backend/Dockerfile
+          push-latest: true
+          image-tag: ${{ github.ref_name }}
+          version: ${{ steps.vars.outputs.version }}
+          revision: ${{ github.sha }}
