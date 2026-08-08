@@ -1,0 +1,67 @@
+name: Staging Deploy
+
+on:
+  push:
+    branches: [dev]
+
+jobs:
+  get-short-sha:
+    runs-on: ubuntu-latest
+    outputs:
+      sha_short: ${{ steps.vars.outputs.sha_short }}
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Get short SHA
+        id: vars
+        run: echo "sha_short=$(git rev-parse --short=7 HEAD)" >> "$GITHUB_OUTPUT"
+
+  code-quality:
+    uses: ./.github/workflows/ci.yml
+
+  build-and-deploy:
+    needs: [get-short-sha, code-quality]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Build and push frontend image to Docker Hub
+        uses: ./.github/actions/build-push-docker
+        with:
+          docker-username: ${{ vars.DOCKERHUB_USERNAME }}
+          docker-repository: ${{ vars.DOCKERHUB_USERNAME }}/pokedex
+          docker-token: ${{ secrets.DOCKERHUB_TOKEN }}
+          dockerfile-path: ./docker/frontend/Dockerfile
+          image-tag: frontend-dev-${{ needs.get-short-sha.outputs.sha_short }}
+          version: dev-${{ needs.get-short-sha.outputs.sha_short }}
+          revision: ${{ github.sha }}
+
+      - name: Build and push backend image to Docker Hub
+        uses: ./.github/actions/build-push-docker
+        with:
+          docker-username: ${{ vars.DOCKERHUB_USERNAME }}
+          docker-repository: ${{ vars.DOCKERHUB_USERNAME }}/pokedex
+          docker-token: ${{ secrets.DOCKERHUB_TOKEN }}
+          dockerfile-path: ./docker/backend/Dockerfile
+          image-tag: api-dev-${{ needs.get-short-sha.outputs.sha_short }}
+          version: dev-${{ needs.get-short-sha.outputs.sha_short }}
+          revision: ${{ github.sha }}
+
+      - name: Trigger staging deploy
+        env:
+          WEBHOOK_SECRET: ${{ secrets.WEBHOOK_SECRET_POKEDEX_STAGING }}
+          HOOKS_BASE_URL: ${{ vars.POKEDEX_HOOKS_BASE_URL }}
+          TAG: dev-${{ needs.get-short-sha.outputs.sha_short }}
+        run: |
+          PAYLOAD="{\"tag\":\"${TAG}\"}"
+          SIG=$(echo -n "$PAYLOAD" | openssl dgst -sha256 -hmac "$WEBHOOK_SECRET" | awk '{print "sha256="$2}')
+          curl -sf -X POST "${HOOKS_BASE_URL}/hooks/deploy-pokedex-staging" \
+            -H "Content-Type: application/json" \
+            -H "X-Signature: $SIG" \
+            -d "$PAYLOAD"

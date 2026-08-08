@@ -64,7 +64,7 @@ describe('PokemonDetailModal', () => {
     await waitFor(() => {
       expect(requests).toHaveLength(1)
     })
-    expect(requests[0]?.pathname).toBe('/pokemons/1')
+    expect(requests[0]?.pathname).toBe('/api/pokemons/1')
   })
 
   it('shows a skeleton while the pokemon is loading', async () => {

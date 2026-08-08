@@ -14,6 +14,7 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "build": "pnpm run format:lint && npx tsc -b && vite build",
+    "build:docker": "npx tsc -b && vite build",
     "preview": "vite preview --host --open",
     "build:preview": "pnpm run build && pnpm run preview"
   },

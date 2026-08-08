@@ -16,11 +16,11 @@ import { SearchPokemon } from '@/features/filters/components/search-pokemon'
 import {
   makePaginatedResponse,
   makePokemon,
+  POKEMONS_URL,
   renderWithProviders,
 } from '@/tests/utilities'
 
 const DEBOUNCE_DELAY = 350
-const POKEMONS_URL = '*/pokemons'
 
 const validResponse = makePaginatedResponse([makePokemon()])
 

@@ -8,10 +8,9 @@ import type { PokemonsPaginatedResponse } from '@/features/pokemons/schemas'
 import {
   makePaginatedResponse,
   makePokemon,
+  POKEMONS_URL,
   renderWithRouter,
 } from '@/tests/utilities'
-
-const POKEMONS_URL = '*/pokemons'
 
 function makePage(page: number): PokemonsPaginatedResponse {
   return makePaginatedResponse(

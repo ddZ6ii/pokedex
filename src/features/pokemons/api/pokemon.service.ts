@@ -8,16 +8,11 @@ import {
   type PokemonResponse,
 } from '@/features/pokemons/schemas'
 import { HttpError, ServerError, ValidationError } from '@/shared/api'
-import { envSchema, type ApiQueryParams } from '@/shared/schemas'
+import { type ApiQueryParams } from '@/shared/schemas'
 import { isAbortError } from '@/shared/utilities'
 
 class PokemonService {
-  #baseUrl: string
-
-  constructor() {
-    const port = envSchema.parse(import.meta.env.VITE_API_PORT ?? '3000')
-    this.#baseUrl = `http://localhost:${port.toString()}`
-  }
+  #baseUrl = '/api'
 
   async #fetch<TData>(
     url: string,

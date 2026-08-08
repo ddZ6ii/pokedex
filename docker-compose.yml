@@ -1,0 +1,21 @@
+services:
+  gateway:
+    image: nginx:1.28-alpine
+    # 👇 Allow to pass a variable when running the docker compose command. Defaults to port host 8000 otherwise.
+    ports:
+      - ${GATEWAY_PORT:-8000}:80
+    volumes:
+      - ./docker/gateway/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - frontend
+      - backend
+
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/frontend/Dockerfile
+
+  backend:
+    build:
+      context: .
+      dockerfile: docker/backend/Dockerfile

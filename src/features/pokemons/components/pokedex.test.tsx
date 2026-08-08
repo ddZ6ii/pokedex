@@ -14,6 +14,7 @@ import {
 import {
   makePaginatedResponse,
   makePokemon,
+  POKEMONS_URL,
   renderWithRouter,
 } from '@/tests/utilities'
 
@@ -21,8 +22,6 @@ import {
 // follow-up plan that wires those controls to `navigate({ search })`. Until
 // then they still write to Zustand, which this route no longer reads — see
 // docs/superpowers/specs/2026-07-27-pokemons-route-loader-design.md.
-
-const POKEMONS_URL = '*/pokemons'
 
 const validResponse = makePaginatedResponse([makePokemon()])
 

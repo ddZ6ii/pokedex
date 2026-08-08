@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - '**'
+      - '!dev'
+  workflow_call: # 👈 makes the workflow reusable and allows it to be called from other workflows
+
+jobs:
+  code-quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Setup environment
+        uses: ./.github/actions/setup-environment
+
+      - name: Format code
+        run: pnpm run format:check
+
+      - name: Lint code
+        run: pnpm run lint
+
+  test:
+    needs: [code-quality]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Setup environment
+        uses: ./.github/actions/setup-environment
+
+      - name: Run tests
+        run: pnpm run test
+
+  build:
+    needs: [code-quality]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Setup environment
+        uses: ./.github/actions/setup-environment
+
+      - name: Build project
+        run: pnpm run build:docker
