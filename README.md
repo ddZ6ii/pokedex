@@ -80,6 +80,7 @@ flowchart TD
     subgraph CI["ci.yml"]
         direction TB
         CQ["code-quality<br/>format:check + lint"] --> T["test"]
+        AA["audit-actions<br/>zizmor"] --> T
         CQ --> B["build<br/>tsc -b + vite build"]
     end
 
@@ -108,6 +109,16 @@ flowchart TD
     RPUSH --> MANUAL[["scripts/deploy-prod.sh<br/>(run manually)"]]
     MANUAL --> PRODVPS[("VPS production containers<br/>pull :latest + up")]
 ```
+
+### Checking audit findings locally
+
+`audit-actions` statically analyzes your workflow files for misconfigurations like script injection or excessive permissions, and blocks `test` on violations — since `staging.yml` and `release.yml` both call `ci.yml`, this also blocks staging deploys and release builds, not just PR merges. Preview zizmor's findings before pushing (requires [`uv`](https://docs.astral.sh/uv/) and the [GitHub CLI](https://cli.github.com/), authenticated via `gh auth login`):
+
+```bash
+GH_TOKEN=$(gh auth token) uvx zizmor --config zizmor.yml .
+```
+
+Passing a token enables the same "online audit" checks CI runs with (CI runs zizmor with `online-audits: true` and a GitHub token); without one, those checks are silently skipped and a local pass could still fail in CI.
 
 ### Deploying to staging (automated)
 

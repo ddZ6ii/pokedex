@@ -8,6 +8,9 @@ on:
       - '!dev'
   workflow_call: # 👈 makes the workflow reusable and allows it to be called from other workflows
 
+permissions:
+  contents: read
+
 jobs:
   code-quality:
     runs-on: ubuntu-latest
@@ -26,8 +29,24 @@ jobs:
       - name: Lint code
         run: pnpm run lint
 
+  audit-actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Audit GitHub Actions security
+        uses: zizmorcore/zizmor-action@v0.6.2
+        with:
+          version: 1.29.0
+          config: zizmor.yml
+          advanced-security: false # output to CI logs only
+          annotations: true
+
   test:
-    needs: [code-quality]
+    needs: [code-quality, audit-actions]
     runs-on: ubuntu-latest
     steps:
       - name: Check out code

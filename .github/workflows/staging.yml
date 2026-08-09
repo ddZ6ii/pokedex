@@ -4,6 +4,9 @@ on:
   push:
     branches: [dev]
 
+permissions:
+  contents: read
+
 jobs:
   get-short-sha:
     runs-on: ubuntu-latest
