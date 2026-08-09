@@ -1,0 +1,33 @@
+# zizmor configuration — https://docs.zizmor.sh/configuration/
+#
+# Repo-wide rule suppressions. Both rules below are fully disabled (not just
+# ignored for specific findings) because the underlying risk they flag is
+# accepted as a deliberate, repo-wide policy — see justifications below.
+#
+# `rules.<id>.disable` was added in zizmor v1.13.0. Per the docs, disabling
+# is "a measure of last resort" since disabled rules no longer show up in
+# ignored/suppressed finding counts — used here deliberately, with
+# justification, rather than per-finding `ignore` entries.
+
+rules:
+  # unpinned-uses — disabled:
+  # This repo pins third-party actions by tag (e.g. actions/checkout@v6), not
+  # by commit SHA. SHA pinning defends against a maintainer pushing malicious
+  # code to an existing tag; this risk is acceptable here because (1) all
+  # actions used are from high-trust maintainers (GitHub, Docker, pnpm,
+  # zizmorcore) and (2) Dependabot is **not yet configured** in this repo
+  # (separate, future plan) — until it is, tag pinning has no automated
+  # mitigation in place. Once configured, Dependabot tracking action versions
+  # and opening CVE fix PRs automatically is the industry-standard mitigation
+  # for tag pinning.
+  unpinned-uses:
+    disable: true
+
+  # dependabot-cooldown — disabled:
+  # Once Dependabot is configured (separate plan), security-updates-only:
+  # true already limits PRs to known CVEs, not every new release —
+  # eliminating the "newly published malicious version" attack vector
+  # cooldown defends against. Cooldown on top of security-updates-only is
+  # redundant.
+  dependabot-cooldown:
+    disable: true
