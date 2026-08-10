@@ -59,8 +59,22 @@ jobs:
       - name: Audit dependency licenses
         run: ./scripts/check-licences.sh
 
+  audit-deps:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Setup environment
+        uses: ./.github/actions/setup-environment
+
+      - name: Audit dependencies
+        run: pnpm dlx audit-ci@7.1.0 --config .audit-ci.json # pin the version explicitly — an unpinned "latest" could silently turn a green branch red on an upstream release
+
   test:
-    needs: [code-quality, audit-actions, check-licences]
+    needs: [code-quality, audit-actions, check-licences, audit-deps]
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
