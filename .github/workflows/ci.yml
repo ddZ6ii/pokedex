@@ -45,8 +45,22 @@ jobs:
           advanced-security: false # output to CI logs only
           annotations: true
 
+  check-licences:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Setup environment
+        uses: ./.github/actions/setup-environment
+
+      - name: Audit dependency licenses
+        run: ./scripts/check-licences.sh
+
   test:
-    needs: [code-quality, audit-actions]
+    needs: [code-quality, audit-actions, check-licences]
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
