@@ -19,10 +19,23 @@ COPY src src
 RUN pnpm run build:docker
 
 # Stage 3: serve (production)
-FROM nginx:1.28-alpine AS prod
+FROM nginx:1.28-alpine-slim AS prod
 
-# Upgrade all Alpine packages to their latest patched versions to fix OS-level CVEs
-RUN apk upgrade --no-cache
+# Upgrade all Alpine packages, then fix nginx specifically: the official
+# image pins an exact nginx=<version> in /etc/apk/world, so a plain
+# `apk upgrade` silently skips nginx itself even when a patched version is
+# available in Alpine's repos. The `-slim` base (switched from `-alpine`)
+# already excludes 5 unused dynamic modules (acme/geoip/image-filter/njs/
+# xslt — none referenced in nginx.conf) that would otherwise also need
+# purging before nginx can be force-upgraded cleanly. Reinstalling the
+# nginx package overwrites this image's customized main nginx.conf with
+# Alpine's stock default (different `include` ordering, breaks our conf.d
+# mount) — back it up and restore it around the fix.
+RUN cp /etc/nginx/nginx.conf /tmp/nginx.conf.orig \
+    && apk upgrade --no-cache \
+    && apk add --no-cache --upgrade nginx \
+    && cp /tmp/nginx.conf.orig /etc/nginx/nginx.conf \
+    && rm /tmp/nginx.conf.orig
 
 COPY --from=builder /app/dist /usr/share/nginx/html
 COPY docker/frontend/nginx.conf /etc/nginx/conf.d/default.conf

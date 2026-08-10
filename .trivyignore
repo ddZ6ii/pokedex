@@ -1,0 +1,18 @@
+# Trivy allowlist for accepted CVEs with no available fix.
+#
+# Trivy only matches a bare CVE ID per non-comment line — a line with extra
+# text after the ID will not match anything, silently leaving the CVE
+# blocked with no error. Entry format — a comment block explaining the
+# acceptance, then the bare CVE ID on its own line:
+#   # CVE-YYYY-NNNNN — <package> — <reason>
+#   # No fix available as of <date>. Whether reachable in production.
+#   # Remove when: <package> releases a patched version.
+#   CVE-YYYY-NNNNN
+#
+# The PR adding an entry here must explain, in the PR description:
+# - Which CVE is being accepted and what it is
+# - Why no fix is currently available
+# - Whether the vulnerable code path is reachable in production
+# - A plan to remove the entry once a fix is released
+#
+# No entries currently — both frontend and backend images scan clean.
