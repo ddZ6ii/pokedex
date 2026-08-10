@@ -81,6 +81,7 @@ flowchart TD
         direction TB
         CQ["code-quality<br/>format:check + lint"] --> T["test"]
         AA["audit-actions<br/>zizmor"] --> T
+        CL["check-licences<br/>license-checker"] --> T
         CQ --> B["build<br/>tsc -b + vite build"]
     end
 
@@ -119,6 +120,14 @@ GH_TOKEN=$(gh auth token) uvx zizmor --config zizmor.yml .
 ```
 
 Passing a token enables the same "online audit" checks CI runs with (CI runs zizmor with `online-audits: true` and a GitHub token); without one, those checks are silently skipped and a local pass could still fail in CI.
+
+`check-licences` validates dependencies against the license allowlist and blocks `test` on violations — since `staging.yml` and `release.yml` both call `ci.yml`, this also blocks staging deploys and release builds. Check locally with:
+
+```bash
+./scripts/check-licences.sh
+```
+
+See [`docs/check-licences.md`](docs/check-licences.md) for the full license policy, the current exceptions list, and how to add a new one.
 
 ### Deploying to staging (automated)
 
