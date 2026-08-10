@@ -35,27 +35,6 @@ pnpm json-server
 pnpm dev
 ```
 
-## Docker (local smoke test)
-
-`docker-compose.yml` spins up the same three-container topology used in staging/production — `gateway` (nginx, routes `/` → `frontend`, `/api/*` → `backend`), `frontend` (nginx serving the built SPA), `backend` (json-server + baked-in `db.json`) — so you can validate the full request path locally before touching the VPS infra:
-
-```bash
-docker compose up --build -d
-
-curl http://localhost:8000/                                  # → SPA, 200
-curl http://localhost:8000/api/pokemons?_page=1&_per_page=1   # → JSON, via gateway → backend
-
-docker compose down
-```
-
-The gateway's host port defaults to `8000`; override with `GATEWAY_PORT`:
-
-```bash
-GATEWAY_PORT=9000 docker compose up --build -d
-```
-
-Only `gateway` is published to the host — `frontend` and `backend` stay reachable exclusively through it, mirroring how only `gateway` is exposed to the outside on the real VPS deployment (see details about [VPS setup](https://github.com/ddZ6ii/vps-infra/blob/main/docs/vps-setup.md)).
-
 ## Contributing
 
 - **Branches:** `dev` is staging, `main` is production (fast-forward only, no merge commits). Create short-lived branches off `dev` using `feat/`, `fix/`, `ci/`, `docs/`, `refactor/`, `perf/`, `test/`, `style/`, or `chore/` prefixes.
@@ -82,6 +61,7 @@ flowchart TD
         CQ["code-quality<br/>format:check + lint"] --> T["test"]
         AA["audit-actions<br/>zizmor"] --> T
         CL["check-licences<br/>license-checker"] --> T
+        AD["audit-deps<br/>audit-ci"] --> T
         CQ --> B["build<br/>tsc -b + vite build"]
     end
 
@@ -129,6 +109,20 @@ Passing a token enables the same "online audit" checks CI runs with (CI runs ziz
 
 See [`docs/check-licences.md`](docs/check-licences.md) for the full license policy, the current exceptions list, and how to add a new one.
 
+`audit-deps` runs [`audit-ci`](https://github.com/IBM/audit-ci) against production dependencies and blocks `test` on high/critical severity vulnerabilities (CVSS ≥ 7.0) — since `staging.yml` and `release.yml` both call `ci.yml`, this also blocks staging deploys and release builds. Check locally with:
+
+```bash
+pnpm dlx audit-ci@7.1.0 --config .audit-ci.json
+```
+
+See [`docs/audit-deps.md`](docs/audit-deps.md) for the severity gate rationale, the allowlist workflow for known false positives, and how to fix a flagged vulnerability.
+
+### Dependabot
+
+[`.github/dependabot.yml`](.github/dependabot.yml) configures weekly Dependabot scans across `npm`/pnpm, Docker (frontend + backend + local smoke-test gateway images), and GitHub Actions dependencies. `npm`/`docker` are scoped to security-only via `open-pull-requests-limit: 0` + a `security-updates` group (there is no `security-updates-only` key — it doesn't exist in Dependabot's schema); `github-actions` keeps routine weekly bumps in addition to security grouping. The gateway coverage is for this repo's local `docker-compose.yml` only — the actually-deployed staging/production gateway lives in the separate `vps-infra` repo and needs its own Dependabot setup. See [`docs/audit-deps.md`](docs/audit-deps.md#dependabot) and [`docs/audit-github-actions.md`](docs/audit-github-actions.md#dependabot) for the full mechanism.
+
+> ⚠️ **Outstanding manual step:** Dependabot alerts and Dependabot security updates must still be enabled by a human in **Settings → Code security**. Until that's done, `npm`/`docker` will open **zero** Dependabot PRs — routine updates are capped at `0` by this config, and security updates (the feature that would fill the gap) aren't switched on yet.
+
 ### Deploying to staging (automated)
 
 Push to `dev`:
@@ -157,3 +151,24 @@ git push origin dev
    ```
 
    Requires `WEBHOOK_SECRET_POKEDEX_PROD` set in `scripts/.env` (gitignored — copy `scripts/.env.sample` and fill it in). The script HMAC-signs the request and pulls `frontend-latest`/`api-latest` on the VPS.
+
+## Docker (local smoke test)
+
+`docker-compose.yml` spins up the same three-container topology used in staging/production — `gateway` (nginx, routes `/` → `frontend`, `/api/*` → `backend`), `frontend` (nginx serving the built SPA), `backend` (json-server + baked-in `db.json`) — so you can validate the full request path locally before touching the VPS infra:
+
+```bash
+docker compose up --build -d
+
+curl http://localhost:8000/                                  # → SPA, 200
+curl http://localhost:8000/api/pokemons?_page=1&_per_page=1   # → JSON, via gateway → backend
+
+docker compose down
+```
+
+The gateway's host port defaults to `8000`; override with `GATEWAY_PORT`:
+
+```bash
+GATEWAY_PORT=9000 docker compose up --build -d
+```
+
+Only `gateway` is published to the host — `frontend` and `backend` stay reachable exclusively through it, mirroring how only `gateway` is exposed to the outside on the real VPS deployment (see details about [VPS setup](https://github.com/ddZ6ii/vps-infra/blob/main/docs/vps-setup.md)).

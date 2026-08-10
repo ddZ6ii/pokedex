@@ -1,0 +1,107 @@
+# Dependabot configuration.
+#
+# IMPORTANT: there is no "security-updates-only" key in the dependabot.yml
+# schema (verified against GitHub's current docs — see task-3-report.md for
+# sources). Dependabot has two independent features:
+#   - "Dependabot version updates": scheduled, config-driven PRs, controlled
+#     entirely by this file.
+#   - "Dependabot security updates": automatic PRs for known CVEs, toggled
+#     in repo Settings > Security, and NOT configured by this file's presence
+#     or absence. It must be enabled there for any of this to matter — see
+#     the manual follow-up steps in task-3-report.md.
+#
+# To get "PRs only for security fixes, not routine bumps" for an ecosystem,
+# GitHub's documented mechanism is `open-pull-requests-limit: 0`: this caps
+# routine *version-update* PRs at zero, while security-update PRs use a
+# separate internal quota and keep flowing. That's applied below to npm and
+# docker per this plan's constraints. github-actions is deliberately left at
+# the default limit (routine weekly Actions bumps stay on) — see rationale
+# below.
+version: 2
+updates:
+  - package-ecosystem: 'npm' # also covers pnpm, since it reads pnpm-lock.yaml
+    directory: '/' # single root entry: no pnpm workspace packages to enumerate
+    schedule:
+      interval: 'weekly'
+    open-pull-requests-limit: 0 # security-updates-only behavior (see header)
+    groups:
+      security-updates:
+        applies-to: security-updates
+        patterns:
+          - '*'
+    rebase-strategy: 'auto'
+    commit-message:
+      prefix: 'chore'
+      prefix-development: 'chore'
+      include: 'scope'
+
+  - package-ecosystem: 'docker'
+    directory: '/docker/frontend' # directory containing docker/frontend/Dockerfile
+    schedule:
+      interval: 'weekly'
+    open-pull-requests-limit: 0 # security-updates-only behavior (see header)
+    groups:
+      security-updates:
+        applies-to: security-updates
+        patterns:
+          - '*'
+    rebase-strategy: 'auto'
+    commit-message:
+      prefix: 'chore'
+      include: 'scope'
+
+  - package-ecosystem: 'docker'
+    directory: '/docker/backend' # directory containing docker/backend/Dockerfile
+    schedule:
+      interval: 'weekly'
+    open-pull-requests-limit: 0 # security-updates-only behavior (see header)
+    groups:
+      security-updates:
+        applies-to: security-updates
+        patterns:
+          - '*'
+    rebase-strategy: 'auto'
+    commit-message:
+      prefix: 'chore'
+      include: 'scope'
+
+  - package-ecosystem: 'docker'
+    # Repo root — docker-compose.yml pins the local smoke-test gateway (nginx)
+    # image. NOTE: this is the LOCAL dev/smoke-test compose file only. The
+    # actually-deployed staging/production gateway is defined in the separate
+    # vps-infra repo and is NOT covered by this config — it needs its own
+    # Dependabot setup there.
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+    open-pull-requests-limit: 0 # security-updates-only behavior (see header)
+    groups:
+      security-updates:
+        applies-to: security-updates
+        patterns:
+          - '*'
+    rebase-strategy: 'auto'
+    commit-message:
+      prefix: 'chore'
+      include: 'scope'
+
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+    # No open-pull-requests-limit override here: unlike npm/docker, this
+    # plan does not restrict github-actions to security-only, so routine
+    # weekly Actions version bumps stay enabled at the default limit (5).
+    # Dependabot security updates ARE supported for github-actions (GitHub
+    # added this Nov 2022) and work automatically via the repo-settings
+    # toggle regardless of this file — the grouping below just keeps any
+    # security-update PRs consolidated into one, same as the other ecosystems.
+    groups:
+      security-updates:
+        applies-to: security-updates
+        patterns:
+          - '*'
+    rebase-strategy: 'auto'
+    commit-message:
+      prefix: 'chore'
+      include: 'scope'
