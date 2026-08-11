@@ -20,8 +20,8 @@ A Pokémon browser built with React 19 and a local JSON API.
 
 ## Prerequisites
 
-- Node.js 18+
-- [pnpm](https://pnpm.io) 10 — `npm install -g pnpm`
+- Node.js 24+ (CI runs 24; see `.github/actions/setup-environment/action.yml`)
+- [pnpm](https://pnpm.io) 11 — `npm install -g pnpm` (version pinned via `packageManager` in `package.json`)
 
 ## Getting Started
 
@@ -51,7 +51,7 @@ flowchart TD
     FEAT["Push to any branch<br/>except dev"]
     PR["Pull request<br/>(any base branch)"]
     DEVPUSH["Push to dev"]
-    TAGPUSH["Push tag v*.*.*"]
+    MAINPUSH["Push to main<br/>(local ff-only merge)"]
 
     FEAT --> CI
     PR --> CI
@@ -80,15 +80,18 @@ flowchart TD
     SCQ -.-> CI
     SHOOK --> STAGEVPS[("VPS staging containers<br/>pull + up")]
 
-    TAGPUSH --> RELEASE
+    MAINPUSH --> RELEASE
 
     subgraph RELEASE["release.yml"]
         direction TB
-        RCQ["code-quality<br/>(calls ci.yml)"] --> RSTEP["build-and-push"]
+        RCQ["code-quality<br/>(calls ci.yml)"] --> RREL["release<br/>semantic-release"]
+        RREL --> RSTEP["build-and-push<br/>(conditional: released)"]
+        RREL --> RSYNC["sync-dev<br/>(conditional: released)"]
         RSTEP --> RSCAN["scan<br/>Trivy"]
         RSCAN --> RPUSH["push pokedex:frontend-vX.Y.Z + frontend-latest<br/>pokedex:api-vX.Y.Z + api-latest"]
     end
     RCQ -.-> CI
+    RSYNC -.-> DEVPUSH
     RPUSH --> MANUAL[["scripts/deploy-prod.sh<br/>(run manually)"]]
     MANUAL --> PRODVPS[("VPS production containers<br/>pull :latest + up")]
 ```
@@ -148,14 +151,9 @@ git push origin dev
 
 ### Deploying to production (manual)
 
-1. Push a `v*.*.*` tag to build + push the release images:
+1. Promote `dev` → `main` locally via `git merge --ff-only` and push — see [Linear History Workflow](docs/github-linear-history-workflow.md#2-dev--main-local-fast-forward-only) for the exact commands.
 
-   ```bash
-   git tag v1.2.3
-   git push origin v1.2.3
-   ```
-
-   `release.yml` runs the `ci.yml` checks and pushes `pokedex:frontend-v1.2.3` + `pokedex:frontend-latest` and `pokedex:api-v1.2.3` + `pokedex:api-latest` to Docker Hub — it does **not** deploy anything.
+   The push to `main` triggers `release.yml`. Its `release` job runs semantic-release, which determines the next version from commits since the last tag and — if warranted — bumps `package.json`, updates `CHANGELOG.md`, tags, and creates a GitHub Release. No manual tag needed. If a release was published, `build-and-push` then pushes `pokedex:frontend-vX.Y.Z` + `pokedex:frontend-latest` and `pokedex:api-vX.Y.Z` + `pokedex:api-latest` to Docker Hub, and `sync-dev` rebases `dev` onto `main` — none of this deploys anything.
 
 2. Trigger the actual deploy yourself, from `scripts/`:
 

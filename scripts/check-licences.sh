@@ -33,6 +33,19 @@ EXCLUDED_PACKAGES=(
   'caniuse-lite@1.0.30001800'                       # CC-BY-4.0 — attribution-only, browser compat data not code
   'axe-core@4.12.1'                                 # MPL-2.0 — weak/file-level copyleft; we don't modify its source, no obligation triggered
   'lightningcss@1.32.0'                             # MPL-2.0 — same reasoning as above
+  'chownr@3.0.0'                                    # BlueOak-1.0.0 — transitive via @semantic-release/npm > npm; same reasoning as isexe/lru-cache/minimatch above
+  'common-ancestor-path@2.0.0'                      # BlueOak-1.0.0 — same, transitive via @semantic-release/npm > npm
+  'glob@13.0.6'                                     # BlueOak-1.0.0 — same, transitive via @semantic-release/npm > npm
+  'isexe@4.0.0'                                     # BlueOak-1.0.0 — same, transitive via @semantic-release/npm > npm (distinct version from isexe@3.1.5 above)
+  'minipass-flush@1.0.6'                            # BlueOak-1.0.0 — same, transitive via @semantic-release/npm > npm
+  'minipass@7.1.3'                                  # BlueOak-1.0.0 — same, transitive via @semantic-release/npm > npm
+  'npm@11.19.0'                                     # Artistic-2.0 — OSI-approved permissive, no share-alike; bundled CLI used only as a devDependency transitive of @semantic-release/npm
+  'path-scurry@2.0.2'                               # BlueOak-1.0.0 — same, transitive via @semantic-release/npm > npm
+  'qrcode-terminal@0.12.0'                          # Apache 2.0 — permissive, transitive via @semantic-release/npm > npm
+  'spdx-exceptions@2.5.0'                           # CC-BY-3.0 — attribution-only, transitive via @semantic-release/npm > npm
+  'spdx-license-ids@3.0.23'                         # CC0-1.0 — public domain dedication, transitive via @semantic-release/npm > npm
+  'tar@7.5.19'                                      # BlueOak-1.0.0 — same, transitive via @semantic-release/npm > npm
+  'yallist@5.0.0'                                   # BlueOak-1.0.0 — same, transitive via @semantic-release/npm > npm
 )
 
 # Join array elements into a semicolon-separated string for --excludePackages.

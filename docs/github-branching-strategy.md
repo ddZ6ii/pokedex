@@ -20,7 +20,7 @@
 
 ### Short-lived branches
 
-`feature/`, `hotfix/`, `refactor/`, etc. — one task each, always created from `dev`
+`feat/`, `fix/`, `refactor/`, etc. (see [Branch Naming Convention](#branch-naming-convention) below) — one task each, always created from `dev`
 
 ---
 

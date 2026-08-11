@@ -39,7 +39,7 @@ The two are complementary: Dependabot helps you fix issues proactively; the CI j
 Run via `pnpm dlx` with no extra installation (consistent with the existing `check-licences` job pattern):
 
 ```sh
-pnpm dlx audit-ci --config .audit-ci.json
+pnpm dlx audit-ci@7.1.0 --config .audit-ci.json
 ```
 
 Chosen over raw `pnpm audit` for one reason:
@@ -66,16 +66,16 @@ Blocks on **high and critical** vulnerabilities (CVSS ≥ 7.0)
 
 ### <a id="job-placement"></a>Job placement
 
-`audit-deps` runs in parallel with `code-quality`, `check-licences`, and `audit-actions`. The `test` job (and by extension, docker publish) is gated on all four:
+`audit-deps` runs in parallel with `code-quality`, `check-licences`, and `audit-actions`. The `test` job is gated on all four:
 
 ```
 code-quality   ─┐
 check-licences  │
-audit-deps      ├──> test ──> docker-publish
+audit-deps      ├──> test
 audit-actions   ┘
 ```
 
-There is no dependency between linting and auditing deps — running them in parallel gives the fastest possible feedback
+There is no dependency between linting and auditing deps — running them in parallel gives the fastest possible feedback. Docker image builds are gated on `code-quality` passing (not specifically on `test`) — see [`docs/audit-github-actions.md`](audit-github-actions.md) and [`docs/semantic-release-install-guide.md`](semantic-release-install-guide.md) for the actual job graphs
 
 ### <a id="allowlist--handling-known-false-positives"></a>Allowlist — handling known false positives
 
@@ -111,7 +111,7 @@ This keeps the allowlist auditable via version history
 You can audit locally your dependencies (instead of waiting to see the CI output) by running the command:
 
 ```sh
-pnpm dlx audit-ci --config .audit-ci.json
+pnpm dlx audit-ci@7.1.0 --config .audit-ci.json
 ```
 
 If audit-ci is properly configured, the output should be the **same** as running:

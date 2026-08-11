@@ -15,19 +15,45 @@ rules:
   # by commit SHA. SHA pinning defends against a maintainer pushing malicious
   # code to an existing tag; this risk is acceptable here because (1) all
   # actions used are from high-trust maintainers (GitHub, Docker, pnpm,
-  # zizmorcore) and (2) Dependabot is **not yet configured** in this repo
-  # (separate, future plan) — until it is, tag pinning has no automated
-  # mitigation in place. Once configured, Dependabot tracking action versions
-  # and opening CVE fix PRs automatically is the industry-standard mitigation
+  # zizmorcore) and (2) Dependabot IS configured in this repo
+  # (`.github/dependabot.yml`) — weekly scans with `open-pull-requests-limit: 0`
+  # + a security-updates group for `npm` and all `docker` entries (routine
+  # version-bump PRs capped at zero, CVE-fix PRs still flow), and the default
+  # limit for `github-actions` (routine weekly Actions bumps stay on
+  # alongside security-update PRs). Dependabot tracking action versions and
+  # opening CVE fix PRs automatically is the industry-standard mitigation
   # for tag pinning.
   unpinned-uses:
     disable: true
 
   # dependabot-cooldown — disabled:
-  # Once Dependabot is configured (separate plan), security-updates-only:
-  # true already limits PRs to known CVEs, not every new release —
+  # `open-pull-requests-limit: 0` + the security-updates group (see above)
+  # already limits `npm`/`docker` PRs to known CVEs, not every new release —
   # eliminating the "newly published malicious version" attack vector
-  # cooldown defends against. Cooldown on top of security-updates-only is
-  # redundant.
+  # cooldown defends against. Cooldown on top of that is redundant for those
+  # ecosystems. `github-actions` keeps its default limit (routine bumps
+  # included), so cooldown protection is weaker there, but the same
+  # "high-trust maintainers" reasoning from `unpinned-uses` above applies.
   dependabot-cooldown:
     disable: true
+
+# artipacked — NOT suppressed here.
+#
+# `release.yml`'s `sync-dev` job checks out with `token: ${{ secrets.GH_TOKEN }}`
+# and intentionally omits `persist-credentials: false` — it needs to `git push`
+# after rebasing `dev` onto `main`. Every other checkout step in this repo does
+# set `persist-credentials: false`, so a blanket `rules.artipacked.disable: true`
+# here would be too broad.
+#
+# The exception is instead scoped with an inline comment directly on that one
+# step, in .github/workflows/release.yml:
+#
+#   uses: actions/checkout@v7 # zizmor: ignore[artipacked]
+#
+# This is preferred over a per-finding `ignore: [release.yml:LINE:COL]` entry
+# in this file: a config-file line:col coordinate silently goes stale if
+# release.yml is edited above that step (lines shift, the coordinate no
+# longer points at the checkout step, and the suppression stops applying).
+# The inline comment stays attached to the step's YAML node regardless of
+# where it moves in the file. See docs/audit-github-actions.md's `artipacked`
+# section for the full rationale.

@@ -2,7 +2,11 @@ name: Release
 
 on:
   push:
-    tags: ['v*.*.*']
+    branches: [main]
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
 
 permissions:
   contents: read
@@ -11,18 +15,51 @@ jobs:
   code-quality:
     uses: ./.github/workflows/ci.yml
 
-  build-and-push:
+  release:
     needs: [code-quality]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      released: ${{ steps.get-release.outputs.released }}
+      version: ${{ steps.get-release.outputs.version }}
+      sha: ${{ steps.get-release.outputs.sha }}
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup environment
+        uses: ./.github/actions/setup-environment
+
+      - name: Capture pre-release HEAD
+        id: pre-release
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Run semantic-release
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          HUSKY: '0'
+        run: pnpm exec semantic-release
+
+      - name: Detect whether a release was published
+        id: get-release
+        uses: ./.github/actions/get-release-tag
+        with:
+          before-sha: ${{ steps.pre-release.outputs.sha }}
+
+  build-and-push:
+    needs: [release]
+    if: needs.release.outputs.released == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
         uses: actions/checkout@v7
         with:
+          ref: ${{ needs.release.outputs.sha }}
           persist-credentials: false
-
-      - name: Strip v prefix from tag
-        id: vars
-        run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
 
       - name: Build and push frontend image to Docker Hub
         uses: ./.github/actions/build-push-docker
@@ -32,9 +69,9 @@ jobs:
           docker-token: ${{ secrets.DOCKERHUB_TOKEN }}
           dockerfile-path: ./docker/frontend/Dockerfile
           latest-tag: frontend-latest
-          image-tag: frontend-${{ github.ref_name }}
-          version: ${{ steps.vars.outputs.version }}
-          revision: ${{ github.sha }}
+          image-tag: frontend-v${{ needs.release.outputs.version }}
+          version: ${{ needs.release.outputs.version }}
+          revision: ${{ needs.release.outputs.sha }}
 
       - name: Build and push backend image to Docker Hub
         uses: ./.github/actions/build-push-docker
@@ -44,6 +81,34 @@ jobs:
           docker-token: ${{ secrets.DOCKERHUB_TOKEN }}
           dockerfile-path: ./docker/backend/Dockerfile
           latest-tag: api-latest
-          image-tag: api-${{ github.ref_name }}
-          version: ${{ steps.vars.outputs.version }}
-          revision: ${{ github.sha }}
+          image-tag: api-v${{ needs.release.outputs.version }}
+          version: ${{ needs.release.outputs.version }}
+          revision: ${{ needs.release.outputs.sha }}
+
+  sync-dev:
+    name: 'Sync back dev branch after release keeping both branches non-divergent and ensure linear-history workflow'
+    needs: [release]
+    if: needs.release.outputs.released == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      # Intentionally does NOT set persist-credentials: false — this job
+      # needs to git push after rebasing dev onto main (documented
+      # `artipacked` zizmor exception, see docs/audit-github-actions.md).
+      - name: Check out code
+        uses: actions/checkout@v7 # zizmor: ignore[artipacked]
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Rebase dev onto main
+        env:
+          HUSKY: '0'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin
+          git checkout dev
+          git rebase origin/main
+          git push --force-with-lease origin dev

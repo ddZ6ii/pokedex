@@ -49,7 +49,7 @@ Configured in `.github/dependabot.yml`. All three ecosystems share the same base
 
 ### Docker ecosystem
 
-Tracks base images declared in `Dockerfile`: `node:24-alpine3.22` (build stage) and `nginx:1.28-alpine` (production stage), plus the `gateway` service's `nginx:1.28-alpine` image pinned in the root `docker-compose.yml`
+Tracks base images declared in `Dockerfile`: `node:24-alpine3.22` (build stage) and `nginx:1.28-alpine-slim` (production stage), plus the `gateway` service's `nginx:1.28-alpine` image pinned in the root `docker-compose.yml`
 
 Trivy detects CVEs in the built image; Dependabot provides the automated fix PR to bump the base image tag
 
@@ -67,16 +67,14 @@ Dependabot security updates are supported for the `github-actions` ecosystem —
 
 ### Setup
 
-> ℹ️ In this repo there is no separate `shared-quality.yml` — `ci.yml` already plays that role directly (`staging.yml` and `release.yml` call it via `workflow_call`). `audit-actions` was added straight into `ci.yml`.
-
-Runs as the `audit-actions` job, in parallel with `code-quality`. The `test` job depends on it (`needs: [code-quality, audit-actions]`), so a zizmor failure blocks merge — and since `staging.yml`/`release.yml` both call `ci.yml`, it also blocks staging deploys and release builds, not just PR merges
+Runs as the `audit-actions` job in `ci.yml`, in parallel with `code-quality`. The `test` job depends on it (`needs: [code-quality, audit-actions]`), so a zizmor failure blocks merge — and since `staging.yml`/`release.yml` both call `ci.yml` via `workflow_call`, it also blocks staging deploys and release builds, not just PR merges
 
 ```yaml
 audit-actions:
   runs-on: ubuntu-latest
   steps:
     - name: Check out code
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
       with:
         persist-credentials: false
 
@@ -111,10 +109,10 @@ zizmor requires actions pinned to a commit SHA:
 
 ```yaml
 # zizmor requires:
-uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v6
+uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
 # we use:
-uses: actions/checkout@v6
+uses: actions/checkout@v7
 ```
 
 Suppressed repo-wide in `zizmor.yml` via `rules.unpinned-uses.disable: true` — the `disable` key (not the per-finding `ignore` key, which only supports `filename.yml[:line[:column]]` patterns) was added in zizmor v1.13.0 and is the correct mechanism for a blanket, deliberate suppression:
@@ -148,9 +146,21 @@ Suppressed the same way as `unpinned-uses`, via `rules.dependabot-cooldown.disab
 >
 > ⚠️ **Note:** `.github/dependabot.yml` now exists (see the [Dependabot section](#dependabot) above), so this suppression is an active, justified trade-off rather than a no-op — unlike when this note was originally written
 
-#### `artipacked` — will apply once `semantic-release.yml` exists
+#### `artipacked` — accepted for `release.yml`'s `sync-dev` job
 
-`semantic-release.yml` doesn't exist in this repo yet (a separate, later plan). Once it does, its `sync-dev` job will check out with `token: GH_TOKEN` and intentionally NOT set `persist-credentials: false` — it needs to `git push` after rebasing `dev` onto `main`. That will be a known, accepted `artipacked` exception at that point. Today, all checkout steps across all workflows (`ci.yml`, `staging.yml`, `release.yml`) do have `persist-credentials: false`, with no exceptions yet
+`release.yml`'s `sync-dev` job checks out with `token: ${{ secrets.GH_TOKEN }}` and intentionally does NOT set `persist-credentials: false` — it needs to `git push` after rebasing `dev` onto `main`. This is a known, accepted `artipacked` exception. Every other checkout step across all workflows (`ci.yml`, `staging.yml`, and the other jobs in `release.yml`) does set `persist-credentials: false`
+
+**Enforced with an inline `# zizmor: ignore[artipacked]` comment** directly on the offending step in `.github/workflows/release.yml` — not just documented in prose, and not via a config-file entry:
+
+```yaml
+- name: Check out code
+  uses: actions/checkout@v7 # zizmor: ignore[artipacked]
+  with:
+    fetch-depth: 0
+    token: ${{ secrets.GH_TOKEN }}
+```
+
+The inline comment is preferred over a per-finding `rules.artipacked.ignore: [release.yml:line:col]` entry in `zizmor.yml`: a config-file `line:col` coordinate silently goes stale if `release.yml` is edited above that step (lines shift, the coordinate stops pointing at the checkout step, and the exception stops applying — which would break the release pipeline the next time `sync-dev` ran). The inline comment stays attached to the step's YAML node regardless of where it moves in the file. `zizmor.yml` still holds a comment-only note explaining the exception, but no active `ignore` entry for it — `unpinned-uses`/`dependabot-cooldown` remain repo-wide `disable: true` suppressions there, since those apply broadly rather than to one step.
 
 ## <a id="workflow-hardening"></a> 🪖 Workflow Hardening
 
@@ -158,10 +168,10 @@ Suppressed the same way as `unpinned-uses`, via `rules.dependabot-cooldown.disab
 
 All `actions/checkout` steps that do not require subsequent `git push` / `git fetch` set `persist-credentials: false`. This prevents the GitHub token from being stored in `.git/config` after checkout, so no subsequent step (including third-party actions) can access it
 
-**Future exception:** `sync-dev` job in `semantic-release.yml` (not yet implemented — separate plan) will need to omit this, since that job runs `git push` after a rebase. No exceptions exist today
+**Accepted exception:** the `sync-dev` job in `release.yml` omits this, since that job runs `git push` after rebasing `dev` onto `main` (see the `artipacked` exception above)
 
 ### Explicit permissions
 
 All caller workflows (`ci.yml`, `staging.yml`, `release.yml`) declare `permissions: contents: read` at the workflow level. This overrides GitHub's default token permissions (which vary per repository settings and can be overly broad) and enforces the principle of least privilege
 
-> ℹ️ **Future exception:** once `semantic-release.yml` exists (separate plan), its `sync-dev` job will need `permissions: contents: write` at the job level to push commits back to `dev`. No exceptions exist today
+> ℹ️ **Accepted exception:** `release.yml`'s `release` job declares `permissions: contents: write` at the job level, and its `sync-dev` job likewise declares `permissions: contents: write` at the job level. In practice this is decorative rather than load-bearing: both jobs authenticate their actual `git push`/release-creation calls via the `GH_TOKEN` PAT (a repository secret), not the ambient `GITHUB_TOKEN` these `permissions:` blocks govern. The blocks are kept for intent/documentation clarity — so a reader can see at a glance that these jobs write to the repo — not because the write actually depends on them
