@@ -32,7 +32,7 @@
 
 ## <a id="overview"></a>📋 Overview
 
-Recommended Git/GitHub **workflow compatible with semantic release** to achieve a clean, **linear commit history with no merge commits**. This workflow relies on the [Branching Strategy](git-github-branching-strategy.md)
+Recommended Git/GitHub **workflow compatible with semantic release** to achieve a clean, **linear commit history with no merge commits**. This workflow relies on the [Branching Strategy](github-branching-strategy.md)
 
 ## <a id="goals"></a>🎯 Goals
 
@@ -86,30 +86,7 @@ git push --force-with-lease origin dev
 
 #### Option B — Automated rebase `dev` onto `main`
 
-Create a dedicated CI workflow to automate the syncing after the release commit
-
-```yaml
-# sync-release.yml
-
-name: Sync dev after release
-on:
-  push:
-    branches: [main]
-jobs:
-  sync-dev:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          token: ${{ secrets.GH_TOKEN }} # needs push access
-      - run: |
-          git fetch origin
-          git checkout dev
-          git rebase origin/main
-          git push --force-with-lease origin dev
-```
+Automate the syncing after the release commit via a dedicated CI job — see the `sync-dev` job in `release.yml` ([Semantic Release Installation Guide § Release workflow](./semantic-release-install-guide.md#release-workflow))
 
 ## <a id="protection-rules"></a>🛡️ Protection Rules
 
@@ -274,7 +251,7 @@ git push --force-with-lease origin dev
 
 > ⚠️ You need to **create a GitHub Personal Access Token (PAT)** with the proper `scopes` and then add it to your GitHub repository secrets. See [Creating Github PAT `GH_TOKEN`](./semantic-release-install-guide.md#creating-the-gh_token-pat)
 
-See the `sync-dev` job in `semantic-release.yml`
+See the `sync-dev` job in `release.yml` (this repo keeps semantic-release, `build-and-push`, and `sync-dev` together in one file rather than splitting into a separate `semantic-release.yml` — see [`docs/semantic-release-install-guide.md`](./semantic-release-install-guide.md) for why)
 
 ## <a id="key-discipline"></a>🫡 Key Discipline
 

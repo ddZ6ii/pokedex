@@ -4,6 +4,10 @@ on:
   push:
     branches: [dev]
 
+concurrency:
+  group: staging-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
