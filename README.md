@@ -73,7 +73,8 @@ flowchart TD
         SCQ["code-quality<br/>(calls ci.yml)"]
         SSHA --> SSTEP["build-and-deploy"]
         SCQ --> SSTEP
-        SSTEP --> SPUSH["push pokedex:frontend-dev-&lt;sha&gt;<br/>pokedex:api-dev-&lt;sha&gt;"]
+        SSTEP --> SSCAN["scan<br/>Trivy"]
+        SSCAN --> SPUSH["push pokedex:frontend-dev-&lt;sha&gt;<br/>pokedex:api-dev-&lt;sha&gt;"]
         SPUSH --> SHOOK["HMAC-signed curl<br/>→ staging webhook"]
     end
     SCQ -.-> CI
@@ -84,7 +85,8 @@ flowchart TD
     subgraph RELEASE["release.yml"]
         direction TB
         RCQ["code-quality<br/>(calls ci.yml)"] --> RSTEP["build-and-push"]
-        RSTEP --> RPUSH["push pokedex:frontend-vX.Y.Z + frontend-latest<br/>pokedex:api-vX.Y.Z + api-latest"]
+        RSTEP --> RSCAN["scan<br/>Trivy"]
+        RSCAN --> RPUSH["push pokedex:frontend-vX.Y.Z + frontend-latest<br/>pokedex:api-vX.Y.Z + api-latest"]
     end
     RCQ -.-> CI
     RPUSH --> MANUAL[["scripts/deploy-prod.sh<br/>(run manually)"]]
@@ -116,6 +118,17 @@ pnpm dlx audit-ci@7.1.0 --config .audit-ci.json
 ```
 
 See [`docs/audit-deps.md`](docs/audit-deps.md) for the severity gate rationale, the allowlist workflow for known false positives, and how to fix a flagged vulnerability.
+
+The `scan` step in `staging.yml`/`release.yml` runs [Trivy](https://github.com/aquasecurity/trivy) against the built frontend and backend Docker images and blocks the push to Docker Hub on high/critical severity vulnerabilities (CVSS ≥ 7.0 — Trivy's severity is vendor/distro-assigned rather than a strict CVSS-base-score cutoff, a reasonable approximation for consistency with the `audit-ci` gate above). Check a locally-built image with:
+
+```bash
+docker build -t pokedex-frontend:scan-test -f docker/frontend/Dockerfile .
+docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image \
+  --db-repository="ghcr.io/aquasecurity/trivy-db:2" \
+  --severity HIGH,CRITICAL --scanners vuln pokedex-frontend:scan-test
+```
+
+(`-v /var/run/docker.sock:...` and `--db-repository` are local-only workarounds — mounting the host Docker socket so Trivy can inspect the locally-built image, and bypassing the default GCR mirror which can fail with network errors in some environments — CI's `trivy-action` handles both automatically. This local command also uses the unpinned `aquasec/trivy` image, deliberately, for the freshest scanner/DB — CI stays pinned to `aquasecurity/trivy-action@v0.36.0` for supply-chain reproducibility.) See [`docs/audit-docker-images.md`](docs/audit-docker-images.md) for the full allowlist and fix workflow.
 
 ### Dependabot
 
