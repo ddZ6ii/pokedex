@@ -85,8 +85,9 @@ jobs:
           version: ${{ needs.release.outputs.version }}
           revision: ${{ needs.release.outputs.sha }}
 
+  # Sync back dev branch after release, keeping both branches non-divergent
+  # and preserving the linear-history workflow.
   sync-dev:
-    name: 'Sync back dev branch after release keeping both branches non-divergent and ensure linear-history workflow'
     needs: [release]
     if: needs.release.outputs.released == 'true'
     runs-on: ubuntu-latest

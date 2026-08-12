@@ -85,7 +85,7 @@ The composite action already built the image locally (`push: false, load: true`)
 ```yaml
 # Build and load into the runner's local Docker daemon (no push yet) so Trivy can scan it.
 - name: Build Docker image
-  uses: docker/build-push-action@v6
+  uses: docker/build-push-action@v7
   with:
     push: false
     load: true
