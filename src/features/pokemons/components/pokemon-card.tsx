@@ -21,25 +21,29 @@ import { Skeleton } from '@/shared/components/ui/skeleton'
 import { cn } from '@/shared/lib/utils'
 import { capitalize, nth } from '@/shared/utilities'
 
+// Backgrounds are lossy WebP (q=90), not PNG — see
+// scripts/generate-pokemon-backgrounds-webp.sh. Gradient/textured card art
+// is a poor fit for PNG's lossless compression; WebP cuts ~85-90% off file
+// size here with no visible quality loss at this app's render size.
 const BG_IMAGES = new Map<PokemonType, string>([
-  ['bug', '/pokemon-backgrounds/bg-bug.png'],
-  ['dark', '/pokemon-backgrounds/bg-dark.png'],
-  ['dragon', '/pokemon-backgrounds/bg-dragon.png'],
-  ['electric', '/pokemon-backgrounds/bg-electric.png'],
-  ['fairy', '/pokemon-backgrounds/bg-fairy.png'],
-  ['fighting', '/pokemon-backgrounds/bg-fighting.png'],
-  ['fire', '/pokemon-backgrounds/bg-fire.png'],
-  ['flying', '/pokemon-backgrounds/bg-flying.png'],
-  ['ghost', '/pokemon-backgrounds/bg-ghost.png'],
-  ['grass', '/pokemon-backgrounds/bg-grass.png'],
-  ['ground', '/pokemon-backgrounds/bg-ground.png'],
-  ['ice', '/pokemon-backgrounds/bg-ice.png'],
-  ['normal', '/pokemon-backgrounds/bg-normal.png'],
-  ['poison', '/pokemon-backgrounds/bg-poison.png'],
-  ['psychic', '/pokemon-backgrounds/bg-psychic.png'],
-  ['rock', '/pokemon-backgrounds/bg-rock.png'],
-  ['steel', '/pokemon-backgrounds/bg-steel.png'],
-  ['water', '/pokemon-backgrounds/bg-water.png'],
+  ['bug', '/pokemon-backgrounds/bg-bug.webp'],
+  ['dark', '/pokemon-backgrounds/bg-dark.webp'],
+  ['dragon', '/pokemon-backgrounds/bg-dragon.webp'],
+  ['electric', '/pokemon-backgrounds/bg-electric.webp'],
+  ['fairy', '/pokemon-backgrounds/bg-fairy.webp'],
+  ['fighting', '/pokemon-backgrounds/bg-fighting.webp'],
+  ['fire', '/pokemon-backgrounds/bg-fire.webp'],
+  ['flying', '/pokemon-backgrounds/bg-flying.webp'],
+  ['ghost', '/pokemon-backgrounds/bg-ghost.webp'],
+  ['grass', '/pokemon-backgrounds/bg-grass.webp'],
+  ['ground', '/pokemon-backgrounds/bg-ground.webp'],
+  ['ice', '/pokemon-backgrounds/bg-ice.webp'],
+  ['normal', '/pokemon-backgrounds/bg-normal.webp'],
+  ['poison', '/pokemon-backgrounds/bg-poison.webp'],
+  ['psychic', '/pokemon-backgrounds/bg-psychic.webp'],
+  ['rock', '/pokemon-backgrounds/bg-rock.webp'],
+  ['steel', '/pokemon-backgrounds/bg-steel.webp'],
+  ['water', '/pokemon-backgrounds/bg-water.webp'],
 ])
 
 const TYPE_SPRITE_URL = '/pokemon-types/sprite.webp'
@@ -55,10 +59,10 @@ const getBackgroundForType = (
     )
   }
   if (stage === '2') {
-    background = background.replace('.png', '-stage-2.png')
+    background = background.replace('.webp', '-stage-2.webp')
   }
   if (stage === '3') {
-    background = background.replace('.png', '-stage-3.png')
+    background = background.replace('.webp', '-stage-3.webp')
   }
   return background
 }
