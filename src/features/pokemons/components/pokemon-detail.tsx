@@ -77,7 +77,37 @@ function PokemonDetailFetcher() {
 }
 
 function PokemonDetail({ pokemon }: { pokemon: Pokemon }) {
-  const { src, loaded, handleLoad, handleError } = usePokemonImage(pokemon.id)
+  const { src, loaded, failed, handleLoad, handleError } = usePokemonImage(
+    pokemon.id,
+  )
+
+  // Preload the artwork off-screen regardless of `loaded`, so onLoad/onError
+  // still fires while PokemonDetailSkeleton is shown below. This keeps the
+  // skeleton up until the pokemon data, and either the artwork or a definite
+  // load failure, are ready — instead of revealing real text/badges next to
+  // a still-loading image placeholder, a mismatched middle layout that
+  // caused a visible blink when navigating between pokemon via
+  // EvolutionLink. Gating on `failed` too (not just `loaded`) prevents the
+  // skeleton from being stuck forever if the artwork never loads.
+  const preload = (
+    <img
+      src={src}
+      alt=""
+      aria-hidden="true"
+      className="hidden"
+      onError={handleError}
+      onLoad={handleLoad}
+    />
+  )
+
+  if (!loaded && !failed) {
+    return (
+      <>
+        {preload}
+        <PokemonDetailSkeleton />
+      </>
+    )
+  }
 
   const types = getPokemonTypes(pokemon)
 
@@ -99,20 +129,18 @@ function PokemonDetail({ pokemon }: { pokemon: Pokemon }) {
 
       <div className="-mt-4 grid gap-x-12 gap-y-4 text-sm sm:mt-0 sm:grid-cols-[220px_1fr] lg:mt-4 lg:text-base">
         <div className="space-y-2">
-          {!loaded && <ImageSkeleton className="rounded-full" />}
-          <img
-            src={src}
-            alt={pokemon.name}
-            width={232}
-            height={232}
-            loading="lazy"
-            className={cn(
-              'mx-auto block size-30 sm:size-50 lg:size-58',
-              !loaded && 'opacity-0',
-            )}
-            onError={handleError}
-            onLoad={handleLoad}
-          />
+          {failed ? (
+            <ImageSkeleton className="animate-none rounded-full" />
+          ) : (
+            <img
+              src={src}
+              alt={pokemon.name}
+              width={232}
+              height={232}
+              loading="lazy"
+              className="mx-auto block size-30 sm:size-50 lg:size-58"
+            />
+          )}
 
           <dl className="text-muted-foreground flex flex-wrap items-center justify-center gap-x-4 lg:text-sm">
             <div className="flex items-center gap-x-2">
