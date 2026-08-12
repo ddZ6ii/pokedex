@@ -1,4 +1,4 @@
-import { screen, waitFor, within } from '@testing-library/react'
+import { fireEvent, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { delay, http, HttpResponse } from 'msw'
 import { setupServer } from 'msw/node'
@@ -14,6 +14,19 @@ import {
 } from '@/tests/utilities'
 
 const validResponse = makePaginatedResponse([makePokemon()])
+
+// jsdom never actually loads <img> elements, and PokemonDetail now holds its
+// skeleton until the artwork's `load`/`error` event fires — wait for the
+// (initially hidden, preloading) <img> to mount, then fire `load` manually
+// to unblock the real content.
+async function completeImageLoad(dialog: HTMLElement) {
+  const img = await waitFor(() => {
+    const el = dialog.querySelector('img')
+    if (!el) throw new Error('img not mounted yet')
+    return el
+  })
+  fireEvent.load(img)
+}
 
 const server = setupServer(
   http.get(POKEMONS_URL, () => HttpResponse.json(validResponse)),
@@ -143,6 +156,7 @@ describe('PokemonDetailModal', () => {
     renderWithRouter(['/pokemons/1'])
 
     const dialog = await screen.findByRole('dialog')
+    await completeImageLoad(dialog)
     expect(
       await within(dialog).findByText(pokemonFixture.name),
     ).toBeInTheDocument()
@@ -165,6 +179,7 @@ describe('PokemonDetailModal', () => {
     renderWithRouter(['/pokemons/1'])
 
     const dialog = await screen.findByRole('dialog')
+    await completeImageLoad(dialog)
     expect(
       await within(dialog).findByText('No description available.'),
     ).toBeInTheDocument()
@@ -185,6 +200,7 @@ describe('PokemonDetailModal', () => {
     renderWithRouter(['/pokemons/2'])
 
     const dialog = await screen.findByRole('dialog')
+    await completeImageLoad(dialog)
     expect(await within(dialog).findByText(/evolves from/i)).toBeInTheDocument()
     expect(
       within(dialog).getByRole('link', { name: /bulbasaur/i }),
