@@ -8,6 +8,7 @@ import {
 } from '@/features/pokemons/hooks/usePokemonImage'
 import {
   POKEMON_SKILLS,
+  POKEMON_TYPES,
   type Pokemon,
   type PokemonStage,
   type PokemonType,
@@ -40,6 +41,8 @@ const BG_IMAGES = new Map<PokemonType, string>([
   ['steel', '/pokemon-backgrounds/bg-steel.png'],
   ['water', '/pokemon-backgrounds/bg-water.png'],
 ])
+
+const TYPE_SPRITE_URL = '/pokemon-types/sprite.webp'
 
 const getBackgroundForType = (
   type: PokemonType,
@@ -109,6 +112,32 @@ function TiltedCard({
   )
 }
 
+// All 18 type icons live in one sprite (public/pokemon-types/sprite.png,
+// generated via `magick ... +append` from the individual icons, then
+// converted to WebP via `cwebp -lossless`) instead of one PNG per type —
+// with up to 2 type icons per card across a full list page, that turns
+// dozens of per-render image requests into a single cached one. Regenerate
+// both files if the source icons in public/pokemon-types/*.png ever change.
+function TypeIcon({ type }: { type: PokemonType }) {
+  const index = POKEMON_TYPES.indexOf(type)
+  const lastIndex = POKEMON_TYPES.length - 1
+
+  return (
+    <div
+      role="img"
+      aria-label={type}
+      className="block aspect-square w-full"
+      style={{
+        backgroundImage: `url('${TYPE_SPRITE_URL}')`,
+        backgroundSize: `${(POKEMON_TYPES.length * 100).toString()}% 100%`,
+        backgroundPositionX: `${((index / lastIndex) * 100).toString()}%`,
+        backgroundPositionY: '0',
+        backgroundRepeat: 'no-repeat',
+      }}
+    />
+  )
+}
+
 function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
   const { src, loaded, handleLoad, handleError } = usePokemonImage(pokemon.id)
   const [evolvesFromLoaded, setEvolvesFromLoaded] = useState(false)
@@ -143,14 +172,7 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
         {types.map((type) => (
           <WithTooltip key={type} tooltip={capitalize(type)} side="top">
             <div className="size-7 cursor-pointer rounded-full p-0.5 hover:drop-shadow-lg motion-safe:hover:translate-z-14 motion-safe:hover:scale-110 motion-safe:hover:scale-3d">
-              <img
-                src={`/pokemon-types/${type.toLowerCase()}.png`}
-                alt={type}
-                width={32}
-                height={32}
-                loading="lazy"
-                className="block aspect-square w-full object-cover"
-              />
+              <TypeIcon type={type} />
             </div>
           </WithTooltip>
         ))}
