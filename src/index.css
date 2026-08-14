@@ -127,7 +127,7 @@
     @apply border-border outline-ring/50;
   }
   html {
-    @apply font-sans;
+    @apply overflow-x-hidden font-sans;
   }
   body {
     @apply bg-background text-foreground;
