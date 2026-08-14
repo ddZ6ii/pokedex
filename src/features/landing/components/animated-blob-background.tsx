@@ -21,25 +21,41 @@ export function AnimatedBlobBackground({
   const borderRadius = useColorCycle(BLOB_SHAPES, { duration: 24 })
 
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden">
+    <div className="fixed inset-0 -z-10">
       <motion.div
-        className="absolute h-[45vmax] w-[45vmax] -translate-x-1/2 -translate-y-1/2 blur-[100px]"
-        style={{ backgroundColor: color, borderRadius }}
+        className="absolute h-[45vmax] w-[45vmax] blur-[100px] will-change-transform"
+        style={{ backgroundColor: color, borderRadius, z: 0 }}
         initial={{ opacity: 0 }}
         animate={{
           opacity: 1,
-          left: ['20%', '80%', '30%', '70%', '15%', '60%', '20%'],
-          top: ['30%', '70%', '15%', '80%', '55%', '25%', '30%'],
+          x: [
+            'calc(20vw - 50%)',
+            'calc(80vw - 50%)',
+            'calc(30vw - 50%)',
+            'calc(70vw - 50%)',
+            'calc(15vw - 50%)',
+            'calc(60vw - 50%)',
+            'calc(20vw - 50%)',
+          ],
+          y: [
+            'calc(30vh - 50%)',
+            'calc(70vh - 50%)',
+            'calc(15vh - 50%)',
+            'calc(80vh - 50%)',
+            'calc(55vh - 50%)',
+            'calc(25vh - 50%)',
+            'calc(30vh - 50%)',
+          ],
         }}
         transition={{
           opacity: { duration: 2, ease: 'easeInOut' },
-          left: {
+          x: {
             duration: 40,
             repeat: Infinity,
             ease: 'easeInOut',
             delay: 0,
           },
-          top: { duration: 45, repeat: Infinity, ease: 'easeInOut' },
+          y: { duration: 45, repeat: Infinity, ease: 'easeInOut' },
         }}
       />
     </div>
