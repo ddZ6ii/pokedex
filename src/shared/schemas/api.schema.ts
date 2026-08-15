@@ -1,4 +1,4 @@
-import z from 'zod'
+import * as z from 'zod'
 
 import { FilterSchema, type Filters } from '@/features/filters/schemas'
 import { makeQuery } from '@/features/filters/utilities'

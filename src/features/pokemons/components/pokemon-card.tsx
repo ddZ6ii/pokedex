@@ -201,6 +201,7 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
               alt={pokemon.evolves_from?.name ?? ''}
               width={40}
               height={40}
+              loading="lazy"
               className={cn(
                 'mx-auto block object-cover',
                 !evolvesFromLoaded && 'opacity-0',

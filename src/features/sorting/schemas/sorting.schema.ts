@@ -1,4 +1,4 @@
-import z from 'zod'
+import * as z from 'zod'
 
 import { POKEMON_SKILLS } from '@/features/pokemons/schemas/pokemon.schema'
 import type { SelectOption } from '@/shared/types'

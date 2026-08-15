@@ -36,7 +36,7 @@ export function DefaultNotFoundComponent({
       </div>
 
       <img
-        src="/not-found.png"
+        src="/not-found.webp"
         alt=""
         width={475}
         height={475}
