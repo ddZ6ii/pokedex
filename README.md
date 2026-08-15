@@ -1,6 +1,6 @@
 # Pokemons
 
-A Pokémon browser built with React 19 and a local JSON API.
+A Pokémon browser built with React 19 and a local JSON API — browse, filter, and sort a paginated Pokédex, drill into individual Pokémon detail pages, and switch between light/dark themes.
 
 ## Stack
 
@@ -9,6 +9,8 @@ A Pokémon browser built with React 19 and a local JSON API.
 | [Vite](https://vite.dev)                               | 8       | Build tool & dev server   |
 | [React](https://react.dev)                             | 19      | UI framework              |
 | [TypeScript](https://www.typescriptlang.org)           | 5.9     | Type safety               |
+| [TanStack Router](https://tanstack.com/router)         | 1       | File-based routing        |
+| [TanStack Query](https://tanstack.com/query)           | 5       | Data fetching & caching   |
 | [Tailwind CSS](https://tailwindcss.com)                | 4       | Utility-first styling     |
 | [shadcn/ui](https://ui.shadcn.com)                     | —       | Component library         |
 | [Zustand](https://zustand-demo.pmnd.rs)                | 5       | Client state (theme mode) |
@@ -60,7 +62,7 @@ flowchart TD
         direction TB
         CQ["code-quality<br/>format:check + lint"] --> T["test"]
         AA["audit-actions<br/>zizmor"] --> T
-        CL["check-licences<br/>license-checker"] --> T
+        CL["check-licences<br/>license-checker-rseidelsohn"] --> T
         AD["audit-deps<br/>audit-ci"] --> T
         CQ --> B["build<br/>tsc -b + vite build"]
     end
