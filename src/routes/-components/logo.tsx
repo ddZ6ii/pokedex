@@ -3,7 +3,7 @@ import { motion } from 'motion/react'
 export function Logo(props: React.ComponentProps<typeof motion.img>) {
   return (
     <motion.img
-      src="/pokeball.png"
+      src="/logo.png"
       alt=""
       width={32}
       height={32}

@@ -1,4 +1,4 @@
-import z from 'zod'
+import * as z from 'zod'
 
 import { FilterSchema } from '@/features/filters/schemas'
 import { POKEMON_TYPES } from '@/features/pokemons/schemas/pokemon.schema'

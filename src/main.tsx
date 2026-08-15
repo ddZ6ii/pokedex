@@ -4,6 +4,8 @@ import { createRouter, RouterProvider } from '@tanstack/react-router'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { ErrorBoundary, type FallbackProps } from 'react-error-boundary'
+import { config } from 'zod'
+import { en } from 'zod/v4/locales'
 
 import { routeTree } from '@/routeTree.gen'
 import { ValidationError } from '@/shared/api'
@@ -14,6 +16,12 @@ import {
   ErrorFallback,
 } from '@/shared/components'
 import './index.css'
+
+// zod's named imports (see perf(bundle) commit) let bundlers tree-shake its
+// unused i18n locale files, but that also drops the default 'en' locale,
+// causing zod to fall back to generic "Invalid input" messages. Registering
+// it explicitly restores specific validation error messages.
+config(en())
 
 const rootEl = document.getElementById('root')
 

@@ -1,4 +1,4 @@
-import z from 'zod'
+import * as z from 'zod'
 
 const POKEMON_SKILLS = ['hp', 'attack', 'defense', 'speed'] as const
 const POKEMON_STAGES = ['base', '2', '3'] as const
