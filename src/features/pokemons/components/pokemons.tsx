@@ -1,9 +1,10 @@
 import {
   QueryErrorResetBoundary,
   useIsFetching,
+  useQueryClient,
   useSuspenseQuery,
 } from '@tanstack/react-query'
-import { Suspense, useDeferredValue } from 'react'
+import { Suspense, useDeferredValue, useEffect } from 'react'
 import { ErrorBoundary, type FallbackProps } from 'react-error-boundary'
 
 import { PaginationBar } from '@/features/pagination/components'
@@ -30,6 +31,8 @@ function WidgetFallback(props: FallbackProps) {
 
 function PokemonsFetcher() {
   const searchParams = routeApi.useSearch()
+  const navigate = routeApi.useNavigate()
+  const queryClient = useQueryClient()
 
   // ℹ️ Why `useDeferredValue` here
   //
@@ -55,9 +58,8 @@ function PokemonsFetcher() {
   // The component never reaches the return statement.
   // -> `error`, `isError` and related component's branching logic are unreachable.
   // React bubbles the error up to the closest error boundary.
-  const {
-    data: { data: pokemons, pages: maxPage, items: totalItems },
-  } = useSuspenseQuery(queryOptions)
+  const { data: response } = useSuspenseQuery(queryOptions)
+  const { data: pokemons, pages: maxPage, items: totalItems } = response
 
   // ℹ️ Why `useIsFetching`, not `deferredSearchParams !== searchParams`
   //
@@ -66,6 +68,39 @@ function PokemonsFetcher() {
   // fetch is actually in flight (prefix-matches the query key, so it
   // doesn't care which exact params), tracking the real request duration.
   const isStale = useIsFetching({ queryKey: ['pokemons'] }) > 0
+
+  // The API silently clamps an out-of-range `_page` to the last valid page
+  // and returns that page's data, so a stale/hand-edited URL `page` beyond
+  // `maxPage` would otherwise desync the pagination UI (range text, active
+  // page) from what's actually displayed. Clamp the URL back in sync once
+  // the fetch for the current params has settled.
+  //
+  // The response we already have *is* the corrected page's data (the API
+  // clamped it server-side), so seed the cache entry for the corrected
+  // `page` before navigating — otherwise the URL change would compute a new
+  // query key with nothing cached for it, forcing a second, redundant fetch
+  // for data we already hold.
+  useEffect(() => {
+    if (isStale) return
+    if (maxPage > 0 && searchParams.page > maxPage) {
+      const correctedQueryOptions = createPokemonsQueryOptions(
+        toPokemonsQueryOptions({ ...deferredSearchParams, page: maxPage }),
+      )
+      queryClient.setQueryData(correctedQueryOptions.queryKey, response)
+      void navigate({
+        search: (prev) => ({ ...prev, page: maxPage }),
+        replace: true,
+      })
+    }
+  }, [
+    isStale,
+    maxPage,
+    searchParams.page,
+    navigate,
+    queryClient,
+    deferredSearchParams,
+    response,
+  ])
 
   return (
     <>
