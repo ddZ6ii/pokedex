@@ -1,5 +1,5 @@
 import { motion } from 'motion/react'
-import { memo, useState } from 'react'
+import { memo } from 'react'
 
 import { useMouseTilt } from '@/features/pokemons/hooks/useMouseTilt'
 import {
@@ -146,8 +146,9 @@ function TypeIcon({ type }: { type: PokemonType }) {
 }
 
 function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
-  const { src, loaded, handleLoad, handleError } = usePokemonImage(pokemon.id)
-  const [evolvesFromLoaded, setEvolvesFromLoaded] = useState(false)
+  const { src, loaded, failed, handleLoad, handleError } = usePokemonImage(
+    pokemon.id,
+  )
 
   const types: PokemonType[] = getPokemonTypes(pokemon)
 
@@ -155,13 +156,30 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
   const {
     src: backgroundSrc,
     loaded: backgroundLoaded,
+    failed: backgroundFailed,
     handleLoad: handleBackgroundLoad,
     handleError: handleBackgroundError,
   } = useRetryableImage(backgroundUrl)
 
-  const evolvesFromSrc = pokemon.evolves_from
+  const evolvesFromUrl = pokemon.evolves_from
     ? `${BASE_IMAGE_URL}/${String(pokemon.evolves_from.id)}.png`
     : null
+  const {
+    src: evolvesFromSrc,
+    loaded: evolvesFromLoaded,
+    failed: evolvesFromFailed,
+    handleLoad: handleEvolvesFromLoad,
+    handleError: handleEvolvesFromError,
+  } = useRetryableImage(evolvesFromUrl ?? '')
+
+  // A card is "ready" once every image it needs has either loaded or given
+  // up retrying — settling on failure too, so one bad asset can't leave the
+  // skeleton stuck forever. Cards without a prior evolution skip that image
+  // entirely.
+  const allImagesSettled =
+    (loaded || failed) &&
+    (backgroundLoaded || backgroundFailed) &&
+    (!evolvesFromUrl || evolvesFromLoaded || evolvesFromFailed)
 
   return (
     <TiltedCard
@@ -175,10 +193,7 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
           loading="lazy"
           onLoad={handleBackgroundLoad}
           onError={handleBackgroundError}
-          className={cn(
-            'size-full object-contain object-center transition-opacity',
-            !backgroundLoaded && 'opacity-0',
-          )}
+          className="size-full object-contain object-center"
         />
       }
     >
@@ -200,9 +215,12 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
         ))}
       </div>
 
-      {pokemon.stage !== 'base' && evolvesFromSrc && (
+      {pokemon.stage !== 'base' && evolvesFromUrl && (
         <div
-          className="absolute top-8.5 left-5 z-10 size-8 translate-z-1 rounded-full transition-transform duration-500 hover:drop-shadow-lg hover:drop-shadow-black/60 motion-safe:hover:translate-z-2 motion-safe:hover:scale-300 motion-safe:hover:scale-3d"
+          className={cn(
+            'absolute top-8.5 left-5 z-10 size-8 rounded-full transition-transform duration-500 hover:drop-shadow-lg hover:drop-shadow-black/60 motion-safe:hover:translate-z-2 motion-safe:hover:scale-300 motion-safe:hover:scale-3d',
+            allImagesSettled && 'translate-z-1',
+          )}
           // Same tilt-freeze as the type badges above — this badge is also
           // off-center enough for continuous re-tilting to flicker its hover.
           onMouseMove={(e) => {
@@ -220,13 +238,9 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
               width={40}
               height={40}
               loading="lazy"
-              className={cn(
-                'mx-auto block object-cover',
-                !evolvesFromLoaded && 'opacity-0',
-              )}
-              onLoad={() => {
-                setEvolvesFromLoaded(true)
-              }}
+              className="mx-auto block object-cover"
+              onLoad={handleEvolvesFromLoad}
+              onError={handleEvolvesFromError}
             />
           </WithTooltip>
         </div>
@@ -234,9 +248,6 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
 
       <CardContent className="perspective-normal transform-3d">
         <div className="relative flex flex-col items-center gap-2 text-black perspective-normal transform-3d">
-          {!loaded && (
-            <ImageSkeleton className="absolute top-12.5 mx-auto size-42 rounded-full" />
-          )}
           <img
             src={src}
             alt={pokemon.name}
@@ -244,20 +255,28 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
             height={280}
             loading="lazy"
             className={cn(
-              'mx-auto block translate-y-0 translate-z-2 scale-70 object-cover drop-shadow-xl drop-shadow-black/40 transition-transform',
-              !loaded && 'opacity-0',
+              'mx-auto block translate-y-0 scale-70 object-cover drop-shadow-xl drop-shadow-black/40',
+              allImagesSettled && 'translate-z-2',
             )}
             onError={handleError}
             onLoad={handleLoad}
           />
           <Heading
             as="h2"
-            className="font-heading -mt-13 translate-z-2 font-medium tracking-wide text-shadow-white lg:text-xl"
+            className={cn(
+              'font-heading -mt-13 font-medium tracking-wide text-shadow-white lg:text-xl',
+              allImagesSettled && 'translate-z-2',
+            )}
           >
             {pokemon.name}
           </Heading>
           {pokemon.description && (
-            <p className="text-shadow-accent mx-2 mt-1 line-clamp-3 translate-z-2 px-4">
+            <p
+              className={cn(
+                'text-shadow-accent mx-2 mt-1 line-clamp-3 px-4',
+                allImagesSettled && 'translate-z-2',
+              )}
+            >
               {pokemon.description}
             </p>
           )}
@@ -265,7 +284,12 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
       </CardContent>
 
       <CardFooter className="mx-2 mt-1 mb-8 rounded-none border-none bg-transparent px-4 py-1.5 transform-3d">
-        <div className="text-muted-foreground ml-3 flex w-full translate-z-2 items-center gap-4 text-xs">
+        <div
+          className={cn(
+            'text-muted-foreground ml-3 flex w-full items-center gap-4 text-xs',
+            allImagesSettled && 'translate-z-2',
+          )}
+        >
           {POKEMON_SKILLS.map((skill) => (
             <WithTooltip
               key={skill}
@@ -287,6 +311,17 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
           ))}
         </div>
       </CardFooter>
+
+      {!allImagesSettled && (
+        // Inside this card's preserve-3d context, sibling stacking is
+        // decided by 3D depth (translate-z), not z-index — so the content
+        // this overlay needs to hide stays flat (no translate-z) until
+        // allImagesSettled flips, keeping the overlay's z-index authoritative.
+        <PokemonCardSkeleton
+          aria-hidden={true}
+          className="absolute inset-0 z-20"
+        />
+      )}
     </TiltedCard>
   )
 }
@@ -295,9 +330,12 @@ function ImageSkeleton({ className }: { className?: string }) {
   return <Skeleton className={cn('h-45.5 w-full', className)} />
 }
 
-function PokemonCardSkeleton() {
+function PokemonCardSkeleton({
+  className,
+  ...props
+}: React.ComponentProps<typeof Card>) {
   return (
-    <Card className="relative h-109.5 w-78">
+    <Card className={cn('relative h-109.5 w-78', className)} {...props}>
       <div className="absolute top-3.5 right-3.5 flex gap-1">
         <Skeleton className="size-6 rounded-full" />
         <Skeleton className="size-6 rounded-full" />
