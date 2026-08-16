@@ -15,6 +15,7 @@ COPY tsconfig.json tsconfig.app.json tsconfig.node.json ./
 COPY public public
 COPY index.html ./
 COPY src src
+COPY scripts/generate-sitemap.mjs scripts/generate-sitemap.mjs
 # Outputs to /app/dist
 RUN pnpm run build:docker
 

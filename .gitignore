@@ -28,3 +28,6 @@ dist-ssr
 # Personal working notes
 TODO.md
 docs/superpowers/**/*.md
+
+# Generated at build time by scripts/generate-sitemap.mjs
+public/sitemap.xml
