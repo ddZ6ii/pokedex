@@ -6,6 +6,7 @@ import {
   BASE_IMAGE_URL,
   usePokemonImage,
 } from '@/features/pokemons/hooks/usePokemonImage'
+import { useRetryableImage } from '@/features/pokemons/hooks/useRetryableImage'
 import {
   POKEMON_SKILLS,
   POKEMON_TYPES,
@@ -70,9 +71,13 @@ const getBackgroundForType = (
 function TiltedCard({
   className,
   children,
+  background,
   size = 'default',
   ...props
-}: React.ComponentProps<typeof motion.div> & { size?: 'default' | 'sm' }) {
+}: Omit<React.ComponentProps<typeof motion.div>, 'style'> & {
+  size?: 'default' | 'sm'
+  background?: React.ReactNode
+}) {
   const {
     handleMouseEnter,
     handleMouseMove,
@@ -81,7 +86,6 @@ function TiltedCard({
     rotateY,
   } = useMouseTilt()
 
-  const { style, ...restProps } = props
   return (
     <motion.div
       data-slot="card"
@@ -94,17 +98,16 @@ function TiltedCard({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{ rotateX, rotateY }}
-      {...restProps}
+      {...props}
     >
       {/*
         Kept out of the transform-3d chain on purpose: overflow-hidden forces
         transform-style back to flat (per spec, enforced strictly by Firefox),
         which would collapse every translate-z descendant onto one plane.
       */}
-      <div
-        className="pointer-events-none absolute inset-0 -z-10 overflow-hidden rounded-xl"
-        style={style as React.CSSProperties | undefined}
-      />
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden rounded-xl">
+        {background}
+      </div>
 
       {children as React.ReactNode}
 
@@ -148,6 +151,14 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
 
   const types: PokemonType[] = getPokemonTypes(pokemon)
 
+  const backgroundUrl = getBackgroundForType(nth(types, 0), pokemon.stage)
+  const {
+    src: backgroundSrc,
+    loaded: backgroundLoaded,
+    handleLoad: handleBackgroundLoad,
+    handleError: handleBackgroundError,
+  } = useRetryableImage(backgroundUrl)
+
   const evolvesFromSrc = pokemon.evolves_from
     ? `${BASE_IMAGE_URL}/${String(pokemon.evolves_from.id)}.png`
     : null
@@ -157,12 +168,19 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
       className={cn(
         'relative min-h-109.5 w-78 cursor-pointer gap-3 p-0 perspective-near transform-3d',
       )}
-      style={{
-        backgroundImage: `url('${getBackgroundForType(nth(types, 0), pokemon.stage)}')`,
-        backgroundSize: 'contain',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-      }}
+      background={
+        <img
+          src={backgroundSrc}
+          alt=""
+          loading="lazy"
+          onLoad={handleBackgroundLoad}
+          onError={handleBackgroundError}
+          className={cn(
+            'size-full object-contain object-center transition-opacity',
+            !backgroundLoaded && 'opacity-0',
+          )}
+        />
+      }
     >
       <div
         className="outline-muted-foreground/20 absolute top-3.5 right-3.5 z-10 flex rounded-full outline transform-3d"
