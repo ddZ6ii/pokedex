@@ -56,43 +56,53 @@ function PokemonList({
   const prefersReducedMotion = useReducedMotion()
 
   if (pokemons.length === 0) {
-    return <p className="text-center">No pokemons found.</p>
+    return (
+      <p role="status" aria-live="polite" className="text-center">
+        No pokemons found.
+      </p>
+    )
   }
 
   return (
-    <motion.ul
-      aria-busy={ariaBusy}
-      className={cn(
-        'grid w-full grid-cols-[repeat(auto-fill,312px)] justify-center gap-6',
-        className,
-      )}
-      variants={
-        prefersReducedMotion
-          ? REDUCED_LIST_VARIANTS
-          : getListVariants(pokemons.length)
-      }
-      initial={'hidden'}
-      animate="visible"
-    >
-      {pokemons.map((pokemon) => (
-        <motion.li
-          key={pokemon.id}
-          variants={
-            prefersReducedMotion ? REDUCED_CARD_VARIANTS : CARD_VARIANTS
-          }
-          className="perspective-distant"
-        >
-          <Link
-            to="/pokemons/$pokemonId"
-            params={{ pokemonId: pokemon.id }}
-            search={(prev) => prev}
-            resetScroll={false}
+    <>
+      <p role="status" aria-live="polite" className="sr-only">
+        {pokemons.length} pokemon{pokemons.length === 1 ? '' : 's'} found.
+      </p>
+
+      <motion.ul
+        aria-busy={ariaBusy}
+        className={cn(
+          'grid w-full grid-cols-[repeat(auto-fill,312px)] justify-center gap-6',
+          className,
+        )}
+        variants={
+          prefersReducedMotion
+            ? REDUCED_LIST_VARIANTS
+            : getListVariants(pokemons.length)
+        }
+        initial={'hidden'}
+        animate="visible"
+      >
+        {pokemons.map((pokemon) => (
+          <motion.li
+            key={pokemon.id}
+            variants={
+              prefersReducedMotion ? REDUCED_CARD_VARIANTS : CARD_VARIANTS
+            }
+            className="perspective-distant"
           >
-            <PokemonCardMemoized pokemon={pokemon} />
-          </Link>
-        </motion.li>
-      ))}
-    </motion.ul>
+            <Link
+              to="/pokemons/$pokemonId"
+              params={{ pokemonId: pokemon.id }}
+              search={(prev) => prev}
+              resetScroll={false}
+            >
+              <PokemonCardMemoized pokemon={pokemon} />
+            </Link>
+          </motion.li>
+        ))}
+      </motion.ul>
+    </>
   )
 }
 

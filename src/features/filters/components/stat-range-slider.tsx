@@ -36,6 +36,9 @@ export function StatRangeSlider<T extends string>({
         min={min}
         max={max}
         step={step}
+        getThumbLabel={(index) =>
+          `${label} ${index === 0 ? 'minimum' : 'maximum'}`
+        }
         className={cn(
           '**:data-[slot=slider-range]:bg-muted-foreground/50',
           isActive && '**:data-[slot=slider-range]:bg-primary',

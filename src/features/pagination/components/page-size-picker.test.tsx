@@ -29,6 +29,13 @@ describe('PageSizePicker', () => {
     expect(screen.getByText('10')).toBeInTheDocument()
   })
 
+  it('associates the "Per page" text with the select for its accessible name', () => {
+    renderWithProviders(<PageSizePicker />)
+    expect(
+      screen.getByRole('combobox', { name: 'Per page:' }),
+    ).toBeInTheDocument()
+  })
+
   it('navigates with the selected perPage and resets page to 1', async () => {
     const user = userEvent.setup()
     renderWithProviders(<PageSizePicker />)

@@ -12,6 +12,8 @@ export function PaginationRangeDisplay({
 
   return (
     <p
+      role="status"
+      aria-live="polite"
       className={cn(
         'text-muted-foreground min-w-28 whitespace-nowrap lg:min-w-60',
         className,
