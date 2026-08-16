@@ -149,4 +149,51 @@ describe('Pokedex', () => {
       expect(screen.getByText('Bulbasaur')).toBeInTheDocument(),
     )
   })
+
+  it('clamps the URL page back to the last valid page when it is out of range', async () => {
+    // Mimics the real API (json-server): an out-of-range `_page` is served
+    // as the last valid page's data instead of erroring.
+    server.use(
+      http.get(POKEMONS_URL, () =>
+        HttpResponse.json(
+          makePaginatedResponse([makePokemon()], {
+            prev: 8,
+            next: null,
+            last: 9,
+            pages: 9,
+            items: 809,
+          }),
+        ),
+      ),
+    )
+
+    const { router } = renderWithRouter(['/pokemons?page=999&perPage=100'])
+
+    // The default 1000ms `waitFor` timeout is too tight on slower/loaded CI
+    // runners for a real fetch-through-Suspense render cycle (other,
+    // single-fetch tests in this file have been observed taking 800ms+ in
+    // CI), so give this assertion more headroom.
+    const timeout = 5000
+
+    await waitFor(
+      () => expect(screen.getByText('Bulbasaur')).toBeInTheDocument(),
+      { timeout },
+    )
+
+    await waitFor(
+      () => {
+        expect(router.state.location.search).toEqual({
+          page: 9,
+          perPage: 100,
+        })
+      },
+      { timeout },
+    )
+
+    const statusRegions = screen.getAllByRole('status')
+    const rangeRegion = statusRegions.find((region) =>
+      region.textContent.includes('of 809'),
+    )
+    expect(rangeRegion).toHaveTextContent('801 - 809 of 809')
+  })
 })
