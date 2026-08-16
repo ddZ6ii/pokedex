@@ -85,7 +85,11 @@ export function SearchPokemon({
           ref={inputRef}
           onValueChange={debouncedSetSearch}
         />
-        {showResults && <SearchResults>{results} results</SearchResults>}
+        {showResults && (
+          <SearchResults role="status" aria-live="polite">
+            {results} results
+          </SearchResults>
+        )}
         <SearchResetTrigger
           aria-controls={id}
           aria-label={isFetching ? 'Loading' : 'Clear search'}

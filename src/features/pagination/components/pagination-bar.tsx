@@ -32,6 +32,7 @@ export function PaginationBar({
   return (
     <motion.nav
       aria-label="Pagination"
+      inert={hidden}
       className={cn(
         'sticky bottom-4 z-10 flex w-full max-w-78 flex-col items-center gap-3 rounded-lg border px-4 py-2 text-sm backdrop-blur-sm md:max-w-125',
         className,

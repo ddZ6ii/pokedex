@@ -88,6 +88,26 @@ describe('Pokedex', () => {
     await waitFor(() =>
       expect(screen.getByText('No pokemons found.')).toBeInTheDocument(),
     )
+    expect(screen.getByText('No pokemons found.')).toHaveAttribute(
+      'aria-live',
+      'polite',
+    )
+  })
+
+  it('announces the result count in a screen-reader-only live region once pokemons load', async () => {
+    server.use(http.get(POKEMONS_URL, () => HttpResponse.json(validResponse)))
+
+    renderWithRouter()
+
+    await waitFor(() =>
+      expect(screen.getByText('Bulbasaur')).toBeInTheDocument(),
+    )
+
+    const statusRegions = screen.getAllByRole('status')
+    const countRegion = statusRegions.find((region) =>
+      /pokemon(s)? found\.$/.test(region.textContent),
+    )
+    expect(countRegion).toHaveTextContent('1 pokemon found.')
   })
 
   it('shows error without retry button for non-recoverable errors', async () => {
