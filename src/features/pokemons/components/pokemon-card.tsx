@@ -170,6 +170,7 @@ function PokemonCard({
   const evolvesFromUrl = pokemon.evolves_from
     ? `${BASE_IMAGE_URL}/${String(pokemon.evolves_from.id)}.png`
     : null
+  const showEvolvesFrom = pokemon.stage !== 'base' && Boolean(evolvesFromUrl)
   const {
     src: evolvesFromSrc,
     loaded: evolvesFromLoaded,
@@ -185,7 +186,7 @@ function PokemonCard({
   const allImagesSettled =
     (loaded || failed) &&
     (backgroundLoaded || backgroundFailed) &&
-    (!evolvesFromUrl || evolvesFromLoaded || evolvesFromFailed)
+    (!showEvolvesFrom || evolvesFromLoaded || evolvesFromFailed)
 
   return (
     <TiltedCard
@@ -222,7 +223,7 @@ function PokemonCard({
         ))}
       </div>
 
-      {pokemon.stage !== 'base' && evolvesFromUrl && (
+      {showEvolvesFrom && (
         <div
           className={cn(
             'absolute top-8.5 left-5 z-10 size-8 rounded-full transition-transform duration-500 hover:drop-shadow-lg hover:drop-shadow-black/60 motion-safe:hover:translate-z-2 motion-safe:hover:scale-300 motion-safe:hover:scale-3d',
