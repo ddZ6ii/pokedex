@@ -83,7 +83,7 @@ function PokemonList({
         initial={'hidden'}
         animate="visible"
       >
-        {pokemons.map((pokemon) => (
+        {pokemons.map((pokemon, index) => (
           <motion.li
             key={pokemon.id}
             variants={
@@ -97,7 +97,10 @@ function PokemonList({
               search={(prev) => prev}
               resetScroll={false}
             >
-              <PokemonCardMemoized pokemon={pokemon} />
+              {/* Only the first card is above the fold on page load — eager-loading
+                  its background fixes LCP discovery delay without reintroducing
+                  the full concurrent-request burst lazy-loading was added to avoid. */}
+              <PokemonCardMemoized pokemon={pokemon} priority={index === 0} />
             </Link>
           </motion.li>
         ))}

@@ -145,7 +145,13 @@ function TypeIcon({ type }: { type: PokemonType }) {
   )
 }
 
-function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
+function PokemonCard({
+  pokemon,
+  priority = false,
+}: {
+  pokemon: Pokemon
+  priority?: boolean
+}) {
   const { src, loaded, failed, handleLoad, handleError } = usePokemonImage(
     pokemon.id,
   )
@@ -190,7 +196,8 @@ function PokemonCard({ pokemon }: { pokemon: Pokemon }) {
         <img
           src={backgroundSrc}
           alt=""
-          loading="lazy"
+          loading={priority ? 'eager' : 'lazy'}
+          fetchPriority={priority ? 'high' : 'auto'}
           onLoad={handleBackgroundLoad}
           onError={handleBackgroundError}
           className="size-full object-contain object-center"
