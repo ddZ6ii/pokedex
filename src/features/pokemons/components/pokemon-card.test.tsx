@@ -71,7 +71,7 @@ describe('PokemonCardMemoized', () => {
       'img[src^="/pokemon-backgrounds/"]',
     )
     const artwork = container.querySelector<HTMLImageElement>(
-      'img[src*="official-artwork"]',
+      'img[src*="pokemon-artwork"]',
     )
     if (!background || !artwork) throw new Error('images not mounted')
 
