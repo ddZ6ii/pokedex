@@ -168,7 +168,7 @@ function PokemonCard({
   } = useRetryableImage(backgroundUrl)
 
   const evolvesFromUrl = pokemon.evolves_from
-    ? `${BASE_IMAGE_URL}/${String(pokemon.evolves_from.id)}.png`
+    ? `${BASE_IMAGE_URL}/${String(pokemon.evolves_from.id)}.webp`
     : null
   const showEvolvesFrom = pokemon.stage !== 'base' && Boolean(evolvesFromUrl)
   const {
