@@ -39,4 +39,18 @@ describe('PokemonCardMemoized', () => {
       '/pokemon-backgrounds/bg-grass.webp?retry=1',
     )
   })
+
+  it('eager-loads the background with high fetch priority when priority is set', () => {
+    const { container } = renderWithProviders(
+      <PokemonCardMemoized pokemon={makePokemon()} priority />,
+    )
+
+    const background = container.querySelector<HTMLImageElement>(
+      'img[src^="/pokemon-backgrounds/"]',
+    )
+    if (!background) throw new Error('background img not mounted')
+
+    expect(background).toHaveAttribute('loading', 'eager')
+    expect(background).toHaveAttribute('fetchpriority', 'high')
+  })
 })
