@@ -53,4 +53,31 @@ describe('PokemonCardMemoized', () => {
     expect(background).toHaveAttribute('loading', 'eager')
     expect(background).toHaveAttribute('fetchpriority', 'high')
   })
+
+  it('settles without waiting on an evolves-from image that never mounts (stage "base" despite evolves_from being set — real data shape: Melmetal/#809)', () => {
+    const { container } = renderWithProviders(
+      <PokemonCardMemoized
+        pokemon={makePokemon({
+          stage: 'base',
+          evolves_from: { id: 808, name: 'Meltan' },
+        })}
+      />,
+    )
+
+    // stage "base" means no evolves-from badge should render at all.
+    expect(container.querySelector('img[alt="Meltan"]')).toBeNull()
+
+    const background = container.querySelector<HTMLImageElement>(
+      'img[src^="/pokemon-backgrounds/"]',
+    )
+    const artwork = container.querySelector<HTMLImageElement>(
+      'img[src*="official-artwork"]',
+    )
+    if (!background || !artwork) throw new Error('images not mounted')
+
+    fireEvent.load(background)
+    fireEvent.load(artwork)
+
+    expect(container.querySelector('[aria-hidden="true"]')).toBeNull()
+  })
 })
