@@ -63,7 +63,7 @@ jobs:
       - name: Trigger staging deploy
         env:
           WEBHOOK_SECRET: ${{ secrets.WEBHOOK_SECRET_POKEDEX_STAGING }}
-          HOOKS_BASE_URL: ${{ vars.POKEDEX_HOOKS_BASE_URL }}
+          HOOKS_BASE_URL: ${{ vars.VPS_HOOKS_BASE_URL }}
           TAG: dev-${{ needs.get-short-sha.outputs.sha_short }}
         run: |
           PAYLOAD="{\"tag\":\"${TAG}\"}"
