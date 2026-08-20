@@ -1,3 +1,5 @@
+## [1.0.6](https://github.com/ddZ6ii/pokedex/compare/v1.0.5...v1.0.6) (2026-08-20)
+
 ## [1.0.5](https://github.com/ddZ6ii/pokedex/compare/v1.0.4...v1.0.5) (2026-08-17)
 
 ## [1.0.4](https://github.com/ddZ6ii/pokedex/compare/v1.0.3...v1.0.4) (2026-08-17)
