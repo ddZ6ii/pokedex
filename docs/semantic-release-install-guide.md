@@ -67,7 +67,7 @@ Reference for how `semantic-release`, conventional commits tooling, and the rele
      @semantic-release/npm \
      @semantic-release/git \
      @semantic-release/github \
-     conventional-changelog-conventionalcommits \
+     conventional-changelog-conventionalcommits
    ```
 
 > ℹ️ `@semantic-release/npm` is what actually writes the new version into `package.json`. Even with `npmPublish: false` set into `.releaserc.json` (no publish to the npm registry), it still performs the version bump. Without it, the version field in `package.json` will stay at `0.0.0` forever
@@ -414,16 +414,18 @@ Refer to [Linear History Workflow | GitHub Configuration](./github-linear-histor
 
 _Repo → Settings → Secrets and variables → Actions_
 
-| Secret            | Description                                                                                                                                                                                                                                                  |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `GH_TOKEN`        | Classic PAT with `repo` + `workflow` scopes — used by semantic-release to push the release commit/tag to `main`, and by `sync-dev` to push the rebased `dev` branch. **Already configured** as a repository secret — see [below](#creating-the-gh_token-pat) |
-| `DOCKERHUB_TOKEN` | Docker Hub PAT — used to push images to Docker Hub repository                                                                                                                                                                                                |
+| Secret                           | Description                                                                                                                                                                                                                                                  |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `GH_TOKEN`                       | Classic PAT with `repo` + `workflow` scopes — used by semantic-release to push the release commit/tag to `main`, and by `sync-dev` to push the rebased `dev` branch. **Already configured** as a repository secret — see [below](#creating-the-gh_token-pat) |
+| `DOCKERHUB_TOKEN`                | Docker Hub PAT — used to push images to Docker Hub repository                                                                                                                                                                                                |
+| `WEBHOOK_SECRET_POKEDEX_STAGING` | HMAC shared secret — used by `staging.yml`'s `build-and-deploy` job to sign the `deploy-pokedex-staging` webhook request. **Outstanding manual step** — see the manual GitHub-configuration checklist below                                                  |
 
 > ℹ️ Secrets are **encrypted** and are used for sensitive data. Variables are shown as plain text and are used for **non-sensitive** data
 
-| Variable             | Description              |
-| -------------------- | ------------------------ |
-| `DOCKERHUB_USERNAME` | Your Docker Hub username |
+| Variable             | Description                                                                                                                                                                                |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `DOCKERHUB_USERNAME` | Your Docker Hub username — the Docker Hub repository itself is composed inline as `${{ vars.DOCKERHUB_USERNAME }}/pokedex` in `staging.yml`/`release.yml`, no separate repository variable |
+| `VPS_HOOKS_BASE_URL` | Base URL of the VPS webhook receiver (e.g. `https://hooks.example.com`) — used by `staging.yml` to build the `deploy-pokedex-staging` hook URL. **Outstanding manual step**                |
 
 ### Creating the `GH_TOKEN` PAT
 
@@ -451,6 +453,9 @@ The following cannot be automated by any script or plan — a human must confirm
 - [ ] **`main`'s branch ruleset bypass** (_Settings → Rules → Rulesets_): confirm the ruleset on `main` includes a bypass entry allowing `GH_TOKEN`'s associated identity to push directly — needed for `@semantic-release/git` to push the release commit + tag, and for `sync-dev` to push the rebased `dev` branch. Cross-reference the [`main` ruleset](github-linear-history-workflow.md#main-ruleset) recommendations already documented in the Linear History Workflow doc rather than duplicating them here
 - [ ] **`dev`'s branch ruleset bypass** (_Settings → Rules → Rulesets_): confirm the ruleset on `dev` (which blocks force pushes and requires a PR, per the [`dev` ruleset](github-linear-history-workflow.md#dev-ruleset) documented in the Linear History Workflow doc) also includes a bypass entry for the same `GH_TOKEN` identity — `sync-dev` runs `git push --force-with-lease origin dev` directly, without a PR, and that push will fail on every release without this bypass
 - [ ] **Actions permission to create GitHub Releases** (_Settings → Actions → General → Workflow permissions_): `@semantic-release/github` needs at least read/write repository permissions. This workflow authenticates primarily via `GH_TOKEN`, but it is **not confirmed** whether `@semantic-release/github`'s release-creation call ever falls back to the ambient `GITHUB_TOKEN` permissions in some configurations. Treat this as a **"verify it works on the first real run"** item rather than a confirmed mechanism
+- [ ] **`WEBHOOK_SECRET_POKEDEX_STAGING` repository secret** (_Settings → Secrets and variables → Actions_): create this secret with the HMAC shared secret used by the `deploy-pokedex-staging` hook — `staging.yml`'s `build-and-deploy` job needs it to sign the staging deploy request
+- [ ] **`VPS_HOOKS_BASE_URL` repository variable** (_Settings → Secrets and variables → Actions_): create this variable with the VPS webhook receiver's base URL
+- [ ] **`deploy-pokedex-staging` hook in `vps-infra`**: confirm the hook exists with HMAC validation, matching `WEBHOOK_SECRET_POKEDEX_STAGING` above, analogous to the existing `deploy-pokedex-prod` hook
 
 ## <a id="testing"></a>🧪 Testing
 
