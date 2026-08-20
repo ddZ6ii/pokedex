@@ -421,10 +421,9 @@ _Repo → Settings → Secrets and variables → Actions_
 
 > ℹ️ Secrets are **encrypted** and are used for sensitive data. Variables are shown as plain text and are used for **non-sensitive** data
 
-| Variable             | Description                                 |
-| -------------------- | ------------------------------------------- |
-| `DOCKERHUB_USERNAME` | Your Docker Hub username                    |
-| `DOCKERHUB_REPO`     | Full repository name, e.g. `username/myapp` |
+| Variable             | Description              |
+| -------------------- | ------------------------ |
+| `DOCKERHUB_USERNAME` | Your Docker Hub username |
 
 ### Creating the `GH_TOKEN` PAT
 
